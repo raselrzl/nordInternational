@@ -20,7 +20,7 @@ export default async function LoginForm() {
     <div className=" flex flex-col gap-6">
       <Card>
         <Link href="/" className="flex items-center gap-2 self-center">
-          <Image src="/logoo1.jpg" height={120} width={270} alt="logo image" />
+          <Image src="/n1w.png" height={120} width={270} alt="logo image" />
         </Link>
         <CardHeader className="text-center ">
           <CardTitle className="text-xl">
