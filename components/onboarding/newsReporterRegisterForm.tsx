@@ -27,7 +27,7 @@ import Image from "next/image";
 import { XIcon } from "lucide-react";
 import { districts } from "@/app/utils/locationList";
 import { newsReporterSchema } from "@/app/utils/zodSchemas";
-import { UploadDropzone } from "../UploadThingReexported";
+import { UploadDropzone } from "../general/UploadThingReexported";
 import { createNewsReporter } from "@/app/actions";
 
 export default function NewsReporterRegisterForm() {
