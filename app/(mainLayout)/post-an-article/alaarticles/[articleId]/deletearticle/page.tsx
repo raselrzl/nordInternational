@@ -24,7 +24,7 @@ export default function ConfirmDeletePage({
     } catch (error) {
       console.error("Error deleting article:", error);
     }
-  };
+  }; 
 
   const handleCancel = () => {
     router.push("/post-an-article/alaarticles");

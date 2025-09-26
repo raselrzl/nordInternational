@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+
 import { UploadDropzone } from "@/components/general/UploadThingReexported";
 import { Textarea } from "@/components/ui/textarea";
 import { districts } from "@/app/utils/locationList";
@@ -31,6 +32,7 @@ import { newsCategory } from "@/lib/generated/prisma";
 import { updateNewsArticle } from "@/app/actions";
 import NewsDescriptionEditor from "@/components/richTextEditor/newsDescriptionEditor";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
 
 interface iAppProps {
   article: {
@@ -81,7 +83,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
     control: form.control,
     name: "quotes",
   });
-
+  const router = useRouter();
   const [pending, setPending] = useState(false);
 
   async function onSubmit(data: any) {
@@ -100,6 +102,10 @@ export function EditNewsArticleForm({ article }: iAppProps) {
   }
 
   const [useEditor, setUseEditor] = useState(false);
+
+   const handleCancel = () => {
+    router.push("/post-an-article/alaarticles");
+  };
 
   return (
     <Form {...form}>
@@ -391,7 +397,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
         </div>
 
         <div className="flex justify-center gap-5">
-          <Button variant="destructive" type="button">
+          <Button variant="destructive" type="button" onClick={handleCancel}>
             Cancel
           </Button>
           <Button type="submit" disabled={pending}>
@@ -401,4 +407,4 @@ export function EditNewsArticleForm({ article }: iAppProps) {
       </form>
     </Form>
   );
-}
+} 
