@@ -45,13 +45,13 @@ export default async function OpinionsList() {
       {opinions.map(({ id, name, opinion, email, phone, createdAt }) => (
         <div
           key={id}
-          className="p-4 border rounded-md shadow-sm bg-white"
+          className="p-4 border rounded-2xl shadow-md shadow-blue-300"
           aria-label={`Complaint submitted by: ${name}`}
         >
-          <p className="text-gray-800 mb-2 text-justify italic">
+          <p className="mb-2 text-justify italic">
             " {opinion} "
           </p>
-          <div className="text-xs text-gray-600 flex flex-col sm:flex-row space-x-4">
+          <div className="text-xs text-gray-400 flex flex-col sm:flex-row space-x-4">
             <div>
               <strong>Name:</strong> {name}
             </div>
