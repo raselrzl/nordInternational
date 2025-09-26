@@ -24,6 +24,7 @@ import { DeluxeOneAdvertise } from "@/components/general/allAdvertisement/Deluxe
 import { PremiumOneAdvertise } from "@/components/general/allAdvertisement/PremiumOne";
 import { PremiumTwoAdvertise } from "@/components/general/allAdvertisement/PremiumTwo";
 import { BesicOneAdvertise } from "@/components/general/allAdvertisement/BesicOne";
+import PopupOnViewClientWrapper from "@/components/Popup/PopupOnViewClientWrapper";
 
 async function getData() {
   const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
@@ -400,6 +401,7 @@ export default async function Home() {
       <div className="mb-4">
         <div className=" grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-3 md:col-span-2">
+            <PopupOnViewClientWrapper />
             <Binodon />
           </div>
           <div className="col-span-3 md:col-span-1 md:mt-12">
@@ -407,6 +409,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
+      
       <div className="border-y-2 my-2 border-primary"></div>
       <BesicOneAdvertise />
     </>
