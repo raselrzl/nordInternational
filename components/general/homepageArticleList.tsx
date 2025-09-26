@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Clock } from "lucide-react";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "../richTextEditor/JsonToHtml";
-import { PremiarOne } from "./allAdvertisement/PremiarOne";
-import { SuperOne } from "./allAdvertisement/SuperOne";
-import { SizeOneAdvertise } from "./allAdvertisement/SizeOne";
+import { PremiarOne } from "../allAdvertisement/PremiarOne";
+import { SuperOne } from "../allAdvertisement/SuperOne";
+import { SizeOneAdvertise } from "../allAdvertisement/SizeOne";
 
 /* async function getData() {
   const [allArticles, lastFeaturedArticle, latestNews, Environment, Politics] =

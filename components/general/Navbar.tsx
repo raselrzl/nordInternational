@@ -7,7 +7,7 @@ import { UserDropdown } from "./UserDropdown";
 import DropDownMenuList from "./dropDownMenuList";
 import { Loader2, User2 } from "lucide-react";
 import { Suspense } from "react";
-import { DeluxeOneAdvertise } from "./allAdvertisement/DeluxeOne";
+import { DeluxeOneAdvertise } from "../allAdvertisement/DeluxeOne";
 
 export default async function Navbar() {
   const user = await auth();

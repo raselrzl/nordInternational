@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { ShirShoNewsHeadings } from "@/components/general/homepageArticleList";
 import { trackRoute } from "@/app/utils/routeTracker";
-import { PremiarOne } from "@/components/general/allAdvertisement/PremiarOne";
+import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 
 type SearchParamsProps = {
   searchParams: Promise<{

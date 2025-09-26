@@ -17,14 +17,15 @@ import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { isJson } from "../utils/isJson";
 import Videos from "@/components/general/Videos";
 import { trackRoute } from "../utils/routeTracker";
-import { ProOneAdvertise } from "@/components/general/allAdvertisement/ProOne";
-import { SuperTwo } from "@/components/general/allAdvertisement/SuperTwo";
-import { DeluxeTwoAdvertise } from "@/components/general/allAdvertisement/DeluxeTwo";
-import { DeluxeOneAdvertise } from "@/components/general/allAdvertisement/DeluxeOne";
-import { PremiumOneAdvertise } from "@/components/general/allAdvertisement/PremiumOne";
-import { PremiumTwoAdvertise } from "@/components/general/allAdvertisement/PremiumTwo";
-import { BesicOneAdvertise } from "@/components/general/allAdvertisement/BesicOne";
-import PopupOnViewClientWrapper from "@/components/Popup/PopupOnViewClientWrapper";
+import { ProOneAdvertise } from "@/components/allAdvertisement/ProOne";
+import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
+import { DeluxeTwoAdvertise } from "@/components/allAdvertisement/DeluxeTwo";
+import { DeluxeOneAdvertise } from "@/components/allAdvertisement/DeluxeOne";
+import { PremiumOneAdvertise } from "@/components/allAdvertisement/PremiumOne";
+import { PremiumTwoAdvertise } from "@/components/allAdvertisement/PremiumTwo";
+import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
+import PopupOnViewClientWrapper from "@/components/PopupAd/PopupOnViewClientWrapper";
+import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 
 async function getData() {
   const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
@@ -401,7 +402,7 @@ export default async function Home() {
       <div className="mb-4">
         <div className=" grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-3 md:col-span-2">
-            <PopupOnViewClientWrapper />
+            <PopupOnViewServer />
             <Binodon />
           </div>
           <div className="col-span-3 md:col-span-1 md:mt-12">

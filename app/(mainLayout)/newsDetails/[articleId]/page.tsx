@@ -11,11 +11,11 @@ import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
 import { PrintNewsDetailsClient } from "../../../../components/general/PrintNewsClient";
 import { trackRoute } from "@/app/utils/routeTracker";
-import { ProOneAdvertise } from "@/components/general/allAdvertisement/ProOne";
-import { PremiarOne } from "@/components/general/allAdvertisement/PremiarOne";
-import { BesicOneAdvertise } from "@/components/general/allAdvertisement/BesicOne";
-import { BesicTwoAdvertise } from "@/components/general/allAdvertisement/BesicTwo";
-import { SizeTwoAdvertise } from "@/components/general/allAdvertisement/SizeTwo";
+import { ProOneAdvertise } from "@/components/allAdvertisement/ProOne";
+import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
+import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
+import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
+import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
 
 async function getNewsArticle(articleId: string) {
   const newsArticle = await prisma.newsArticle.findUnique({

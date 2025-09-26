@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { prisma } from "../utils/db";
-import OnboardingForm from "@/components/general/onboarding/OnboardingForm";
+import OnboardingForm from "@/components/onboarding/OnboardingForm";
 import { requireUser } from "../utils/requireUser";
 import { trackRoute } from "../utils/routeTracker";
 

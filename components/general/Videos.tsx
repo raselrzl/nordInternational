@@ -4,8 +4,8 @@ import Image from "next/image";
 import { prisma } from "@/app/utils/db";
 import { Card, CardHeader } from "../ui/card";
 import YouTubeVideo from "./YouTubeVideo";
-import { PremiarOne } from "./allAdvertisement/PremiarOne";
-import { PremiarTwo } from "./allAdvertisement/PremierTwo";
+import { PremiarOne } from "../allAdvertisement/PremiarOne";
+import { PremiarTwo } from "../allAdvertisement/PremierTwo";
 
 export async function getVideos() {
   return await prisma.videopost.findMany({
