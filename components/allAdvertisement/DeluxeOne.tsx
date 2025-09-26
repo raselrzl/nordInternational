@@ -41,7 +41,7 @@ export async function DeluxeOneAdvertise() {
                 alt={pro1.companyName}
                 width={600}
                 height={70}
-                className="max-h-[70px] w-auto object-contain"
+                className="max-h-[70px] w-auto object-cover"
               />
             </Link>
           ))}
