@@ -41,7 +41,7 @@ export default function PopupOnView({
   return (
     <div ref={ref} className="relative">
       {showPopup && (
-        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 rounded-md px-4 py-2 max-w-[600px]">
+        <div className="fixed top-28 left-1/2 -translate-x-1/2 z-50 rounded-md px-4 py-2 max-w-[600px]">
           <div className="relative w-[370px] md:w-[600px] h-[100px] rounded-xl overflow-hidden">
             {href ? (
               <Link href={href} target="_blank" rel="noopener noreferrer" aria-label="Advertisement">
