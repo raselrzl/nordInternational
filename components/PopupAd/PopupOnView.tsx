@@ -54,7 +54,7 @@ export default function PopupOnView({
             <button
               onClick={handleClose}
               aria-label="Close popup"
-              className="absolute top-2 right-2 bg-white/70 rounded-full p-1 hover:bg-white transition text-gray-700 text-lg"
+              className="absolute cursor-pointer top-2 right-2 bg-white/70 rounded-full p-1 hover:bg-white transition text-gray-700 text-lg"
             >
               ❌
             </button>
