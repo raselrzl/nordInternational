@@ -23,24 +23,24 @@ export async function getBesicOneAdvertise() {
   });
 }
 export async function BesicOneAdvertise() {
-  const ProOneAdvertise = await getBesicOneAdvertise();
+  const Advertise = await getBesicOneAdvertise();
   return (
     <>
-      {ProOneAdvertise && Object.keys(ProOneAdvertise).length > 0 ? (
-        <div className="flex items-center justify-center border">
-          {ProOneAdvertise.map((pro1) => (
+      {Advertise && Object.keys(Advertise).length > 0 ? (
+        <div className="flex items-center justify-center">
+          {Advertise.map((ad) => (
             <Link
-              href={`https://${pro1.websiteLink}`}
-              key={pro1.id}
+              href={`https://${ad.websiteLink}`}
+              key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Image
-                src={pro1.advertiseBanner}
-                alt={pro1.companyName}
-                width={400} // adjust as needed
-                height={300}
-                className="w-[350px] md:w-[300px] h-full rounded-xl"
+                src={ad.advertiseBanner}
+                alt={ad.companyName}
+                width={600} // adjust as needed
+                height={370}
+                className="w-[370px] md:w-[600px] h-[200px] rounded-xl"
               />
             </Link>
           ))}
