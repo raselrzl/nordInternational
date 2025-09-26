@@ -82,8 +82,8 @@ export default function Footer() {
             >
               ads@nordinternational.com
             </a>
-            <Link href="/" className="flex items-center p-2">
-              <div className="w-[160px] h-[60px] md:w-[200px] md:h-[80px] bg-[url('/n1w.png')] dark:bg-[url('/n1b.png')] bg-cover bg-center" />
+            <Link href="/" className="flex items-center p-4">
+              <div className="w-[160px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/n1w.png')] dark:bg-[url('/n1b.png')] bg-cover bg-center" />
             </Link>
           </div>
           <div className="flex items-center  justify-center gap-4 mt-6 md:mt-0">
