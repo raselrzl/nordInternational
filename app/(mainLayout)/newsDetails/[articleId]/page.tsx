@@ -53,6 +53,63 @@ async function getNewsArticle(articleId: string) {
   return newsArticle;
 }
 
+
+
+
+/* // app/newsDetails/[articleId]/page.tsx
+import type { Metadata } from "next";
+
+// if you already use this in the page:
+type PageParams = Promise<{ articleId: string }>;
+type PageProps = { params: PageParams };
+
+function toExcerpt(htmlOrText: string | null, max = 240) {
+  const src = htmlOrText ?? "";
+  const text = src.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return text.length <= max
+    ? text
+    : text.slice(0, max).replace(/[,.;:!?]?\s+\S*$/, "") + "…";
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { articleId } = await params;              // ✅ await params
+  const article = await getNewsArticle(articleId); // your existing fetch
+
+  const title = article.newsHeading ?? "News";
+  const description = toExcerpt(article.newsDetails, 240);
+
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jagrotobarta.com";
+  const pic = article.newsPicture ?? "/og-default.jpg";
+  const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
+
+  return {
+    title,
+    description,
+    // with metadataBase set in root layout, a relative path is fine:
+    alternates: { canonical: `/newsDetails/${article.id}` },
+    openGraph: {
+      type: "article",
+      url: `/newsDetails/${article.id}`,
+      title,
+      description,
+      siteName: "Nord Internation",
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+
+
+ */
+
+
+
 type Params = Promise<{ articleId: string }>;
 
 export default async function NewsDetailsPage({ params }: { params: Params }) {
