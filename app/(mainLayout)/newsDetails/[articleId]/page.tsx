@@ -6,16 +6,13 @@ import {
   SirshoNewsList,
 } from "@/components/general/homepageArticleList";
 import { Clock, Notebook, User2 } from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
-import { PrintNewsDetailsClient } from "../../../../components/general/PrintNewsClient";
 import { trackRoute } from "@/app/utils/routeTracker";
-import { ProOneAdvertise } from "@/components/allAdvertisement/ProOne";
-import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
+import type { Metadata } from "next";
 
 async function getNewsArticle(articleId: string) {
   const newsArticle = await prisma.newsArticle.findUnique({
@@ -55,11 +52,6 @@ async function getNewsArticle(articleId: string) {
 
 
 
-
-/* // app/newsDetails/[articleId]/page.tsx
-import type { Metadata } from "next";
-
-// if you already use this in the page:
 type PageParams = Promise<{ articleId: string }>;
 type PageProps = { params: PageParams };
 
@@ -70,16 +62,15 @@ function toExcerpt(htmlOrText: string | null, max = 240) {
     ? text
     : text.slice(0, max).replace(/[,.;:!?]?\s+\S*$/, "") + "…";
 }
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { articleId } = await params;              // ✅ await params
   const article = await getNewsArticle(articleId); // your existing fetch
 
   const title = article.newsHeading ?? "News";
-  const description = toExcerpt(article.newsDetails, 240);
+  const description = toExcerpt("বিস্তারিত জানতে নিচের লিঙ্কে ক্লিক করুন...");
 
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jagrotobarta.com";
-  const pic = article.newsPicture ?? "/og-default.jpg";
+  const pic = article.newsPicture ?? "/lg1.npg";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
   return {
@@ -92,21 +83,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `/newsDetails/${article.id}`,
       title,
       description,
-      siteName: "Nord Internation",
+      siteName: "জাগ্রত বার্তা",
       images: [{ url: ogImage, alt: title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
     },
   };
 }
-
-
-
- */
 
 
 
