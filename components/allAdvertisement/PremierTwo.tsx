@@ -52,12 +52,12 @@ export async function PremiarTwo() {
             alt="no ad. image"
             className="w-full h-[270px] rounded-xl px-6 md:pt-0"
           />
-          <Link
-            href="/post-an-article/post-advertisement"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Click to Add Advertisement(PREMIER_1)
-          </Link>
+              <Link
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (PREMIER_2) Advertisement 
+            </Link>
         </div>
       )}
     </>

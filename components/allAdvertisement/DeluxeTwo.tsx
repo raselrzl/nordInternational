@@ -50,12 +50,12 @@ export async function DeluxeTwoAdvertise() {
           <p className="text-sm text-gray-600 mb-2">
             No <strong>Deluxe Two</strong> advertisements available.
           </p>
-          <Link
-            href="/post-an-article/post-advertisement"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Add Advertisement
-          </Link>
+            <Link
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (DELUXE_2) Advertisement 
+            </Link>
         </div>
       )}
     </div>

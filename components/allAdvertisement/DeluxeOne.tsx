@@ -53,10 +53,10 @@ export async function DeluxeOneAdvertise() {
               No advertisement available.
             </p>
             <Link
-              href="/post-an-article/post-advertisement"
+              href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
             >
-              Add Advertisement(DELUXE_1)
+              Contact us for (DELUXE_1) Advertisement 
             </Link>
           </div>
         </div>

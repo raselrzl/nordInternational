@@ -54,11 +54,11 @@ export async function PremiumTwoAdvertise() {
               height={300}
               className="w-full h-[100px] rounded-xl mt-2 object-cover"
             />
-            <Link
-              href="/post-an-article/post-advertisement"
+               <Link
+              href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
             >
-              Click to Add Advertisement(PREMIUM_2)
+              Contact us for (PREMIUM_2) Advertisement 
             </Link>
           </div>
       )}

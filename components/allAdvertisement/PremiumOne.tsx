@@ -58,22 +58,12 @@ export async function PremiumOneAdvertise() {
             className="w-[370px] h-[250px] md:h-[350px]  rounded-xl
             "
           />
-         {!currentUser ? (
-            <Link
+          <Link
               href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
             >
-              Click to Add Advertisement (PREMIUM_1)
+              Contact us for (PREMIUM_1) Advertisement 
             </Link>
-          ) : (
-            <Link
-              
-              href="/post-an-article/post-advertisement"
-              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-            >
-              Click to Add Advertisement (PREMIUM_1)
-            </Link>
-          )}
         </div>
       )}
     </>

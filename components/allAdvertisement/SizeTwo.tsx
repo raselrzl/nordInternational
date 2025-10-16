@@ -55,11 +55,11 @@ export async function SizeTwoAdvertise() {
             priority
           />
           <Link
-            href="/post-an-article/post-advertisement"
-            className="absolute z-2 inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Click to Add Advertisement (SIZE_2)
-          </Link>
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (SIZE_2) Advertisement 
+            </Link>
         </div>
       )}
     </>

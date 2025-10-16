@@ -54,12 +54,12 @@ export async function BesicOneAdvertise() {
             height={300}
             className="w-[370px] md:w-[600px] h-[200px] rounded-xl"
           />
-          <Link
-            href="/post-an-article/post-advertisement"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Click to Add Advertisement(BASIC_1)
-          </Link>
+           <Link
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (BASIC_1) Advertisement 
+            </Link>
         </div>
       )}
     </>

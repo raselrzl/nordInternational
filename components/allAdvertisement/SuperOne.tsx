@@ -53,11 +53,11 @@ export async function SuperOne() {
             className="w-full md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
           />
           <Link
-            href="/post-an-article/post-advertisement"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Click to Add Advertisement(SUPER_1)
-          </Link>
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (SUPER_1) Advertisement 
+            </Link>
         </div>
       )}
     </>

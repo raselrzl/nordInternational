@@ -37,12 +37,12 @@ export async function ProOneAdvertise() {
               rounded-xl
             "
           />
-          <Link
-            href="/post-an-article/post-advertisement"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Click to Add Advertisement(PRO_1)
-          </Link>
+               <Link
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (PRO_1) Advertisement 
+            </Link>
         </div>
       </div>
     );

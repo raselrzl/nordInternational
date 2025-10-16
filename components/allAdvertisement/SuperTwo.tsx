@@ -51,11 +51,11 @@ export async function SuperTwo() {
             <p className="text-sm text-gray-600 mb-2">
               No <strong>Super Two</strong> advertisement available.
             </p>
-            <Link
-              href="/post-an-article/post-advertisement"
+             <Link
+              href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
             >
-              Add Advertisement
+              Contact us for (SUPER_2) Advertisement 
             </Link>
           </div>
         )}
