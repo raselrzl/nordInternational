@@ -67,10 +67,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = await getNewsArticle(articleId); // your existing fetch
 
   const title = article.newsHeading ?? "News";
-  const description = toExcerpt("বিস্তারিত জানতে নিচের লিঙ্কে ক্লিক করুন...");
+  const description = toExcerpt("For details click the link...");
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jagrotobarta.com";
-  const pic = article.newsPicture ?? "/lg1.npg";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nord-international.vercel.app";
+  const pic = article.newsPicture ?? "/n2.png";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
   return {
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `/newsDetails/${article.id}`,
       title,
       description,
-      siteName: "জাগ্রত বার্তা",
+      siteName: "Nord International",
       images: [{ url: ogImage, alt: title }],
     },
   };
