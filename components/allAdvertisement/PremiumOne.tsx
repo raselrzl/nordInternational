@@ -1,4 +1,5 @@
 import { prisma } from "@/app/utils/db";
+import { getCurrentUserType } from "@/app/utils/getCurrentUserType";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -24,6 +25,7 @@ export async function getPremiumOneAdvertise() {
 }
 export async function PremiumOneAdvertise() {
   const PremiarOneAdvertise = await getPremiumOneAdvertise();
+  const currentUser = await getCurrentUserType();
   return (
     <>
       {PremiarOneAdvertise && Object.keys(PremiarOneAdvertise).length > 0 ? (
@@ -47,22 +49,30 @@ export async function PremiumOneAdvertise() {
           ))}
         </div>
       ) : (
-          <div className="flex flex-col items-center justify-center">
-            <Image
-              src="/noad.png"
-              alt="No Advertisement"
-              width={400} // adjust as needed
-              height={400}
-              className="w-[370px] h-[250px] md:h-[350px]  rounded-xl
+        <div className="flex flex-col items-center justify-center">
+          <Image
+            src="/noad.png"
+            alt="No Advertisement"
+            width={400} // adjust as needed
+            height={400}
+            className="w-[370px] h-[250px] md:h-[350px]  rounded-xl
             "
-            />
-            <Link
+          />
+          {/*    <Link
               href="/post-an-article/post-advertisement"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
             >
               Click to Add Advertisement(PREMIUM_1)
+            </Link> */}
+          {currentUser && (
+            <Link
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Click to Add Advertisement(PREMIUM_1)
             </Link>
-          </div>
+          )}
+        </div>
       )}
     </>
   );
