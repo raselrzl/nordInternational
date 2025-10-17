@@ -484,7 +484,7 @@ export default function PrintInvoiceClient({
                 does not require a signature.
               </p>
               <p>
-                The advertisement will be published on Jagrato News according to
+                The advertisement will be published on Nord International according to
                 the scheduled time.
               </p>
             </div>

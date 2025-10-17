@@ -186,7 +186,7 @@ export default async function AdvertiseDetailsPage({
             <strong>Account Number:</strong> 987 654 321
           </p>
           <p>
-            <strong>Account Name:</strong> Jagrato News
+            <strong>Account Name:</strong> Nord International
           </p>
           <p>
             <strong>Branch:</strong> Stockholm, Sweden
@@ -222,7 +222,7 @@ export default async function AdvertiseDetailsPage({
             not require any signature.
           </p>
           <p>
-            The advertisement will be published on the Jagrato Barta website
+            The advertisement will be published on the Nord International website
             according to the specified duration.
           </p>
         </div>
