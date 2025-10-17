@@ -71,7 +71,7 @@ export async function getLastFeaturedArticle() {
       newsArticleStatus: true,
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
   });
 }
