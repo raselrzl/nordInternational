@@ -59,7 +59,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
           <ChevronDown size={16} strokeWidth={2} />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48" align="end">
+      <DropdownMenuContent className="w-60" align="end">
         <DropdownMenuLabel className="flex flex-col">
           <span className="text-sm font-medium text-foreground">{name}</span>
           <span className="text-xs font-medium text-foreground">{email}</span>
