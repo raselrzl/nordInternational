@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
 import SwedishNews from "./SwedishNews";
 import Image from "next/image";
+import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 
 type SearchParamsProps = {
   searchParams: Promise<{
@@ -48,6 +49,7 @@ export default async function National({ searchParams }: SearchParamsProps) {
           </div>
         </div>
       </div>
+     <div className="px-2"> <SuperOne /></div>
     </>
   );
 }

@@ -130,7 +130,7 @@ export default async function SwedishNews() {
 
       {/* ✅ All Swedish articles */}
       {allArticles && allArticles.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
+        <div id="SwedishNews" className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
             .filter((a) => a.id !== lastFeaturedArticle?.id)
             .map((article) => (

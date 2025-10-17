@@ -8,6 +8,7 @@ import DropDownMenuList from "./dropDownMenuList";
 import { Loader2, User2 } from "lucide-react";
 import { Suspense } from "react";
 import { DeluxeOneAdvertise } from "../allAdvertisement/DeluxeOne";
+import DropDownCountryList from "./DropDownCountryList";
 
 export default async function Navbar() {
   const user = await auth();
@@ -28,7 +29,8 @@ export default async function Navbar() {
 
       <div className="hidden md:flex items-center gap-5">
         <ThemeToggle />
-        <DropDownMenuList />
+       {/*  <DropDownMenuList /> */}
+        <DropDownCountryList />
 
         <div>
           {" "}
@@ -57,7 +59,8 @@ export default async function Navbar() {
         <div className="size-sm">
           <ThemeToggle />
         </div>
-        <DropDownMenuList />
+        {/* <DropDownMenuList /> */}
+         <DropDownCountryList />
         {user?.user ? (
           <UserDropdown
             email={user.user.email as string}
