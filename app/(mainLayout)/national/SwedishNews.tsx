@@ -41,11 +41,12 @@ export async function getAllArticles() {
   });
 }
 
-// ✅ Get last featured article from Cyprus
+// ✅ Get last featured article from Sweden
 export async function getLastFeaturedArticle() {
   return await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
+      isFeatured: true,
       newsLocation: { equals: "Sweden", mode: "insensitive" },
     },
     select: {
