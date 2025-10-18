@@ -5,7 +5,6 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
-
 // components/general/countriesList.ts
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
@@ -65,16 +64,26 @@ async function getLastFeaturedArticle(country: string) {
   });
 }
 
-// ✅ Server Component
-export default async function CountryNews({
-  searchParams,
-}: {
+interface CountryNewsProps {
   searchParams?: { country?: string };
-}) {
+}
+
+// ✅ Server Component
+export default async function CountryNews({ searchParams }: CountryNewsProps) {
   const country = searchParams?.country || "Sweden";
 
   const allArticles = await getAllArticles(country);
   const lastFeaturedArticle = await getLastFeaturedArticle(country);
+
+  // ✅ Map country to flag file
+  const flagMap: Record<string, string> = {
+    Sweden: "sweden.jpeg",
+    Germany: "germany.jpeg",
+    France: "france.jpeg",
+    Italy: "italy.jpeg",
+  };
+
+  const flagSrc = `/flags/${flagMap[country] || "sweden.jpeg"}`;
 
   return (
     <>
