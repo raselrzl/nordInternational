@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // components/general/countriesList.ts
-export const euCountries = [
+const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
   {
     name: "Bangladesh",
