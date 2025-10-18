@@ -68,12 +68,28 @@ interface CountryNewsProps {
   searchParams?: { country?: string };
 }
 
-// ✅ Server Component
-export default async function CountryNews({ searchParams }: { searchParams?: { country?: string } }) {
+export default async function CountryNews({ searchParams }: CountryNewsProps) {
+  // ✅ Get the country from params or fallback
   const country = searchParams?.country || "Sweden";
 
-  const allArticles = await getAllArticles(country);
-  const lastFeaturedArticle = await getLastFeaturedArticle(country);
+  // ✅ Fetch data and wait
+  const allArticles = await prisma.newsArticle.findMany({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      newsLocation: { equals: country, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+    take: 9,
+  });
+
+  const lastFeaturedArticle = await prisma.newsArticle.findFirst({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      isFeatured: true,
+      newsLocation: { equals: country, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+  });
 
   const activeCountry = euCountries.find(c => c.name.toLowerCase() === country.toLowerCase());
   const flagSrc = activeCountry?.flag || "/flags/default.png";
