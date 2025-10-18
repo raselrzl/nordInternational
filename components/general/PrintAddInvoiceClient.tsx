@@ -121,7 +121,7 @@ export default function PrintInvoiceClient({
           disabled={isLoading}
         >
           {isLoading ? (
-            <Loader2 className="animate-spin w-5 h-5" />
+            <div className="flex items-center justify-between"><Loader2 className="animate-spin w-5 h-5" />Downloading...</div>
           ) : (
             "⬇️ Download INVOICE"
           )}
@@ -138,7 +138,7 @@ export default function PrintInvoiceClient({
             width: "794px", // ≈ A4 width @ 96dpi (8.27in * 96)
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "12px 10px", // tight L/R padding; everything stays inside
+            padding: "9px 20px", // tight L/R padding; everything stays inside
             fontSize: "11.2pt",
             lineHeight: 1.22, // reduced line spacing to help fit
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
