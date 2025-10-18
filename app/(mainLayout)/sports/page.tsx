@@ -5,7 +5,7 @@ import { trackRoute } from "@/app/utils/routeTracker";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import Image from "next/image";
 import ItalyNews from "./ItalyNews";
-
+import { List } from "lucide-react";
 type SearchParamsProps = {
   searchParams: Promise<{
     page?: string;
@@ -21,9 +21,9 @@ export default async function Sports({ searchParams }: SearchParamsProps) {
     <>
       <div className="grid grid-cols-3 mt-10">
         <div className="col-span-3 md:col-span-1">
-          <h1 className="font-extrabold pl-2 mb-2">
-            {`>>>`}Latest Sports News
-          </h1>
+          <div className="font-extrabold pl-2 mb-2 flex items-center">
+            <List className="h-5 w-5 mr-2"/> Sports News
+          </div>
 
           <div className="p-1 md:p-4">
             <Suspense key={currentPage} fallback={<LoadingSpinner />}>

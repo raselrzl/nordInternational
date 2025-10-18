@@ -3,176 +3,12 @@ import Image from "next/image";
 import { EmptyState } from "./EmptyState";
 import SocialLinks from "./socialLink";
 import Link from "next/link";
-import { Clock } from "lucide-react";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "../richTextEditor/JsonToHtml";
-import { PremiarOne } from "../allAdvertisement/PremiarOne";
 import { SuperOne } from "../allAdvertisement/SuperOne";
 import { SizeOneAdvertise } from "../allAdvertisement/SizeOne";
+import { List } from "lucide-react";
 
-/* async function getData() {
-  const [allArticles, lastFeaturedArticle, latestNews, Environment, Politics] =
-    await Promise.all([
-      prisma.newsArticle.findMany({
-        where: { newsArticleStatus: "ACTIVE" },
-        select: {
-          id: true,
-          createdAt: true,
-          isFeatured: true,
-          newsCategory: true,
-          newsDetails: true,
-          newsHeading: true,
-          newsPicture: true,
-          quotes: {
-            select: {
-              speakerInfo: true,
-              text: true,
-            },
-          },
-          newsResource: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          newsLocation: true,
-          newsReporter: true,
-          newsArticleStatus: true,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-        take: 7,
-      }),
-
-      prisma.newsArticle.findFirst({
-        where: {
-          newsArticleStatus: "ACTIVE",
-          isFeatured: true,
-        },
-        select: {
-          id: true,
-          createdAt: true,
-          isFeatured: true,
-          newsCategory: true,
-          newsDetails: true,
-          newsHeading: true,
-          newsPicture: true,
-          quotes: {
-            select: {
-              speakerInfo: true,
-              text: true,
-            },
-          },
-          newsResource: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          newsLocation: true,
-          newsReporter: true,
-          newsArticleStatus: true,
-        },
-
-        orderBy: {
-          createdAt: "desc",
-        },
-      }),
-
-      prisma.newsArticle.findMany({
-        where: { newsCategory: "EDUCATION" },
-        select: {
-          id: true,
-          createdAt: true,
-          isFeatured: true,
-          newsCategory: true,
-          newsDetails: true,
-          newsHeading: true,
-          newsPicture: true,
-          quotes: {
-            select: {
-              speakerInfo: true,
-              text: true,
-            },
-          },
-          newsResource: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          newsLocation: true,
-          newsReporter: true,
-          newsArticleStatus: true,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-        take: 7,
-      }),
-
-      prisma.newsArticle.findFirst({
-        where: {
-          newsCategory: "EDUCATION",
-          isFeatured: true,
-        },
-        select: {
-          id: true,
-          createdAt: true,
-          isFeatured: true,
-          newsCategory: true,
-          newsDetails: true,
-          newsHeading: true,
-          newsPicture: true,
-          quotes: {
-            select: {
-              speakerInfo: true,
-              text: true,
-            },
-          },
-          newsResource: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          newsLocation: true,
-          newsReporter: true,
-          newsArticleStatus: true,
-        },
-
-        orderBy: {
-          createdAt: "desc",
-        },
-      }),
-
-      prisma.newsArticle.findMany({
-        where: { newsCategory: "EDUCATION" },
-        select: {
-          id: true,
-          createdAt: true,
-          isFeatured: true,
-          newsCategory: true,
-          newsDetails: true,
-          newsHeading: true,
-          newsPicture: true,
-          quotes: {
-            select: {
-              speakerInfo: true,
-              text: true,
-            },
-          },
-          newsResource: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          newsLocation: true,
-          newsReporter: true,
-          newsArticleStatus: true,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-        take: 10,
-      }),
-    ]);
-
-  return {
-    allArticles,
-    lastFeaturedArticle,
-    latestNews,
-    Environment,
-    Politics,
-  };
-} */
 // getAllArticles.ts
 export async function getAllArticles() {
   return await prisma.newsArticle.findMany({
@@ -610,10 +446,10 @@ export async function ShirShoNewsHeadings() {
     <>
       {Politics && Object.keys(Politics).length > 0 ? (
         <div className="bg-primary-foreground dark:bg-accent-foreground/5 py-2">
-          <h1 className="font-extrabold mb-2 pl-4 text-2xl">
+          <div className="font-extrabold mb-2 pl-4 text-2xl">
             {" "}
-            {`>>>`}Important and Trending
-          </h1>
+            <List className="h-5 w-5 mr-2"/>Important and Trending
+          </div>
           <div className="rounded-xl py-2">
             {Politics.map((article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>

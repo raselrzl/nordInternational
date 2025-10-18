@@ -5,7 +5,7 @@ import {
   ShirShoNewsHeadings,
   SirshoNewsList,
 } from "@/components/general/homepageArticleList";
-import { Clock, Notebook, User2 } from "lucide-react";
+import { Clock, List, Notebook, User2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
 import { trackRoute } from "@/app/utils/routeTracker";
@@ -187,7 +187,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         <div className="flex flex-col items-center rounded-2xl mx-auto">
           <BesicOneAdvertise />
           <div className="border-t-1 p-2">
-            <h1 className="font-extrabold mb-2 ml-6">{`>>>`}Recent News</h1>
+            <div className="font-extrabold mb-2 ml-6"><List className="h-5 w-5 mr-2"/>Recent News</div>
             <SirshoNewsList />
           </div>
           <div className="block md:hidden mt-10 border-t-1 p-2">
