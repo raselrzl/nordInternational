@@ -121,7 +121,10 @@ export default function PrintInvoiceClient({
           disabled={isLoading}
         >
           {isLoading ? (
-            <div className="flex items-center justify-between"><Loader2 className="animate-spin w-5 h-5" />Downloading...</div>
+            <div className="flex items-center justify-between">
+              <Loader2 className="animate-spin w-5 h-5" />
+              Downloading...
+            </div>
           ) : (
             "⬇️ Download INVOICE"
           )}
@@ -138,7 +141,8 @@ export default function PrintInvoiceClient({
             width: "780px", // ≈ A4 width @ 96dpi (8.27in * 96)
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "10px 10px 10px 10px", // tight L/R padding; everything stays inside
+            padding: "10px 24px 10px 24px",
+            // tight L/R padding; everything stays inside
             fontSize: "11.2pt",
             lineHeight: 1.22, // reduced line spacing to help fit
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
@@ -484,8 +488,8 @@ export default function PrintInvoiceClient({
                 does not require a signature.
               </p>
               <p>
-                The advertisement will be published on Nord International according to
-                the scheduled time.
+                The advertisement will be published on Nord International
+                according to the scheduled time.
               </p>
             </div>
           </div>
