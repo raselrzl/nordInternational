@@ -129,7 +129,7 @@ export default function PrintInvoiceClient({
       </div>
 
       {/* Off-screen wrapper */}
-      <div style={{ position: "absolute", top: "-9999px", left: "-9999px" }}>
+      <div style={{ position: "absolute", top: "-7777px", left: "-7777px" }}>
         {/* Capture area (A4 width). All content stays INSIDE this sharp box */}
         <div
           ref={contentRef}
@@ -138,7 +138,7 @@ export default function PrintInvoiceClient({
             width: "780px", // ≈ A4 width @ 96dpi (8.27in * 96)
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "16px 16px 16px 16px", // tight L/R padding; everything stays inside
+            padding: "10px 10px 10px 10px", // tight L/R padding; everything stays inside
             fontSize: "11.2pt",
             lineHeight: 1.22, // reduced line spacing to help fit
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
