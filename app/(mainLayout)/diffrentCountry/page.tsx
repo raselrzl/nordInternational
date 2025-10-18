@@ -65,14 +65,13 @@ async function getLastFeaturedArticle(country: string) {
 }
 
 interface CountryNewsProps {
-  searchParams?: { country?: string };
+  searchParams?: { country?: string }; // optional
 }
 
 export default async function CountryNews({ searchParams }: CountryNewsProps) {
-  // ✅ Get the country from params or fallback
   const country = searchParams?.country || "Sweden";
 
-  // ✅ Fetch data and wait
+  // Fetch data (await is fine because this is a server component)
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -90,9 +89,6 @@ export default async function CountryNews({ searchParams }: CountryNewsProps) {
     },
     orderBy: { createdAt: "desc" },
   });
-
-  const activeCountry = euCountries.find(c => c.name.toLowerCase() === country.toLowerCase());
-  const flagSrc = activeCountry?.flag || "/flags/default.png";
 
   return (
     <>
