@@ -34,15 +34,22 @@ const euCountries = [
   { name: "Sweden", flag: "/flags/swedish.png", link: "/diffrentCountry?country=Sweden" },
 ];
 
-
 export default function CountryListLinks() {
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-4 px-8 mt-8">
       {euCountries.map((country) => (
         <Link
           key={country.name}
           href={country.link}
-          className="flex items-center justify-center gap-2 hover:opacity-80 transition-all border p-1"
+          onClick={scrollToTop}
+          className="flex items-center justify-center gap-2 border p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded"
         >
           <Image
             src={country.flag}
