@@ -1,5 +1,5 @@
 "use client";
-import { SquarePlay, LocateIcon, LinkIcon } from "lucide-react";
+import { SquarePlay, LocateIcon, LinkIcon, Copy, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -88,7 +88,7 @@ export default function PrintNews({
         />
         <Button
           onClick={handleShareWhatsApp}
-          className="w-9 h-9 p-0 overflow-hidden cursor-pointer"
+          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-green-600 shadow border rounded-xl"
           variant="outline"
         >
           <Image
@@ -102,7 +102,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareFacebook}
-          className="w-9 h-9 p-0 overflow-hidden cursor-pointer"
+          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-950 shadow border rounded-xl"
           variant="outline"
         >
           <Image
@@ -116,7 +116,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareMessenger}
-          className="w-9 h-9 p-0 overflow-hidden cursor-pointer"
+          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-800 shadow border rounded-xl"
           variant="outline"
         >
           <Image
@@ -130,10 +130,10 @@ export default function PrintNews({
 
         <Button
           onClick={handleCopyLink}
-          className="mb-2 p-2 sm:p-3 cursor-pointer"
+          className="p-0 cursor-pointer w-10 h-10 bg-black shadow border rounded-xl text-white"
           variant="outline"
         >
-          <LinkIcon size={16} />
+          <Copy className="h-12 w-12" />
         </Button>
       </div>
 
@@ -141,9 +141,9 @@ export default function PrintNews({
         <div
           id="printable-content"
           ref={contentRef}
-          className="w-full rounded shadow mt-6"
+          className="w-full rounded-xs shadow mt-6"
         >
-          <h1 className="text-3xl font-bold my-4  px-2 md:px-6 pt-6">
+          <h1 className="text-2xl font-bold my-4 p-2">
             {newsHeading}
           </h1>
           {newsPicture && (
@@ -176,21 +176,14 @@ export default function PrintNews({
           )}
 
           <div className="whitespace-pre-line text-md mg:text-lg dark:bg-black mt-10">
-            <div className="flex flex-row ml-6">
-              <SquarePlay />
-              <h1 className="text-xl font-bold pl-2 mr-4 mb-4">
-                NORD International Report
-              </h1>
-              <LocateIcon />
+            <div className="flex flex-row px-1">
+              <MapPin />
               <p className="text-xl font-bold">{newsLocation}</p>
             </div>
-            <div className="px-2 md:px-6">
+            <div className="px-2 mt-4">
               <NewsDetailsDisplay newsDetails={newsDetails} />
             </div>
           </div>
-          <p className="ml-6 font-extrabold">
-            {">>>"} {newsResource}
-          </p>
         </div>
       </div>
     </>

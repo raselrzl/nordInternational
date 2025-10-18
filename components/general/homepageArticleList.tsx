@@ -446,11 +446,11 @@ export async function ShirShoNewsHeadings() {
     <>
       {Politics && Object.keys(Politics).length > 0 ? (
         <div className="bg-primary-foreground dark:bg-accent-foreground/5 py-2">
-          <div className="font-extrabold mb-2 pl-4 text-2xl">
+          <div className="font-extrabold mb-2 pl-2 text-2xl flex flex-row">
             {" "}
-            <List className="h-5 w-5 mr-2"/>Important and Trending
+            <List className="h-7 w-7 mr-2"/>Important and Trending
           </div>
-          <div className="rounded-xl py-2">
+          <div className="rounded-xs py-2">
             {Politics.map((article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">

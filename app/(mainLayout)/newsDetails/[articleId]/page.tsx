@@ -50,26 +50,30 @@ async function getNewsArticle(articleId: string) {
   return newsArticle;
 }
 
-
-
 type PageParams = Promise<{ articleId: string }>;
 type PageProps = { params: PageParams };
 
 function toExcerpt(htmlOrText: string | null, max = 240) {
   const src = htmlOrText ?? "";
-  const text = src.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  const text = src
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
   return text.length <= max
     ? text
     : text.slice(0, max).replace(/[,.;:!?]?\s+\S*$/, "") + "…";
 }
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { articleId } = await params;              // ✅ await params
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { articleId } = await params; // ✅ await params
   const article = await getNewsArticle(articleId); // your existing fetch
 
   const title = article.newsHeading ?? "News";
   const description = toExcerpt("For details click the link...");
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nord-international.vercel.app";
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://nord-international.vercel.app";
   const pic = article.newsPicture ?? "/n2.png";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
@@ -88,8 +92,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
-
-
 
 type Params = Promise<{ articleId: string }>;
 
@@ -116,7 +118,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         month: "long",
         day: "numeric",
       })
-    : "তারিখ পাওয়া যায়নি";
+    : "Date is not available";
 
   return (
     <div className="grid grid-cols-5 gap-4 my-10">
@@ -132,13 +134,13 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       {/* Main Content */}
       <div className="col-span-5 md:col-span-3 px-3">
         {/* Article Meta Info */}
-        <div className="flex flex-row font-bold mb-1 md:text-xl">
-          <div className="flex flex-row pl-2">
-            <User2 className="size-4 md:size-5 pt-1" />
+        <div className="flex flex-col font-bold mb-1 text-xl">
+          <div className="flex flex-row pl-2 items-center">
+            <User2 className="size-5 mr-1" />
             <p>NORD Reporter</p>
           </div>
-          <div className="flex flex-row  pl-2">
-            <Clock className="size-4 md:size-5 pt-1" />
+          <div className="flex flex-row  pl-2 items-center">
+            <Clock className="size-5 mr-1" />
             <p className="font-bold">{formattedCreatedAt}</p>
           </div>
         </div>
@@ -187,7 +189,10 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         <div className="flex flex-col items-center rounded-2xl mx-auto">
           <BesicOneAdvertise />
           <div className="border-t-1 p-2">
-            <div className="font-extrabold mb-2 ml-6"><List className="h-5 w-5 mr-2"/>Recent News</div>
+            <div className="font-extrabold mb-2 flex mt-6">
+              <List className="h-5 w-5 mr-2" />
+              Recent News
+            </div>
             <SirshoNewsList />
           </div>
           <div className="block md:hidden mt-10 border-t-1 p-2">
