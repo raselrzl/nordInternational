@@ -8,10 +8,7 @@ import Link from "next/link";
 // components/general/countriesList.ts
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
-  {
-    name: "Bangladesh",
-    flag: "/flags/bangladesh.jpg",
-  },
+  { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
   { name: "Belgium", flag: "/flags/belgium.webp" },
   { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
   { name: "Croatia", flag: "/flags/croatia.webp" },
@@ -40,38 +37,10 @@ const euCountries = [
   { name: "Sweden", flag: "/flags/swedish.png" },
 ];
 
-// ✅ Fetch all articles by country
-async function getAllArticles(country: string) {
-  return prisma.newsArticle.findMany({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: country, mode: "insensitive" },
-    },
-    orderBy: { createdAt: "desc" },
-    take: 9,
-  });
-}
-
-// ✅ Fetch featured article
-async function getLastFeaturedArticle(country: string) {
-  return prisma.newsArticle.findFirst({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      isFeatured: true,
-      newsLocation: { equals: country, mode: "insensitive" },
-    },
-    orderBy: { createdAt: "desc" },
-  });
-}
-
-interface CountryNewsProps {
-  searchParams?: { country?: string }; // optional
-}
-
-export default async function CountryNews({ searchParams }: CountryNewsProps) {
+// ✅ Server Component
+export default async function CountryNews({ searchParams }: { searchParams?: { country?: string } }) {
   const country = searchParams?.country || "Sweden";
 
-  // Fetch data (await is fine because this is a server component)
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -89,6 +58,9 @@ export default async function CountryNews({ searchParams }: CountryNewsProps) {
     },
     orderBy: { createdAt: "desc" },
   });
+
+  const activeCountry = euCountries.find(c => c.name.toLowerCase() === country.toLowerCase());
+  const flagSrc = activeCountry?.flag || "/flags/default.png";
 
   return (
     <>
