@@ -138,7 +138,7 @@ export default function PrintInvoiceClient({
             width: "780px", // ≈ A4 width @ 96dpi (8.27in * 96)
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "16px 9px", // tight L/R padding; everything stays inside
+            padding: "16px 16px 16px 16px", // tight L/R padding; everything stays inside
             fontSize: "11.2pt",
             lineHeight: 1.22, // reduced line spacing to help fit
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
@@ -305,7 +305,7 @@ export default function PrintInvoiceClient({
                     <th
                       style={{
                         textAlign: "left",
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         background: "#f7f7f7",
                         fontWeight: 600,
@@ -316,7 +316,7 @@ export default function PrintInvoiceClient({
                     <th
                       style={{
                         textAlign: "right",
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         background: "#f7f7f7",
                         fontWeight: 600,
@@ -328,7 +328,7 @@ export default function PrintInvoiceClient({
                     <th
                       style={{
                         textAlign: "right",
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         background: "#f7f7f7",
                         fontWeight: 600,
@@ -340,7 +340,7 @@ export default function PrintInvoiceClient({
                     <th
                       style={{
                         textAlign: "right",
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         background: "#f7f7f7",
                         fontWeight: 600,
@@ -355,7 +355,7 @@ export default function PrintInvoiceClient({
                   <tr>
                     <td
                       style={{
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                       }}
                     >
@@ -363,7 +363,7 @@ export default function PrintInvoiceClient({
                     </td>
                     <td
                       style={{
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         textAlign: "right",
                       }}
@@ -372,7 +372,7 @@ export default function PrintInvoiceClient({
                     </td>
                     <td
                       style={{
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         textAlign: "right",
                       }}
@@ -381,7 +381,7 @@ export default function PrintInvoiceClient({
                     </td>
                     <td
                       style={{
-                        padding: "6px 8px",
+                        padding: "10px 12px",
                         border: "1px solid #e5e7eb",
                         textAlign: "right",
                       }}
@@ -393,7 +393,7 @@ export default function PrintInvoiceClient({
                     <td
                       colSpan={3}
                       style={{
-                        padding: "8px 8px",
+                        padding: "12px 12px",
                         border: "1px solid #e5e7eb",
                         textAlign: "right",
                         fontWeight: 700,
@@ -404,7 +404,7 @@ export default function PrintInvoiceClient({
                     </td>
                     <td
                       style={{
-                        padding: "8px 8px",
+                        padding: "10px 10px",
                         border: "1px solid #e5e7eb",
                         textAlign: "right",
                         fontWeight: 700,
