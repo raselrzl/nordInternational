@@ -135,10 +135,10 @@ export default function PrintInvoiceClient({
           ref={contentRef}
           style={{
             position: "relative", // for watermark
-            width: "794px", // ≈ A4 width @ 96dpi (8.27in * 96)
+            width: "780px", // ≈ A4 width @ 96dpi (8.27in * 96)
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "9px 20px", // tight L/R padding; everything stays inside
+            padding: "16px 9px", // tight L/R padding; everything stays inside
             fontSize: "11.2pt",
             lineHeight: 1.22, // reduced line spacing to help fit
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
