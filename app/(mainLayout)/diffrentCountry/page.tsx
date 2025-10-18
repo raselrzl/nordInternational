@@ -36,18 +36,15 @@ const euCountries = [
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
 ];
-//Define Params as a Promise
+
 interface CountryNewsProps {
-  searchParams?: { country?: string | undefined };
+  searchParams?: { country?: string };
 }
 
-
-// ✅ Server Component
 export default async function CountryNews({ searchParams }: CountryNewsProps) {
-  // ✅ Await the searchParams
- const country = searchParams?.country || "Sweden";
+  const country = searchParams?.country || "Sweden";
 
-  // ✅ Fetch data
+  // ✅ Only await actual data fetching
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -219,4 +216,4 @@ export default async function CountryNews({ searchParams }: CountryNewsProps) {
       <SuperOne />
     </>
   );
-};
+}
