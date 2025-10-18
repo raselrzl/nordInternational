@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
+import CountryListLinks from "./CountryListLinks";
 
 export default function Footer() {
   return (
@@ -40,6 +41,8 @@ export default function Footer() {
             Contact
           </Link> */}
         </div>
+
+        
         <div className="md:grid md:grid-cols-3">
           <div>
             <strong>Publication and Communication</strong>
@@ -113,6 +116,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
+        <CountryListLinks />
 
         <p className="text-xs text-primary py-2 mt-2 bg-accent">
           &copy; {new Date().getFullYear()} All rights reserved.

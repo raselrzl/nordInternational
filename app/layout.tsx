@@ -9,7 +9,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/general/theme-provider";
 import Footer from "@/components/general/Footer";
 import VisitorTracker from "@/components/general/VisitorTracker";
-
+import CountryListLinks from "@/components/general/CountryListLinks";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +34,11 @@ const tiroBangla = Tiro_Bangla({
 });
 
 export const metadata: Metadata = {
-  title: "Nord International | Crime Reports | Unbiased & Fact-Based Journalism",
+  title:
+    "Nord International | Crime Reports | Unbiased & Fact-Based Journalism",
   description:
     "Nord International's crime section brings you accurate and up-to-date information on recent crimes, investigations, and law enforcement actions across the country. We dive deep into each incident to uncover the truth and work to raise awareness through responsible journalism.",
 };
-
 
 export default function RootLayout({
   children,
@@ -63,6 +63,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="max-w-7xl mx-auto">{children}</div>
+
           <Footer />
           <VisitorTracker />
         </ThemeProvider>
