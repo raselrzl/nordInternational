@@ -38,7 +38,7 @@ const euCountries = [
 ];
 //Define Params as a Promise
 interface CountryNewsProps {
-  searchParams?: { country?: string };
+  searchParams?: { country?: string | undefined };
 }
 
 
