@@ -37,13 +37,15 @@ const euCountries = [
   { name: "Sweden", flag: "/flags/swedish.png" },
 ];
 //Define Params as a Promise
-type Params = Promise<{ country?: string }>;
+interface CountryNewsProps {
+  searchParams?: { country?: string };
+}
+
 
 // ✅ Server Component
-const CountryNews = async ({ searchParams }: { searchParams: Params }) => {
+export default async function CountryNews({ searchParams }: CountryNewsProps) {
   // ✅ Await the searchParams
-  const { country: paramCountry } = await searchParams;
-  const country = paramCountry || "Sweden";
+ const country = searchParams?.country || "Sweden";
 
   // ✅ Fetch data
   const allArticles = await prisma.newsArticle.findMany({
