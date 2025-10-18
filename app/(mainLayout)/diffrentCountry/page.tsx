@@ -37,12 +37,10 @@ const euCountries = [
   { name: "Sweden", flag: "/flags/swedish.png" },
 ];
 
-type PageProps = {
-  searchParams?: Record<string, string | string[] | undefined>;
-};
-
-export default async function CountryNews({ searchParams }: PageProps) {
-  const country = (searchParams?.country as string) || "Sweden";
+export default async function CountryNews({
+  searchParams,
+}: any) {
+  const country = (await searchParams?.country) || "Sweden";
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
   const activeCountry = euCountries.find(
