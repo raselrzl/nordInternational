@@ -69,21 +69,14 @@ interface CountryNewsProps {
 }
 
 // ✅ Server Component
-export default async function CountryNews({ searchParams }: CountryNewsProps) {
+export default async function CountryNews({ searchParams }: { searchParams?: { country?: string } }) {
   const country = searchParams?.country || "Sweden";
 
   const allArticles = await getAllArticles(country);
   const lastFeaturedArticle = await getLastFeaturedArticle(country);
 
-  // ✅ Map country to flag file
-  const flagMap: Record<string, string> = {
-    Sweden: "sweden.jpeg",
-    Germany: "germany.jpeg",
-    France: "france.jpeg",
-    Italy: "italy.jpeg",
-  };
-
-  const flagSrc = `/flags/${flagMap[country] || "sweden.jpeg"}`;
+  const activeCountry = euCountries.find(c => c.name.toLowerCase() === country.toLowerCase());
+  const flagSrc = activeCountry?.flag || "/flags/default.png";
 
   return (
     <>
