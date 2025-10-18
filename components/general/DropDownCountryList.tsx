@@ -14,6 +14,11 @@ import { ChevronDown, Globe } from "lucide-react";
 
 const euCountries = [
   {
+    name: "Bangladesh",
+    flag: "/flags/bangladesh.jpg",
+    link: "/diffrentCountry?country=Bangladesh",
+  },
+  {
     name: "Austria",
     flag: "/flags/Austria.png",
     link: "/international#AustriaNews",
@@ -38,14 +43,14 @@ const euCountries = [
   {
     name: "Czech Republic",
     flag: "/flags/czech-republic.png",
-    link: "/diffrentCountry#CzechNews",
+    link: "/diffrentCountry?country=Czech%20Republic",
   },
 
   { name: "Denmark", flag: "/flags/denmark.jpg", link: "/economy#DenmarkNews" },
   {
     name: "Estonia",
     flag: "/flags/estonia.jpeg",
-    link: "/diffrentCountry#EstoniaNews",
+    link: "/diffrentCountry?country=Estonia",
   },
   { name: "Finland", flag: "/flags/finland.jpg", link: "/health#FinlandNews" },
   { name: "France", flag: "/flags/france.jpg", link: "/opinion#FranceNews" },
@@ -57,28 +62,28 @@ const euCountries = [
   {
     name: "Greece",
     flag: "/flags/greece.webp",
-    link: "/diffrentCountry#GreeceNews",
+    link: "/diffrentCountry?country=Greece",
   },
   {
     name: "Hungary",
     flag: "/flags/hungary.png",
-    link: "/diffrentCountry#HungaryNews",
+    link: "/diffrentCountry?country=Hungary",
   },
   {
     name: "Ireland",
     flag: "/flags/ireland.webp",
-    link: "/diffrentCountry#IrelandNews",
+    link: "/diffrentCountry?country=Ireland",
   },
   { name: "Italy", flag: "/flags/italy.webp", link: "/sports#ItalyNews" },
   {
     name: "Latvia",
     flag: "/flags/latvia.jpg",
-    link: "/diffrentCountry#LatviaNews",
+    link: "/diffrentCountry?country=Latvia",
   },
   {
     name: "Lithuania",
     flag: "/flags/lithuania.jpg",
-    link: "/diffrentCountry#LithuaniaNews",
+    link: "/diffrentCountry?country=Lithuania",
   },
   {
     name: "Luxembourg",
@@ -88,7 +93,7 @@ const euCountries = [
   {
     name: "Malta",
     flag: "/flags/malta.jpg",
-    link: "/diffrentCountry#MaltaNews",
+    link: "/diffrentCountry?country=Malta",
   },
   {
     name: "Netherlands",
@@ -109,17 +114,17 @@ const euCountries = [
   {
     name: "Romania",
     flag: "/flags/romania.png",
-    link: "/diffrentCountry#RomaniaNews",
+    link: "/diffrentCountry?country=Romania",
   },
   {
     name: "Slovakia",
     flag: "/flags/slovakia.jpg",
-    link: "/diffrentCountry#SlovakiaNews",
+    link: "/diffrentCountry?country=Slovakia",
   },
   {
     name: "Slovenia",
     flag: "/flags/slovenia.jpeg",
-    link: "/diffrentCountry#SloveniaNews",
+    link: "/diffrentCountry?country=Slovenia",
   },
 
   { name: "Spain", flag: "/flags/spain.svg", link: "/entertainment#SpainNews" },
