@@ -118,7 +118,7 @@ export default async function CyprusNews() {
       ) : (
         <EmptyState
           title="Oops! There's nothing to show yet."
-          description="No featured article from Cyprus available yet."
+          description="No featured article available yet."
           buttonText="Homepage"
           href="/"
         />
@@ -157,7 +157,7 @@ export default async function CyprusNews() {
       ) : (
         <EmptyState
           title="Oops! There's nothing to show yet."
-          description="No articles from Cyprus have been added yet. Stay tuned!"
+          description="No article available yet. Stay tuned!"
           buttonText="Homepage"
           href="/"
         />

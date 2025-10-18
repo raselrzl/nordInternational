@@ -1,8 +1,10 @@
 import LoadingSpinner from "@/components/general/LoadingSpinner";
-import AllArticleList from "@/components/general/homepageArticleList";
 import AllEconomyArticles from "./AllEconomyArticles";
 import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
+import { SuperOne } from "@/components/allAdvertisement/SuperOne";
+import DenmarkNews from "./DenmarkNews";
+import Image from "next/image";
 
 type SearchParamsProps = {
   searchParams: Promise<{
@@ -18,21 +20,39 @@ export default async function Economy({ searchParams }: SearchParamsProps) {
   await trackRoute("Economy");
 
   return (
-    <div className="grid grid-cols-3 mt-10">
-      <div className="col-span-3 md:col-span-1">
-        <h1 className="font-extrabold pl-2 mb-2">
-          {`>>>`} All the Latest Economic News
-        </h1>
+    <>
+      <div className="grid grid-cols-3 mt-10">
+        <div className="col-span-3 md:col-span-1">
+          <h1 className="font-extrabold pl-2 mb-2">
+            {`>>>`} All the Latest Economic News
+          </h1>
 
-        <div className="p-1 md:p-4">
-          <Suspense key={currentPage} fallback={<LoadingSpinner />}>
-            <AllEconomyArticles currentPage={currentPage} />
-          </Suspense>
+          <div className="p-1 md:p-4">
+            <Suspense key={currentPage} fallback={<LoadingSpinner />}>
+              <AllEconomyArticles currentPage={currentPage} />
+            </Suspense>
+          </div>
+        </div>
+        <div id="DenmarkNews" className="col-span-3 md:col-span-2">
+          <div>
+            <div className="flex items-center gap-2 pl-2 mb-2">
+              <Image
+                src="/flags/denmark.jpg"
+                alt="Bulgaria flag"
+                width={28}
+                height={18}
+                className="rounded-sm"
+              />
+              <h1 className="font-extrabold">Denmark Latest</h1>
+            </div>
+            <DenmarkNews />
+          </div>
         </div>
       </div>
-      <div className="col-span-3 md:col-span-2">
-        <AllArticleList />
+      <div className="px-2">
+        {" "}
+        <SuperOne />
       </div>
-    </div>
+    </>
   );
 }

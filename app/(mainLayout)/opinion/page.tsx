@@ -1,10 +1,10 @@
-import AllNewsArticleList from "@/app/(mainLayout)/latest/AllNewsArticleList";
 import AllOpinionArticles from "./AllNationalArticles";
-import AllArticleList from "@/components/general/homepageArticleList";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
-
+import { SuperOne } from "@/components/allAdvertisement/SuperOne";
+import Image from "next/image";
+import FranceNews from "./FranceNews";
 
 type SearchParamsProps = {
   searchParams: Promise<{
@@ -18,17 +18,35 @@ export default async function Opinion({ searchParams }: SearchParamsProps) {
   const currentPage = Number(params.page) || 1;
   await trackRoute("Opinion");
   return (
-    <div className="grid grid-cols-3 mt-10">
-      <div className="col-span-3 md:col-span-1">
-        <h1 className="font-extrabold pl-2 mb-2">{`>>>`}Opinion</h1>
+    <>
+      <div className="grid grid-cols-3 mt-10">
+        <div className="col-span-3 md:col-span-1">
+          <h1 className="font-extrabold pl-2 mb-2">{`>>>`}Opinion</h1>
 
-        <Suspense key={currentPage} fallback={<LoadingSpinner />}>
-                      <AllOpinionArticles currentPage={currentPage} />
-        </Suspense>
+          <Suspense key={currentPage} fallback={<LoadingSpinner />}>
+            <AllOpinionArticles currentPage={currentPage} />
+          </Suspense>
+        </div>
+        <div id="FranceNews" className="col-span-3 md:col-span-2">
+          <div>
+            <div className="flex items-center gap-2 pl-2 mb-2">
+              <Image
+                src="/flags/france.jpg"
+                alt="France flag"
+                width={28}
+                height={18}
+                className="rounded-sm"
+              />
+              <h1 className="font-extrabold">France Latest</h1>
+            </div>
+            <FranceNews />
+          </div>
+        </div>
       </div>
-      <div className="col-span-3 md:col-span-2">
-        <AllArticleList />
+      <div className="px-2">
+        {" "}
+        <SuperOne />
       </div>
-    </div>
+    </>
   );
 }

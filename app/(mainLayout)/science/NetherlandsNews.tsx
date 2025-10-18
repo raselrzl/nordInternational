@@ -6,12 +6,12 @@ import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
 
-// ✅ Get all ACTIVE Belgium articles
+// ✅ Get all ACTIVE Natherlands articles
 export async function getAllArticles() {
   return await prisma.newsArticle.findMany({
-    where: { 
+    where: {
       newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: "Belgium", mode: "insensitive" },
+      newsLocation: { equals: "Natherlands", mode: "insensitive" },
     },
     select: {
       id: true,
@@ -41,13 +41,13 @@ export async function getAllArticles() {
   });
 }
 
-// ✅ Get last featured article from Sweden
+// ✅ Get last featured article from Natherlands
 export async function getLastFeaturedArticle() {
   return await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: { equals: "Belgium", mode: "insensitive" },
+      newsLocation: { equals: "Natherlands", mode: "insensitive" },
     },
     select: {
       id: true,
@@ -76,16 +76,19 @@ export async function getLastFeaturedArticle() {
   });
 }
 
-export default async function BelgiumNews() {
+export default async function NatherlandsNews() {
   const allArticles = await getAllArticles();
   const lastFeaturedArticle = await getLastFeaturedArticle();
 
   return (
     <>
-      {/* ✅ Featured Belgium article */}
+      {/* ✅ Featured Natherlands article */}
       {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
-          <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
+          <Link
+            href={`/newsDetails/${lastFeaturedArticle.id}`}
+            className="mb-10"
+          >
             <div className="grid grid-cols-5">
               <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
                 <Image
@@ -104,7 +107,9 @@ export default async function BelgiumNews() {
 
                 {isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
-                    <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
+                    <JsonToHtml
+                      json={JSON.parse(lastFeaturedArticle.newsDetails)}
+                    />
                   </div>
                 ) : (
                   <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
@@ -128,7 +133,7 @@ export default async function BelgiumNews() {
         <SuperOne />
       </div>
 
-      {/* ✅ All Belgium articles */}
+      {/* ✅ All Austrian articles */}
       {allArticles && allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles

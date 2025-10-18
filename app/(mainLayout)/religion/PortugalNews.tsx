@@ -6,12 +6,12 @@ import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
 
-// ✅ Get all ACTIVE Belgium articles
+// ✅ Get all ACTIVE Portugal articles
 export async function getAllArticles() {
   return await prisma.newsArticle.findMany({
     where: { 
       newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: "Belgium", mode: "insensitive" },
+      newsLocation: { equals: "Portugal", mode: "insensitive" },
     },
     select: {
       id: true,
@@ -41,13 +41,13 @@ export async function getAllArticles() {
   });
 }
 
-// ✅ Get last featured article from Sweden
+// ✅ Get last featured article from Portugal
 export async function getLastFeaturedArticle() {
   return await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: { equals: "Belgium", mode: "insensitive" },
+      newsLocation: { equals: "Portugal", mode: "insensitive" },
     },
     select: {
       id: true,
@@ -76,13 +76,13 @@ export async function getLastFeaturedArticle() {
   });
 }
 
-export default async function BelgiumNews() {
+export default async function PortugalNews() {
   const allArticles = await getAllArticles();
   const lastFeaturedArticle = await getLastFeaturedArticle();
 
   return (
     <>
-      {/* ✅ Featured Belgium article */}
+      {/* ✅ Featured Portugal article */}
       {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
@@ -128,7 +128,7 @@ export default async function BelgiumNews() {
         <SuperOne />
       </div>
 
-      {/* ✅ All Belgium articles */}
+      {/* ✅ All Portugal articles */}
       {allArticles && allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
