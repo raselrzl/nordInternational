@@ -57,7 +57,7 @@ export default function NavMenu() {
   }, []);
 
   return (
-    <div className="flex items-center gap-2 py-2 bg-gray-100 dark:bg-gray-800 shadow rounded-none">
+    <div className="flex items-center gap-2 py-2 bg-gray-50 dark:bg-gray-800 shadow rounded-none">
       {canScrollLeft && (
         <ChevronLeft
           className="cursor-pointer bg-primary h-10 w-10 md:w-6"
@@ -73,10 +73,10 @@ export default function NavMenu() {
               key={id}
               href={href}
               ref={isActive ? activeLinkRef : null}
-              className={`px-3 py-2 text-sm font-bold transition-colors rounded-4xl whitespace-nowrap ${
+              className={`px-3 py-2 text-sm font-bold transition-colors rounded-4xl  border-1 shadow whitespace-nowrap ${
                 isActive
                   ? "bg-primary text-primary-foreground"
-                  : "text-accent-foreground dark:text-white hover:bg-accent hover:text-accent-foreground border-1 shadow"
+                  : "text-accent-foreground dark:text-white hover:bg-accent hover:text-accent-foreground"
               }`}
             >
               {label}
