@@ -36,11 +36,16 @@ const euCountries = [
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
 ];
+//Define Params as a Promise
+type Params = Promise<{ country?: string }>;
 
 // ✅ Server Component
-export default async function CountryNews({ searchParams }: { searchParams?: { country?: string } }) {
-  const country = searchParams?.country || "Sweden";
+const CountryNews = async ({ searchParams }: { searchParams: Params }) => {
+  // ✅ Await the searchParams
+  const { country: paramCountry } = await searchParams;
+  const country = paramCountry || "Sweden";
 
+  // ✅ Fetch data
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -59,7 +64,9 @@ export default async function CountryNews({ searchParams }: { searchParams?: { c
     orderBy: { createdAt: "desc" },
   });
 
-  const activeCountry = euCountries.find(c => c.name.toLowerCase() === country.toLowerCase());
+  const activeCountry = euCountries.find(
+    (c) => c.name.toLowerCase() === country.toLowerCase()
+  );
   const flagSrc = activeCountry?.flag || "/flags/default.png";
 
   return (
@@ -210,4 +217,4 @@ export default async function CountryNews({ searchParams }: { searchParams?: { c
       <SuperOne />
     </>
   );
-}
+};
