@@ -670,3 +670,27 @@ export async function deleteVedioById(videoId: string) {
     throw new Error("Failed to delete vedio");
   }
 }
+
+
+
+export async function getCountryNews(country: string) {
+  const allArticles = await prisma.newsArticle.findMany({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      newsLocation: { equals: country, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+    take: 9,
+  });
+
+  const lastFeaturedArticle = await prisma.newsArticle.findFirst({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      isFeatured: true,
+      newsLocation: { equals: country, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return { allArticles, lastFeaturedArticle };
+}

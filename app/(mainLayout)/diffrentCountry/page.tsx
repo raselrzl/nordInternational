@@ -1,3 +1,4 @@
+import { getCountryNews } from "@/app/actions";
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
@@ -5,30 +6,7 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
-// components/general/countriesList.ts
 
-
-export async function getCountryNews(country: string) {
-  const allArticles = await prisma.newsArticle.findMany({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: country, mode: "insensitive" },
-    },
-    orderBy: { createdAt: "desc" },
-    take: 9,
-  });
-
-  const lastFeaturedArticle = await prisma.newsArticle.findFirst({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      isFeatured: true,
-      newsLocation: { equals: country, mode: "insensitive" },
-    },
-    orderBy: { createdAt: "desc" },
-  });
-
-  return { allArticles, lastFeaturedArticle };
-}
 
 export default async function CountryNews({
   searchParams,
@@ -68,12 +46,13 @@ export default async function CountryNews({
 
   const country = searchParams?.country || "Sweden";
 
-  // ✅ Fetch using server action
+  // ✅ Fetch via server action
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
   const activeCountry =
-    euCountries.find((c) => c.name.toLowerCase() === country.toLowerCase()) ??
-    { name: country, flag: "/flags/default.png" };
+    euCountries.find(
+      (c) => c.name.toLowerCase() === country.toLowerCase()
+    ) ?? { name: country, flag: "/flags/default.png" };
 
   return (
     <>
