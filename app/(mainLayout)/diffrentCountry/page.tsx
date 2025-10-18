@@ -6,53 +6,48 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
+const euCountries = [
+  { name: "Austria", flag: "/flags/Austria.png" },
+  { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+  { name: "Belgium", flag: "/flags/belgium.webp" },
+  { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
+  { name: "Croatia", flag: "/flags/croatia.webp" },
+  { name: "Cyprus", flag: "/flags/cyprus.jpg" },
+  { name: "Czech Republic", flag: "/flags/czech-republic.png" },
+  { name: "Denmark", flag: "/flags/denmark.jpg" },
+  { name: "Estonia", flag: "/flags/estonia.jpeg" },
+  { name: "Finland", flag: "/flags/finland.jpg" },
+  { name: "France", flag: "/flags/france.jpg" },
+  { name: "Germany", flag: "/flags/germany.jpg" },
+  { name: "Greece", flag: "/flags/greece.webp" },
+  { name: "Hungary", flag: "/flags/hungary.png" },
+  { name: "Ireland", flag: "/flags/ireland.webp" },
+  { name: "Italy", flag: "/flags/italy.webp" },
+  { name: "Latvia", flag: "/flags/latvia.jpg" },
+  { name: "Lithuania", flag: "/flags/lithuania.jpg" },
+  { name: "Luxembourg", flag: "/flags/luxembourg.webp" },
+  { name: "Malta", flag: "/flags/malta.jpg" },
+  { name: "Netherlands", flag: "/flags/netherlands.webp" },
+  { name: "Poland", flag: "/flags/poland.jpeg" },
+  { name: "Portugal", flag: "/flags/portugal.webp" },
+  { name: "Romania", flag: "/flags/romania.png" },
+  { name: "Slovakia", flag: "/flags/slovakia.jpg" },
+  { name: "Slovenia", flag: "/flags/slovenia.jpeg" },
+  { name: "Spain", flag: "/flags/spain.svg" },
+  { name: "Sweden", flag: "/flags/swedish.png" },
+];
 
+type PageProps = {
+  searchParams?: Record<string, string | string[] | undefined>;
+};
 
-export default async function CountryNews({
-  searchParams,
-}: {
-  searchParams?: { country?: string };
-}) {
-  const euCountries = [
-    { name: "Austria", flag: "/flags/Austria.png" },
-    { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
-    { name: "Belgium", flag: "/flags/belgium.webp" },
-    { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
-    { name: "Croatia", flag: "/flags/croatia.webp" },
-    { name: "Cyprus", flag: "/flags/cyprus.jpg" },
-    { name: "Czech Republic", flag: "/flags/czech-republic.png" },
-    { name: "Denmark", flag: "/flags/denmark.jpg" },
-    { name: "Estonia", flag: "/flags/estonia.jpeg" },
-    { name: "Finland", flag: "/flags/finland.jpg" },
-    { name: "France", flag: "/flags/france.jpg" },
-    { name: "Germany", flag: "/flags/germany.jpg" },
-    { name: "Greece", flag: "/flags/greece.webp" },
-    { name: "Hungary", flag: "/flags/hungary.png" },
-    { name: "Ireland", flag: "/flags/ireland.webp" },
-    { name: "Italy", flag: "/flags/italy.webp" },
-    { name: "Latvia", flag: "/flags/latvia.jpg" },
-    { name: "Lithuania", flag: "/flags/lithuania.jpg" },
-    { name: "Luxembourg", flag: "/flags/luxembourg.webp" },
-    { name: "Malta", flag: "/flags/malta.jpg" },
-    { name: "Netherlands", flag: "/flags/netherlands.webp" },
-    { name: "Poland", flag: "/flags/poland.jpeg" },
-    { name: "Portugal", flag: "/flags/portugal.webp" },
-    { name: "Romania", flag: "/flags/romania.png" },
-    { name: "Slovakia", flag: "/flags/slovakia.jpg" },
-    { name: "Slovenia", flag: "/flags/slovenia.jpeg" },
-    { name: "Spain", flag: "/flags/spain.svg" },
-    { name: "Sweden", flag: "/flags/swedish.png" },
-  ];
-
-  const country = searchParams?.country || "Sweden";
-
-  // ✅ Fetch via server action
+export default async function CountryNews({ searchParams }: PageProps) {
+  const country = (searchParams?.country as string) || "Sweden";
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
-  const activeCountry =
-    euCountries.find(
-      (c) => c.name.toLowerCase() === country.toLowerCase()
-    ) ?? { name: country, flag: "/flags/default.png" };
+  const activeCountry = euCountries.find(
+    (c) => c.name.toLowerCase() === country.toLowerCase()
+  ) ?? { name: country, flag: "/flags/default.png" };
 
   return (
     <>
