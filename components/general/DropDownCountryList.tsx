@@ -45,7 +45,7 @@ const euCountries = [
   {
     name: "Estonia",
     flag: "/flags/estonia.jpeg",
-    link: "/international#EstoniaNews",
+    link: "/diffrentCountry#EstoniaNews",
   },
   { name: "Finland", flag: "/flags/finland.jpg", link: "/health#FinlandNews" },
   { name: "France", flag: "/flags/france.jpg", link: "/opinion#FranceNews" },

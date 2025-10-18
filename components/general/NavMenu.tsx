@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { links } from "@/app/utils/linkList";
 
 export default function NavMenu() {
@@ -57,10 +57,10 @@ export default function NavMenu() {
   }, []);
 
   return (
-    <div className="flex items-center gap-2 py-2 light:bg-primary-foreground">
+    <div className="flex items-center gap-2 py-2 bg-gray-100 dark:bg-gray-800 shadow rounded-none">
       {canScrollLeft && (
-        <ArrowLeft
-          className="text-primary dark:text-white cursor-pointer"
+        <ChevronLeft
+          className="cursor-pointer bg-primary h-10 w-10 md:w-6"
           size={24}
         />
       )}
@@ -73,10 +73,10 @@ export default function NavMenu() {
               key={id}
               href={href}
               ref={isActive ? activeLinkRef : null}
-              className={`px-3 py-2 text-md font-bold transition-colors rounded-4xl whitespace-nowrap ${
+              className={`px-3 py-2 text-sm font-bold transition-colors rounded-4xl whitespace-nowrap ${
                 isActive
                   ? "bg-primary text-primary-foreground"
-                  : "text-accent-foreground dark:text-white hover:bg-accent hover:text-accent-foreground"
+                  : "text-accent-foreground dark:text-white hover:bg-accent hover:text-accent-foreground border-1 shadow"
               }`}
             >
               {label}
@@ -85,9 +85,9 @@ export default function NavMenu() {
         })}
       </div>
       {canScrollRight && (
-        <ArrowRight
-          className="text-primary dark:text-white cursor-pointer"
-          size={24}
+        <ChevronRight
+          className="cursor-pointer bg-primary h-10 w-10 md:w-6"
+          
         />
       )}
     </div>

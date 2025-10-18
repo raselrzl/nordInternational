@@ -23,7 +23,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 
         <NewsTicker />
       </div>
-      <div className="mt-36 md:mt-42">
+      <div className="mt-33 md:mt-41">
         <NavMenu />
       </div>
       {children}
