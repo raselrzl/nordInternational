@@ -139,7 +139,7 @@ export function PrintNewsDetailsClient({
                 Your Trusted News Source
               </span> */}
             </div>
-            {/* <a
+            <a
               href="https://nordinternational.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -147,10 +147,11 @@ export function PrintNewsDetailsClient({
                 fontSize: "11px",
                 color: "#00bfff",
                 textDecoration: "underline",
+                paddingLeft:"9px"
               }}
             >
               nordinternational.com
-            </a> */}
+            </a>
           </div>
 
           {/* Date & Breaking News */}
@@ -159,6 +160,7 @@ export function PrintNewsDetailsClient({
           >
             <div>
               {createdAt.toLocaleString("en-US", {
+                weekday:"long",
                 day: "numeric",
                 month: "long",
                 year: "numeric",
