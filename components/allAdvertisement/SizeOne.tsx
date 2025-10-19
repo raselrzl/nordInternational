@@ -5,7 +5,7 @@ import Link from "next/link";
 // Data fetcher for SIZE_1 ads
 export async function getsizeOneAdvertise() {
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "SIZE_1" },
+    where: { advertisedCategory: "SIZE_1", advertiseStatus: "ACTIVE" },
     select: {
       id: true,
       companyName: true,

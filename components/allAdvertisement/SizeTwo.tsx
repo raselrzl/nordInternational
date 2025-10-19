@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export async function getsizeTwoAdvertise() {
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "SIZE_2" },
+    where: { advertisedCategory: "SIZE_2", advertiseStatus: "ACTIVE" },
     select: {
       id: true,
       createdAt: true,

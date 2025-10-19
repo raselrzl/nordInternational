@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export async function getPremiumOneAdvertise() {
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "PREMIUM_1" },
+    where: { advertisedCategory: "PREMIUM_1", advertiseStatus: "ACTIVE" },
     select: {
       id: true,
       createdAt: true,

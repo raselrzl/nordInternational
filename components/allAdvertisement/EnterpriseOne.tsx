@@ -1,7 +1,7 @@
 import { prisma } from "@/app/utils/db";
 export async function getEnterpriseOneAdvertise() {
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "ENTERPRISE_1" },
+    where: { advertisedCategory: "ENTERPRISE_1", advertiseStatus: "ACTIVE" },
     select: {
       id: true,
       advertiseBanner: true,
