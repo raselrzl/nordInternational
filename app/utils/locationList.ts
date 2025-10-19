@@ -26,5 +26,10 @@ export const districts = [
   { id: 25, name: "Slovakia" },
   { id: 26, name: "Slovenia" },
   { id: 27, name: "Spain" },
-  { id: 28, name: "Sweden" }
+  { id: 28, name: "Sweden" },
+  { id: 29, name: "Canada" },
+  { id: 30, name: "Australia" },
+  { id: 31, name: "Usa" },
+  { id: 32, name: "Uk" },
+  { id: 33, name: "Switzerland" }
 ];

@@ -129,6 +129,28 @@ const euCountries = [
 
   { name: "Spain", flag: "/flags/spain.svg", link: "/entertainment#SpainNews" },
   { name: "Sweden", flag: "/flags/swedish.png", link: "/national#SwedishNews" },
+
+  { name: "Uk", flag: "/flags/uk.png", link: "/diffrentCountry?country=Uk" },
+  {
+    name: "Switzerland",
+    flag: "/flags/switzerland.jpg",
+    link: "/diffrentCountry?country=Switzerland",
+  },
+  {
+    name: "Usa",
+    flag: "/flags/usa.webp",
+    link: "/diffrentCountry?country=Usa",
+  },
+   {
+    name: "Canada",
+    flag: "/flags/canada.jpg",
+    link: "/diffrentCountry?country=Canada",
+  },
+  {
+    name: "Australia",
+    flag: "/flags/australia.jpg",
+    link: "/diffrentCountry?country=Australia",
+  },
 ];
 
 export default function DropDownCountryList() {
@@ -136,8 +158,8 @@ export default function DropDownCountryList() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="mr-1">
-          
-          <Globe /> <p className="font-bold text-md">News</p><ChevronDown className="h-6 w-6" />
+          <Globe /> <p className="font-bold text-md">News</p>
+          <ChevronDown className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
 

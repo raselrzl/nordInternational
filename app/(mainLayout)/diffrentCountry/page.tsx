@@ -35,11 +35,27 @@ const euCountries = [
   { name: "Slovenia", flag: "/flags/slovenia.jpeg" },
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
+
+  { name: "Uk", flag: "/flags/uk.png" },
+  {
+    name: "Switzerland",
+    flag: "/flags/switzerland.jpg",
+  },
+  {
+    name: "Usa",
+    flag: "/flags/usa.webp",
+  },
+  {
+    name: "Canada",
+    flag: "/flags/canada.jpg",
+  },
+  {
+    name: "Australia",
+    flag: "/flags/australia.jpg",
+  },
 ];
 
-export default async function CountryNews({
-  searchParams,
-}: any) {
+export default async function CountryNews({ searchParams }: any) {
   const country = (await searchParams?.country) || "Sweden";
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 

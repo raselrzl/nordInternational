@@ -24,6 +24,46 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { UploadDropzone } from "@/components/general/UploadThingReexported";
 import { createAnAdvertisement } from "@/app/actions";
+import Image from "next/image";
+
+const countries = [
+  { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+  { id: "UK", name: "United Kingdom", flag: "/flags/uk.png" },
+  { id: "SWITZERLAND", name: "Switzerland", flag: "/flags/switzerland.jpg" },
+  { id: "USA", name: "United States", flag: "/flags/usa.webp" },
+  { id: "AUSTRALIA", name: "Australia", flag: "/flags/australia.jpg" },
+  { id: "AUSTRIA", name: "Austria", flag: "/flags/australia.jpg" },
+  { id: "BELGIUM", name: "Belgium", flag: "/flags/belgium.webp" },
+  { id: "BULGARIA", name: "Bulgaria", flag: "/flags/bulgaria.webp" },
+  { id: "CROATIA", name: "Croatia", flag: "/flags/croatia.webp" },
+  { id: "CYPRUS", name: "Cyprus", flag: "/flags/cyprus.jpg" },
+  {
+    id: "CZECH_REPUBLIC",
+    name: "Czech Republic",
+    flag: "/flags/czech-republic.png",
+  },
+  { id: "DENMARK", name: "Denmark", flag: "/flags/denmark.jpg" },
+  { id: "ESTONIA", name: "Estonia", flag: "/flags/estonia.jpeg" },
+  { id: "FINLAND", name: "Finland", flag: "/flags/finland.jpg" },
+  { id: "FRANCE", name: "France", flag: "/flags/france.jpg" },
+  { id: "GERMANY", name: "Germany", flag: "/flags/germany.jpg" },
+  { id: "GREECE", name: "Greece", flag: "/flags/greece.webp" },
+  { id: "HUNGARY", name: "Hungary", flag: "/flags/hungary.png" },
+  { id: "IRELAND", name: "Ireland", flag: "/flags/ireland.webp" },
+  { id: "ITALY", name: "Italy", flag: "/flags/italy.webp" },
+  { id: "LATVIA", name: "Latvia", flag: "/flags/latvia.jpg" },
+  { id: "LITHUANIA", name: "Lithuania", flag: "/flags/lithuania.jpg" },
+  { id: "LUXEMBOURG", name: "Luxembourg", flag: "/flags/luxembourg.webp" },
+  { id: "MALTA", name: "Malta", flag: "/flags/malta.jpg" },
+  { id: "NETHERLANDS", name: "Netherlands", flag: "/flags/netherlands.webp" },
+  { id: "POLAND", name: "Poland", flag: "/flags/poland.jpeg" },
+  { id: "PORTUGAL", name: "Portugal", flag: "/flags/portugal.webp" },
+  { id: "ROMANIA", name: "Romania", flag: "/flags/romania.png" },
+  { id: "SLOVAKIA", name: "Slovakia", flag: "/flags/slovakia.jpg" },
+  { id: "SLOVENIA", name: "Slovenia", flag: "/flags/slovenia.jpeg" },
+  { id: "SPAIN", name: "Spain", flag: "/flags/spain.svg" },
+  { id: "SWEDEN", name: "Sweden", flag: "/flags/swedish.png" },
+];
 
 const advertisementPackages = [
   { id: "PREMIER_1", name: "Premier 1" },
@@ -66,6 +106,7 @@ export function CreateAdvertisementForm() {
       additionalInfo: "",
       startDate: "",
       endDate: "",
+      country: "SWEDEN",
     },
   });
 
@@ -262,32 +303,38 @@ export function CreateAdvertisementForm() {
                 )}
               />
 
-              {/*    <FormField
-                control={control}
-                name="advertisedCategory"
+              <FormField
+                control={form.control}
+                name="country"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>বিজ্ঞাপনের প্যাকেজ নির্বাচন করুন</FormLabel>
-                    <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
-                      {advertisementPackages.map((pkg) => (
-                        <label
-                          key={pkg.id}
-                          className="flex items-center justify-center gap-2 p-2 border rounded-xs cursor-pointer hover:bg-muted hover:text-white transition-all"
+                    <FormLabel>Select Country</FormLabel>
+                    <div className="grid grid-cols-4 md:grid-cols-5 gap-1">
+                      {countries.map((country) => (
+                        <Button
+                          className="p-2 text-xs md:text-md"
+                          key={country.id}
+                          type="button"
+                          variant={
+                            field.value === country.id ? "default" : "outline"
+                          }
+                          onClick={() => field.onChange(country.id)}
                         >
-                          <input
-                            type="radio"
-                            className="hidden peer"
-                            checked={field.value === pkg.id}
-                            onChange={() => field.onChange(pkg.id)}
+                          <Image
+                            src={country.flag}
+                            alt={`${country.name} flag`}
+                            width={20}
+                            height={18}
+                            className="rounded-sm border"
                           />
-                          <span className="w-4 h-4 md:w-6 md:h-6 rounded-full border-2 transition-all peer-checked:bg-primary peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary mr"></span>
-                          <span className="text-xs md:text-sm">{pkg.name}</span>
-                        </label>
+                          {country.name}
+                        </Button>
                       ))}
                     </div>
+                    <FormMessage />
                   </FormItem>
                 )}
-              /> */}
+              />
 
               <FormField
                 control={control}

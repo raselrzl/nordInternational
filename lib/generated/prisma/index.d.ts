@@ -177,6 +177,45 @@ export const vedioStatus: {
 
 export type vedioStatus = (typeof vedioStatus)[keyof typeof vedioStatus]
 
+
+export const Country: {
+  BANGLADESH: 'BANGLADESH',
+  AUSTRIA: 'AUSTRIA',
+  BELGIUM: 'BELGIUM',
+  BULGARIA: 'BULGARIA',
+  CROATIA: 'CROATIA',
+  CYPRUS: 'CYPRUS',
+  CZECH_REPUBLIC: 'CZECH_REPUBLIC',
+  DENMARK: 'DENMARK',
+  ESTONIA: 'ESTONIA',
+  FINLAND: 'FINLAND',
+  FRANCE: 'FRANCE',
+  GERMANY: 'GERMANY',
+  GREECE: 'GREECE',
+  HUNGARY: 'HUNGARY',
+  IRELAND: 'IRELAND',
+  ITALY: 'ITALY',
+  LATVIA: 'LATVIA',
+  LITHUANIA: 'LITHUANIA',
+  LUXEMBOURG: 'LUXEMBOURG',
+  MALTA: 'MALTA',
+  NETHERLANDS: 'NETHERLANDS',
+  POLAND: 'POLAND',
+  PORTUGAL: 'PORTUGAL',
+  ROMANIA: 'ROMANIA',
+  SLOVAKIA: 'SLOVAKIA',
+  SLOVENIA: 'SLOVENIA',
+  SPAIN: 'SPAIN',
+  SWEDEN: 'SWEDEN',
+  UK: 'UK',
+  SWITZERLAND: 'SWITZERLAND',
+  USA: 'USA',
+  CANADA: 'CANADA',
+  AUSTRALIA: 'AUSTRALIA'
+};
+
+export type Country = (typeof Country)[keyof typeof Country]
+
 }
 
 export type UserType = $Enums.UserType
@@ -207,6 +246,10 @@ export type vedioStatus = $Enums.vedioStatus
 
 export const vedioStatus: typeof $Enums.vedioStatus
 
+export type Country = $Enums.Country
+
+export const Country: typeof $Enums.Country
+
 /**
  * ##  Prisma Client ʲˢ
  *
@@ -223,7 +266,7 @@ export const vedioStatus: typeof $Enums.vedioStatus
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -255,6 +298,13 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -512,8 +562,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.16.2
-   * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -1934,24 +1984,16 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Shorthand for `emit: 'stdout'`
+     * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events only
+     * // Emit as events
      * log: [
-     *   { emit: 'event', level: 'query' },
-     *   { emit: 'event', level: 'info' },
-     *   { emit: 'event', level: 'warn' }
-     *   { emit: 'event', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
-     * 
-     * / Emit as events and log to stdout
-     * og: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
-     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1966,10 +2008,6 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
-    /**
-     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
-     */
-    adapter?: runtime.SqlDriverAdapterFactory | null
     /**
      * Global configuration for omitting model fields by default.
      * 
@@ -2009,15 +2047,10 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
-
-  export type GetLogType<T> = CheckIsLogLevel<
-    T extends LogDefinition ? T['level'] : T
-  >;
-
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -2057,6 +2090,25 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -8028,6 +8080,7 @@ export namespace Prisma {
     companyaddress: string | null
     supervisedName: string | null
     advertisedCategory: $Enums.AdvertisedCategory | null
+    country: $Enums.Country | null
     websiteLink: string | null
     additionalInfo: string | null
     advertiseBanner: string | null
@@ -8047,6 +8100,7 @@ export namespace Prisma {
     companyaddress: string | null
     supervisedName: string | null
     advertisedCategory: $Enums.AdvertisedCategory | null
+    country: $Enums.Country | null
     websiteLink: string | null
     additionalInfo: string | null
     advertiseBanner: string | null
@@ -8066,6 +8120,7 @@ export namespace Prisma {
     companyaddress: number
     supervisedName: number
     advertisedCategory: number
+    country: number
     websiteLink: number
     additionalInfo: number
     advertiseBanner: number
@@ -8095,6 +8150,7 @@ export namespace Prisma {
     companyaddress?: true
     supervisedName?: true
     advertisedCategory?: true
+    country?: true
     websiteLink?: true
     additionalInfo?: true
     advertiseBanner?: true
@@ -8114,6 +8170,7 @@ export namespace Prisma {
     companyaddress?: true
     supervisedName?: true
     advertisedCategory?: true
+    country?: true
     websiteLink?: true
     additionalInfo?: true
     advertiseBanner?: true
@@ -8133,6 +8190,7 @@ export namespace Prisma {
     companyaddress?: true
     supervisedName?: true
     advertisedCategory?: true
+    country?: true
     websiteLink?: true
     additionalInfo?: true
     advertiseBanner?: true
@@ -8239,6 +8297,7 @@ export namespace Prisma {
     companyaddress: string
     supervisedName: string
     advertisedCategory: $Enums.AdvertisedCategory
+    country: $Enums.Country | null
     websiteLink: string
     additionalInfo: string
     advertiseBanner: string
@@ -8277,6 +8336,7 @@ export namespace Prisma {
     companyaddress?: boolean
     supervisedName?: boolean
     advertisedCategory?: boolean
+    country?: boolean
     websiteLink?: boolean
     additionalInfo?: boolean
     advertiseBanner?: boolean
@@ -8296,6 +8356,7 @@ export namespace Prisma {
     companyaddress?: boolean
     supervisedName?: boolean
     advertisedCategory?: boolean
+    country?: boolean
     websiteLink?: boolean
     additionalInfo?: boolean
     advertiseBanner?: boolean
@@ -8315,6 +8376,7 @@ export namespace Prisma {
     companyaddress?: boolean
     supervisedName?: boolean
     advertisedCategory?: boolean
+    country?: boolean
     websiteLink?: boolean
     additionalInfo?: boolean
     advertiseBanner?: boolean
@@ -8334,6 +8396,7 @@ export namespace Prisma {
     companyaddress?: boolean
     supervisedName?: boolean
     advertisedCategory?: boolean
+    country?: boolean
     websiteLink?: boolean
     additionalInfo?: boolean
     advertiseBanner?: boolean
@@ -8347,7 +8410,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "country" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -8358,6 +8421,7 @@ export namespace Prisma {
       companyaddress: string
       supervisedName: string
       advertisedCategory: $Enums.AdvertisedCategory
+      country: $Enums.Country | null
       websiteLink: string
       additionalInfo: string
       advertiseBanner: string
@@ -8797,6 +8861,7 @@ export namespace Prisma {
     readonly companyaddress: FieldRef<"Advertisement", 'String'>
     readonly supervisedName: FieldRef<"Advertisement", 'String'>
     readonly advertisedCategory: FieldRef<"Advertisement", 'AdvertisedCategory'>
+    readonly country: FieldRef<"Advertisement", 'Country'>
     readonly websiteLink: FieldRef<"Advertisement", 'String'>
     readonly additionalInfo: FieldRef<"Advertisement", 'String'>
     readonly advertiseBanner: FieldRef<"Advertisement", 'String'>
@@ -16660,6 +16725,7 @@ export namespace Prisma {
     companyaddress: 'companyaddress',
     supervisedName: 'supervisedName',
     advertisedCategory: 'advertisedCategory',
+    country: 'country',
     websiteLink: 'websiteLink',
     additionalInfo: 'additionalInfo',
     advertiseBanner: 'advertiseBanner',
@@ -16915,6 +16981,20 @@ export namespace Prisma {
    * Reference to a field of type 'AdvertisedCategory[]'
    */
   export type ListEnumAdvertisedCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdvertisedCategory[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Country'
+   */
+  export type EnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country'>
+    
+
+
+  /**
+   * Reference to a field of type 'Country[]'
+   */
+  export type ListEnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country[]'>
     
 
 
@@ -17399,6 +17479,7 @@ export namespace Prisma {
     companyaddress?: StringFilter<"Advertisement"> | string
     supervisedName?: StringFilter<"Advertisement"> | string
     advertisedCategory?: EnumAdvertisedCategoryFilter<"Advertisement"> | $Enums.AdvertisedCategory
+    country?: EnumCountryNullableFilter<"Advertisement"> | $Enums.Country | null
     websiteLink?: StringFilter<"Advertisement"> | string
     additionalInfo?: StringFilter<"Advertisement"> | string
     advertiseBanner?: StringFilter<"Advertisement"> | string
@@ -17418,6 +17499,7 @@ export namespace Prisma {
     companyaddress?: SortOrder
     supervisedName?: SortOrder
     advertisedCategory?: SortOrder
+    country?: SortOrderInput | SortOrder
     websiteLink?: SortOrder
     additionalInfo?: SortOrder
     advertiseBanner?: SortOrder
@@ -17440,6 +17522,7 @@ export namespace Prisma {
     companyaddress?: StringFilter<"Advertisement"> | string
     supervisedName?: StringFilter<"Advertisement"> | string
     advertisedCategory?: EnumAdvertisedCategoryFilter<"Advertisement"> | $Enums.AdvertisedCategory
+    country?: EnumCountryNullableFilter<"Advertisement"> | $Enums.Country | null
     websiteLink?: StringFilter<"Advertisement"> | string
     additionalInfo?: StringFilter<"Advertisement"> | string
     advertiseBanner?: StringFilter<"Advertisement"> | string
@@ -17459,6 +17542,7 @@ export namespace Prisma {
     companyaddress?: SortOrder
     supervisedName?: SortOrder
     advertisedCategory?: SortOrder
+    country?: SortOrderInput | SortOrder
     websiteLink?: SortOrder
     additionalInfo?: SortOrder
     advertiseBanner?: SortOrder
@@ -17486,6 +17570,7 @@ export namespace Prisma {
     companyaddress?: StringWithAggregatesFilter<"Advertisement"> | string
     supervisedName?: StringWithAggregatesFilter<"Advertisement"> | string
     advertisedCategory?: EnumAdvertisedCategoryWithAggregatesFilter<"Advertisement"> | $Enums.AdvertisedCategory
+    country?: EnumCountryNullableWithAggregatesFilter<"Advertisement"> | $Enums.Country | null
     websiteLink?: StringWithAggregatesFilter<"Advertisement"> | string
     additionalInfo?: StringWithAggregatesFilter<"Advertisement"> | string
     advertiseBanner?: StringWithAggregatesFilter<"Advertisement"> | string
@@ -18455,6 +18540,7 @@ export namespace Prisma {
     companyaddress: string
     supervisedName: string
     advertisedCategory: $Enums.AdvertisedCategory
+    country?: $Enums.Country | null
     websiteLink: string
     additionalInfo: string
     advertiseBanner: string
@@ -18474,6 +18560,7 @@ export namespace Prisma {
     companyaddress: string
     supervisedName: string
     advertisedCategory: $Enums.AdvertisedCategory
+    country?: $Enums.Country | null
     websiteLink: string
     additionalInfo: string
     advertiseBanner: string
@@ -18493,6 +18580,7 @@ export namespace Prisma {
     companyaddress?: StringFieldUpdateOperationsInput | string
     supervisedName?: StringFieldUpdateOperationsInput | string
     advertisedCategory?: EnumAdvertisedCategoryFieldUpdateOperationsInput | $Enums.AdvertisedCategory
+    country?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     websiteLink?: StringFieldUpdateOperationsInput | string
     additionalInfo?: StringFieldUpdateOperationsInput | string
     advertiseBanner?: StringFieldUpdateOperationsInput | string
@@ -18512,6 +18600,7 @@ export namespace Prisma {
     companyaddress?: StringFieldUpdateOperationsInput | string
     supervisedName?: StringFieldUpdateOperationsInput | string
     advertisedCategory?: EnumAdvertisedCategoryFieldUpdateOperationsInput | $Enums.AdvertisedCategory
+    country?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     websiteLink?: StringFieldUpdateOperationsInput | string
     additionalInfo?: StringFieldUpdateOperationsInput | string
     advertiseBanner?: StringFieldUpdateOperationsInput | string
@@ -18531,6 +18620,7 @@ export namespace Prisma {
     companyaddress: string
     supervisedName: string
     advertisedCategory: $Enums.AdvertisedCategory
+    country?: $Enums.Country | null
     websiteLink: string
     additionalInfo: string
     advertiseBanner: string
@@ -18550,6 +18640,7 @@ export namespace Prisma {
     companyaddress?: StringFieldUpdateOperationsInput | string
     supervisedName?: StringFieldUpdateOperationsInput | string
     advertisedCategory?: EnumAdvertisedCategoryFieldUpdateOperationsInput | $Enums.AdvertisedCategory
+    country?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     websiteLink?: StringFieldUpdateOperationsInput | string
     additionalInfo?: StringFieldUpdateOperationsInput | string
     advertiseBanner?: StringFieldUpdateOperationsInput | string
@@ -18569,6 +18660,7 @@ export namespace Prisma {
     companyaddress?: StringFieldUpdateOperationsInput | string
     supervisedName?: StringFieldUpdateOperationsInput | string
     advertisedCategory?: EnumAdvertisedCategoryFieldUpdateOperationsInput | $Enums.AdvertisedCategory
+    country?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     websiteLink?: StringFieldUpdateOperationsInput | string
     additionalInfo?: StringFieldUpdateOperationsInput | string
     advertiseBanner?: StringFieldUpdateOperationsInput | string
@@ -19598,6 +19690,13 @@ export namespace Prisma {
     not?: NestedEnumAdvertisedCategoryFilter<$PrismaModel> | $Enums.AdvertisedCategory
   }
 
+  export type EnumCountryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
+  }
+
   export type EnumadvertiseStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
     in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
@@ -19611,6 +19710,7 @@ export namespace Prisma {
     companyaddress?: SortOrder
     supervisedName?: SortOrder
     advertisedCategory?: SortOrder
+    country?: SortOrder
     websiteLink?: SortOrder
     additionalInfo?: SortOrder
     advertiseBanner?: SortOrder
@@ -19634,6 +19734,7 @@ export namespace Prisma {
     companyaddress?: SortOrder
     supervisedName?: SortOrder
     advertisedCategory?: SortOrder
+    country?: SortOrder
     websiteLink?: SortOrder
     additionalInfo?: SortOrder
     advertiseBanner?: SortOrder
@@ -19653,6 +19754,7 @@ export namespace Prisma {
     companyaddress?: SortOrder
     supervisedName?: SortOrder
     advertisedCategory?: SortOrder
+    country?: SortOrder
     websiteLink?: SortOrder
     additionalInfo?: SortOrder
     advertiseBanner?: SortOrder
@@ -19678,6 +19780,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
     _max?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
+  }
+
+  export type EnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
+    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
   export type EnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -20317,6 +20429,10 @@ export namespace Prisma {
     set?: $Enums.AdvertisedCategory
   }
 
+  export type NullableEnumCountryFieldUpdateOperationsInput = {
+    set?: $Enums.Country | null
+  }
+
   export type EnumadvertiseStatusFieldUpdateOperationsInput = {
     set?: $Enums.advertiseStatus
   }
@@ -20610,6 +20726,13 @@ export namespace Prisma {
     not?: NestedEnumAdvertisedCategoryFilter<$PrismaModel> | $Enums.AdvertisedCategory
   }
 
+  export type NestedEnumCountryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
+  }
+
   export type NestedEnumadvertiseStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
     in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
@@ -20625,6 +20748,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
     _max?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
+    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {

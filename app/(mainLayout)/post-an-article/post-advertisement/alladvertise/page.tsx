@@ -50,6 +50,7 @@ async function getAllAdvertisements() {
         advertiseStatus: true,
         createdAt: true,
         updatedAt: true,
+        country:true,
       },
       orderBy: {
         createdAt: "desc",
@@ -89,7 +90,9 @@ export default async function AllAdvertisementTable() {
                   <TableHead>Start</TableHead>
                   <TableHead>End</TableHead>
                   <TableHead>Banner</TableHead>
+                  <TableHead>Country</TableHead>
                   <TableHead>Action</TableHead>
+                  
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -119,6 +122,7 @@ export default async function AllAdvertisementTable() {
                         className="rounded"
                       />
                     </TableCell>
+                    <TableCell>{ad.country}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>

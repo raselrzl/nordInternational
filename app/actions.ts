@@ -11,7 +11,7 @@ import {
 import { redirect } from "next/navigation";
 import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
-import { AdvertisedCategory, advertiseStatus, UserType, vedioStatus } from "@/lib/generated/prisma";
+import { AdvertisedCategory, advertiseStatus, Country, UserType, vedioStatus } from "@/lib/generated/prisma";
 import { auth } from "./utils/auth";
 /* import { inngest } from "./utils/inngest/client"; */
 const aj = arcjet
@@ -371,6 +371,7 @@ export async function createAnAdvertisement(data: {
   additionalInfo?: string;
   startDate: string;
   endDate: string;
+  country:Country;
 }) {
   const user = await requireUser();
   const req = await request();
@@ -394,6 +395,7 @@ export async function createAnAdvertisement(data: {
       additionalInfo: data.additionalInfo ?? "",
       startDate: data.startDate,
       endDate: data.endDate,
+      country:data.country,
     },
   });
 
