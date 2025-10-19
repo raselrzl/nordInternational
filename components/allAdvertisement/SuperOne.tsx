@@ -1,44 +1,46 @@
-// Server component (no "use client")
 import { prisma } from "@/app/utils/db";
-import { Advertisement } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-type CountryEnum = Advertisement["country"];
-
-export async function getSuperOneAdvertise(country: string) {
-  const dbCountry = country.toUpperCase() as any; // Prisma enum type
+export async function getSuperOneAdvertise() {
   return await prisma.advertisement.findMany({
-    where: {
-      advertisedCategory: "ENTERPRISE_2",
-      advertiseStatus: "ACTIVE",
-      country: dbCountry as CountryEnum,
+    where: { advertisedCategory: "SUPER_1", advertiseStatus: "ACTIVE" },
+    select: {
+      id: true,
+      createdAt: true,
+      isFeatured: true,
+      companyName: true,
+      companyaddress: true,
+      websiteLink: true,
+      advertiseBanner: true,
+      endDate: true,
+      supervisedPhonenumber: true,
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: {
+      createdAt: "desc",
+    },
     take: 1,
   });
 }
-
-export default async function SuperOne({ country }: { country: string }) {
-  const Advertise = await getSuperOneAdvertise(country);
-
+export async function SuperOne() {
+  const Advertise = await getSuperOneAdvertise();
   return (
     <>
-      {Advertise.length > 0 ? (
+      {Advertise && Object.keys(Advertise).length > 0 ? (
         <div className="flex items-center justify-center">
           {Advertise.map((ad) => (
             <Link
-              key={ad.id}
               href={`https://${ad.websiteLink}`}
+              key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Image
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                width={360}
+                width={360} // adjust as needed
                 height={300}
-                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl py-2 mt-5 object-cover"
+                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
               />
             </Link>
           ))}
@@ -47,15 +49,15 @@ export default async function SuperOne({ country }: { country: string }) {
         <div className="flex flex-col items-center justify-center">
           <img
             src="/noad.png"
-            alt="no ad"
-            className="w-full h-[170px] md:h-[170px] rounded-xl py-2 mt-5 object-cover"
+            alt="no ad. image"
+            className="w-full md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
           />
           <Link
-            href="/about/advertise"
-            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-          >
-            Contact us for (SUPER_1) Advertisement
-          </Link>
+              href="/about/advertise"
+              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+            >
+              Contact us for (SUPER_1) Advertisement 
+            </Link>
         </div>
       )}
     </>

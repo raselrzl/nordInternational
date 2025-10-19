@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import Image from "next/image";
 
 const euCountries = [
@@ -58,7 +59,7 @@ export default function Loading() {
             </div>
           </div>
           <div className="px-2 pt-3">
-        
+            <SuperOne />
           </div>
         </div>
 
@@ -85,7 +86,7 @@ export default function Loading() {
           </div>
 
           <div className="px-2 md:px-0">
-         
+            <SuperOne />
           </div>
 
           {/* Grid Articles Skeleton */}
@@ -104,11 +105,12 @@ export default function Loading() {
 
         {/* Sidebar Ads */}
         <div className="col-span-5 md:col-span-1 px-2 pt-3">
-        
+          <SuperOne />
+          <SuperOne />
         </div>
       </div>
 
-  
+      <SuperOne />
     </>
   );
 }
