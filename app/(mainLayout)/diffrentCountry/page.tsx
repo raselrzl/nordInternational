@@ -1,7 +1,7 @@
 import { getCountryNews } from "@/app/actions";
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
+import SuperOne from "@/components/allAdvertisement/SuperOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
@@ -57,6 +57,7 @@ const euCountries = [
 
 export default async function CountryNews({ searchParams }: any) {
   const country = (await searchParams?.country) || "Sweden";
+  
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
   const activeCountry = euCountries.find(
@@ -98,7 +99,7 @@ export default async function CountryNews({ searchParams }: any) {
           </div>
            {/* Sidebar content below tabs */}
             <div className="px-2 pt-3">
-              <SuperOne />
+              <SuperOne country={country} />
             </div>
         </div>
 
@@ -169,7 +170,7 @@ export default async function CountryNews({ searchParams }: any) {
           </div>
 
           <div className="px-2 md:px-0">
-            <SuperOne />
+            <SuperOne country={country} />
           </div>
 
           {/* ✅ All Articles */}
@@ -208,11 +209,11 @@ export default async function CountryNews({ searchParams }: any) {
           )}
         </div>
         <div className="col-span-5 md:col-span-1  px-2 pt-3">
-          <SuperOne />
-          <SuperOne />
+          <SuperOne country={country} />
+          <SuperOne country={country} />
         </div>
       </div>
-      <SuperOne />
+      <SuperOne country={country} />
     </>
   );
 }
