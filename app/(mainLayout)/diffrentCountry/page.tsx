@@ -35,24 +35,11 @@ const euCountries = [
   { name: "Slovenia", flag: "/flags/slovenia.jpeg" },
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
-
   { name: "Uk", flag: "/flags/uk.png" },
-  {
-    name: "Switzerland",
-    flag: "/flags/switzerland.jpg",
-  },
-  {
-    name: "Usa",
-    flag: "/flags/usa.webp",
-  },
-  {
-    name: "Canada",
-    flag: "/flags/canada.jpg",
-  },
-  {
-    name: "Australia",
-    flag: "/flags/australia.jpg",
-  },
+  { name: "Switzerland", flag: "/flags/switzerland.jpg"},
+  { name: "Usa", flag: "/flags/usa.webp" },
+  { name: "Canada", flag: "/flags/canada.jpg"},
+  { name: "Australia", flag: "/flags/australia.jpg"}
 ];
 
 export default async function CountryNews({ searchParams }: any) {
@@ -66,11 +53,11 @@ export default async function CountryNews({ searchParams }: any) {
   return (
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
-        <div className="col-span-5 md:col-span-1">
-          <div className="hidden md:block sticky top-20 max-h-[400px] overflow-y-auto pb-4 border-2">
+        <div className="col-span-5 md:col-span-1 pr-1">
+          <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
             {/* 🌍 Country Tabs */}
             <div className="pb-2 mb-6 pt-4">
-              <div className="flex flex-wrap gap-3 px-2">
+              <div className="flex flex-wrap gap-2">
                 {euCountries.map((c) => (
                   <Link
                     key={c.name}
@@ -97,9 +84,9 @@ export default async function CountryNews({ searchParams }: any) {
            
           </div>
            {/* Sidebar content below tabs */}
-            <div className="px-2 pt-3">
+          {/*   <div className="px-2 pt-3">
               <SuperOne />
-            </div>
+            </div> */}
         </div>
 
         <div className="col-span-5 md:col-span-3 ">
