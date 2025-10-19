@@ -65,7 +65,7 @@ export async function getCountryNews(country: string) {
     },
     orderBy: { createdAt: "desc" },
   });
-
+    
   return { allArticles, lastFeaturedArticle };
 }
 
