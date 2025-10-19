@@ -67,7 +67,7 @@ export default async function CountryNews({ searchParams }: any) {
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
         <div className="col-span-5 md:col-span-1">
-          <div className="hidden md:block sticky top-20 max-h-[400px] overflow-y-auto pb-4">
+          <div className="hidden md:block sticky top-20 max-h-[400px] overflow-y-auto pb-4 border-2">
             {/* 🌍 Country Tabs */}
             <div className="pb-2 mb-6 pt-4">
               <div className="flex flex-wrap gap-3 px-2">
@@ -97,7 +97,7 @@ export default async function CountryNews({ searchParams }: any) {
            
           </div>
            {/* Sidebar content below tabs */}
-            <div className="px-2 pt-3 absolute">
+            <div className="px-2 pt-3">
               <SuperOne />
             </div>
         </div>
