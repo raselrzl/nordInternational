@@ -27,7 +27,7 @@ export async function DeluxeOneAdvertise() {
   return (
     <div className="w-full flex justify-center">
       {Advertise && Advertise.length > 0 ? (
-        <div className="w-[600px] h-[70px] flex items-center justify-center">
+        <div className="w-[600px] h-[80px] flex items-center justify-center">
           {Advertise.map((pro1) => (
             <Link
               href={`https://${pro1.websiteLink}`}
@@ -40,8 +40,8 @@ export async function DeluxeOneAdvertise() {
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
                 width={600}
-                height={70}
-                className="max-h-[70px] w-[600px] object-fill rounded-xs"
+                height={100}
+                className="h-[80px] w-full object-fill rounded-none"
               />
             </Link>
           ))}
