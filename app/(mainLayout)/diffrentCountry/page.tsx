@@ -67,35 +67,39 @@ export default async function CountryNews({ searchParams }: any) {
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
         <div className="col-span-5 md:col-span-1">
-          {/* 🌍 Country Tabs */}
-          <div className="hidden md:block pb-2 mb-6 overflow-x-auto pt-4">
-            <div className="flex flex-wrap gap-3 px-2">
-              {euCountries.map((c) => (
-                <Link
-                  key={c.name}
-                  href={`?country=${encodeURIComponent(c.name)}`}
-                  className={`flex items-center gap-2 border rounded-lg px-3 py-1 transition-all ${
-                    c.name === country
-                      ? "bg-primary text-white border-primary"
-                      : "hover:bg-muted"
-                  }`}
-                >
-                  <Image
-                    src={c.flag}
-                    alt={`${c.name} flag`}
-                    width={22}
-                    height={15}
-                    className="rounded-sm"
-                  />
-                  <span className="text-sm font-semibold">{c.name}</span>
-                </Link>
-              ))}
+          <div className="hidden md:block sticky top-20 max-h-[400px] overflow-y-auto pb-4">
+            {/* 🌍 Country Tabs */}
+            <div className="pb-2 mb-6 pt-4">
+              <div className="flex flex-wrap gap-3 px-2">
+                {euCountries.map((c) => (
+                  <Link
+                    key={c.name}
+                    href={`?country=${encodeURIComponent(c.name)}`}
+                    className={`flex items-center gap-2 border rounded-lg px-3 py-1 transition-all ${
+                      c.name === country
+                        ? "bg-primary text-white border-primary"
+                        : "hover:bg-muted"
+                    }`}
+                  >
+                    <Image
+                      src={c.flag}
+                      alt={`${c.name} flag`}
+                      width={18}
+                      height={12}
+                      className="rounded-sm"
+                    />
+                    <span className="text-xs font-semibold">{c.name}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
+
+           
           </div>
-          <div className="px-2 pt-3">
-            {" "}
-            <SuperOne />
-          </div>
+           {/* Sidebar content below tabs */}
+            <div className="px-2 pt-3 absolute">
+              <SuperOne />
+            </div>
         </div>
 
         <div className="col-span-5 md:col-span-3 ">
