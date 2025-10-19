@@ -114,9 +114,13 @@ export default async function AllUsersTable() {
                     </TableCell>
                     <TableCell>
                       {canSeeSection3
-                        ? user.userType
+                        ? user.userType === "ADVERTISER"
+                          ? "Normal User"
+                          : user.userType
                         : user.userType === "SUPERADMIN"
                         ? null
+                        : user.userType === "ADVERTISER"
+                        ? "Normal User"
                         : user.userType ?? "Unknown"}
                     </TableCell>
                     <TableCell>
@@ -142,13 +146,14 @@ export default async function AllUsersTable() {
                         : null}{" "}
                     </TableCell>
                     <TableCell>
-                      {" "}
                       {userType === "SUPERADMIN" ||
                       user.userType !== "SUPERADMIN"
-                        ? user.approvalStatus
+                        ? user.userType === "ADVERTISER"
+                          ? null
+                          : user.approvalStatus
                           ? user.approvalStatus
                           : "Pending"
-                        : null}{" "}
+                        : null}
                     </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>

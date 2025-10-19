@@ -58,9 +58,11 @@ export default function Advertiser() {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 my-10 pb-8 border-1">
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-2">
         <Image src="/n33.png" alt="logo image" width={300} height={100} />
       </div>
+      <h1 className="text-center mb-4 font-bold text-xl">We’re delighted to have you with us!</h1>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)} className="space-y-5"
@@ -70,7 +72,7 @@ export default function Advertiser() {
             name="supervisorName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Supervisor's Name</FormLabel>
+                <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Mr. Joe" {...field} />
                 </FormControl>
@@ -83,9 +85,9 @@ export default function Advertiser() {
             name="companyName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company Name</FormLabel>
+                <FormLabel>Company Name / Job </FormLabel>
                 <FormControl>
-                  <Input placeholder="Media Limited" {...field} />
+                  <Input placeholder="Media Limited / Employed" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -139,9 +141,9 @@ export default function Advertiser() {
             name="companyWebsite"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company Website (if any)</FormLabel>
+                <FormLabel>Company Website / Job title (if any)</FormLabel>
                 <FormControl>
-                  <Input placeholder="www.company.com" {...field} />
+                  <Input placeholder="www.company.com / Teacher" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -153,10 +155,10 @@ export default function Advertiser() {
             name="aboutCompany"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>About the Company</FormLabel>
+                <FormLabel>About</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Our company has been providing media services across the country since 2015. We want to place an advertisement for 10 days..."
+                    placeholder="I am a teacher..."
                     className=""
                     {...field}
                   />

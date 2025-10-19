@@ -12,11 +12,11 @@ export default function UserTypeSelection({
   onSelect,
 }: UserTypeSelectionProps) {
   return (
-    <div className="space-y-8 px-4 w-[360px] border-1 py-4">
+    <div className=" flex flex-col items-center justify-center space-y-8 px-8 w-[360px] border-1 py-4">
       {" "}
       {/* Add padding for mobile view */}
-      <div className="flex items-center justify-center gap-2 mb-10">
-        <Image src="/n33.png" alt="logo image" width={300} height={100} />
+      <div className="flex items-center justify-center gap-2 mb-2">
+        <Image src="/n33.png" alt="logo image" width={300} height={50} />
       </div>
       <div className="text-center space-y-2">
         <h2 className="text-xl font-bold">Welcome, let's get started!</h2>
@@ -24,7 +24,7 @@ export default function UserTypeSelection({
           Do you want to be a journalist or an advertiser? Please choose.
         </p>
       </div>
-      <div className="grid gap-4 max-w-[300px]">
+      <div className="flex flex-col items-center justify-center gap-4">
         {" "}
         {/* Limit width and center */}
         <Button
@@ -38,7 +38,10 @@ export default function UserTypeSelection({
           <div className="text-left">
             <h3 className="text-lg font-semibold">Journalist?</h3>
             <p className="text-gray-500 text-xs">
-              Can you publish news on Nord International?
+              You will be able to publish news.
+            </p>
+            <p className="text-gray-500 text-xs">
+              Wait for the verification?
             </p>
           </div>
         </Button>
@@ -51,9 +54,12 @@ export default function UserTypeSelection({
             <UserRound className="size-6 text-primary" />
           </div>
           <div className="text-left">
-            <h3 className="text-lg font-semibold">Advertiser?</h3>
+            <h3 className="text-lg font-semibold">Normal User?</h3>
             <p className="text-gray-500 text-xs">
-              Can you register as an advertiser?
+              Register as a normal user.
+            </p>
+             <p className="text-gray-500 text-xs">
+              To Stay Updated.
             </p>
           </div>
         </Button>

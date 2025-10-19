@@ -32,10 +32,9 @@ export default function OnboardingForm() {
   }
   return (
     <div className="w-full max-w-2xl md:max-w-3xl flex items-center justify-center mx-auto px-4">
-  <div className="p-6 w-full flex flex-col items-center justify-center">
-    {renderStep()}
-  </div>
-</div>
-
+      <div className="p-6 w-full flex flex-col items-center justify-center">
+        {renderStep()}
+      </div>
+    </div>
   );
 }
