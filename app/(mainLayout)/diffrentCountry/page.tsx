@@ -1,4 +1,3 @@
-import { getCountryNews } from "@/app/actions";
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
@@ -6,6 +5,7 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
+
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
   { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
@@ -36,26 +36,59 @@ const euCountries = [
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
   { name: "Uk", flag: "/flags/uk.png" },
-  { name: "Switzerland", flag: "/flags/switzerland.jpg"},
+  { name: "Switzerland", flag: "/flags/switzerland.jpg" },
   { name: "Usa", flag: "/flags/usa.webp" },
-  { name: "Canada", flag: "/flags/canada.jpg"},
-  { name: "Australia", flag: "/flags/australia.jpg"}
+  { name: "Canada", flag: "/flags/canada.jpg" },
+  { name: "Australia", flag: "/flags/australia.jpg" },
 ];
 
-export default async function CountryNews({ searchParams }: any) {
-  const country = (await searchParams?.country) || "Sweden";
+// ✅ Server Action (Promise-based, same as your getOrders)
+export async function getCountryNews(country: string) {
+  // Convert to uppercase to match Prisma enum values
+  const dbCountry = country.toUpperCase();
+
+  // Fetch articles
+  const allArticles = await prisma.newsArticle.findMany({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      newsLocation: { equals: dbCountry, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+    take: 9,
+  });
+
+  const lastFeaturedArticle = await prisma.newsArticle.findFirst({
+    where: {
+      newsArticleStatus: "ACTIVE",
+      isFeatured: true,
+      newsLocation: { equals: dbCountry, mode: "insensitive" },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return { allArticles, lastFeaturedArticle };
+}
+
+// ✅ Server Component (awaiting the promise)
+export default async function CountryNews({ searchParams }: { searchParams: Promise<{ country?: string }> }) {
+  const params = await searchParams; // ✅ Await the searchParams promise
+  const country = params?.country || "Sweden";
+
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
-  const activeCountry = euCountries.find(
-    (c) => c.name.toLowerCase() === country.toLowerCase()
-  ) ?? { name: country, flag: "/flags/default.png" };
+  const activeCountry =
+    euCountries.find((c) => c.name.toLowerCase() === country.toLowerCase()) ?? {
+      name: country,
+      flag: "/flags/default.png",
+    };
+
 
   return (
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
+        {/* Sidebar */}
         <div className="col-span-5 md:col-span-1 pr-1">
           <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
-            {/* 🌍 Country Tabs */}
             <div className="pb-2 mb-6 pt-4">
               <div className="flex flex-wrap gap-2">
                 {euCountries.map((c) => (
@@ -80,80 +113,66 @@ export default async function CountryNews({ searchParams }: any) {
                 ))}
               </div>
             </div>
-
-           
           </div>
-           {/* Sidebar content below tabs */}
-          {/*   <div className="px-2 pt-3">
-              <SuperOne />
-            </div> */}
         </div>
 
-        <div className="col-span-5 md:col-span-3 ">
-          <div>
-            {(() => {
-              const activeCountry = euCountries.find(
-                (c) => c.name.toLowerCase() === country.toLowerCase()
-              );
-              return (
-                <div className="flex items-center gap-2 pl-2 mb-2">
-                  <Image
-                    src={activeCountry?.flag || "/flags/default.png"}
-                    alt={`${activeCountry?.name || country} flag`}
-                    width={28}
-                    height={18}
-                    className="rounded-sm"
-                  />
-                  <h1 className="font-extrabold">
-                    {activeCountry?.name || country} Latest
-                  </h1>
-                </div>
-              );
-            })()}
-            {/* ✅ Featured Article */}
-            {lastFeaturedArticle ? (
-              <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
-                <Link href={`/newsDetails/${lastFeaturedArticle.id}`}>
-                  <div className="grid grid-cols-5">
-                    <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
-                      <Image
-                        src={lastFeaturedArticle.newsPicture}
-                        alt="picture"
-                        width={500}
-                        height={270}
-                        className="w-full h-full object-fit"
-                      />
-                    </div>
-                    <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
-                      <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
-                        {lastFeaturedArticle.newsHeading}
-                        <span className="md:hidden sm:block">Details....</span>
-                      </h2>
-
-                      {isJson(lastFeaturedArticle.newsDetails) ? (
-                        <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
-                          <JsonToHtml
-                            json={JSON.parse(lastFeaturedArticle.newsDetails)}
-                          />
-                        </div>
-                      ) : (
-                        <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
-                          {lastFeaturedArticle.newsDetails}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ) : (
-              <EmptyState
-                title="Oops! There's nothing to show yet."
-                description="No featured article available yet."
-                buttonText="Homepage"
-                href="/"
-              />
-            )}
+        {/* Main Content */}
+        <div className="col-span-5 md:col-span-3">
+          {/* Country header */}
+          <div className="flex items-center gap-2 pl-2 mb-2">
+            <Image
+              src={activeCountry.flag}
+              alt={`${activeCountry.name} flag`}
+              width={28}
+              height={18}
+              className="rounded-sm"
+            />
+            <h1 className="font-extrabold">{activeCountry.name} Latest</h1>
           </div>
+
+          {/* ✅ Featured Article */}
+          {lastFeaturedArticle ? (
+            <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
+              <Link href={`/newsDetails/${lastFeaturedArticle.id}`}>
+                <div className="grid grid-cols-5">
+                  <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
+                    <Image
+                      src={lastFeaturedArticle.newsPicture}
+                      alt="picture"
+                      width={500}
+                      height={270}
+                      className="w-full h-full object-fit"
+                    />
+                  </div>
+                  <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
+                    <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
+                      {lastFeaturedArticle.newsHeading}
+                      <span className="md:hidden sm:block">Details....</span>
+                    </h2>
+
+                    {isJson(lastFeaturedArticle.newsDetails) ? (
+                      <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
+                        <JsonToHtml
+                          json={JSON.parse(lastFeaturedArticle.newsDetails)}
+                        />
+                      </div>
+                    ) : (
+                      <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
+                        {lastFeaturedArticle.newsDetails}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <EmptyState
+              title="Oops! There's nothing to show yet."
+              description="No featured article available yet."
+              buttonText="Homepage"
+              href="/"
+            />
+          )}
 
           <div className="px-2 md:px-0">
             <SuperOne />
@@ -194,11 +213,14 @@ export default async function CountryNews({ searchParams }: any) {
             />
           )}
         </div>
-        <div className="col-span-5 md:col-span-1  px-2 pt-3">
+
+        {/* Right Sidebar */}
+        <div className="col-span-5 md:col-span-1 px-2 pt-3">
           <SuperOne />
           <SuperOne />
         </div>
       </div>
+
       <SuperOne />
     </>
   );
