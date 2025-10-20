@@ -1,4 +1,4 @@
-/* import { prisma } from "@/app/utils/db";
+import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { EmptyState } from "@/components/general/EmptyState";
@@ -47,7 +47,7 @@ export async function getCountryNews(country: string) {
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: dbCountry, mode: "insensitive" },
+      newsLocation: dbCountry as any,
     },
     orderBy: { createdAt: "desc" },
     take: 9,
@@ -57,7 +57,7 @@ export async function getCountryNews(country: string) {
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: { equals: dbCountry, mode: "insensitive" },
+      newsLocation: dbCountry as any,
     },
     orderBy: { createdAt: "desc" },
   });
@@ -218,4 +218,3 @@ export default async function CountryNews({
     </>
   );
 }
- */
