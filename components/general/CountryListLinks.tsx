@@ -58,9 +58,9 @@ const euCountries = [
     link: "/diffrentCountry?country=Cyprus",
   },
   {
-    name: "Czech Republic",
+    name: "CzechRepublic",
     flag: "/flags/czech-republic.png",
-    link: "/diffrentCountry?country=Czech%20Republic",
+    link: "/diffrentCountry?country=CzechRepublic",
   },
   {
     name: "Denmark",

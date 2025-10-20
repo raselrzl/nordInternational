@@ -62,7 +62,7 @@ export async function SuperOne({ country }: { country: string }) {
                 alt={ad.companyName}
                 width={360}
                 height={300}
-                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
+                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill"
               />
             </Link>
           ))}

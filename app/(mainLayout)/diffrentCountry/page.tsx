@@ -13,7 +13,7 @@ const euCountries = [
   { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
   { name: "Croatia", flag: "/flags/croatia.webp" },
   { name: "Cyprus", flag: "/flags/cyprus.jpg" },
-  { name: "Czech Republic", flag: "/flags/czech-republic.png" },
+  { name: "CzechRepublic", flag: "/flags/czech-republic.png" },
   { name: "Denmark", flag: "/flags/denmark.jpg" },
   { name: "Estonia", flag: "/flags/estonia.jpeg" },
   { name: "Finland", flag: "/flags/finland.jpg" },

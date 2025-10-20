@@ -39,7 +39,7 @@ const countries = [
   { id: "CYPRUS", name: "Cyprus", flag: "/flags/cyprus.jpg" },
   {
     id: "CZECH_REPUBLIC",
-    name: "Czech Republic",
+    name: "CzechRepublic",
     flag: "/flags/czech-republic.png",
   },
   { id: "DENMARK", name: "Denmark", flag: "/flags/denmark.jpg" },

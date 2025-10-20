@@ -5,7 +5,7 @@ export const districts = [
   { id: 4, name: "Bulgaria" },
   { id: 5, name: "Croatia" },
   { id: 6, name: "Cyprus" },
-  { id: 7, name: "Czech Republic" },
+  { id: 7, name: "CzechRepublic" },
   { id: 8, name: "Denmark" },
   { id: 9, name: "Estonia" },
   { id: 10, name: "Finland" },
