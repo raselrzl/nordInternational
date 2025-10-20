@@ -51,7 +51,7 @@ export default function AdvertiseForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16 text-foreground">
+    <div id="advertiseForm" className="max-w-2xl mx-auto px-4 py-16 text-foreground">
       <h1 className="text-3xl font-bold mb-6 text-center">Advertising Inquiry</h1>
       <p className="text-md mb-10 text-center">If you're interested in advertising, please fill out the form below.</p>
 

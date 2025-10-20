@@ -42,12 +42,15 @@ export default function Footer() {
           </Link> */}
         </div>
 
-        
-        <div className="md:grid md:grid-cols-3">
+        <div className="md:grid md:grid-cols-3 mt-4 pb-4">
           <div>
-            <strong>Publication and Communication</strong>
+            <h1 className="text-2xl font-bold mt-4 pb-4">
+              Publication and Communication
+            </h1>
+            <h3 className="font-bold text-lg">
+              Editor & Publisher: Shahab Rasel
+            </h3>
             <p className="mb-1 text-sm text-muted-foreground">
-              <span>Editor: </span>
               <a
                 href="mailto:editor@nordinternational.com"
                 className="text-orange-600 hover:underline"
@@ -55,7 +58,6 @@ export default function Footer() {
                 editor@nordinternational.com
               </a>
               <br />
-              <span>Publisher: </span>
               <a
                 href="mailto:publisher@nordinternational.com"
                 className="text-orange-600 hover:underline"
@@ -76,9 +78,20 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center justify-center">
-            <strong>Advertisement</strong>
-            <br />
-            Email:{" "}
+            <h1 className="text-2xl font-bold mt-4">Advertisement</h1>
+
+            <div className="max-w-2xl mx-auto px-4 py-4 text-foreground text-center">
+              <p className="mb-4 inline">Fill up the </p>
+              <a
+                href="/about/advertise#advertiseForm"
+                aria-label="Form"
+                className="text-primary hover:underline"
+              >
+                Form
+              </a>
+            </div>
+
+            <p> or Email us for advertisement</p>
             <a
               href="mailto:ads@nordinternational.com"
               className="text-primary hover:underline"
@@ -89,31 +102,38 @@ export default function Footer() {
               <div className="w-[160px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/n1w.png')] dark:bg-[url('/n1b.png')] bg-cover bg-center" />
             </Link>
           </div>
-          <div className="flex items-center  justify-center gap-4 mt-6 md:mt-0">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-blue-600" />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
-            </a>
-            <a
-              href="https://www.youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
-            </a>
+          <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">
+            <p className="text-sm">
+              Follow our social media accounts for the latest updates and
+              exclusive content.
+            </p>
+            <div className="flex flex-row gap-3">
+              {" "}
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-blue-600" />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
+              </a>
+            </div>
           </div>
         </div>
         <CountryListLinks />
