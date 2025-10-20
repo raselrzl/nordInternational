@@ -1,6 +1,7 @@
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
+import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
@@ -206,15 +207,17 @@ export default async function CountryNews({
               href="/"
             />
           )}
+          <SuperTwo country={country} />
         </div>
 
         <div className="col-span-5 md:col-span-1 px-2 pt-3">
           <SuperOne country={country} />
           <SuperOne country={country} />
         </div>
+        
       </div>
 
-      <SuperOne country={country} />
+      
     </>
   );
 }

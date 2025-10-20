@@ -1,10 +1,31 @@
 import { prisma } from "@/app/utils/db";
+import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-export async function getSuperTwoAdvertise() {
+interface SuperOneProps {
+  country: string; // frontend country name like "Usa", "Bangladesh"
+}
+
+// Helper: map frontend country string to Prisma enum
+function mapToCountryEnum(country: string): Country | undefined {
+  if (!country) return undefined;
+  const key = country.toUpperCase().replace(/ /g, "_") as keyof typeof Country;
+  return Country[key];
+}
+
+// Fetch advertisements from DB
+async function getSuperTwoAdvertise(country: string) {
+  const dbCountry = mapToCountryEnum(country);
+
+  if (!dbCountry) return []; // fallback if mapping fails
+
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "SUPER_2", advertiseStatus: "ACTIVE" },
+    where: {
+      advertisedCategory: "SUPER_2",
+      advertiseStatus: "ACTIVE",
+      country: dbCountry
+    },
     select: {
       id: true,
       createdAt: true,
@@ -16,50 +37,51 @@ export async function getSuperTwoAdvertise() {
       endDate: true,
       supervisedPhonenumber: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 1,
   });
 }
-export async function SuperTwo() {
-  const SuperTwoAdvertise = await getSuperTwoAdvertise();
+
+
+export async function SuperTwo({ country }: { country: string }) {
+  const Advertise = await getSuperTwoAdvertise(country);
+
   return (
-    <div className="mb-4 px-2 md:p-0">
-      <div className="">
-        {SuperTwoAdvertise && Object.keys(SuperTwoAdvertise).length > 0 ? (
-          <div className="flex items-center justify-center">
-            {SuperTwoAdvertise.map((super1) => (
-              <Link
-                href={`https://${super1.websiteLink}`}
-                key={super1.id}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={super1.advertiseBanner}
-                  alt={super1.companyName}
-                  width={400} // adjust as needed
-                  height={200}
-                  className="w-[400px] h-[200px] md:h-[180px] rounded-xl"
-                />
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="w-full max-w-4xl mx-auto border rounded-xl bg-gray-50 shadow-sm p-6 text-center mt-4">
-            <p className="text-sm text-gray-600 mb-2">
-              No <strong>Super Two</strong> advertisement available.
-            </p>
-             <Link
-              href="/about/advertise"
-              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+    <>
+      {Advertise && Advertise.length > 0 ? (
+        <div className="flex items-center justify-center">
+          {Advertise.map((ad) => (
+            <Link
+              href={`https://${ad.websiteLink}`}
+              key={ad.id}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Contact us for (SUPER_2) Advertisement 
+              <Image
+                src={ad.advertiseBanner}
+                alt={ad.companyName}
+                width={360}
+                height={300}
+                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill"
+              />
             </Link>
-          </div>
-        )}
-      </div>
-    </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <img
+            src="/noad.png"
+            alt="noad. image"
+            className="w-full md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
+          />
+          <Link
+            href="/about/advertise"
+            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+          >
+            Contact us for (SUPER_2) Advertisement
+          </Link>
+        </div>
+      )}
+    </>
   );
 }
