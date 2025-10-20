@@ -42,7 +42,7 @@ const euCountries = [
   { name: "Australia", flag: "/flags/australia.jpg" },
 ];
 
-export async function getCountryNews(country: string) {
+ async function getCountryNews(country: string) {
   const dbCountry = country;
   const allArticles = await prisma.newsArticle.findMany({
     where: {
