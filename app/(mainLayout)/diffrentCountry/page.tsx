@@ -43,7 +43,7 @@ const euCountries = [
   { name: "Australia", flag: "/flags/australia.jpg" },
 ];
 
-export async function getCountryNews(country: string) {
+ async function getCountryNews(country: string) {
   // Convert "Australia" → "AUSTRALIA"
   const dbCountry = country.toUpperCase();
 
