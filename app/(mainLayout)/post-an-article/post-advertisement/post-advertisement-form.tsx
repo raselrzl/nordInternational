@@ -28,7 +28,7 @@ import Image from "next/image";
 
 const countries = [
   { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
-  { id: "UK", name: "United Kingdom", flag: "/flags/uk.png" },
+  { id: "UK", name: "UK", flag: "/flags/uk.png" },
   { id: "SWITZERLAND", name: "Switzerland", flag: "/flags/switzerland.jpg" },
   { id: "USA", name: "United States", flag: "/flags/usa.webp" },
   { id: "AUSTRALIA", name: "Australia", flag: "/flags/australia.jpg" },
