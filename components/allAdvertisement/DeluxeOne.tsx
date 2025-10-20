@@ -51,7 +51,7 @@ export async function DeluxeOneAdvertise() {
               href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-xs text-xs transition"
             >
-              Contact us for (DELUXE_1) Advertisement
+              Contact us for (DELUXE_1) ad.
             </Link>
           </div>
         </div>
