@@ -3,6 +3,7 @@ import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
+import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,11 +44,18 @@ const euCountries = [
 ];
 
 export async function getCountryNews(country: string) {
+  // Convert "Australia" → "AUSTRALIA"
   const dbCountry = country.toUpperCase();
+
+  // Make sure it's a valid enum value
+  if (!Object.values(Country).includes(dbCountry as Country)) {
+    return { allArticles: [], lastFeaturedArticle: null };
+  }
+
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
-      newsLocation: dbCountry as any,
+      newsLocation: dbCountry as Country,
     },
     orderBy: { createdAt: "desc" },
     take: 9,
@@ -57,7 +65,7 @@ export async function getCountryNews(country: string) {
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: dbCountry as any,
+      newsLocation: dbCountry as Country,
     },
     orderBy: { createdAt: "desc" },
   });
