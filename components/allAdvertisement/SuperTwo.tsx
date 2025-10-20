@@ -3,7 +3,7 @@ import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-interface SuperOneProps {
+interface SuperTwoProps {
   country: string; // frontend country name like "Usa", "Bangladesh"
 }
 
