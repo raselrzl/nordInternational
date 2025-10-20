@@ -211,7 +211,8 @@ export const Country: {
   SWITZERLAND: 'SWITZERLAND',
   USA: 'USA',
   CANADA: 'CANADA',
-  AUSTRALIA: 'AUSTRALIA'
+  AUSTRALIA: 'AUSTRALIA',
+  NORWAY: 'NORWAY'
 };
 
 export type Country = (typeof Country)[keyof typeof Country]
@@ -5768,7 +5769,7 @@ export namespace Prisma {
     id: string | null
     newsHeading: string | null
     newsResource: string | null
-    newsLocation: string | null
+    newsLocation: $Enums.Country | null
     newsCategory: $Enums.newsCategory | null
     newsPicture: string | null
     newsPictureHeading: string | null
@@ -5786,7 +5787,7 @@ export namespace Prisma {
     id: string | null
     newsHeading: string | null
     newsResource: string | null
-    newsLocation: string | null
+    newsLocation: $Enums.Country | null
     newsCategory: $Enums.newsCategory | null
     newsPicture: string | null
     newsPictureHeading: string | null
@@ -5973,7 +5974,7 @@ export namespace Prisma {
     id: string
     newsHeading: string
     newsResource: string
-    newsLocation: string | null
+    newsLocation: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -6106,7 +6107,7 @@ export namespace Prisma {
       id: string
       newsHeading: string
       newsResource: string
-      newsLocation: string | null
+      newsLocation: $Enums.Country | null
       newsCategory: $Enums.newsCategory
       newsPicture: string
       newsPictureHeading: string
@@ -6546,7 +6547,7 @@ export namespace Prisma {
     readonly id: FieldRef<"newsArticle", 'String'>
     readonly newsHeading: FieldRef<"newsArticle", 'String'>
     readonly newsResource: FieldRef<"newsArticle", 'String'>
-    readonly newsLocation: FieldRef<"newsArticle", 'String'>
+    readonly newsLocation: FieldRef<"newsArticle", 'Country'>
     readonly newsCategory: FieldRef<"newsArticle", 'newsCategory'>
     readonly newsPicture: FieldRef<"newsArticle", 'String'>
     readonly newsPictureHeading: FieldRef<"newsArticle", 'String'>
@@ -16929,6 +16930,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Country'
+   */
+  export type EnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country'>
+    
+
+
+  /**
+   * Reference to a field of type 'Country[]'
+   */
+  export type ListEnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country[]'>
+    
+
+
+  /**
    * Reference to a field of type 'newsCategory'
    */
   export type EnumnewsCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'newsCategory'>
@@ -16981,20 +16996,6 @@ export namespace Prisma {
    * Reference to a field of type 'AdvertisedCategory[]'
    */
   export type ListEnumAdvertisedCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdvertisedCategory[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Country'
-   */
-  export type EnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country'>
-    
-
-
-  /**
-   * Reference to a field of type 'Country[]'
-   */
-  export type ListEnumCountryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Country[]'>
     
 
 
@@ -17312,7 +17313,7 @@ export namespace Prisma {
     id?: StringFilter<"newsArticle"> | string
     newsHeading?: StringFilter<"newsArticle"> | string
     newsResource?: StringFilter<"newsArticle"> | string
-    newsLocation?: StringNullableFilter<"newsArticle"> | string | null
+    newsLocation?: EnumCountryNullableFilter<"newsArticle"> | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFilter<"newsArticle"> | $Enums.newsCategory
     newsPicture?: StringFilter<"newsArticle"> | string
     newsPictureHeading?: StringFilter<"newsArticle"> | string
@@ -17355,7 +17356,7 @@ export namespace Prisma {
     NOT?: newsArticleWhereInput | newsArticleWhereInput[]
     newsHeading?: StringFilter<"newsArticle"> | string
     newsResource?: StringFilter<"newsArticle"> | string
-    newsLocation?: StringNullableFilter<"newsArticle"> | string | null
+    newsLocation?: EnumCountryNullableFilter<"newsArticle"> | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFilter<"newsArticle"> | $Enums.newsCategory
     newsPicture?: StringFilter<"newsArticle"> | string
     newsPictureHeading?: StringFilter<"newsArticle"> | string
@@ -17401,7 +17402,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"newsArticle"> | string
     newsHeading?: StringWithAggregatesFilter<"newsArticle"> | string
     newsResource?: StringWithAggregatesFilter<"newsArticle"> | string
-    newsLocation?: StringNullableWithAggregatesFilter<"newsArticle"> | string | null
+    newsLocation?: EnumCountryNullableWithAggregatesFilter<"newsArticle"> | $Enums.Country | null
     newsCategory?: EnumnewsCategoryWithAggregatesFilter<"newsArticle"> | $Enums.newsCategory
     newsPicture?: StringWithAggregatesFilter<"newsArticle"> | string
     newsPictureHeading?: StringWithAggregatesFilter<"newsArticle"> | string
@@ -18354,7 +18355,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -18373,7 +18374,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -18392,7 +18393,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -18411,7 +18412,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -18430,7 +18431,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -18448,7 +18449,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -18465,7 +18466,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -19516,6 +19517,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumCountryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
+  }
+
   export type EnumnewsCategoryFilter<$PrismaModel = never> = {
     equals?: $Enums.newsCategory | EnumnewsCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.newsCategory[] | ListEnumnewsCategoryFieldRefInput<$PrismaModel>
@@ -19618,6 +19626,16 @@ export namespace Prisma {
     duration?: SortOrder
   }
 
+  export type EnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
+    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
+  }
+
   export type EnumnewsCategoryWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.newsCategory | EnumnewsCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.newsCategory[] | ListEnumnewsCategoryFieldRefInput<$PrismaModel>
@@ -19688,13 +19706,6 @@ export namespace Prisma {
     in?: $Enums.AdvertisedCategory[] | ListEnumAdvertisedCategoryFieldRefInput<$PrismaModel>
     notIn?: $Enums.AdvertisedCategory[] | ListEnumAdvertisedCategoryFieldRefInput<$PrismaModel>
     not?: NestedEnumAdvertisedCategoryFilter<$PrismaModel> | $Enums.AdvertisedCategory
-  }
-
-  export type EnumCountryNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
   }
 
   export type EnumadvertiseStatusFilter<$PrismaModel = never> = {
@@ -19780,16 +19791,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
     _max?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
-  }
-
-  export type EnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
-    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
   export type EnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -20359,6 +20360,10 @@ export namespace Prisma {
     connect?: quoteWhereUniqueInput | quoteWhereUniqueInput[]
   }
 
+  export type NullableEnumCountryFieldUpdateOperationsInput = {
+    set?: $Enums.Country | null
+  }
+
   export type EnumnewsCategoryFieldUpdateOperationsInput = {
     set?: $Enums.newsCategory
   }
@@ -20427,10 +20432,6 @@ export namespace Prisma {
 
   export type EnumAdvertisedCategoryFieldUpdateOperationsInput = {
     set?: $Enums.AdvertisedCategory
-  }
-
-  export type NullableEnumCountryFieldUpdateOperationsInput = {
-    set?: $Enums.Country | null
   }
 
   export type EnumadvertiseStatusFieldUpdateOperationsInput = {
@@ -20658,6 +20659,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumCountryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
+  }
+
   export type NestedEnumnewsCategoryFilter<$PrismaModel = never> = {
     equals?: $Enums.newsCategory | EnumnewsCategoryFieldRefInput<$PrismaModel>
     in?: $Enums.newsCategory[] | ListEnumnewsCategoryFieldRefInput<$PrismaModel>
@@ -20670,6 +20678,16 @@ export namespace Prisma {
     in?: $Enums.newsArticleStatus[] | ListEnumnewsArticleStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.newsArticleStatus[] | ListEnumnewsArticleStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumnewsArticleStatusFilter<$PrismaModel> | $Enums.newsArticleStatus
+  }
+
+  export type NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
+    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumnewsCategoryWithAggregatesFilter<$PrismaModel = never> = {
@@ -20726,13 +20744,6 @@ export namespace Prisma {
     not?: NestedEnumAdvertisedCategoryFilter<$PrismaModel> | $Enums.AdvertisedCategory
   }
 
-  export type NestedEnumCountryNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
-  }
-
   export type NestedEnumadvertiseStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
     in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
@@ -20748,16 +20759,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
     _max?: NestedEnumAdvertisedCategoryFilter<$PrismaModel>
-  }
-
-  export type NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Country | EnumCountryFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Country[] | ListEnumCountryFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCountryNullableWithAggregatesFilter<$PrismaModel> | $Enums.Country | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumCountryNullableFilter<$PrismaModel>
-    _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -21084,7 +21085,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -21102,7 +21103,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -21186,7 +21187,7 @@ export namespace Prisma {
     id?: StringFilter<"newsArticle"> | string
     newsHeading?: StringFilter<"newsArticle"> | string
     newsResource?: StringFilter<"newsArticle"> | string
-    newsLocation?: StringNullableFilter<"newsArticle"> | string | null
+    newsLocation?: EnumCountryNullableFilter<"newsArticle"> | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFilter<"newsArticle"> | $Enums.newsCategory
     newsPicture?: StringFilter<"newsArticle"> | string
     newsPictureHeading?: StringFilter<"newsArticle"> | string
@@ -21450,7 +21451,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -21468,7 +21469,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -21502,7 +21503,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -21520,7 +21521,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -21786,7 +21787,7 @@ export namespace Prisma {
     id?: string
     newsHeading: string
     newsResource: string
-    newsLocation?: string | null
+    newsLocation?: $Enums.Country | null
     newsCategory: $Enums.newsCategory
     newsPicture: string
     newsPictureHeading: string
@@ -21803,7 +21804,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -21821,7 +21822,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string
@@ -21839,7 +21840,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     newsHeading?: StringFieldUpdateOperationsInput | string
     newsResource?: StringFieldUpdateOperationsInput | string
-    newsLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    newsLocation?: NullableEnumCountryFieldUpdateOperationsInput | $Enums.Country | null
     newsCategory?: EnumnewsCategoryFieldUpdateOperationsInput | $Enums.newsCategory
     newsPicture?: StringFieldUpdateOperationsInput | string
     newsPictureHeading?: StringFieldUpdateOperationsInput | string

@@ -11,7 +11,7 @@ export async function getAllArticles() {
   return await prisma.newsArticle.findMany({
     where: { 
       newsArticleStatus: "ACTIVE",
-      newsLocation: { equals: "Austria", mode: "insensitive" },
+      newsLocation: "AUSTRIA",
     },
     select: {
       id: true,
@@ -47,7 +47,7 @@ export async function getLastFeaturedArticle() {
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: { equals: "Austria", mode: "insensitive" },
+      newsLocation: "AUSTRIA",
     },
     select: {
       id: true,

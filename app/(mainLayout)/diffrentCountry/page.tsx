@@ -1,4 +1,4 @@
-import { prisma } from "@/app/utils/db";
+/* import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { EmptyState } from "@/components/general/EmptyState";
@@ -42,12 +42,8 @@ const euCountries = [
   { name: "Australia", flag: "/flags/australia.jpg" },
 ];
 
-// ✅ Server Action (Promise-based, same as your getOrders)
 export async function getCountryNews(country: string) {
-  // Convert to uppercase to match Prisma enum values
   const dbCountry = country.toUpperCase();
-
-  // Fetch articles
   const allArticles = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -65,28 +61,30 @@ export async function getCountryNews(country: string) {
     },
     orderBy: { createdAt: "desc" },
   });
-    
+
   return { allArticles, lastFeaturedArticle };
 }
 
-// ✅ Server Component (awaiting the promise)
-export default async function CountryNews({ searchParams }: { searchParams: Promise<{ country?: string }> }) {
-  const params = await searchParams; // ✅ Await the searchParams promise
+export default async function CountryNews({
+  searchParams,
+}: {
+  searchParams: Promise<{ country?: string }>;
+}) {
+  const params = await searchParams;
   const country = params?.country || "Sweden";
 
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
 
-  const activeCountry =
-    euCountries.find((c) => c.name.toLowerCase() === country.toLowerCase()) ?? {
-      name: country,
-      flag: "/flags/default.png",
-    };
-
+  const activeCountry = euCountries.find(
+    (c) => c.name.toLowerCase() === country.toLowerCase()
+  ) ?? {
+    name: country,
+    flag: "/flags/default.png",
+  };
 
   return (
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
-        {/* Sidebar */}
         <div className="col-span-5 md:col-span-1 pr-1">
           <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
             <div className="pb-2 mb-6 pt-4">
@@ -116,9 +114,7 @@ export default async function CountryNews({ searchParams }: { searchParams: Prom
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="col-span-5 md:col-span-3">
-          {/* Country header */}
           <div className="flex items-center gap-2 pl-2 mb-2">
             <Image
               src={activeCountry.flag}
@@ -130,7 +126,6 @@ export default async function CountryNews({ searchParams }: { searchParams: Prom
             <h1 className="font-extrabold">{activeCountry.name} Latest</h1>
           </div>
 
-          {/* ✅ Featured Article */}
           {lastFeaturedArticle ? (
             <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
               <Link href={`/newsDetails/${lastFeaturedArticle.id}`}>
@@ -178,7 +173,6 @@ export default async function CountryNews({ searchParams }: { searchParams: Prom
             <SuperOne />
           </div>
 
-          {/* ✅ All Articles */}
           {allArticles?.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
               {allArticles
@@ -214,7 +208,6 @@ export default async function CountryNews({ searchParams }: { searchParams: Prom
           )}
         </div>
 
-        {/* Right Sidebar */}
         <div className="col-span-5 md:col-span-1 px-2 pt-3">
           <SuperOne />
           <SuperOne />
@@ -225,3 +218,4 @@ export default async function CountryNews({ searchParams }: { searchParams: Prom
     </>
   );
 }
+ */

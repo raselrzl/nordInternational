@@ -89,6 +89,7 @@ export default async function AllNewsArticleList() {
                   <TableHead>Status</TableHead>
                   <TableHead>Reporter</TableHead>
                   <TableHead>Date</TableHead>
+                  <TableHead>Country</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -127,6 +128,7 @@ export default async function AllNewsArticleList() {
                         day: "numeric",
                       })}
                     </TableCell>
+                    <TableCell>{article.newsLocation}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>

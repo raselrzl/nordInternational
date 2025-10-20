@@ -85,7 +85,7 @@ model newsArticle {
   id                 String       @id @default(uuid())
   newsHeading        String
   newsResource       String
-  newsLocation       String?
+  newsLocation       Country?
   newsCategory       newsCategory
   newsPicture        String
   newsPictureHeading String
@@ -310,4 +310,5 @@ enum Country {
   USA
   CANADA
   AUSTRALIA
+  NORWAY
 }
