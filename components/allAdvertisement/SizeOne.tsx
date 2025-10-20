@@ -1,11 +1,29 @@
 import { prisma } from "@/app/utils/db";
+import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
+interface SlizeOneProps {
+  country: string; // frontend country name like "Usa", "Bangladesh"
+}
+
+// Helper: map frontend country string to Prisma enum
+function mapToCountryEnum(country: string): Country | undefined {
+  if (!country) return undefined;
+  const key = country.toUpperCase().replace(/ /g, "_") as keyof typeof Country;
+  return Country[key];
+}
 // Data fetcher for SIZE_1 ads
-export async function getsizeOneAdvertise() {
+export async function getsizeOneAdvertise(country: string) {
+  const dbCountry = mapToCountryEnum(country);
+
+  if (!dbCountry) return []; // fallback if mapping fails
   return await prisma.advertisement.findMany({
-    where: { advertisedCategory: "SIZE_1", advertiseStatus: "ACTIVE" },
+    where: {
+      advertisedCategory: "SIZE_1",
+      advertiseStatus: "ACTIVE",
+      country: dbCountry,
+    },
     select: {
       id: true,
       companyName: true,
@@ -18,8 +36,8 @@ export async function getsizeOneAdvertise() {
 }
 
 // UI Component
-export async function SizeOneAdvertise() {
-  const Advertise = await getsizeOneAdvertise();
+export async function SizeOneAdvertise({ country }: { country: string }) {
+  const Advertise = await getsizeOneAdvertise(country);
 
   return (
     <>
@@ -32,12 +50,10 @@ export async function SizeOneAdvertise() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
+              <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                width={300} // adjust as needed
-                height={300}
-                className="w-full h-[170px] rounded-xl"
+                className="w-full h-[170px] rounded-xl object-cover"
               />
             </Link>
           ))}
@@ -49,12 +65,12 @@ export async function SizeOneAdvertise() {
             alt="no ad. image"
             className="w-full h-[170px] rounded-xl"
           />
-           <Link
-              href="/about/advertise"
-              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-            >
-              Contact us for (SIZE_1) Advertisement 
-            </Link>
+          <Link
+            href="/about/advertise"
+            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+          >
+            Contact us for (SIZE_1) Advertisement
+          </Link>
         </div>
       )}
     </>
