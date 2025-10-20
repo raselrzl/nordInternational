@@ -15,7 +15,7 @@ import {
   GututtoPurnoAlochito,
   SamprotikBisoy,
   ShirShoNewsHeadings,
-  SirshoNewsList,
+  RecentNews,
 } from "./homepageArticleList";
 import { OpinionForm } from "./OpinionForm";
 import { ContactForm } from "./ContactForm";

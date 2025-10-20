@@ -27,7 +27,7 @@ export async function BesicOneAdvertise() {
   return (
     <>
       {Advertise && Object.keys(Advertise).length > 0 ? (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mb-4">
           {Advertise.map((ad) => (
             <Link
               href={`https://${ad.websiteLink}`}
@@ -35,11 +35,9 @@ export async function BesicOneAdvertise() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
+              <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                width={600} // adjust as needed
-                height={370}
                 className="w-[370px] md:w-[600px] h-[200px] rounded-xl"
               />
             </Link>

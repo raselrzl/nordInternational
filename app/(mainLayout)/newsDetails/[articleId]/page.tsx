@@ -3,7 +3,7 @@ import { prisma } from "@/app/utils/db";
 import { EmptyState } from "@/components/general/EmptyState";
 import {
   ShirShoNewsHeadings,
-  SirshoNewsList,
+  RecentNews,
 } from "@/components/general/homepageArticleList";
 import { Clock, List, Notebook, User2 } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -161,7 +161,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
 
         {/* Bottom Banner */}
         <div className="relative w-full h-[100px] md:h-[200px] px-10">
-          <SizeTwoAdvertise />
+          <SizeTwoAdvertise country="india" />
         </div>
 
         {/* Quotes Section */}
@@ -188,12 +188,8 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       <div className="col-span-5 md:col-span-1">
         <div className="flex flex-col items-center rounded-2xl mx-auto">
           <BesicOneAdvertise />
-          <div className="border-t-1 p-2">
-            <div className="font-extrabold mb-2 flex mt-6">
-              <List className="h-5 w-5 mr-2" />
-              Recent News
-            </div>
-            <SirshoNewsList />
+          <div className="">
+            <RecentNews />
           </div>
           <div className="block md:hidden mt-10 border-t-1 p-2">
             <ShirShoNewsHeadings />

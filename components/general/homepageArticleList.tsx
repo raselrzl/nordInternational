@@ -361,12 +361,16 @@ export default async function AllArticleList() {
   );
 }
 
-export async function SirshoNewsList() {
+export async function RecentNews() {
   const latestNews = await getLatestNews();
 
   return (
     <>
       <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
+          <div className="font-extrabold pl-2 mb-2 flex items-center text-2xl my-4">
+            <List className="h-7 w-7 mr-2" />
+            Top News
+          </div>
         {latestNews && latestNews.length > 0 ? (
           latestNews.map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
@@ -394,15 +398,6 @@ export async function SirshoNewsList() {
             href="/"
           />
         )}
-
-        <SizeOneAdvertise />
-        <div className="mt-10 text-left flex-col hidden sm:block">
-          <p className="text-sm font-semibold text-primary text-justify">
-            Follow our social media accounts for the latest updates and
-            exclusive content.
-          </p>
-          <SocialLinks />
-        </div>
       </div>
     </>
   );

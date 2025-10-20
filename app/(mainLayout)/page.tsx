@@ -188,7 +188,7 @@ export default async function Home() {
             <div>
               {/*  font page second col first section first add */}
               <Suspense fallback={<Loader2 />}>
-                <SuperTwo />
+                <SuperTwo country="india"/>
               </Suspense>
             </div>
 

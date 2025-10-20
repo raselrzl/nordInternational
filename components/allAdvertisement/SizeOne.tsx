@@ -34,7 +34,7 @@ export async function getsizeOneAdvertise(country: string) {
     take: 1,
   });
 }
-
+ 
 // UI Component
 export async function SizeOneAdvertise({ country }: { country: string }) {
   const Advertise = await getsizeOneAdvertise(country);

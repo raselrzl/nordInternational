@@ -1,9 +1,11 @@
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SizeOneAdvertise } from "@/components/allAdvertisement/SizeOne";
+import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
 import { EmptyState } from "@/components/general/EmptyState";
+import { RecentNews } from "@/components/general/homepageArticleList";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,7 +46,7 @@ const euCountries = [
   { name: "Australia", flag: "/flags/australia.jpg" },
 ];
 
- async function getCountryNews(country: string) {
+async function getCountryNews(country: string) {
   const dbCountry = country;
   const allArticles = await prisma.newsArticle.findMany({
     where: {
@@ -211,14 +213,16 @@ export default async function CountryNews({
           <SuperTwo country={country} />
         </div>
 
-        <div className="col-span-5 md:col-span-1 px-2 pt-3">
+        <div className="col-span-5 md:col-span-1 px-2 pt-3 gap-4">
           <SizeOneAdvertise country={country} />
-          <SuperOne country={country} />
+          <div>
+            <RecentNews />
+          </div>
+          <div className="mt-4">
+            <SizeTwoAdvertise country={country} />
+          </div>
         </div>
-        
       </div>
-
-      
     </>
   );
 }
