@@ -116,6 +116,7 @@ export default async function CountryNews({
               </div>
             </div>
           </div>
+          <div className="relative md:absolute my-4"><SizeOneAdvertise country={country} /></div>
         </div>
 
         <div className="col-span-5 md:col-span-3">

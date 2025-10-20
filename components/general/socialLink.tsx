@@ -1,8 +1,11 @@
 import {
+  Facebook,
   FacebookIcon,
+  Instagram,
   InstagramIcon,
   MailIcon,
   TwitterIcon,
+  Youtube,
   YoutubeIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -10,45 +13,31 @@ import React from "react";
 
 const SocialLinks = () => {
   return (
-    <div className="flex space-x-3 items-start">
-      <Link
-        href="https://facebook.com"
+    <div className="flex items-center  justify-center gap-4 mt-6 ">
+      <a
+        href="https://www.facebook.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-800"
+        aria-label="Facebook"
       >
-        <FacebookIcon size={32} />
-      </Link>
-      <Link
-        href="https://instagram.com"
+        <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-blue-600" />
+      </a>
+      <a
+        href="https://www.instagram.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-pink-500 hover:text-pink-700"
+        aria-label="Instagram"
       >
-        <InstagramIcon size={32} />
-      </Link>
-      <Link
-        href="https://youtube.com"
+        <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
+      </a>
+      <a
+        href="https://www.youtube.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-red-600 hover:text-red-800"
+        aria-label="YouTube"
       >
-        <YoutubeIcon size={32} />
-      </Link>
-      <Link
-        href="https://twitter.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-400 hover:text-blue-600"
-      >
-        <TwitterIcon size={32} />
-      </Link>
-      <Link
-        href="mailto:your-email@example.com"
-        className="text-gray-600 hover:text-gray-800"
-      >
-        <MailIcon size={32} />
-      </Link>
+        <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
+      </a>
     </div>
   );
 };
