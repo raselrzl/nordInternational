@@ -1,5 +1,4 @@
 import { prisma } from "@/app/utils/db";
-import Image from "next/image";
 import Link from "next/link";
 
 export async function getDeluxeOneAdvertise() {
