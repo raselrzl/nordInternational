@@ -45,6 +45,7 @@ const euCountries = [
   { name: "Usa", flag: "/flags/usa.webp" },
   { name: "Canada", flag: "/flags/canada.jpg" },
   { name: "Australia", flag: "/flags/australia.jpg" },
+  { name: "Norway", flag: "/flags/norway.webp" },
 ];
 
 async function getCountryNews(country: string) {

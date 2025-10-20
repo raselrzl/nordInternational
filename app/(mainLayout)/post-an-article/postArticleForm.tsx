@@ -34,6 +34,7 @@ import { newsArticleSchema } from "@/app/utils/zodSchemas";
 import { createAnArticle } from "@/app/actions";
 import { Label } from "@/components/ui/label";
 import NewsDescriptionEditor from "@/components/richTextEditor/newsDescriptionEditor";
+import Image from "next/image";
 
 interface iAppProps {
   reporterLocation: string;
@@ -193,7 +194,7 @@ export function CreateNewsArticleForm({
                     </FormItem>
                   )}
                 />
-                 <FormField
+                <FormField
                   control={form.control}
                   name="newsLocation"
                   render={({ field }) => (
@@ -211,7 +212,14 @@ export function CreateNewsArticleForm({
                         <SelectContent>
                           {districts.map((district) => (
                             <SelectItem key={district.id} value={district.name}>
-                              {district.name}
+                              <div className="flex items-center gap-2">
+                                <img
+                                  src={district.flag}
+                                  alt={district.name}
+                                  className="w-5 h-5 rounded-full object-cover"
+                                />
+                                <span>{district.name}</span>
+                              </div>
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -495,158 +503,171 @@ export function CreateNewsArticleForm({
               </Button>
             </CardContent>
           </Card>
-
-          {/*    <Card>
-            <CardHeader>
-              <CardTitle>এক নজরে দেখুন আপনার ব্যক্তিগত তথ্য</CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="reporterName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>এই সংবাদটির সাংবাদিকের নাম...</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={reporterName}
-                        {...field}
-                        className="placeholder:text-xs"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="phoneNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ফোন নম্বর</FormLabel>
-                    <FormControl>
-                      <Input placeholder="01712000000" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="location"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>অবস্থান</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+          <div className="pointer-events-none cursor-not-allowed ">
+            <Card className="bg-red-700 border-2 border-red-700">
+              <CardHeader>
+                <CardTitle>My Profile, Who Posting that News!</CardTitle>
+              </CardHeader>
+              <CardContent className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="reporterName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Reporter's Name</FormLabel>
                       <FormControl>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="একটি অবস্থান নির্বাচন করুন" />
-                        </SelectTrigger>
+                        <Input
+                          placeholder={reporterName}
+                          readOnly
+                          {...field}
+                          className="placeholder:text-xs"
+                        />
                       </FormControl>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>অবস্থান / ঠিকানা</SelectLabel>
-                          {districts.map((district) => (
-                            <SelectItem value={district.name} key={district.id}>
-                              <span>{district.name}</span>
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="facebookProfileAddress"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ফেসবুক প্রোফাইল ঠিকানা</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="https://www.facebook.com/karim.miah"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mobile Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="01712000000" {...field} readOnly />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="location"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Location / Country</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select a Country" />
+                          </SelectTrigger>
+                        </FormControl>
 
-              <FormField
-                control={form.control}
-                name="bio"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>নিজের সম্পর্কে</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="আমি একজন পরিশ্রমী, সৎ ও স্বপ্নবান মানুষ..."
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Address / Country</SelectLabel>
+                            {districts.map((district) => (
+                              <SelectItem
+                                value={district.name}
+                                key={district.id}
+                              >
+                                <div className="flex items-center gap-2">
+                                  <img
+                                    src={district.flag}
+                                    alt={district.name}
+                                    className="w-5 h-5 rounded-full object-cover"
+                                  />
+                                  <span>{district.name}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="facebookProfileAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Facebook Profile or Address</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="https://www.facebook.com/"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="profilePicture"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="">প্রোফাইল ছবি</FormLabel>
-                    <FormControl>
-                      <div>
-                        {field.value ? (
-                          <div className="relative w-fit">
-                            <Image
-                              src={field.value}
-                              alt="profilePicture"
-                              width={100}
-                              height={100}
-                              className="rounded-lg"
+                <FormField
+                  control={form.control}
+                  name="bio"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>About</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="I am a news reporter from Sweden..."
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="profilePicture"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="">Profile Picture</FormLabel>
+                      <FormControl>
+                        <div>
+                          {field.value ? (
+                            <div className="relative w-fit">
+                              <Image
+                                src={field.value}
+                                alt="profilePicture"
+                                width={100}
+                                height={100}
+                                className="rounded-lg"
+                              />
+                              <Button
+                                type="button"
+                                variant="destructive"
+                                size="icon"
+                                className="absolute -top-2 -right-2"
+                                onClick={() => field.onChange("")}
+                              >
+                                <XIcon className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <UploadDropzone
+                              endpoint="imageUploader"
+                              onClientUploadComplete={(res) => {
+                                field.onChange(res[0].url);
+                                console.log(
+                                  "profilePicture uploaded successfully!"
+                                );
+                              }}
+                              onUploadError={() => {
+                                console.log(
+                                  "Something went wrong. Please try again."
+                                );
+                              }}
+                              className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-none"
                             />
-                            <Button
-                              type="button"
-                              variant="destructive"
-                              size="icon"
-                              className="absolute -top-2 -right-2"
-                              onClick={() => field.onChange("")}
-                            >
-                              <XIcon className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        ) : (
-                          <UploadDropzone
-                            endpoint="imageUploader"
-                            onClientUploadComplete={(res) => {
-                              field.onChange(res[0].url);
-                              console.log(
-                                "profilePicture uploaded successfully!"
-                              );
-                            }}
-                            onUploadError={() => {
-                              console.log(
-                                "Something went wrong. Please try again."
-                              );
-                            }}
-                            className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-none"
-                          />
-                        )}
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-          </Card> */}
+                          )}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <Button

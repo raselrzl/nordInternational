@@ -141,7 +141,7 @@ const euCountries = [
     flag: "/flags/usa.webp",
     link: "/diffrentCountry?country=Usa",
   },
-   {
+  {
     name: "Canada",
     flag: "/flags/canada.jpg",
     link: "/diffrentCountry?country=Canada",
@@ -150,6 +150,11 @@ const euCountries = [
     name: "Australia",
     flag: "/flags/australia.jpg",
     link: "/diffrentCountry?country=Australia",
+  },
+  {
+    name: "Norway",
+    flag: "/flags/norway.webp",
+    link: "/diffrentCountry?country=Norway",
   },
 ];
 
