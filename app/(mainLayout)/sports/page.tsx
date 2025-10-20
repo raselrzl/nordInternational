@@ -49,7 +49,7 @@ export default async function Sports({ searchParams }: SearchParamsProps) {
       </div>
       <div className="px-2">
         {" "}
-        <SuperOne <SuperOne country="Sweden"  /> />
+        <SuperOne country="Sweden"  />
       </div>
     </>
   );

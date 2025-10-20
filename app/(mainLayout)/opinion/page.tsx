@@ -46,7 +46,7 @@ export default async function Opinion({ searchParams }: SearchParamsProps) {
       </div>
       <div className="px-2">
         {" "}
-        <SuperOne <SuperOne country="Sweden"  /> />
+        <SuperOne country="Sweden"  />
       </div>
     </>
   );

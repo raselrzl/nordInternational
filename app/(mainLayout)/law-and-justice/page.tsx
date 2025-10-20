@@ -48,7 +48,7 @@ export default async function LawAndJustice({
       </div>
       <div className="px-2">
         {" "}
-        <SuperOne <SuperOne country="Sweden"  /> />
+        <SuperOne country="Sweden"  />
       </div>
     </>
   );

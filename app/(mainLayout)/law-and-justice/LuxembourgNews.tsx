@@ -125,7 +125,7 @@ export default async function LuxembourgNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <SuperOne <SuperOne country="Sweden"  /> />
+        <SuperOne country="Sweden"  />
       </div>
 
       {/* ✅ All Luxembourg articles */}
