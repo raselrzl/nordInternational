@@ -3,7 +3,6 @@ import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-
 interface SlizeTwoProps {
   country: string; // frontend country name like "Usa", "Bangladesh"
 }
@@ -15,7 +14,7 @@ function mapToCountryEnum(country: string): Country | undefined {
   return Country[key];
 }
 export async function getsizeTwoAdvertise(country: string) {
-   const dbCountry = mapToCountryEnum(country);
+  const dbCountry = mapToCountryEnum(country);
 
   if (!dbCountry) return []; // fallback if mapping fails
   return await prisma.advertisement.findMany({
@@ -54,7 +53,7 @@ export async function SizeTwoAdvertise({ country }: { country: string }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-               <img
+              <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
                 className="w-full h-[170px] rounded-xl object-cover"
@@ -64,12 +63,10 @@ export async function SizeTwoAdvertise({ country }: { country: string }) {
         </div>
       ) : (
         <div>
-          <Image
+          <img
             src="/noad.png"
             alt="image"
-            fill
-            className="object-cover"
-            priority
+            className="w-full h-[170px] rounded-xl object-cover"
           />
           <Link
             href="/about/advertise"

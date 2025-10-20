@@ -24,7 +24,7 @@ async function getSuperTwoAdvertise(country: string) {
     where: {
       advertisedCategory: "SUPER_2",
       advertiseStatus: "ACTIVE",
-      country: dbCountry
+      country: dbCountry,
     },
     select: {
       id: true,
@@ -41,7 +41,6 @@ async function getSuperTwoAdvertise(country: string) {
     take: 1,
   });
 }
-
 
 export async function SuperTwo({ country }: { country: string }) {
   const Advertise = await getSuperTwoAdvertise(country);
@@ -72,7 +71,7 @@ export async function SuperTwo({ country }: { country: string }) {
           <img
             src="/noad.png"
             alt="noad. image"
-            className="w-full md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
+            className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
           />
           <Link
             href="/about/advertise"

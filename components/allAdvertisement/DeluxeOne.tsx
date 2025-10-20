@@ -48,21 +48,15 @@ export async function DeluxeOneAdvertise() {
         </div>
       ) : (
         <div className="border w-[600px] h-[70px] flex items-center justify-center rounded-xl bg-primary/10 mx-auto">
-          <div className="flex flex-col items-center justify-center px-2 mb-10">
-          <Image
-            src="/noad.png"
-            alt="no ad. image"
-            width={600} // adjust as needed
-            height={70}
-            className="w-[600px] h-[70px] rounded-xl"
-          />
-           <Link
+          <div className="flex flex-col items-center justify-center px-2">
+            <p>No ad. yet</p>
+            <Link
               href="/about/advertise"
               className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-xs text-xs transition"
             >
               Contact us for (DELUXE_1) Advertisement
             </Link>
-        </div>
+          </div>
         </div>
       )}
     </div>

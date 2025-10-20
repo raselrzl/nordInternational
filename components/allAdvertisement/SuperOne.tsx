@@ -72,8 +72,10 @@ export async function SuperOne({ country }: { country: string }) {
           <img
             src="/noad.png"
             alt="no ad. image"
-            className="w-full md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill md:object-cover"
-          />
+           className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
+          />        
+
+
           <Link
             href="/about/advertise"
             className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"

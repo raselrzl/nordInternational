@@ -63,7 +63,7 @@ export async function SizeOneAdvertise({ country }: { country: string }) {
           <img
             src="/noad.png"
             alt="no ad. image"
-            className="w-full h-[170px] rounded-xl"
+            className="w-full h-[170px] rounded-xl object-cover"
           />
           <Link
             href="/about/advertise"
