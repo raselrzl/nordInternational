@@ -50,7 +50,7 @@ export default async function National({ searchParams }: SearchParamsProps) {
           </div>
         </div>
       </div>
-     <div className="px-2"> <SuperOne /></div>
+     <div className="px-2"> <SuperOne <SuperOne country="Sweden"  /> /></div>
     </>
   );
 }

@@ -59,7 +59,7 @@ export default function Loading() {
             </div>
           </div>
           <div className="px-2 pt-3">
-            <SuperOne />
+            <SuperOne country="Sweden" />
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export default function Loading() {
           </div>
 
           <div className="px-2 md:px-0">
-            <SuperOne />
+            <SuperOne country="Swedenn" />
           </div>
 
           {/* Grid Articles Skeleton */}
@@ -105,12 +105,12 @@ export default function Loading() {
 
         {/* Sidebar Ads */}
         <div className="col-span-5 md:col-span-1 px-2 pt-3">
-          <SuperOne />
-          <SuperOne />
+          <SuperOne country="Swedenn" />
+          <SuperOne country="Swedenn" />
         </div>
       </div>
 
-      <SuperOne />
+      <SuperOne country="Swedenn" />
     </>
   );
 }

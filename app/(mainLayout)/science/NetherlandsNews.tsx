@@ -130,7 +130,7 @@ export default async function NatherlandsNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div>
 
       {/* ✅ All Austrian articles */}

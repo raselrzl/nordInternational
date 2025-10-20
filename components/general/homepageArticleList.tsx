@@ -322,7 +322,7 @@ export default async function AllArticleList() {
         />
       )}
       <div className="px-2 md:px-0">
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div> 
 
       {allArticles && Object.keys(allArticles).length > 0 ? (

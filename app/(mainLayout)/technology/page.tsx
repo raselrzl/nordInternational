@@ -50,7 +50,7 @@ export default async function Technology({ searchParams }: SearchParamsProps) {
       </div>
       <div className="px-2">
         {" "}
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div>
     </>
   );

@@ -54,7 +54,7 @@ export default async function Entertainment({
       </div>
       <div className="px-2">
         {" "}
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div>
     </>
   );

@@ -170,7 +170,7 @@ export default async function CountryNews({
           )}
 
           <div className="px-2 md:px-0">
-            <SuperOne />
+            <SuperOne country={country} />
           </div>
 
           {allArticles?.length > 0 ? (
@@ -209,12 +209,12 @@ export default async function CountryNews({
         </div>
 
         <div className="col-span-5 md:col-span-1 px-2 pt-3">
-          <SuperOne />
-          <SuperOne />
+          <SuperOne country={country} />
+          <SuperOne country={country} />
         </div>
       </div>
 
-      <SuperOne />
+      <SuperOne country={country} />
     </>
   );
 }

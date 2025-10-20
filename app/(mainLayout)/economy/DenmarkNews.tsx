@@ -125,7 +125,7 @@ export default async function DenmarkNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div>
 
       {/* ✅ All Denmark articles */}

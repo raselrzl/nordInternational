@@ -125,7 +125,7 @@ export default async function FranceNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <SuperOne />
+        <SuperOne <SuperOne country="Sweden"  /> />
       </div>
 
       {/* ✅ All France articles */}
