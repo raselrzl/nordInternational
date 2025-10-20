@@ -2,6 +2,7 @@ import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
 import { SizeOneAdvertise } from "@/components/allAdvertisement/SizeOne";
 import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
+import { StandardOne } from "@/components/allAdvertisement/StandardOne";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
 import { EmptyState } from "@/components/general/EmptyState";
@@ -116,7 +117,9 @@ export default async function CountryNews({
               </div>
             </div>
           </div>
-          <div className="relative md:absolute my-4"><SizeOneAdvertise country={country} /></div>
+          <div className="items-center justify-center md:absolute my-4">
+            <StandardOne country={country} />
+          </div>
         </div>
 
         <div className="col-span-5 md:col-span-3">

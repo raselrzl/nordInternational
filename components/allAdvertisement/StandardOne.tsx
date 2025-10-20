@@ -3,7 +3,7 @@ import { Country } from "@/lib/generated/prisma";
 import Image from "next/image";
 import Link from "next/link";
 
-interface SlizeOneProps {
+interface StandardOneProps {
   country: string; // frontend country name like "Usa", "Bangladesh"
 }
 
@@ -14,13 +14,13 @@ function mapToCountryEnum(country: string): Country | undefined {
   return Country[key];
 }
 // Data fetcher for SIZE_1 ads
-export async function getsizeOneAdvertise(country: string) {
+export async function getStandardOneAdvertise(country: string) {
   const dbCountry = mapToCountryEnum(country);
 
   if (!dbCountry) return []; // fallback if mapping fails
   return await prisma.advertisement.findMany({
     where: {
-      advertisedCategory: "SIZE_1",
+      advertisedCategory: "STANDARD_1",
       advertiseStatus: "ACTIVE",
       country: dbCountry,
     },
@@ -36,8 +36,8 @@ export async function getsizeOneAdvertise(country: string) {
 }
  
 // UI Component
-export async function SizeOneAdvertise({ country }: { country: string }) {
-  const Advertise = await getsizeOneAdvertise(country);
+export async function StandardOne({ country }: { country: string }) {
+  const Advertise = await getStandardOneAdvertise(country);
 
   return (
     <>
@@ -59,20 +59,20 @@ export async function SizeOneAdvertise({ country }: { country: string }) {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center rounded-xl">
           <img
             src="/noad.png"
             alt="no ad. image"
-            className="w-full h-[170px] rounded-xl object-cover"
-          />
+           className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
+          /> 
           <Link
             href="/about/advertise"
             className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
           >
-            Contact us for (SIZE_1) Advertisement
+            Contact us for (STANDARD_1)
           </Link>
         </div>
       )}
-    </> 
+    </>
   );
 }
