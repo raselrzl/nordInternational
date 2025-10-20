@@ -36,12 +36,10 @@ export async function DeluxeOneAdvertise() {
               rel="noopener noreferrer"
               className="block"
             >
-              <Image
+              <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
-                width={600}
-                height={100}
-                className="h-[80px] w-full object-fill rounded-none"
+                className="h-[80px] w-full object-fill rounded-xs"
               />
             </Link>
           ))}

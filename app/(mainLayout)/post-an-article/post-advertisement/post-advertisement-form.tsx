@@ -77,7 +77,7 @@ const advertisementPackages = [
   { id: "PREMIUM_2", name: "Premium 2" },
   { id: "STANDARD_1", name: "Standard 1", page: "Cntry-LS1-(1)"},
   { id: "STANDARD_2", name: "Standard 2" },
-  { id: "DELUXE_1", name: "Deluxe 1" },
+  { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar" },
   { id: "DELUXE_2", name: "Deluxe 2" },
   { id: "ULTIMATE_1", name: "Ultimate 1" },
   { id: "ULTIMATE_2", name: "Ultimate 2" },
