@@ -11,7 +11,7 @@ import {
 import { redirect } from "next/navigation";
 import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
-import { AdvertisedCategory, advertiseStatus, Country, UserType, vedioStatus } from "@/lib/generated/prisma";
+import { AdvertisedCategory, advertiseStatus, Country, NewsCountry, UserType, vedioStatus } from "@/lib/generated/prisma";
 import { auth } from "./utils/auth";
 /* import { inngest } from "./utils/inngest/client"; */
 const aj = arcjet
@@ -135,12 +135,16 @@ export async function createAnArticle(data: z.infer<typeof newsArticleSchema>) {
     return redirect("/");
   }
 
+  const dbCountry = validateData.newsLocation
+    ? (validateData.newsLocation as keyof typeof NewsCountry)
+    : undefined;
+
   const newsArticle = await prisma.newsArticle.create({
     data: {
       newsHeading: validateData.newsHeading,
       newsDetails: validateData.newsDetails,
       newsResource: validateData.newsResource,
-      newsLocation: validateData.newsLocation ?? undefined,
+      newsLocation: dbCountry ? NewsCountry[dbCountry] : undefined,
       newsCategory: validateData.newsCategory,
       newsPicture: validateData.newsPicture,
       newsPictureHeading: validateData.newsPictureHeading,

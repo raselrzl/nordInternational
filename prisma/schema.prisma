@@ -85,7 +85,7 @@ model newsArticle {
   id                 String       @id @default(uuid())
   newsHeading        String
   newsResource       String
-  newsLocation       Country?
+  newsLocation       NewsCountry?
   newsCategory       newsCategory
   newsPicture        String
   newsPictureHeading String
@@ -276,7 +276,7 @@ model RouteVisit {
   updatedAt DateTime @updatedAt
 }
 
-enum Country {
+enum NewsCountry {
   Bangladesh
   Austria
   Belgium
@@ -312,4 +312,42 @@ enum Country {
   Australia
   Norway
 }
+
+enum Country {
+  BANGLADESH
+  AUSTRIA
+  BELGIUM
+  BULGARIA
+  CROATIA
+  CYPRUS
+  CZECH_REPUBLIC
+  DENMARK
+  ESTONIA
+  FINLAND
+  FRANCE
+  GERMANY
+  GREECE
+  HUNGARY
+  IRELAND
+  ITALY
+  LATVIA
+  LITHUANIA
+  LUXEMBOURG
+  MALTA
+  NETHERLANDS
+  POLAND
+  PORTUGAL
+  ROMANIA
+  SLOVAKIA
+  SLOVENIA
+  SPAIN
+  SWEDEN
+  UK
+  SWITZERLAND
+  USA
+  AUSTRALIA
+  CANADA
+  NORWAY
+}
+
 
