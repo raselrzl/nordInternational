@@ -183,7 +183,7 @@ export default async function Home() {
             </p>
 
             <SocialLinks />
-          </div> 
+          </div>
         </div>
         <div className="order-2 md:order-2 md:col-span-1">
           <div className=" grid grid-cols-1">
@@ -191,7 +191,7 @@ export default async function Home() {
               {/*  font page second col first section first add */}
               <Suspense fallback={<Loader2 />}>
                 <PremiumOneAdvertise />
-              </Suspense> 
+              </Suspense>
             </div>
 
             {InternationalAll && Object.keys(InternationalAll).length > 0 ? (
@@ -385,7 +385,7 @@ export default async function Home() {
         <div className="grid grid-cols-3 border-primary my-4">
           <div className="col-span-3 md:col-span-1 p-2 mt-2 flex flex-col justify-between w-full max-w-sm mx-auto md:mx-0">
             <ScienceNewsHeadPost />
-          {/*   <img
+            {/*   <img
               src="/shoe.gif"
               alt="gif image"
               className="w-full h-[100px] rounded-xl mt-2 object-cover"
@@ -411,22 +411,21 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      
+
       <div className="border-y-2 my-2 border-primary"></div>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 py-10">
-  {/* Left: Poll */}
-  <div className="order-1 md:order-1 md:col-span-3 p-2 border">
-    <LivePoll />
-  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-10">
+        {/* Left: Poll */}
+        <div className="order-1 md:order-1 col-span-2 md:col-span-1 p-2">
+          <LivePoll />
+        </div>
 
-  {/* Right: Advertisement */}
-  <div className="order-2 md:order-2 md:col-span-2 p-2">
-    <Suspense fallback={<Loader2 className="animate-spin" />}>
-      <BesicOneAdvertise />
-    </Suspense>
-  </div>
-</div>
-
+        {/* Right: Advertisement */}
+        <div className="order-2 md:order-2 col-span-2 md:col-span-1 p-2">
+          <Suspense fallback={<Loader2 className="animate-spin" />}>
+            <BesicOneAdvertise />
+          </Suspense>
+        </div>
+      </div>
     </>
   );
 }
