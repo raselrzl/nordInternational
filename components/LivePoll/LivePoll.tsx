@@ -60,7 +60,7 @@ export default function LivePoll() {
         {["YES", "NO", "NO_OPINION"].map((opt) => (
           <label
             key={opt}
-            className="flex items-center bg-gray-100 rounded px-3 py-2 cursor-pointer hover:bg-gray-200 transition"
+            className="flex items-center bg-gray-100 rounded-xs px-3 py-2 cursor-pointer hover:bg-gray-200 transition"
           >
             <input
               type="radio"
@@ -71,7 +71,9 @@ export default function LivePoll() {
               disabled={loading}
               className="mr-3 w-4 h-4 accent-primary"
             />
-            <span className="font-medium text-black">{opt.replace("_", " ")}</span>
+            <span className="font-medium text-black">
+              {opt.replace("_", " ")}
+            </span>
           </label>
         ))}
       </div>
@@ -86,10 +88,14 @@ export default function LivePoll() {
         {loading ? "Submitting..." : "Submit Vote"}
       </button>
 
-      <div className="mt-6">
-        <h3 className="font-semibold mb-3 text-center">Live Results</h3>
+      <div className="mt-6 flex flex-col items-center justify-center">
+        <img
+          src="liveresult1.gif"
+          alt="live result"
+          className="w-[200px] h-[45px] rounded-xl mb-2"
+        />
 
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ThumbsUp className="text-green-500" />
