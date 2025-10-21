@@ -13,6 +13,7 @@ import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
 import { AdvertisedCategory, advertiseStatus, Country, NewsCountry, UserType, vedioStatus } from "@/lib/generated/prisma";
 import { auth } from "./utils/auth";
+import { revalidatePath } from "next/cache";
 /* import { inngest } from "./utils/inngest/client"; */
 const aj = arcjet
   .withRule(
@@ -700,8 +701,9 @@ export async function createPollQuestion(formData: FormData) {
   await prisma.pollQuestion.create({
     data: { question: parsed.data.question },
   });
-
-  redirect("/polls");
+  revalidatePath("/")
+  redirect("/");
+  
 }
 
 
