@@ -68,7 +68,7 @@ const countries = [
 
 const advertisementPackages = [
   { id: "PREMIER_1", name: "Premier 1" },
-  { id: "PREMIER_2", name: "Premier 2" },
+  { id: "PREMIER_2", name: "Premier 2", page: "Hm-S2-V-(4)"},
   { id: "SIZE_1", name: "Size 1", page: "Cntry-RS1-(4)"},
   { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)"},
   { id: "SUPER_1", name: "Super 1", page: "Cntry-MD1-(2)"},
@@ -84,7 +84,7 @@ const advertisementPackages = [
   { id: "BASIC_1", name: "Basic 1" },
   { id: "BASIC_2", name: "Basic 2" },
   { id: "PRO_1", name: "Pro 1", page: "Hm-S1-LS1-(3)"},
-  { id: "PRO_2", name: "Pro 2" },
+  { id: "PRO_2", name: "Pro 2" }, 
   { id: "ENTERPRISE_1", name: "Enterprise 1", page: "Hm-Pg. Popup"},
   { id: "ENTERPRISE_2", name: "Enterprise 2"},
 ];

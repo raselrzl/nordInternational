@@ -19,7 +19,7 @@ const YouTubeVideo = ({
         allowFullScreen
         frameBorder="0"
       ></iframe>
-      <p className="text-xl my-4 font-bold text-foreground/80">{title}</p>
+      <p className="text-md py-4 font-bold text-foreground/80">{title}</p>
     </div>
   );
 };
