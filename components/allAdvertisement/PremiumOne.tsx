@@ -38,12 +38,10 @@ export async function PremiumOneAdvertise() {
               rel="noopener noreferrer"
               className="rounded-xl"
             >
-              <Image
+              <img
                 src={premier1.advertiseBanner}
                 alt={premier1.companyName}
-                width={370} // adjust as needed
-                height={300}
-                  className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl  object-fill"
+                  className="w-[360px] h-[170px] rounded-xl  object-fill"
             
               />
             </Link>
@@ -56,7 +54,7 @@ export async function PremiumOneAdvertise() {
             alt="No Advertisement"
             width={400} // adjust as needed
             height={400}
-           className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 object-fill"
+           className="w-[360px] h-[170px] rounded-xl md:pt-0 object-fill"
             
           />
           <Link
