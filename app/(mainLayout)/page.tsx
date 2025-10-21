@@ -181,7 +181,7 @@ export default async function Home() {
             </p>
 
             <SocialLinks />
-          </div>
+          </div> 
         </div>
         <div className="order-2 md:order-2 md:col-span-1">
           <div className=" grid grid-cols-1">

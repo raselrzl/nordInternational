@@ -78,7 +78,7 @@ const advertisementPackages = [
   { id: "STANDARD_1", name: "Standard 1", page: "Cntry-LS1-(1)"},
   { id: "STANDARD_2", name: "Standard 2" },
   { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar"},
-  { id: "DELUXE_2", name: "Deluxe 2" },
+  { id: "DELUXE_2", name: "Deluxe 2", page: "Hm-S1-MD2-(2)"},
   { id: "ULTIMATE_1", name: "Ultimate 1" },
   { id: "ULTIMATE_2", name: "Ultimate 2" },
   { id: "BASIC_1", name: "Basic 1" },
@@ -109,7 +109,7 @@ export function CreateAdvertisementForm() {
       endDate: "",
       country: "SWEDEN",
     },
-  });
+  }); 
 
   const { control, handleSubmit, reset } = form;
 
@@ -426,7 +426,7 @@ export function CreateAdvertisementForm() {
 
                     <FormControl>
                       <Input
-                        placeholder="https://..."
+                        placeholder="nordinternational.com"
                         {...field}
                         className="placeholder:text-sm"
                       />
@@ -456,7 +456,7 @@ export function CreateAdvertisementForm() {
           </Card>
         </div>
 
-        <Button type="submit" className="w-full" disabled={pending}>
+        <Button type="submit" className="w-full cursor-pointer" disabled={pending}>
           {pending ? (
             <>
               <Loader2 className="animate-spin w-4 h-4 mr-2" />

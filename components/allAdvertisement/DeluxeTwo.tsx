@@ -35,11 +35,9 @@ export async function DeluxeTwoAdvertise() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
+              <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
-                width={400} // adjust as needed
-                height={200}
                 className="w-[400px] h-[200px] md:h-[180px] rounded-xl"
               />
             </Link>
