@@ -43,7 +43,7 @@ export async function ProOneAdvertise() {
             >
               Contact us for (PRO_1) Advertisement 
             </Link>
-        </div>
+        </div> 
       </div>
     );
   }
