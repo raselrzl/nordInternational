@@ -34,7 +34,7 @@ export default async function Videos() {
             height={50}
             className="object-contain"
           />
-          <p className="font-bold text-2xl">Video</p>
+          <p className="font-bold text-2xl">VIDEOS</p>
         </div>
         <div className="text-primary flex flex-row items-center justify-center">
           <Image
@@ -49,7 +49,7 @@ export default async function Videos() {
 
       <div className="overflow-x-auto pb-10 overflow-y-hidden scrollbar-thin">
         <div className="flex gap-4 px-2">
-          <div className="min-w-[300px] h-[230px] flex items-center justify-center">
+          <div className="min-w-[300px] h-[100px] flex items-center justify-center">
             <PremiarTwo />
           </div>
           {videos.map((video) => (
