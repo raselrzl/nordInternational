@@ -29,6 +29,7 @@ import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 import LivePoll from "@/components/LivePoll/LivePoll";
 import Poll from "@/components/LivePoll/Poll";
+import LatestOpinions from "@/components/general/LatestOpinions";
 
 async function getData() {
   const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
@@ -366,18 +367,20 @@ export default async function Home() {
 
       {/*  tab section */}
       <div className="my-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {/* Left: Sorbosesh / Jonoprio */}
           <div className="border-0 md:border p-2">
             <SorboseshAndJonoprioTab />
           </div>
 
           {/* Right: Premium Ad */}
-          <div className="border-0 md:border p-2 flex items-center justify-center">
+          <div className="border-0 p-2 ">
             <Suspense fallback={<Loader2 className="animate-spin" />}>
               <PremiarOne />
-            </Suspense>
+            </Suspense>          
+         
           </div>
+           <LatestOpinions />
         </div>
       </div>
 
@@ -386,13 +389,7 @@ export default async function Home() {
         <div className="grid grid-cols-3 border-primary my-4">
           <div className="col-span-3 md:col-span-1 p-2 mt-2 flex flex-col justify-between w-full max-w-sm mx-auto md:mx-0">
             <ScienceNewsHeadPost />
-            {/*   <img
-              src="/shoe.gif"
-              alt="gif image"
-              className="w-full h-[100px] rounded-xl mt-2 object-cover"
-            />  */}
-
-            <PremiumTwoAdvertise />
+             <PremiumTwoAdvertise />
           </div>
 
           <div className="col-span-3 md:col-span-2 mt-2 grid grid-cols-1 md:grid-cols-2  gap-2 p-2">

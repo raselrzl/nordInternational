@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import LivePoll from "@/components/LivePoll/LivePoll";
 import { BesicOneAdvertise } from "../allAdvertisement/BesicOne";
+import LatestOpinions from "../general/LatestOpinions";
 
 export default function Poll() {
   return (

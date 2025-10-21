@@ -20,7 +20,7 @@ async function getAllOpinionArticles(page: number = 1, pageSize: number = 8) {
         newsPicture: true,
         quotes: {
           select: {
-            speakerInfo: true, 
+            speakerInfo: true,
             text: true,
           },
         },
@@ -61,11 +61,10 @@ export default async function AllOpinionArticles({
         </div>
       ) : (
         <EmptyState
-         title="Oops! Nothing to show yet."
-description="Nothing has been added yet. Stay tuned!"
-buttonText="Homepage"
-href="/"
-
+          title="Oops! Nothing to show yet."
+          description="Nothing has been added yet. Stay tuned!"
+          buttonText="Homepage"
+          href="/"
         />
       )}
       <PaginationComponent totalPages={totalPages} currentPage={currentPage} />

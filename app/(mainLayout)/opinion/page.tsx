@@ -1,4 +1,4 @@
-import AllOpinionArticles from "./AllNationalArticles";
+import AllOpinionArticles from "./AllOpinionArticles";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
