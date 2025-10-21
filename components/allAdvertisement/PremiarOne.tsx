@@ -11,7 +11,7 @@ export async function getPremierOneAdvertise() {
       isFeatured: true,
       companyName: true,
       companyaddress: true,
-      websiteLink: true,
+      websiteLink: true, 
       advertiseBanner: true,
       endDate: true,
       supervisedPhonenumber: true,

@@ -67,7 +67,7 @@ const countries = [
 ];
 
 const advertisementPackages = [
-  { id: "PREMIER_1", name: "Premier 1" },
+  { id: "PREMIER_1", name: "Premier 1",  page: "Hm-S3-Tab-(5)" },
   { id: "PREMIER_2", name: "Premier 2", page: "Hm-S2-V-(4)"},
   { id: "SIZE_1", name: "Size 1", page: "Cntry-RS1-(4)"},
   { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)"},
@@ -77,7 +77,7 @@ const advertisementPackages = [
   { id: "PREMIUM_2", name: "Premium 2" },
   { id: "STANDARD_1", name: "Standard 1", page: "Cntry-LS1-(1)"},
   { id: "STANDARD_2", name: "Standard 2" },
-  { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar"},
+  { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar"}, 
   { id: "DELUXE_2", name: "Deluxe 2", page: "Hm-S1-MD2-(2)"},
   { id: "ULTIMATE_1", name: "Ultimate 1" },
   { id: "ULTIMATE_2", name: "Ultimate 2" },

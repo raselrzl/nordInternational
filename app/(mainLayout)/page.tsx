@@ -26,6 +26,7 @@ import { PremiumTwoAdvertise } from "@/components/allAdvertisement/PremiumTwo";
 import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import PopupOnViewClientWrapper from "@/components/PopupAd/PopupOnViewClientWrapper";
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
+import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 
 async function getData() {
   const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
@@ -359,7 +360,6 @@ export default async function Home() {
 
       <div className="border-y-2 my-2 border-primary"></div>
 
-      {/*  vedio section has premeier one advertisement */}
       <Videos />
 
       {/*  tab section */}
@@ -373,7 +373,7 @@ export default async function Home() {
           {/* Right: Premium Ad */}
           <div className="border-0 md:border p-2 flex items-center justify-center">
             <Suspense fallback={<Loader2 className="animate-spin" />}>
-              <PremiumOneAdvertise />
+              <PremiarOne />
             </Suspense>
           </div>
         </div>
