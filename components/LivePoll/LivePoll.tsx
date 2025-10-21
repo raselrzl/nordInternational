@@ -53,14 +53,14 @@ export default function LivePoll() {
   const totalVotes = results.YES + results.NO + results.NO_OPINION || 1;
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg border">
+    <div className="max-w-md mx-auto p-10 shadow-lg rounded-lg border">
       <h2 className="text-lg font-bold mb-4 text-center">{poll.question}</h2>
 
       <div className="space-y-3 mb-4">
         {["YES", "NO", "NO_OPINION"].map((opt) => (
           <label
             key={opt}
-            className="flex items-center bg-gray-50 rounded px-3 py-2 cursor-pointer hover:bg-gray-100 transition"
+            className="flex items-center bg-gray-100 rounded px-3 py-2 cursor-pointer hover:bg-gray-200 transition"
           >
             <input
               type="radio"
@@ -71,7 +71,7 @@ export default function LivePoll() {
               disabled={loading}
               className="mr-3 w-4 h-4 accent-primary"
             />
-            <span className="font-medium">{opt.replace("_", " ")}</span>
+            <span className="font-medium text-black">{opt.replace("_", " ")}</span>
           </label>
         ))}
       </div>
@@ -79,7 +79,7 @@ export default function LivePoll() {
       <button
         onClick={handleVote}
         disabled={loading}
-        className={`w-full text-white px-4 py-2 rounded bg-primary hover:bg-primary/90 transition ${
+        className={`w-full text-white px-4 py-2 rounded-xs bg-primary hover:bg-primary/90 transition cursor-pointer ${
           loading ? "opacity-70 cursor-not-allowed" : ""
         }`}
       >
