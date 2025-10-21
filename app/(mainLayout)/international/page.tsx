@@ -6,6 +6,7 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import AustrianNews from "./AustrianNews";
 import Image from "next/image";
 import { List } from "lucide-react";
+import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
 };
@@ -22,8 +23,7 @@ export default async function International({
       <div className="grid grid-cols-3 mt-10">
         <div className="col-span-3 md:col-span-1">
           <div className="font-extrabold pl-2 mb-2 flex items-center">
-       
-            <List className="h-5 w-5 mr-2"/> Latest World News
+            <List className="h-5 w-5 mr-2" /> Latest World News
           </div>
           <div className="p-1 md:p-4">
             <Suspense key={currentPage} fallback={<LoadingSpinner />}>
@@ -45,11 +45,12 @@ export default async function International({
             </div>
             <AustrianNews />
           </div>
+
+          <div className="px-2">
+            {" "}
+            <UltimateTwo />
+          </div>
         </div>
-      </div>
-      <div className="px-2">
-        {" "}
-        <SuperOne country="Sweden"  />
       </div>
     </>
   );

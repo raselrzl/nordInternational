@@ -27,11 +27,6 @@ export default async function Latest({ searchParams }: SearchParamsProps) {
         </Suspense>
       </div>
       <div className="col-span-3 md:col-span-1 mt-8">
-      {/* <img
-          src="/shoe.gif"
-          alt="gif image"
-          className="w-full h-[270px] rounded-xl px-6 md:pt-0"
-        /> */}
         <PremiarOne />
         <div className="p-6"><ShirShoNewsHeadings /></div>
       </div>

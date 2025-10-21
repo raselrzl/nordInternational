@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/general/theme-provider";
 import Footer from "@/components/general/Footer";
 import VisitorTracker from "@/components/general/VisitorTracker";
 import CountryListLinks from "@/components/general/CountryListLinks";
+import Poll from "@/components/LivePoll/Poll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,7 +64,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="max-w-7xl mx-auto">{children}</div>
-
+          <Poll />
           <Footer />
           <VisitorTracker />
         </ThemeProvider>

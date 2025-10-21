@@ -28,6 +28,7 @@ import PopupOnViewClientWrapper from "@/components/PopupAd/PopupOnViewClientWrap
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 import LivePoll from "@/components/LivePoll/LivePoll";
+import Poll from "@/components/LivePoll/Poll";
 
 async function getData() {
   const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
@@ -412,20 +413,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="border-y-2 my-2 border-primary"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-10">
-        {/* Left: Poll */}
-        <div className="order-1 md:order-1 col-span-2 md:col-span-1 p-2">
-          <LivePoll />
-        </div>
-
-        {/* Right: Advertisement */}
-        <div className="order-2 md:order-2 col-span-2 md:col-span-1 p-2">
-          <Suspense fallback={<Loader2 className="animate-spin" />}>
-            <BesicOneAdvertise />
-          </Suspense>
-        </div>
-      </div>
+ 
     </>
   );
 }

@@ -6,6 +6,7 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import CroatiaNews from "./CroatiaNews";
 import Image from "next/image";
 import { List } from "lucide-react";
+import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
 type SearchParamsProps = {
   searchParams: Promise<{
     page?: string;
@@ -24,7 +25,8 @@ export default async function Environment({ searchParams }: SearchParamsProps) {
       <div className="grid grid-cols-3 mt-10">
         <div className="col-span-3 md:col-span-1">
           <div className="font-extrabold pl-2 mb-2 flex items-center">
-            <List className="h-5 w-5 mr-2"/> Environment News</div>
+            <List className="h-5 w-5 mr-2" /> Environment News
+          </div>
 
           <div className="p-1 md:p-4">
             <Suspense key={currentPage} fallback={<LoadingSpinner />}>
@@ -45,12 +47,12 @@ export default async function Environment({ searchParams }: SearchParamsProps) {
               <h1 className="font-extrabold">Croatia Latest</h1>
             </div>
             <CroatiaNews />
+          </div>{" "}
+          <div className="px-2">
+            {" "}
+            <UltimateTwo />
           </div>
         </div>
-      </div>
-      <div className="px-2">
-        {" "}
-      <SuperOne country="Sweden"  />
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import CyprusNews from "./CyprusNews";
 import Image from "next/image";
 import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { List } from "lucide-react";
+import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
 
 type SearchParamsProps = {
   searchParams: Promise<{
@@ -47,12 +48,12 @@ export default async function Politics({ searchParams }: SearchParamsProps) {
               <h1 className="font-extrabold">Cyprus Latest</h1>
             </div>
             <CyprusNews />
+          </div>{" "}
+          <div className="px-2">
+            {" "}
+            <UltimateTwo />
           </div>
         </div>
-      </div>
-      <div className="px-2">
-        {" "}
-        <SuperOne country="Sweden"  />
       </div>
     </>
   );

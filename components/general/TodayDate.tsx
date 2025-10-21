@@ -1,36 +1,41 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 type TodayDateProps = {
-  locale?: 'en-US' | 'en-US'; // default is English
+  locale?: 'en-US' | 'bn-BD';
   withTime?: boolean;
 };
 
 const TodayDate: React.FC<TodayDateProps> = ({ locale = 'en-US', withTime = false }) => {
-  const today = new Date();
-  const dateString = today.toLocaleDateString(locale, {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const [dateString, setDateString] = useState<string>('');
+  const [timeString, setTimeString] = useState<string>('');
 
-  let timeString = '';
-  if (withTime) {
-    timeString = today.toLocaleTimeString(locale, {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true, // ensures AM/PM is shown
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString(locale, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
 
-    // Optional: Replace AM/PM with Bangla equivalents manually
-    if (locale === 'en-US') {
-      timeString = timeString.replace('AM', 'AM').replace('PM', 'PM');
+    let formattedTime = '';
+    if (withTime) {
+      formattedTime = today.toLocaleTimeString(locale, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      });
     }
-  }
+
+    setDateString(formattedDate);
+    setTimeString(formattedTime);
+  }, [locale, withTime]);
+
+  if (!dateString) return null; // avoids flashing empty content
 
   return (
-    <p className='text-muted-foreground text-sm mr-2'>
+    <p className="text-muted-foreground text-sm mr-2">
       {dateString}
       {withTime && `, ${timeString}`}
     </p>

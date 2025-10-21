@@ -6,6 +6,7 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import Image from "next/image";
 import LuxembourgNews from "./LuxembourgNews";
 import { List } from "lucide-react";
+import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
 };
@@ -43,12 +44,12 @@ export default async function LawAndJustice({
               <h1 className="font-extrabold">Luxembourg Latest</h1>
             </div>
             <LuxembourgNews />
+          </div>{" "}
+          <div className="px-2">
+            {" "}
+            <UltimateTwo />
           </div>
         </div>
-      </div>
-      <div className="px-2">
-        {" "}
-        <SuperOne country="Sweden"  />
       </div>
     </>
   );
