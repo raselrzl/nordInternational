@@ -74,7 +74,7 @@ const advertisementPackages = [
   { id: "SUPER_1", name: "Super 1", page: "Cntry-MD1-(2)"},
   { id: "SUPER_2", name: "Super 2", page: "Cntry-MD2-(3)"},
   { id: "PREMIUM_1", name: "Premium 1", page: "Hm-S1-MD1-(1)"},
-  { id: "PREMIUM_2", name: "Premium 2" },
+  { id: "PREMIUM_2", name: "Premium 2",  page: "Hm-S4-S&R-(6)" },
   { id: "STANDARD_1", name: "Standard 1", page: "Cntry-LS1-(1)"},
   { id: "STANDARD_2", name: "Standard 2" },
   { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar"}, 
