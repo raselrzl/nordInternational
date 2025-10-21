@@ -83,14 +83,13 @@ const advertisementPackages = [
   { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)" },
 
   { id: "BASIC_1", name: "Basic 1", page: "F-All-Pg-(Special-1)" },
-  { id: "ULTIMATE_2", name: "Ultimate 2", page: "M-All-Pg-(Special-2)"},
-  { id: "ULTIMATE_1", name: "Ultimate 1", page: "S-All-Pg-(Special-3)"},
+  { id: "ULTIMATE_2", name: "Ultimate 2", page: "M-All-Pg-(Special-2)" },
+  { id: "ULTIMATE_1", name: "Ultimate 1", page: "S-All-Pg-(Special-3)" },
 
-  
-  { id: "STANDARD_2", name: "Standard 2", page: "ND-Pg-L1-(1)"},
-  { id: "BASIC_2", name: "Basic 2", page: "ND-Pg-MD-(2)"},
-  { id: "ENTERPRISE_2", name: "Enterprise 2", page: "ND-Pg-MD-(3)"},
-  { id: "PRO_2", name: "Pro 2" },
+  { id: "STANDARD_2", name: "Standard 2", page: "ND-Pg-L1-(1)" },
+  { id: "BASIC_2", name: "Basic 2", page: "ND-Pg-MD-(2)" },
+  { id: "ENTERPRISE_2", name: "Enterprise 2", page: "ND-Pg-MD-(3)" },
+  { id: "PRO_2", name: "Pro 2", page: "Empty" },
 ];
 
 export function CreateAdvertisementForm() {
@@ -208,7 +207,7 @@ export function CreateAdvertisementForm() {
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={control}
                   name="startDate"
@@ -234,12 +233,7 @@ export function CreateAdvertisementForm() {
                   )}
                 />
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="space-y-6">
-              <FormField
+                 <FormField
                 control={control}
                 name="isFeatured"
                 render={({ field }) => (
@@ -282,13 +276,19 @@ export function CreateAdvertisementForm() {
                   </FormItem>
                 )}
               />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="space-y-6">
+           
               <FormField
                 control={form.control}
                 name="advertisedCategory"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Select Advertisement Package</FormLabel>
-                    <div className="grid grid-cols-4 md:grid-cols-5 gap-1">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
                       {advertisementPackages.map((pkg) => (
                         <Button
                           className="text-xs md:text-md flex flex-col cursor-pointer"
@@ -299,7 +299,7 @@ export function CreateAdvertisementForm() {
                           }
                           onClick={() => field.onChange(pkg.id)}
                         >
-                          {/*    {pkg.name} */}
+                          {pkg.name} <br />
                           {pkg.page}
                         </Button>
                       ))}
@@ -315,7 +315,7 @@ export function CreateAdvertisementForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Select Country</FormLabel>
-                    <div className="grid grid-cols-4 md:grid-cols-5 gap-1">
+                    <div className="grid grid-cols-3 md:grid-cols-4 gap-1">
                       {countries.map((country) => (
                         <Button
                           className="p-2 text-xs md:text-md"
