@@ -676,3 +676,72 @@ export async function deleteVedioById(videoId: string) {
     throw new Error("Failed to delete vedio");
   }
 }
+
+
+
+
+
+
+
+
+const PollQuestionSchema = z.object({
+  question: z.string().min(5, "Question must be at least 5 characters"),
+});
+
+export async function createPollQuestion(formData: FormData) {
+  const superadmin = await requireSuperAdmin();
+  if (!superadmin) throw new Error("Restricted");
+
+  const raw = Object.fromEntries(formData.entries());
+  const parsed = PollQuestionSchema.safeParse(raw);
+
+  if (!parsed.success) throw new Error("Invalid form data");
+
+  await prisma.pollQuestion.create({
+    data: { question: parsed.data.question },
+  });
+
+  redirect("/polls");
+}
+
+
+export async function getLatestPoll() {
+  const poll = await prisma.pollQuestion.findFirst({
+    orderBy: { createdAt: "desc" },
+    include: { answers: true },
+  });
+
+  // Count answers
+  const results = { YES: 0, NO: 0, NO_OPINION: 0 };
+  if (poll?.answers) {
+    poll.answers.forEach((a) => {
+      results[a.answer as keyof typeof results] += 1;
+    });
+  }
+
+  return { poll, results };
+}
+
+
+
+
+const PollVoteSchema = z.object({
+  pollQuestionId: z.string(),
+  answer: z.enum(["YES", "NO", "NO_OPINION"]),
+});
+
+export async function submitPollVote(formData: FormData) {
+  const raw = Object.fromEntries(formData.entries());
+  const parsed = PollVoteSchema.safeParse(raw);
+
+  if (!parsed.success) throw new Error("Invalid vote data");
+
+  await prisma.pollAnswer.create({
+    data: {
+      pollQuestionId: parseInt(parsed.data.pollQuestionId),
+      answer: parsed.data.answer,
+    },
+  });
+
+  return { success: true };
+}

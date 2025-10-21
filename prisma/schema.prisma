@@ -351,3 +351,20 @@ enum Country {
 }
 
 
+model PollQuestion {
+  id        Int       @id @default(autoincrement())
+  question  String
+  createdAt DateTime  @default(now())
+  answers   PollAnswer[]
+}
+
+model PollAnswer {
+  id          Int       @id @default(autoincrement())
+  pollQuestionId Int
+  answer      String
+  createdAt   DateTime  @default(now())
+
+  pollQuestion PollQuestion @relation(fields: [pollQuestionId], references: [id])
+}
+
+
