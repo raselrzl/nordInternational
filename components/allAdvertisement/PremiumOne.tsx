@@ -43,7 +43,8 @@ export async function PremiumOneAdvertise() {
                 alt={premier1.companyName}
                 width={370} // adjust as needed
                 height={300}
-                className="w-[370px] h-[350px] rounded-xl"
+                  className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl  object-fill"
+            
               />
             </Link>
           ))}
@@ -55,8 +56,8 @@ export async function PremiumOneAdvertise() {
             alt="No Advertisement"
             width={400} // adjust as needed
             height={400}
-            className="w-[370px] h-[250px] md:h-[350px]  rounded-xl
-            "
+           className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 object-fill"
+            
           />
           <Link
               href="/about/advertise"

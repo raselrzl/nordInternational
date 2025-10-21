@@ -188,8 +188,8 @@ export default async function Home() {
             <div>
               {/*  font page second col first section first add */}
               <Suspense fallback={<Loader2 />}>
-                <SuperTwo country="india"/>
-              </Suspense>
+                <PremiumOneAdvertise />
+              </Suspense> 
             </div>
 
             {InternationalAll && Object.keys(InternationalAll).length > 0 ? (
