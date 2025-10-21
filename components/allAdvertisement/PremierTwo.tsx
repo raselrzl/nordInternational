@@ -29,22 +29,24 @@ export async function PremiarTwo() {
       {Advertise && Object.keys(Advertise).length > 0 ? (
         <div className="flex items-center justify-center rounded-xl">
           {Advertise.map((ad) => (
-            <Link
-              href={`https://${ad.websiteLink}`}
-              key={ad.id}
-              target="_blank"
-              rel="noopener noreferrer"
-               className="relative inline-block"
-            >
-              <img
-                src={ad.advertiseBanner}
-                alt={ad.companyName}
-                className="w-full h-[270px] rounded-xl px-6 md:pt-0"
-              />
-                  <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
-                Ad.
-              </span>
-            </Link> 
+           <Link
+  href={`https://${ad.websiteLink}`}
+  key={ad.id}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="relative inline-block"
+>
+  <img
+    src={ad.advertiseBanner}
+    alt={ad.companyName}
+    className="w-full h-[270px] rounded-xl object-cover"
+  />
+  {/* ✅ Perfectly centered in the middle of the image */}
+  <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-xs px-3 py-1 rounded shadow-md">
+    Ad.
+  </span>
+</Link>
+
           ))}
         </div>
       ) : (
@@ -52,7 +54,7 @@ export async function PremiarTwo() {
           <img
             src="/noad.png"
             alt="no ad. image"
-            className="w-full h-[270px] rounded-xl px-6 md:pt-0"
+            className="w-full h-[270px] rounded-xl object-fill"
           />
               <Link
               href="/about/advertise"
