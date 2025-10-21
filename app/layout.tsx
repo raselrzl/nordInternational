@@ -11,6 +11,7 @@ import Footer from "@/components/general/Footer";
 import VisitorTracker from "@/components/general/VisitorTracker";
 import CountryListLinks from "@/components/general/CountryListLinks";
 import Poll from "@/components/LivePoll/Poll";
+import ScrollToTopButton from "@/components/general/ScrollToTopButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,6 +68,7 @@ export default function RootLayout({
           <Poll />
           <Footer />
           <VisitorTracker />
+          <ScrollToTopButton />
         </ThemeProvider>
       </body>
     </html>
