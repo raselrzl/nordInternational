@@ -63,20 +63,23 @@ export async function ProOneAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full"
+              className="w-full relative inline-block"
             >
               {/* Responsive, centered image; no padding on the <img> itself */}
               <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName ?? "Advertisement"}
                 className="
-                  block mx-auto
+                  mx-auto
                   w-full max-w-[370px]
                   h-auto
                   object-cover
                   rounded-xl
                 "
               />
+              <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           );
         })}

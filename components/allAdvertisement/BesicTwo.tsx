@@ -35,7 +35,7 @@ export async function BesicTwoAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full h-full relative"
+              className="w-full h-full inline-block relative"
             >
               <Image
                 src={pro1.advertiseBanner}
@@ -44,6 +44,9 @@ export async function BesicTwoAdvertise() {
                 className="object-cover rounded"
                 priority
               />
+              <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>

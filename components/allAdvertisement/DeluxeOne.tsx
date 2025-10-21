@@ -33,13 +33,16 @@ export async function DeluxeOneAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="block"
+              className="relative inline-block"
             >
               <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
                 className="h-[80px] w-full object-fill rounded-xs"
               />
+                <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>

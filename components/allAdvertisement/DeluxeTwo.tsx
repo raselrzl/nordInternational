@@ -22,6 +22,7 @@ export async function getDeluxeTwoAdvertise() {
     take: 1,
   });
 }
+
 export async function DeluxeTwoAdvertise() {
   const Advertise = await getDeluxeTwoAdvertise();
   return (
@@ -34,12 +35,16 @@ export async function DeluxeTwoAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
               <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
-                className="w-[400px] h-[200px] md:h-[180px] rounded-xl"
+                className="w-[400px] h-[200px] md:h-[180px] rounded-xl object-cover"
               />
+              <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>
@@ -48,12 +53,12 @@ export async function DeluxeTwoAdvertise() {
           <p className="text-sm text-gray-600 mb-2">
             No <strong>Deluxe Two</strong> advertisements available.
           </p>
-            <Link
-              href="/about/advertise"
-              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-            >
-              Contact us for (DELUXE_2) Advertisement 
-            </Link>
+          <Link
+            href="/about/advertise"
+            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+          >
+            Contact us for (DELUXE_2) Advertisement
+          </Link>
         </div>
       )}
     </div>

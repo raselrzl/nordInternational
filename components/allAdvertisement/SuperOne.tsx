@@ -24,7 +24,7 @@ async function getSuperOneAdvertise(country: string) {
     where: {
       advertisedCategory: "SUPER_1",
       advertiseStatus: "ACTIVE",
-      country: dbCountry
+      country: dbCountry,
     },
     select: {
       id: true,
@@ -42,7 +42,6 @@ async function getSuperOneAdvertise(country: string) {
   });
 }
 
-
 export async function SuperOne({ country }: { country: string }) {
   const Advertise = await getSuperOneAdvertise(country);
 
@@ -56,6 +55,7 @@ export async function SuperOne({ country }: { country: string }) {
               key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
               <Image
                 src={ad.advertiseBanner}
@@ -64,6 +64,9 @@ export async function SuperOne({ country }: { country: string }) {
                 height={300}
                 className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill"
               />
+              <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>
@@ -72,9 +75,8 @@ export async function SuperOne({ country }: { country: string }) {
           <img
             src="/noad.png"
             alt="no ad. image"
-           className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
-          />        
-
+            className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
+          />
 
           <Link
             href="/about/advertise"

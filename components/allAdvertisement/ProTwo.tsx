@@ -34,14 +34,16 @@ export async function ProTwoAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
-              <Image
+              <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
-                width={300} // adjust as needed
-                height={100}
                 className="w-full h-[100px] rounded-xl px-8 md:px-32"
               />
+                <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>

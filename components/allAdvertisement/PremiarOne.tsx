@@ -34,14 +34,16 @@ export async function PremiarOne() {
               key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
-              <Image
+              <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                width={300} // adjust as needed
-                height={300}
                 className="w-full h-[270px] rounded-xl px-6 md:pt-0"
               />
+                  <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link> 
           ))}
         </div>

@@ -34,14 +34,16 @@ export async function PremiumTwoAdvertise() {
               key={premier1.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="rounded-xl relative inline-block"
             >
-              <Image
+              <img
                 src={premier1.advertiseBanner}
                 alt={premier1.companyName}
-                width={300} // adjust as needed
-                height={100}
                 className="w-full h-[100px] rounded-xl mt-2 object-cover"
               />
+                      <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link> 
           ))}
         </div>

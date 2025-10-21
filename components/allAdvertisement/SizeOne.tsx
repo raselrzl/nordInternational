@@ -49,12 +49,16 @@ export async function SizeOneAdvertise({ country }: { country: string }) {
               key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
               <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
                 className="w-full h-[170px] rounded-xl object-cover"
               />
+               <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>

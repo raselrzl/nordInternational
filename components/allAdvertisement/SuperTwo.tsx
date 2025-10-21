@@ -55,14 +55,18 @@ export async function SuperTwo({ country }: { country: string }) {
               key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
+              className="relative inline-block"
             >
               <Image
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
                 width={360}
                 height={300}
-                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-fill"
+                className="w-[360px] md:w-full h-[170px] md:h-[170px] rounded-xl md:pt-0 mt-5 object-fill"
               />
+                <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>

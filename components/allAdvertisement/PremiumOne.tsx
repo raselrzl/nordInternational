@@ -36,7 +36,7 @@ export async function PremiumOneAdvertise() {
               key={premier1.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-xl"
+              className="rounded-xl relative inline-block"
             >
               <img
                 src={premier1.advertiseBanner}
@@ -44,6 +44,9 @@ export async function PremiumOneAdvertise() {
                   className="w-[360px] h-[170px] rounded-xl  object-fill"
             
               />
+                    <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                Ad.
+              </span>
             </Link>
           ))}
         </div>
