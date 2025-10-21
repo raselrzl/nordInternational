@@ -13,6 +13,9 @@ import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
 import type { Metadata } from "next";
+import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
+import { StandardTwo } from "@/components/allAdvertisement/StandardTwo";
+import { EnterPrizeTwo } from "@/components/allAdvertisement/EnterprizeTwo";
 
 async function getNewsArticle(articleId: string) {
   const newsArticle = await prisma.newsArticle.findUnique({
@@ -160,8 +163,8 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         />
 
         {/* Bottom Banner */}
-        <div className="relative w-full h-[100px] md:h-[200px] px-10">
-          <SizeTwoAdvertise country="india" />
+        <div className="relative w-full h-[100px] md:h-[200px] mb-10">
+          <StandardTwo />
         </div>
 
         {/* Quotes Section */}
@@ -187,13 +190,13 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       {/* Right Sidebar */}
       <div className="col-span-5 md:col-span-1">
         <div className="flex flex-col items-center rounded-2xl mx-auto">
-          <BesicOneAdvertise />
-          <div className="">
+          <div className="mt-16">
             <RecentNews />
           </div>
           <div className="block md:hidden mt-10 border-t-1 p-2">
             <ShirShoNewsHeadings />
           </div>
+          <EnterPrizeTwo />
         </div>
       </div>
     </div>

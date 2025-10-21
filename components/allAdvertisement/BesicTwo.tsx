@@ -35,7 +35,7 @@ export async function BesicTwoAdvertise() {
               key={pro1.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full h-full inline-block relative"
+              className="inline-block relative"
             >
               <Image
                 src={pro1.advertiseBanner}

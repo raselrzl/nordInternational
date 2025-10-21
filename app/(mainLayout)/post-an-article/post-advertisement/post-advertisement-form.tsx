@@ -83,14 +83,14 @@ const advertisementPackages = [
   { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)" },
 
   { id: "BASIC_1", name: "Basic 1", page: "F-All-Pg-(Special-1)" },
-  { id: "ULTIMATE_2", name: "Ultimate 2", page: "M-All-Pg-(Special-2)" },
-  { id: "ULTIMATE_1", name: "Ultimate 1", page: "S-All-Pg-(Special-3)" },
+  { id: "ULTIMATE_2", name: "Ultimate 2", page: "M-All-Pg-(Special-2)"},
+  { id: "ULTIMATE_1", name: "Ultimate 1", page: "S-All-Pg-(Special-3)"},
 
   
-  { id: "STANDARD_2", name: "Standard 2" },
-  { id: "BASIC_2", name: "Basic 2" },
+  { id: "STANDARD_2", name: "Standard 2", page: "ND-Pg-L1-(1)"},
+  { id: "BASIC_2", name: "Basic 2", page: "ND-Pg-MD-(2)"},
+  { id: "ENTERPRISE_2", name: "Enterprise 2", page: "ND-Pg-MD-(3)"},
   { id: "PRO_2", name: "Pro 2" },
-  { id: "ENTERPRISE_2", name: "Enterprise 2" },
 ];
 
 export function CreateAdvertisementForm() {
