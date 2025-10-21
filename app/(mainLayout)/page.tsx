@@ -12,7 +12,7 @@ import {
   ScienceNews,
   ScienceNewsHeadPost,
 } from "@/components/general/homepageArticleList";
-import { SorboseshAndJonoprioTab } from "@/components/SorboseshAndJonoprioTab";
+import { SorboseshAndJonoprioTab } from "@/components/general/SorboseshAndJonoprioTab";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { isJson } from "../utils/isJson";
 import Videos from "@/components/general/Videos";

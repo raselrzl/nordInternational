@@ -690,8 +690,10 @@ const PollQuestionSchema = z.object({
 });
 
 export async function createPollQuestion(formData: FormData) {
-  const superadmin = await requireSuperAdmin();
-  if (!superadmin) throw new Error("Restricted");
+  const approvedreporter =await requireNewsReporter()
+  if (!approvedreporter) {
+    return redirect("/restricted");
+  }
 
   const raw = Object.fromEntries(formData.entries());
   const parsed = PollQuestionSchema.safeParse(raw);

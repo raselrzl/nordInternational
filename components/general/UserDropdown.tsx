@@ -2,6 +2,7 @@ import {
   BarChart,
   BookPlus,
   ChevronDown,
+  FileQuestion,
   Layers2,
   LogOut,
   Megaphone,
@@ -76,6 +77,12 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
         <DropdownMenuGroup>
           {(canSeeSection1 || mkr) && (
             <>
+             <DropdownMenuItem asChild>
+                <Link href="/post-an-article/poll">
+                  <FileQuestion size={16} strokeWidth={2} className="opacity-60" />
+                  <span>Write a Poll Question?</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/post-an-article">
                   <BookPlus size={16} strokeWidth={2} className="opacity-60" />
@@ -166,7 +173,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
               </DropdownMenuItem>
             </>
           )}
-        </DropdownMenuGroup>
+        </DropdownMenuGroup> 
 
         <DropdownMenuSeparator />
 
