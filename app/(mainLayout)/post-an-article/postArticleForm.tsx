@@ -285,7 +285,7 @@ export function CreateNewsArticleForm({
                       one.
                     </FormLabel>
 
-                    <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                       {links.map((link) => {
                         const value = link.href
                           .replace("/", "")
@@ -508,7 +508,7 @@ export function CreateNewsArticleForm({
               <CardHeader>
                 <CardTitle>My Profile, Who Posting that News!</CardTitle>
               </CardHeader>
-              <CardContent className="grid grid-cols-2 gap-4">
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="reporterName"
