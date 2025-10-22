@@ -257,7 +257,7 @@ export default async function CountryNews({
                 More from {activeCountry.name} ({totalCount - 7})
               </h2>
 
-              <div>
+              <div >
                 <PaginationComponent
                   totalPages={totalPages}
                   currentPage={currentPage}
@@ -282,7 +282,7 @@ export default async function CountryNews({
                         </div>
 
                         <div className="col-span-2">
-                          <h1 className="text-lg md:text-xl font-bold">
+                          <h1 className="text-md font-bold">
                             {article.newsHeading}
                           </h1>
                           <p className="text-sm text-muted-foreground text-right font-bold italic pr-2">
@@ -293,10 +293,11 @@ export default async function CountryNews({
                     </Link>
                   ))}
                 </div>
-                <PaginationComponent
+                <div className=""> <PaginationComponent
                   totalPages={totalPages}
                   currentPage={currentPage}
-                />
+                /></div>
+               
               </>
             ) : (
               <EmptyState

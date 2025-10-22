@@ -6,10 +6,10 @@ export default function Footer() {
   return (
     <footer className="mt-10 w-full flex justify-center">
       <div className=" w-full max-w-7xl text-center">
-        <div className="flex flex-wrap justify-center gap-4 mb-2 py-2 border-2">
+        <div className="flex flex-wrap justify-center gap-4 mb-2 py-2 border-2 uppercase">
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-2xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
           >
             Nord International
           </Link>
