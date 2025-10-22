@@ -252,9 +252,18 @@ export default async function CountryNews({
 
           {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
-            <h2 className="font-extrabold text-xl mb-1 pl-2">
-              More from {activeCountry.name} ({totalCount - 7} articles)
-            </h2>
+            <div className="flex items-center justify-between bg-amber-700 p-4 rounded-md mb-4">
+              <h2 className="flex items-center font-extrabold text-xl border-l-8 border-primary pl-2">
+                More from {activeCountry.name} ({totalCount - 7})
+              </h2>
+
+              <div>
+                <PaginationComponent
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                />
+              </div>
+            </div>
 
             {articles.length > 0 ? (
               <>
