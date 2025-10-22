@@ -74,7 +74,6 @@ async function getCountryNews(country: string) {
   return { allArticles, lastFeaturedArticle };
 }
 
-// ✅ Fetch paginated list for the “More from Country” section
 // Fetch paginated list starting after the first 7 articles
 async function getPaginatedCountryArticles(
   country: string,
@@ -101,8 +100,6 @@ async function getPaginatedCountryArticles(
   };
 }
 
-
-
 export default async function CountryNews({
   searchParams,
 }: {
@@ -113,11 +110,8 @@ export default async function CountryNews({
   const currentPage = Number(params?.page) || 1;
 
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
-  const { articles, totalPages, totalCount } = await getPaginatedCountryArticles(
-  country,
-  currentPage
-);
-
+  const { articles, totalPages, totalCount } =
+    await getPaginatedCountryArticles(country, currentPage);
 
   const activeCountry = euCountries.find(
     (c) => c.name.toLowerCase() === country.toLowerCase()
@@ -259,8 +253,8 @@ export default async function CountryNews({
           {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
             <h2 className="font-extrabold text-xl mb-1 pl-2">
-    More from {activeCountry.name} ({totalCount - 7} articles)
-  </h2>
+              More from {activeCountry.name} ({totalCount - 7} articles)
+            </h2>
 
             {articles.length > 0 ? (
               <>
