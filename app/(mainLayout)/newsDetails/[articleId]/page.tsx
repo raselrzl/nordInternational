@@ -173,10 +173,10 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
                   {data.quotes.map((quote, index) => (
                     <div
                       key={index}
-                      className="border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
+                      className="flex flex-col border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
                     >
                       <p className="italic mb-6">"{quote.text}"</p>
-                      <p className="absolute bottom-2 right-4 text-sm text-accent-foreground/60">
+                      <p className="text-right bottom-2 right-4 text-sm text-accent-foreground/60">
                         — {quote.speakerInfo}
                       </p>
                     </div>
