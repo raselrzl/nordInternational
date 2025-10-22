@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, XIcon } from "lucide-react";
 import { differenceInDays, parseISO } from "date-fns";
@@ -68,33 +68,65 @@ const countries = [
 ];
 
 const advertisementPackages = [
-  { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar" },
-  { id: "PREMIUM_1", name: "Premium 1", page: "Hm-S1-MD1-(1)" },
-  { id: "DELUXE_2", name: "Deluxe 2", page: "Hm-S1-MD2-(2)" },
-  { id: "PRO_1", name: "Pro 1", page: "Hm-S1-LS1-(3)" },
-  { id: "PREMIER_2", name: "Premier 2", page: "Hm-S2-V-(4)" },
-  { id: "PREMIER_1", name: "Premier 1", page: "Hm-S3-Tab-(5)" },
-  { id: "PREMIUM_2", name: "Premium 2", page: "Hm-S4-S&R-(6)" },
-  { id: "ENTERPRISE_1", name: "Enterprise 1", page: "Hm-Pg. Popup" },
+  { id: "DELUXE_1", name: "Deluxe 1", page: "C-Navbar", dailyPrice: 10 },
+  { id: "PREMIUM_1", name: "Premium 1", page: "Hm-S1-MD1-(1)", dailyPrice: 12 },
+  { id: "DELUXE_2", name: "Deluxe 2", page: "Hm-S1-MD2-(2)", dailyPrice: 14 },
+  { id: "PRO_1", name: "Pro 1", page: "Hm-S1-LS1-(3)", dailyPrice: 15 },
+  { id: "PREMIER_2", name: "Premier 2", page: "Hm-S2-V-(4)", dailyPrice: 16 },
+  { id: "PREMIER_1", name: "Premier 1", page: "Hm-S3-Tab-(5)", dailyPrice: 18 },
+  { id: "PREMIUM_2", name: "Premium 2", page: "Hm-S4-S&R-(6)", dailyPrice: 20 },
+  {
+    id: "ENTERPRISE_1",
+    name: "Enterprise 1",
+    page: "Hm-Pg. Popup",
+    dailyPrice: 22,
+  },
 
-  { id: "STANDARD_1", name: "Standard 1", page: "Cntry-LS1-(1)" },
-  { id: "SUPER_1", name: "Super 1", page: "Cntry-MD1-(2)" },
-  { id: "SUPER_2", name: "Super 2", page: "Cntry-MD2-(3)" },
-  { id: "SIZE_1", name: "Size 1", page: "Cntry-RS1-(4)" },
-  { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)" },
+  {
+    id: "STANDARD_1",
+    name: "Standard 1",
+    page: "Cntry-LS1-(1)",
+    dailyPrice: 8,
+  },
+  { id: "SUPER_1", name: "Super 1", page: "Cntry-MD1-(2)", dailyPrice: 9 },
+  { id: "SUPER_2", name: "Super 2", page: "Cntry-MD2-(3)", dailyPrice: 10 },
+  { id: "SIZE_1", name: "Size 1", page: "Cntry-RS1-(4)", dailyPrice: 11 },
+  { id: "SIZE_2", name: "Size 2", page: "Cntry-RS2-(5)", dailyPrice: 12 },
 
-  { id: "BASIC_1", name: "Basic 1", page: "F-All-Pg-(Special-1)" },
-  { id: "ULTIMATE_2", name: "Ultimate 2", page: "M-All-Pg-(Special-2)" },
-  { id: "ULTIMATE_1", name: "Ultimate 1", page: "S-All-Pg-(Special-3)" },
+  {
+    id: "BASIC_1",
+    name: "Basic 1",
+    page: "F-All-Pg-(Special-1)",
+    dailyPrice: 7,
+  },
+  {
+    id: "ULTIMATE_2",
+    name: "Ultimate 2",
+    page: "M-All-Pg-(Special-2)",
+    dailyPrice: 19,
+  },
+  {
+    id: "ULTIMATE_1",
+    name: "Ultimate 1",
+    page: "S-All-Pg-(Special-3)",
+    dailyPrice: 21,
+  },
 
-  { id: "STANDARD_2", name: "Standard 2", page: "ND-Pg-L1-(1)" },
-  { id: "BASIC_2", name: "Basic 2", page: "ND-Pg-MD-(2)" },
-  { id: "ENTERPRISE_2", name: "Enterprise 2", page: "ND-Pg-MD-(3)" },
-  { id: "PRO_2", name: "Pro 2", page: "Empty" },
+  { id: "STANDARD_2", name: "Standard 2", page: "ND-Pg-L1-(1)", dailyPrice: 9 },
+  { id: "BASIC_2", name: "Basic 2", page: "ND-Pg-MD-(2)", dailyPrice: 7 },
+  {
+    id: "ENTERPRISE_2",
+    name: "Enterprise 2",
+    page: "ND-Pg-MD-(3)",
+    dailyPrice: 23,
+  },
+  { id: "PRO_2", name: "Pro 2", page: "Empty", dailyPrice: 17 },
 ];
 
 export function CreateAdvertisementForm() {
   const [pending, setPending] = useState(false);
+  const today = new Date().toISOString().split("T")[0];
+
   const form = useForm({
     defaultValues: {
       companyName: "",
@@ -104,7 +136,6 @@ export function CreateAdvertisementForm() {
       advertisedCategory: "",
       isFeatured: false,
       advertiseStatus: "DRAFT",
-      /*       pageToview: "", */
       advertiseduration: 365,
       advertiseBanner: "",
       websiteLink: "",
@@ -119,7 +150,7 @@ export function CreateAdvertisementForm() {
     },
   });
 
-  const { control, handleSubmit, reset } = form;
+  const { control, handleSubmit, reset, watch } = form;
 
   async function onSubmit(data: any) {
     try {
@@ -136,18 +167,80 @@ export function CreateAdvertisementForm() {
     }
   }
 
+  const watchStartDate = watch("startDate");
+  const watchEndDate = watch("endDate");
+  const watchDailyPrice = watch("dailyPrice");
+  const watchDiscount = watch("discount");
+  const watchMoms = watch("moms");
+
+  const [durationDays, setDurationDays] = useState(0);
+  const [priceWithoutDiscount, setPriceWithoutDiscount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [priceAfterDiscount, setPriceAfterDiscount] = useState(0);
+  const [momsAmount, setMomsAmount] = useState(0);
+  const [finalPrice, setFinalPrice] = useState(0);
+
+  useEffect(() => {
+    const dailyPrice = Math.max(0, watchDailyPrice || 0);
+    const discount = Math.max(0, watchDiscount || 0);
+    const moms = Math.max(0, watchMoms || 0);
+
+    if (watchStartDate && watchEndDate) {
+      const start = parseISO(watchStartDate);
+      const end = parseISO(watchEndDate);
+
+      const days = Math.max(0, differenceInDays(end, start) + 1);
+      setDurationDays(days);
+
+      const totalWithoutDiscount = days * dailyPrice;
+      const discountValue = totalWithoutDiscount * (discount / 100);
+      const afterDiscount = totalWithoutDiscount - discountValue;
+      const momsValue = afterDiscount * (moms / 100);
+      const totalFinal = afterDiscount + momsValue;
+
+      setPriceWithoutDiscount(totalWithoutDiscount);
+      setDiscountAmount(discountValue);
+      setPriceAfterDiscount(afterDiscount);
+      setMomsAmount(momsValue);
+      setFinalPrice(totalFinal);
+    } else {
+      setDurationDays(0);
+      setPriceWithoutDiscount(0);
+      setDiscountAmount(0);
+      setPriceAfterDiscount(0);
+      setMomsAmount(0);
+      setFinalPrice(0);
+    }
+  }, [watchStartDate, watchEndDate, watchDailyPrice, watchDiscount, watchMoms]);
+
   return (
     <Form {...form}>
+      <h1 className="text-lg my-2 font-bold">
+        Fill in all the details related to the advertisement here.
+      </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
-            <CardHeader>
-              <CardTitle>
-                Fill in all the details related to the advertisement here.
-              </CardTitle>
-            </CardHeader>
-
             <CardContent className="space-y-6 pt-6">
+              <FormField
+                control={control}
+                name="isFeatured"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Do you want to display this advertisement on the front
+                      page?
+                    </FormLabel>
+
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={control}
                 name="companyName"
@@ -212,75 +305,129 @@ export function CreateAdvertisementForm() {
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={control}
-                  name="startDate"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Starting Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={control}
-                  name="endDate"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Ending Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={control}
+                    name="startDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Start Date</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} min={today} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={control}
+                    name="endDate"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>End Date</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} min={watchStartDate || today} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="flex gap-2">
+                  <FormField
+                    control={control}
+                    name="dailyPrice"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Daily Price</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            min={0}
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(
+                                Math.max(0, Number(e.target.value))
+                              )
+                            }
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={control}
+                    name="discount"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Discount %</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            min={0}
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(
+                                Math.max(0, Number(e.target.value))
+                              )
+                            }
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={control}
+                    name="moms"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Moms %</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            min={0}
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(
+                                Math.max(0, Number(e.target.value))
+                              )
+                            }
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Live price breakdown */}
+                <div className="p-4 border rounded bg-gray-50 space-y-1">
+                  <p>
+                    Duration: <strong>{durationDays}</strong> day
+                    {durationDays !== 1 && "s"}
+                  </p>
+                  <p>
+                    Price without discount:{" "}
+                    <strong>{priceWithoutDiscount.toFixed(2)}</strong>
+                  </p>
+                  <p>
+                    Discount amount:{" "}
+                    <strong>{discountAmount.toFixed(2)}</strong>
+                  </p>
+                  <p>
+                    Price after discount:{" "}
+                    <strong>{priceAfterDiscount.toFixed(2)}</strong>
+                  </p>
+                  <p>
+                    Moms amount: <strong>{momsAmount.toFixed(2)}</strong>
+                  </p>
+                  <p>
+                    <strong>
+                      Total Price (after discount + moms):{" "}
+                      {finalPrice.toFixed(2)}
+                    </strong>
+                  </p>
+                </div>
               </div>
-              <FormField
-                control={control}
-                name="isFeatured"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      Do you want to display this advertisement on the front
-                      page?
-                    </FormLabel>
-
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={control}
-                name="advertiseStatus"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Status</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a status" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="DRAFT">DRAFT</SelectItem>
-                        <SelectItem value="ACTIVE">ACTIVE</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
             </CardContent>
           </Card>
 
@@ -303,7 +450,9 @@ export function CreateAdvertisementForm() {
                           }
                           onClick={() => field.onChange(pkg.id)}
                         >
-                          {pkg.name} <br />
+                          {pkg.name}
+                          {pkg.dailyPrice}
+                          <br />
                           {pkg.page}
                         </Button>
                       ))}
@@ -346,7 +495,7 @@ export function CreateAdvertisementForm() {
                 )}
               />
 
-              <FormField
+              {/*   <FormField
                 control={control}
                 name="advertiseduration"
                 render={({ field }) => (
@@ -371,70 +520,7 @@ export function CreateAdvertisementForm() {
                     </div>
                   </FormItem>
                 )}
-              />
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="space-y-6 pt-6">
-              <FormField
-                control={control}
-                name="dailyPrice"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Daily Price</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                        placeholder="Enter daily price..."
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={control}
-                name="moms"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Moms</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                        placeholder="Enter moms..."
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={control}
-                name="discount"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Discount</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                        placeholder="Enter discount..."
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              /> */}
             </CardContent>
           </Card>
 
@@ -520,6 +606,29 @@ export function CreateAdvertisementForm() {
                         className="placeholder:text-sm"
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="advertiseStatus"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Publish Status</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a status" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="DRAFT">DRAFT</SelectItem>
+                        <SelectItem value="ACTIVE">ACTIVE</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormItem>
                 )}
               />

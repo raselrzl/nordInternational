@@ -156,7 +156,7 @@ model Advertisement {
   advertiseduration     Int?
   dailyPrice           Int 
   moms                 Int
-  discount             Int
+  discount             Int 
 
   advertiseStatus       advertiseStatus @default(DRAFT)
   createdAt             DateTime        @default(now())
