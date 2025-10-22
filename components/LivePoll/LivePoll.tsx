@@ -92,7 +92,7 @@ export default function LivePoll() {
         <img
           src="liveresult1.gif"
           alt="live result"
-          className="w-[200px] h-[45px] rounded-xl mb-2"
+          className="w-[170px] h-[40px] rounded-xl mb-2"
         />
 
         <div className="space-y-2 w-full">
