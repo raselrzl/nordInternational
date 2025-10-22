@@ -27,7 +27,6 @@ import { UploadDropzone } from "@/components/general/UploadThingReexported";
 import { createAnAdvertisement } from "@/app/actions";
 import Image from "next/image";
 
-
 const countries = [
   { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
   { id: "UK", name: "UK", flag: "/flags/uk.png" },
@@ -239,7 +238,7 @@ export function CreateAdvertisementForm() {
                   )}
                 />
               </div>
-                 <FormField
+              <FormField
                 control={control}
                 name="isFeatured"
                 render={({ field }) => (
@@ -287,7 +286,6 @@ export function CreateAdvertisementForm() {
 
           <Card>
             <CardContent className="space-y-6">
-           
               <FormField
                 control={form.control}
                 name="advertisedCategory"
@@ -376,71 +374,69 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
-<Card>
-  <CardContent className="space-y-6 pt-6">
-    <FormField
-      control={control}
-      name="dailyPrice"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Daily Price</FormLabel>
-          <FormControl>
-            <Input
-              type="number"
-              {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
-              placeholder="Enter daily price..."
-              className="placeholder:text-sm"
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
+          <Card>
+            <CardContent className="space-y-6 pt-6">
+              <FormField
+                control={control}
+                name="dailyPrice"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Daily Price</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        placeholder="Enter daily price..."
+                        className="placeholder:text-sm"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-    <FormField
-      control={control}
-      name="moms"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Moms</FormLabel>
-          <FormControl>
-            <Input
-              type="number"
-              {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
-              placeholder="Enter moms..."
-              className="placeholder:text-sm"
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
+              <FormField
+                control={control}
+                name="moms"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Moms</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        placeholder="Enter moms..."
+                        className="placeholder:text-sm"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-    <FormField
-      control={control}
-      name="discount"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Discount</FormLabel>
-          <FormControl>
-            <Input
-              type="number"
-              {...field}
-              onChange={(e) => field.onChange(Number(e.target.value))}
-              placeholder="Enter discount..."
-              className="placeholder:text-sm"
-            />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  </CardContent>
-</Card>
-
-
+              <FormField
+                control={control}
+                name="discount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Discount</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        placeholder="Enter discount..."
+                        className="placeholder:text-sm"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+          </Card>
 
           <Card>
             <CardContent className="space-y-6 pt-6">
@@ -529,11 +525,6 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
-
-
-
-
-          
         </div>
 
         <Button
