@@ -79,7 +79,7 @@ const advertisementPackages = [
     id: "ENTERPRISE_1",
     name: "Enterprise 1",
     page: "Hm-Pg. Popup",
-    dailyPrice: 22,
+    dailyPrice: 22, 
   },
 
   {
@@ -326,7 +326,11 @@ export function CreateAdvertisementForm() {
                       <FormItem>
                         <FormLabel>End Date</FormLabel>
                         <FormControl>
-                          <Input type="date" {...field} min={watchStartDate || today} />
+                          <Input
+                            type="date"
+                            {...field}
+                            min={watchStartDate || today}
+                          />
                         </FormControl>
                       </FormItem>
                     )}
@@ -442,7 +446,7 @@ export function CreateAdvertisementForm() {
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
                       {advertisementPackages.map((pkg) => (
                         <Button
-                          className="text-xs md:text-md flex flex-col cursor-pointer"
+                          className="flex flex-col text-xs h-20 cursor-pointer"
                           key={pkg.id}
                           type="button"
                           variant={
@@ -450,10 +454,14 @@ export function CreateAdvertisementForm() {
                           }
                           onClick={() => field.onChange(pkg.id)}
                         >
-                          {pkg.name}
-                          {pkg.dailyPrice}
-                          <br />
-                          {pkg.page}
+                          
+                          <div>
+                            <span>{pkg.name}</span>
+                            <span className="text-primary p-1 ml-2 rounded bg-gray-800">
+                              SEK{pkg.dailyPrice}
+                            </span>
+                          </div>
+                          <span>{pkg.page}</span>
                         </Button>
                       ))}
                     </div>
@@ -494,33 +502,6 @@ export function CreateAdvertisementForm() {
                   </FormItem>
                 )}
               />
-
-              {/*   <FormField
-                control={control}
-                name="advertiseduration"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Duration</FormLabel>
-                    <div className="grid grid-cols-3 gap-1">
-                      {[1, 2, 3, 4, 5].map((y) => {
-                        const days = y * 365;
-                        return (
-                          <Button
-                            key={days}
-                            type="button"
-                            variant={
-                              field.value === days ? "default" : "outline"
-                            }
-                            onClick={() => field.onChange(days)}
-                          >
-                            {y} Year
-                          </Button>
-                        );
-                      })}
-                    </div>
-                  </FormItem>
-                )}
-              /> */}
             </CardContent>
           </Card>
 
