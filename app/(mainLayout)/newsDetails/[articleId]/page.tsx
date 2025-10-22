@@ -163,28 +163,29 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         />
 
         {/* Bottom Banner */}
-        <div className="relative w-full h-[100px] md:h-[200px] mb-10">
+        <div className=" w-full mb-6">
           <StandardTwo />
-        </div>
-
-        {/* Quotes Section */}
-        {data.quotes && data.quotes.length > 0 && (
-          <div className="mt-6 px-4">
-            <div className="space-y-4">
-              {data.quotes.map((quote, index) => (
-                <div
-                  key={index}
-                  className="relative border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
-                >
-                  <p className="italic mb-6">"{quote.text}"</p>
-                  <p className="absolute bottom-2 right-4 text-sm text-accent-foreground/60">
-                    — {quote.speakerInfo}
-                  </p>
+          <div>
+            {/* Quotes Section */}
+            {data.quotes && data.quotes.length > 0 && (
+              <div className="mt-6 px-4">
+                <div className="space-y-4">
+                  {data.quotes.map((quote, index) => (
+                    <div
+                      key={index}
+                      className="border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
+                    >
+                      <p className="italic mb-6">"{quote.text}"</p>
+                      <p className="absolute bottom-2 right-4 text-sm text-accent-foreground/60">
+                        — {quote.speakerInfo}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Right Sidebar */}
