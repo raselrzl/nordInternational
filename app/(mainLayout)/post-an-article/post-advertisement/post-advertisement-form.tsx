@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, XIcon } from "lucide-react";
+import { differenceInDays, parseISO } from "date-fns";
 import {
   Form,
   FormControl,
@@ -25,6 +26,7 @@ import { Switch } from "@/components/ui/switch";
 import { UploadDropzone } from "@/components/general/UploadThingReexported";
 import { createAnAdvertisement } from "@/app/actions";
 import Image from "next/image";
+
 
 const countries = [
   { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
@@ -111,6 +113,10 @@ export function CreateAdvertisementForm() {
       startDate: "",
       endDate: "",
       country: "SWEDEN",
+
+      dailyPrice: 0,
+      moms: 0,
+      discount: 0,
     },
   });
 
@@ -370,6 +376,71 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
+<Card>
+  <CardContent className="space-y-6 pt-6">
+    <FormField
+      control={control}
+      name="dailyPrice"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Daily Price</FormLabel>
+          <FormControl>
+            <Input
+              type="number"
+              {...field}
+              onChange={(e) => field.onChange(Number(e.target.value))}
+              placeholder="Enter daily price..."
+              className="placeholder:text-sm"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    <FormField
+      control={control}
+      name="moms"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Moms</FormLabel>
+          <FormControl>
+            <Input
+              type="number"
+              {...field}
+              onChange={(e) => field.onChange(Number(e.target.value))}
+              placeholder="Enter moms..."
+              className="placeholder:text-sm"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+    <FormField
+      control={control}
+      name="discount"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Discount</FormLabel>
+          <FormControl>
+            <Input
+              type="number"
+              {...field}
+              onChange={(e) => field.onChange(Number(e.target.value))}
+              placeholder="Enter discount..."
+              className="placeholder:text-sm"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </CardContent>
+</Card>
+
+
 
           <Card>
             <CardContent className="space-y-6 pt-6">
@@ -458,6 +529,11 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
+
+
+
+
+          
         </div>
 
         <Button

@@ -377,6 +377,9 @@ export async function createAnAdvertisement(data: {
   startDate: string;
   endDate: string;
   country:Country;
+  dailyPrice?: number;
+  moms?: number;
+  discount?: number;
 }) {
   const user = await requireUser();
   const req = await request();
@@ -401,6 +404,9 @@ export async function createAnAdvertisement(data: {
       startDate: data.startDate,
       endDate: data.endDate,
       country:data.country,
+      dailyPrice: data.dailyPrice ?? 0,
+      moms: data.moms ?? 0,
+      discount: data.discount ?? 0,
     },
   });
 
@@ -420,14 +426,14 @@ export async function promoteToUserType(userId: string, userType: UserType): Pro
 
 
 const OpinionSchema = z.object({
-  name: z.string().min(1, 'নাম লিখুন'),
-  email: z.string().email('সঠিক ইমেইল লিখুন').optional(),
+  name: z.string().min(1, 'Name'),
+  email: z.string().email('Write a correct email').optional(),
   phone: z
     .string()
-    .min(10, 'ফোন নম্বর অন্তত ১০ অঙ্কের হতে হবে')
-    .max(15, 'ফোন নম্বর সর্বোচ্চ ১৫ অঙ্কের হতে পারে')
+    .min(10, '10 digit')
+    .max(15, 'max 15')
     .optional(),
-  opinion: z.string().min(10, 'কমপক্ষে ১০ অক্ষরের অভিযোগ লিখুন'),
+  opinion: z.string().min(10, '10 words'),
 });
 
 export async function submitOpinion(formData: FormData) {

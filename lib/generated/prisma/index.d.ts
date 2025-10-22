@@ -630,8 +630,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.17.1
-   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
+   * Prisma Client JS version: 6.18.0
+   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
    */
   export type PrismaVersion = {
     client: string
@@ -644,6 +644,7 @@ export namespace Prisma {
    */
 
 
+  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -8317,10 +8318,16 @@ export namespace Prisma {
 
   export type AdvertisementAvgAggregateOutputType = {
     advertiseduration: number | null
+    dailyPrice: number | null
+    moms: number | null
+    discount: number | null
   }
 
   export type AdvertisementSumAggregateOutputType = {
     advertiseduration: number | null
+    dailyPrice: number | null
+    moms: number | null
+    discount: number | null
   }
 
   export type AdvertisementMinAggregateOutputType = {
@@ -8338,6 +8345,9 @@ export namespace Prisma {
     startDate: string | null
     supervisedPhonenumber: string | null
     advertiseduration: number | null
+    dailyPrice: number | null
+    moms: number | null
+    discount: number | null
     advertiseStatus: $Enums.advertiseStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8358,6 +8368,9 @@ export namespace Prisma {
     startDate: string | null
     supervisedPhonenumber: string | null
     advertiseduration: number | null
+    dailyPrice: number | null
+    moms: number | null
+    discount: number | null
     advertiseStatus: $Enums.advertiseStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8378,6 +8391,9 @@ export namespace Prisma {
     startDate: number
     supervisedPhonenumber: number
     advertiseduration: number
+    dailyPrice: number
+    moms: number
+    discount: number
     advertiseStatus: number
     createdAt: number
     updatedAt: number
@@ -8387,10 +8403,16 @@ export namespace Prisma {
 
   export type AdvertisementAvgAggregateInputType = {
     advertiseduration?: true
+    dailyPrice?: true
+    moms?: true
+    discount?: true
   }
 
   export type AdvertisementSumAggregateInputType = {
     advertiseduration?: true
+    dailyPrice?: true
+    moms?: true
+    discount?: true
   }
 
   export type AdvertisementMinAggregateInputType = {
@@ -8408,6 +8430,9 @@ export namespace Prisma {
     startDate?: true
     supervisedPhonenumber?: true
     advertiseduration?: true
+    dailyPrice?: true
+    moms?: true
+    discount?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8428,6 +8453,9 @@ export namespace Prisma {
     startDate?: true
     supervisedPhonenumber?: true
     advertiseduration?: true
+    dailyPrice?: true
+    moms?: true
+    discount?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8448,6 +8476,9 @@ export namespace Prisma {
     startDate?: true
     supervisedPhonenumber?: true
     advertiseduration?: true
+    dailyPrice?: true
+    moms?: true
+    discount?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8555,6 +8586,9 @@ export namespace Prisma {
     startDate: string
     supervisedPhonenumber: string
     advertiseduration: number | null
+    dailyPrice: number
+    moms: number
+    discount: number
     advertiseStatus: $Enums.advertiseStatus
     createdAt: Date
     updatedAt: Date
@@ -8594,6 +8628,9 @@ export namespace Prisma {
     startDate?: boolean
     supervisedPhonenumber?: boolean
     advertiseduration?: boolean
+    dailyPrice?: boolean
+    moms?: boolean
+    discount?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8614,6 +8651,9 @@ export namespace Prisma {
     startDate?: boolean
     supervisedPhonenumber?: boolean
     advertiseduration?: boolean
+    dailyPrice?: boolean
+    moms?: boolean
+    discount?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8634,6 +8674,9 @@ export namespace Prisma {
     startDate?: boolean
     supervisedPhonenumber?: boolean
     advertiseduration?: boolean
+    dailyPrice?: boolean
+    moms?: boolean
+    discount?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8654,12 +8697,15 @@ export namespace Prisma {
     startDate?: boolean
     supervisedPhonenumber?: boolean
     advertiseduration?: boolean
+    dailyPrice?: boolean
+    moms?: boolean
+    discount?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "country" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "country" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "dailyPrice" | "moms" | "discount" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -8679,6 +8725,9 @@ export namespace Prisma {
       startDate: string
       supervisedPhonenumber: string
       advertiseduration: number | null
+      dailyPrice: number
+      moms: number
+      discount: number
       advertiseStatus: $Enums.advertiseStatus
       createdAt: Date
       updatedAt: Date
@@ -9119,6 +9168,9 @@ export namespace Prisma {
     readonly startDate: FieldRef<"Advertisement", 'String'>
     readonly supervisedPhonenumber: FieldRef<"Advertisement", 'String'>
     readonly advertiseduration: FieldRef<"Advertisement", 'Int'>
+    readonly dailyPrice: FieldRef<"Advertisement", 'Int'>
+    readonly moms: FieldRef<"Advertisement", 'Int'>
+    readonly discount: FieldRef<"Advertisement", 'Int'>
     readonly advertiseStatus: FieldRef<"Advertisement", 'advertiseStatus'>
     readonly createdAt: FieldRef<"Advertisement", 'DateTime'>
     readonly updatedAt: FieldRef<"Advertisement", 'DateTime'>
@@ -19144,6 +19196,9 @@ export namespace Prisma {
     startDate: 'startDate',
     supervisedPhonenumber: 'supervisedPhonenumber',
     advertiseduration: 'advertiseduration',
+    dailyPrice: 'dailyPrice',
+    moms: 'moms',
+    discount: 'discount',
     advertiseStatus: 'advertiseStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -19931,6 +19986,9 @@ export namespace Prisma {
     startDate?: StringFilter<"Advertisement"> | string
     supervisedPhonenumber?: StringFilter<"Advertisement"> | string
     advertiseduration?: IntNullableFilter<"Advertisement"> | number | null
+    dailyPrice?: IntFilter<"Advertisement"> | number
+    moms?: IntFilter<"Advertisement"> | number
+    discount?: IntFilter<"Advertisement"> | number
     advertiseStatus?: EnumadvertiseStatusFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -19951,6 +20009,9 @@ export namespace Prisma {
     startDate?: SortOrder
     supervisedPhonenumber?: SortOrder
     advertiseduration?: SortOrderInput | SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19974,6 +20035,9 @@ export namespace Prisma {
     startDate?: StringFilter<"Advertisement"> | string
     supervisedPhonenumber?: StringFilter<"Advertisement"> | string
     advertiseduration?: IntNullableFilter<"Advertisement"> | number | null
+    dailyPrice?: IntFilter<"Advertisement"> | number
+    moms?: IntFilter<"Advertisement"> | number
+    discount?: IntFilter<"Advertisement"> | number
     advertiseStatus?: EnumadvertiseStatusFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -19994,6 +20058,9 @@ export namespace Prisma {
     startDate?: SortOrder
     supervisedPhonenumber?: SortOrder
     advertiseduration?: SortOrderInput | SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20022,6 +20089,9 @@ export namespace Prisma {
     startDate?: StringWithAggregatesFilter<"Advertisement"> | string
     supervisedPhonenumber?: StringWithAggregatesFilter<"Advertisement"> | string
     advertiseduration?: IntNullableWithAggregatesFilter<"Advertisement"> | number | null
+    dailyPrice?: IntWithAggregatesFilter<"Advertisement"> | number
+    moms?: IntWithAggregatesFilter<"Advertisement"> | number
+    discount?: IntWithAggregatesFilter<"Advertisement"> | number
     advertiseStatus?: EnumadvertiseStatusWithAggregatesFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
@@ -21091,6 +21161,9 @@ export namespace Prisma {
     startDate: string
     supervisedPhonenumber: string
     advertiseduration?: number | null
+    dailyPrice: number
+    moms: number
+    discount: number
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21111,6 +21184,9 @@ export namespace Prisma {
     startDate: string
     supervisedPhonenumber: string
     advertiseduration?: number | null
+    dailyPrice: number
+    moms: number
+    discount: number
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21131,6 +21207,9 @@ export namespace Prisma {
     startDate?: StringFieldUpdateOperationsInput | string
     supervisedPhonenumber?: StringFieldUpdateOperationsInput | string
     advertiseduration?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyPrice?: IntFieldUpdateOperationsInput | number
+    moms?: IntFieldUpdateOperationsInput | number
+    discount?: IntFieldUpdateOperationsInput | number
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21151,6 +21230,9 @@ export namespace Prisma {
     startDate?: StringFieldUpdateOperationsInput | string
     supervisedPhonenumber?: StringFieldUpdateOperationsInput | string
     advertiseduration?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyPrice?: IntFieldUpdateOperationsInput | number
+    moms?: IntFieldUpdateOperationsInput | number
+    discount?: IntFieldUpdateOperationsInput | number
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21171,6 +21253,9 @@ export namespace Prisma {
     startDate: string
     supervisedPhonenumber: string
     advertiseduration?: number | null
+    dailyPrice: number
+    moms: number
+    discount: number
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21191,6 +21276,9 @@ export namespace Prisma {
     startDate?: StringFieldUpdateOperationsInput | string
     supervisedPhonenumber?: StringFieldUpdateOperationsInput | string
     advertiseduration?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyPrice?: IntFieldUpdateOperationsInput | number
+    moms?: IntFieldUpdateOperationsInput | number
+    discount?: IntFieldUpdateOperationsInput | number
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21211,6 +21299,9 @@ export namespace Prisma {
     startDate?: StringFieldUpdateOperationsInput | string
     supervisedPhonenumber?: StringFieldUpdateOperationsInput | string
     advertiseduration?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyPrice?: IntFieldUpdateOperationsInput | number
+    moms?: IntFieldUpdateOperationsInput | number
+    discount?: IntFieldUpdateOperationsInput | number
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22344,6 +22435,17 @@ export namespace Prisma {
     not?: NestedEnumCountryNullableFilter<$PrismaModel> | $Enums.Country | null
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type EnumadvertiseStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
     in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
@@ -22366,6 +22468,9 @@ export namespace Prisma {
     startDate?: SortOrder
     supervisedPhonenumber?: SortOrder
     advertiseduration?: SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22373,6 +22478,9 @@ export namespace Prisma {
 
   export type AdvertisementAvgOrderByAggregateInput = {
     advertiseduration?: SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
   }
 
   export type AdvertisementMaxOrderByAggregateInput = {
@@ -22390,6 +22498,9 @@ export namespace Prisma {
     startDate?: SortOrder
     supervisedPhonenumber?: SortOrder
     advertiseduration?: SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22410,6 +22521,9 @@ export namespace Prisma {
     startDate?: SortOrder
     supervisedPhonenumber?: SortOrder
     advertiseduration?: SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22417,6 +22531,9 @@ export namespace Prisma {
 
   export type AdvertisementSumOrderByAggregateInput = {
     advertiseduration?: SortOrder
+    dailyPrice?: SortOrder
+    moms?: SortOrder
+    discount?: SortOrder
   }
 
   export type EnumAdvertisedCategoryWithAggregatesFilter<$PrismaModel = never> = {
@@ -22437,6 +22554,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumCountryNullableFilter<$PrismaModel>
     _max?: NestedEnumCountryNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -22676,17 +22809,6 @@ export namespace Prisma {
     _max?: NestedEnumvedioStatusFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type RouteVisitCountOrderByAggregateInput = {
     id?: SortOrder
     fullUrl?: SortOrder
@@ -22722,22 +22844,6 @@ export namespace Prisma {
   export type RouteVisitSumOrderByAggregateInput = {
     id?: SortOrder
     hits?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type PollAnswerListRelationFilter = {
@@ -23156,6 +23262,14 @@ export namespace Prisma {
     set?: $Enums.Country | null
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type EnumadvertiseStatusFieldUpdateOperationsInput = {
     set?: $Enums.advertiseStatus
   }
@@ -23190,14 +23304,6 @@ export namespace Prisma {
 
   export type EnumvedioStatusFieldUpdateOperationsInput = {
     set?: $Enums.vedioStatus
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type PollAnswerCreateNestedManyWithoutPollQuestionInput = {
@@ -23556,33 +23662,6 @@ export namespace Prisma {
     _max?: NestedEnumCountryNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel> | $Enums.advertiseStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumadvertiseStatusFilter<$PrismaModel>
-    _max?: NestedEnumadvertiseStatusFilter<$PrismaModel>
-  }
-
-  export type NestedEnumvedioStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.vedioStatus | EnumvedioStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumvedioStatusFilter<$PrismaModel> | $Enums.vedioStatus
-  }
-
-  export type NestedEnumvedioStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.vedioStatus | EnumvedioStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumvedioStatusWithAggregatesFilter<$PrismaModel> | $Enums.vedioStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumvedioStatusFilter<$PrismaModel>
-    _max?: NestedEnumvedioStatusFilter<$PrismaModel>
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -23608,6 +23687,33 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.advertiseStatus | EnumadvertiseStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.advertiseStatus[] | ListEnumadvertiseStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumadvertiseStatusWithAggregatesFilter<$PrismaModel> | $Enums.advertiseStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumadvertiseStatusFilter<$PrismaModel>
+    _max?: NestedEnumadvertiseStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumvedioStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.vedioStatus | EnumvedioStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumvedioStatusFilter<$PrismaModel> | $Enums.vedioStatus
+  }
+
+  export type NestedEnumvedioStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.vedioStatus | EnumvedioStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.vedioStatus[] | ListEnumvedioStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumvedioStatusWithAggregatesFilter<$PrismaModel> | $Enums.vedioStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumvedioStatusFilter<$PrismaModel>
+    _max?: NestedEnumvedioStatusFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {
