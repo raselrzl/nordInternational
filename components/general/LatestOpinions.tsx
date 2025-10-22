@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/app/utils/db";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Newspaper } from "lucide-react";
 
 async function getLatestOpinions() {
   const articles = await prisma.newsArticle.findMany({
@@ -35,7 +35,7 @@ export default async function LatestOpinions() {
     <section className="md:rounded-xs bg-amber-200 dark:bg-gray-600 py-8 md:py-2">
       {/* Section Header */}
       <div className="flex items-center justify-between ml-2 mb-2">
-        <h1 className="font-bold py-1">OPINIONS</h1>
+        <h1 className="font-bold py-1 flex"> <Newspaper /> OPINIONS</h1>
         <ChevronRight className="block md:hidden" />
       </div>
 
