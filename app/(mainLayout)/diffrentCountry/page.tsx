@@ -8,8 +8,11 @@ import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
 import { EmptyState } from "@/components/general/EmptyState";
 import { RecentNews } from "@/components/general/homepageArticleList";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
+import { PaginationComponent } from "@/components/general/PaginationComponent";
 import Image from "next/image";
 import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { formatRelativeTime } from "@/app/utils/formatRelativeTime";
 
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
@@ -56,7 +59,7 @@ async function getCountryNews(country: string) {
       newsLocation: dbCountry as any,
     },
     orderBy: { createdAt: "desc" },
-    take: 9,
+    take: 7,
   });
 
   const lastFeaturedArticle = await prisma.newsArticle.findFirst({
@@ -71,15 +74,50 @@ async function getCountryNews(country: string) {
   return { allArticles, lastFeaturedArticle };
 }
 
+// ✅ Fetch paginated list for the “More from Country” section
+// Fetch paginated list starting after the first 7 articles
+async function getPaginatedCountryArticles(
+  country: string,
+  page: number = 1,
+  pageSize: number = 10
+) {
+  const skip = 7 + (page - 1) * pageSize; // skip first 7
+  const [data, totalCount] = await Promise.all([
+    prisma.newsArticle.findMany({
+      where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
+      orderBy: { createdAt: "desc" },
+      take: pageSize,
+      skip: skip,
+    }),
+    prisma.newsArticle.count({
+      where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
+    }),
+  ]);
+
+  return {
+    articles: data,
+    totalPages: Math.ceil((totalCount - 7) / pageSize),
+    totalCount, // ✅ return total count
+  };
+}
+
+
+
 export default async function CountryNews({
   searchParams,
 }: {
-  searchParams: Promise<{ country?: string }>;
+  searchParams: Promise<{ country?: string; page?: string }>;
 }) {
   const params = await searchParams;
   const country = params?.country || "Sweden";
+  const currentPage = Number(params?.page) || 1;
 
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
+  const { articles, totalPages, totalCount } = await getPaginatedCountryArticles(
+  country,
+  currentPage
+);
+
 
   const activeCountry = euCountries.find(
     (c) => c.name.toLowerCase() === country.toLowerCase()
@@ -90,6 +128,7 @@ export default async function CountryNews({
 
   return (
     <>
+      {/* ✅ Existing layout (unchanged) */}
       <div className="grid grid-cols-5 mt-4 md:mt-8">
         <div className="col-span-5 md:col-span-1 pr-1">
           <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
@@ -215,7 +254,57 @@ export default async function CountryNews({
               href="/"
             />
           )}
+
           <SuperTwo country={country} />
+
+          {/* ✅ NEW SECTION: More from Country with pagination */}
+          <div className="mt-10 border-t pt-6">
+            <h2 className="font-extrabold text-xl mb-1 pl-2">
+    More from {activeCountry.name} ({totalCount - 7} articles)
+  </h2>
+
+            {articles.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+                  {articles.map((article) => (
+                    <Link href={`/newsDetails/${article.id}`} key={article.id}>
+                      <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary relative grid grid-cols-3 border-0 px-2 py-2">
+                        <div className="col-span-1">
+                          <Image
+                            src={article.newsPicture}
+                            alt={article.newsPictureHeading}
+                            width={56}
+                            height={60}
+                            className="h-[60px] w-full object-fill rounded-xl"
+                          />
+                        </div>
+
+                        <div className="col-span-2">
+                          <h1 className="text-lg md:text-xl font-bold">
+                            {article.newsHeading}
+                          </h1>
+                          <p className="text-sm text-muted-foreground text-right font-bold italic pr-2">
+                            {formatRelativeTime(article.createdAt)}
+                          </p>
+                        </div>
+                      </Card>
+                    </Link>
+                  ))}
+                </div>
+                <PaginationComponent
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                />
+              </>
+            ) : (
+              <EmptyState
+                title="No more news yet."
+                description="Please check again later."
+                buttonText="Homepage"
+                href="/"
+              />
+            )}
+          </div>
         </div>
 
         <div className="col-span-5 md:col-span-1 px-2 pt-3 gap-4">
