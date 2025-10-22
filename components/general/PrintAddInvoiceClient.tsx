@@ -51,7 +51,10 @@ export default function PrintInvoiceClient({
     1,
     Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
   );
+
   const subtotal = dailyRate * durationInDays;
+  const moms = subtotal * 0.25; // 25% VAT (MOMS)
+  const totalWithMoms = subtotal + moms;
 
   const paymentDueDate = useMemo(() => {
     const d = new Date(start);
@@ -72,7 +75,7 @@ export default function PrintInvoiceClient({
 
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // ----- PDF capture -----
+  // ----- PDF Capture -----
   const handleDownload = async () => {
     if (!contentRef.current) return;
     setIsLoading(true);
@@ -90,22 +93,22 @@ export default function PrintInvoiceClient({
       format: "a4",
     });
 
-    const pageWidth = pdf.internal.pageSize.getWidth(); // ~595pt
-    const pageHeight = pdf.internal.pageSize.getHeight(); // ~842pt
+    const pageWidth = pdf.internal.pageSize.getWidth(); // 595.28 pt
+    const pageHeight = pdf.internal.pageSize.getHeight(); // 841.89 pt
+    const margin = 36; // 0.5 inch = 36 pt
+    const printableWidth = pageWidth - margin * 2;
+    const printableHeight = pageHeight - margin * 2;
 
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
+    const imgWidth = printableWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    // Fit whole capture on ONE page
-    const ratio = Math.min(pageWidth / canvasWidth, pageHeight / canvasHeight);
-    const imgWidth = canvasWidth * ratio;
-    const imgHeight = canvasHeight * ratio;
+    const finalHeight = Math.min(imgHeight, printableHeight);
+    const finalWidth = (canvas.width * finalHeight) / canvas.height;
 
-    const x = (pageWidth - imgWidth) / 2;
-    const y = (pageHeight - imgHeight) / 2;
+    const x = (pageWidth - finalWidth) / 2;
+    const y = (pageHeight - finalHeight) / 2;
 
-    // Render captured image (no extra PDF border — single visible box comes from CSS)
-    pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight, undefined, "FAST");
+    pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight, undefined, "FAST");
     pdf.save(filename);
 
     setIsLoading(false);
@@ -131,27 +134,24 @@ export default function PrintInvoiceClient({
         </Button>
       </div>
 
-      {/* Off-screen wrapper */}
+      {/* Hidden printable area */}
       <div style={{ position: "absolute", top: "-7777px", left: "-7777px" }}>
-        {/* Capture area (A4 width). All content stays INSIDE this sharp box */}
         <div
           ref={contentRef}
           style={{
-            position: "relative", // for watermark
-            width: "780px", // ≈ A4 width @ 96dpi (8.27in * 96)
+            position: "relative",
+            width: "720px", // fits A4 printable width within 0.5" margins
             backgroundColor: "#ffffff",
             color: "#000000",
-            padding: "10px 24px 10px 24px",
-            // tight L/R padding; everything stays inside
-            fontSize: "11.2pt",
-            lineHeight: 1.22, // reduced line spacing to help fit
+            padding: "20px 36px",
+            fontSize: "11pt",
+            lineHeight: 1.3,
             fontFamily: "'Inter','Helvetica','Arial',sans-serif",
-            boxSizing: "border-box", // single, sharp, visible border (all sides)
-            borderRadius: 0, // NOT rounded
-            overflow: "hidden", // prevents any overflow beyond the box
+            boxSizing: "border-box",
+            overflow: "hidden",
           }}
         >
-          {/* Watermark (centered, inside the box) */}
+          {/* Watermark */}
           <img
             src={logoUrl}
             alt="Watermark"
@@ -160,18 +160,17 @@ export default function PrintInvoiceClient({
             style={{
               position: "absolute",
               left: "50%",
-              top: "68%",
+              top: "60%",
               transform: "translate(-50%, -50%) rotate(-18deg)",
               width: "48%",
               opacity: 0.06,
               pointerEvents: "none",
-              userSelect: "none",
               zIndex: 0,
               filter: "grayscale(100%)",
             }}
           />
 
-          {/* Foreground content */}
+          {/* Foreground */}
           <div style={{ position: "relative", zIndex: 1 }}>
             {/* Header */}
             <div
@@ -179,47 +178,38 @@ export default function PrintInvoiceClient({
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginBottom: "10px",
                 borderBottom: "1px solid #111",
+                marginBottom: "10px",
               }}
             >
-              <div
-                style={{ display: "flex", gap: "10px", alignItems: "center" }}
-              >
+              <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
                 <img
                   src={logoUrl}
                   alt="Logo"
-                  width={180}
+                  width={150}
                   height={60}
-                  style={{ objectFit: "cover" }}
                   crossOrigin="anonymous"
                 />
-                <p style={{ fontSize: "15pt", color: "#555", marginLeft: 4 }}>
-                  Invoice
-                </p>
+                <p style={{ fontSize: "15pt", color: "#555" }}>Invoice</p>
               </div>
-              <div
-                style={{ textAlign: "right", fontSize: "10pt", color: "#333" }}
-              >
-                <p>Invoice number: INV-{ad.id.slice(0, 6).toUpperCase()}</p>
+              <div style={{ textAlign: "right", fontSize: "10pt", color: "#333" }}>
+                <p>Invoice #: INV-{ad.id.slice(0, 6).toUpperCase()}</p>
                 <p>Date: {formattedStartDate}</p>
               </div>
             </div>
 
-            {/* Company & Ad Info */}
+            {/* Company Info */}
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                gap: "10px",
                 marginBottom: "8px",
                 borderBottom: "1px solid #111",
+                paddingBottom: "6px",
               }}
             >
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h2 style={{ fontWeight: 600, marginBottom: "4px" }}>
-                  Company Information
-                </h2>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ fontWeight: 600 }}>Company Information</h3>
                 <p>
                   <strong>Name:</strong> {ad.companyName}
                 </p>
@@ -239,19 +229,16 @@ export default function PrintInvoiceClient({
                 )}
               </div>
 
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h2 style={{ fontWeight: 600, marginBottom: "4px" }}>
-                  Advertisement Information
-                </h2>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ fontWeight: 600 }}>Advertisement Info</h3>
                 <p>
-                  <strong>Type:</strong> {ad.advertisedCategory}
+                  <strong>Category:</strong> {ad.advertisedCategory}
                 </p>
                 <p>
-                  <strong>Duration:</strong> {formattedStartDate} -{" "}
-                  {formattedEndDate}
+                  <strong>Duration:</strong> {formattedStartDate} - {formattedEndDate}
                 </p>
                 <p>
-                  <strong>Total Days:</strong> {durationInDays} days
+                  <strong>Days:</strong> {durationInDays}
                 </p>
                 <p>
                   <strong>Status:</strong> {ad.advertiseStatus}
@@ -259,171 +246,77 @@ export default function PrintInvoiceClient({
               </div>
             </div>
 
-            {/* Description */}
-            {ad.additionalInfo && (
-              <div style={{ marginBottom: "8px" }}>
-                <h2 style={{ fontWeight: 600, marginBottom: "4px" }}>
-                  Details
-                </h2>
-                <p style={{ textAlign: "justify" }}>{ad.additionalInfo}</p>
-              </div>
-            )}
-
-            {/* Ad Banner — centered perfectly inside the box */}
-            {bannerUrl && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  margin: "6px 0 8px",
-                }}
-              >
+            {/* Banner */}
+         {/*    {ad.advertiseBanner && (
+              <div style={{ textAlign: "center", marginBottom: "10px" }}>
                 <img
-                  src={bannerUrl}
+                  src={ad.advertiseBanner}
                   alt="Banner"
                   width={300}
-                  height={200}
-                  style={{
-                    display: "block",
-                    objectFit: "cover",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: 0, // keep everything squared
-                  }}
+                  height={180}
                   crossOrigin="anonymous"
+                  style={{
+                    border: "1px solid #ddd",
+                    objectFit: "cover",
+                  }}
                 />
               </div>
-            )}
+            )} */}
 
-            {/* Calculation Table (compact, inside the box) */}
-            <div style={{ marginTop: 4, marginBottom: 8 }}>
-              <h2 style={{ fontWeight: 600, marginBottom: 4 }}>Calculation</h2>
-              <table
-                style={{
-                  width: "100%",
-                  borderCollapse: "collapse",
-                  fontSize: "11pt",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        background: "#f7f7f7",
-                        fontWeight: 600,
-                      }}
-                    >
-                      Details
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "right",
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        background: "#f7f7f7",
-                        fontWeight: 600,
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Rate (Daily)
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "right",
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        background: "#f7f7f7",
-                        fontWeight: 600,
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Day
-                    </th>
-                    <th
-                      style={{
-                        textAlign: "right",
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        background: "#f7f7f7",
-                        fontWeight: 600,
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      Total (SEK)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td
-                      style={{
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                      }}
-                    >
-                      Advertisement ({formattedStartDate} - {formattedEndDate})
-                    </td>
-                    <td
-                      style={{
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        textAlign: "right",
-                      }}
-                    >
-                      {dailyRate.toLocaleString("en-US")}
-                    </td>
-                    <td
-                      style={{
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        textAlign: "right",
-                      }}
-                    >
-                      {durationInDays}
-                    </td>
-                    <td
-                      style={{
-                        padding: "10px 12px",
-                        border: "1px solid #e5e7eb",
-                        textAlign: "right",
-                      }}
-                    >
-                      {subtotal.toLocaleString("en-US")}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td
-                      colSpan={3}
-                      style={{
-                        padding: "12px 12px",
-                        border: "1px solid #e5e7eb",
-                        textAlign: "right",
-                        fontWeight: 700,
-                        background: "#fafafa",
-                      }}
-                    >
-                      Total
-                    </td>
-                    <td
-                      style={{
-                        padding: "10px 10px",
-                        border: "1px solid #e5e7eb",
-                        textAlign: "right",
-                        fontWeight: 700,
-                        background: "#fafafa",
-                      }}
-                    >
-                      {subtotal.toLocaleString("en-US")}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            {/* Table */}
+            {/* <h3 style={{ fontWeight: 600, marginBottom: 4 }}>Calculation</h3> */}
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                marginBottom: "8px",
+                fontSize: "10.5pt",
+              }}
+            >
+              <thead>
+                <tr style={{ backgroundColor: "#f5f5f5" }}>
+                  <th style={{ textAlign: "left", border: "1px solid #ddd", padding: "8px" }}>Details</th>
+                  <th style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>Rate</th>
+                  <th style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>Days</th>
+                  <th style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    Advertisement ({formattedStartDate} - {formattedEndDate})
+                  </td>
+                  <td style={{ border: "1px solid #ddd", textAlign: "right", padding: "8px" }}>
+                    {dailyRate.toLocaleString("en-US")}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", textAlign: "right", padding: "8px" }}>
+                    {durationInDays}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", textAlign: "right", padding: "8px" }}>
+                    {subtotal.toLocaleString("en-US")}
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={3} style={{ textAlign: "right", fontWeight: 600, border: "1px solid #ddd", padding: "8px" }}>
+                    MOMS (25%)
+                  </td>
+                  <td style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>
+                    {moms.toLocaleString("en-US")}
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "#f7f7f7" }}>
+                  <td colSpan={3} style={{ textAlign: "right", fontWeight: 700, border: "1px solid #ddd", padding: "8px" }}>
+                    Total (SEK)
+                  </td>
+                  <td style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px", fontWeight: 700 }}>
+                    {totalWithMoms.toLocaleString("en-US")}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
             {/* Bank Info */}
-            <div style={{ marginTop: "6px", fontSize: "11pt" }}>
+            <div style={{ fontSize: "10.5pt" }}>
               <p>
                 <strong>Bank Name:</strong> Svenska Handelsbanken
               </p>
@@ -437,61 +330,39 @@ export default function PrintInvoiceClient({
                 <strong>Branch:</strong> Stockholm City
               </p>
               <p>
-                <strong>SWIFT Code:</strong> HANDSESS
+                <strong>SWIFT:</strong> HANDSESS
               </p>
+            </div>
 
-              <div
-                style={{
-                  marginTop: "6px",
-                  padding: "8px",
-                  backgroundColor: "#f8f9fa",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 0,
-                }}
-              >
-                <p style={{ fontWeight: "bold", color: "#0d47a1" }}>
-                  📌 Reference:
-                </p>
-                <p>Please use the following reference in your bank transfer:</p>
-                <p
-                  style={{
-                    fontWeight: "bold",
-                    fontSize: "14pt",
-                    marginTop: "4px",
-                  }}
-                >
-                  INV-{ad.id.slice(0, 6).toUpperCase()}
-                </p>
-              </div>
+            {/* Reference */}
+            <div
+              style={{
+                marginTop: "8px",
+                padding: "8px",
+                background: "#eef3ff",
+                border: "1px solid #cfd8ff",
+              }}
+            >
+              <strong>📌 Reference:</strong> INV-{ad.id.slice(0, 6).toUpperCase()}
             </div>
 
             {/* Due Date */}
             <div
               style={{
                 marginTop: "8px",
-                backgroundColor: "#fffbe6",
                 padding: "8px",
+                background: "#fff9e6",
                 border: "1px solid #ffecb3",
-                fontSize: "11pt",
                 color: "#aa6c39",
-                borderRadius: 0,
               }}
             >
-              <p style={{ fontWeight: "bold" }}>🕒 Payment Due Date:</p>
-              <p>Please make the payment by {formattedDueDate}.</p>
+              <strong>🕒 Payment Due:</strong> {formattedDueDate}
             </div>
 
-            {/* Footer Note */}
-            <div style={{ marginTop: "8px", fontSize: "10pt", color: "#777" }}>
-              <p>
-                This invoice is an automatically generated digital document and
-                does not require a signature.
-              </p>
-              <p>
-                The advertisement will be published on Nord International
-                according to the scheduled time.
-              </p>
-            </div>
+            {/* Footer */}
+            <p style={{ marginTop: "8px", fontSize: "10pt", color: "#666" }}>
+              This is an automatically generated invoice and does not require a signature.
+            </p>
           </div>
         </div>
       </div>

@@ -50,7 +50,11 @@ export default async function AdvertiseDetailsPage({
     1,
     Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
   );
-  const totalPrice = dailyRate * durationInDays;
+
+  const subtotal = dailyRate * durationInDays;
+  const momsRate = 0.25; // 25% VAT
+  const momsAmount = subtotal * momsRate;
+  const totalWithMoms = subtotal + momsAmount;
 
   const paymentDueDate = new Date(start);
   paymentDueDate.setDate(start.getDate() + 15);
@@ -137,14 +141,28 @@ export default async function AdvertiseDetailsPage({
             </thead>
             <tbody>
               <tr>
-                <td className="border px-3 py-2">Advertisement ({formattedStartDate} - {formattedEndDate})</td>
-                <td className="border px-3 py-2 text-right">{dailyRate.toLocaleString("en-US")}</td>
+                <td className="border px-3 py-2">
+                  Advertisement ({formattedStartDate} - {formattedEndDate})
+                </td>
+                <td className="border px-3 py-2 text-right">
+                  {dailyRate.toLocaleString("en-US")}
+                </td>
                 <td className="border px-3 py-2 text-right">{durationInDays}</td>
-                <td className="border px-3 py-2 text-right">{totalPrice.toLocaleString("en-US")}</td>
+                <td className="border px-3 py-2 text-right">
+                  {subtotal.toLocaleString("en-US")}
+                </td>
               </tr>
-              <tr className="bg-gray-50 font-bold">
-                <td className="border px-3 py-2 text-right" colSpan={3}>Total</td>
-                <td className="border px-3 py-2 text-right">{totalPrice.toLocaleString("en-US")}</td>
+              <tr className="bg-gray-50">
+                <td className="border px-3 py-2 text-right" colSpan={3}>Subtotal</td>
+                <td className="border px-3 py-2 text-right">{subtotal.toLocaleString("en-US")}</td>
+              </tr>
+              <tr className="bg-gray-50">
+                <td className="border px-3 py-2 text-right" colSpan={3}>Moms (25%)</td>
+                <td className="border px-3 py-2 text-right">{momsAmount.toLocaleString("en-US")}</td>
+              </tr>
+              <tr className="bg-gray-100 font-bold">
+                <td className="border px-3 py-2 text-right" colSpan={3}>Total (inkl. Moms)</td>
+                <td className="border px-3 py-2 text-right">{totalWithMoms.toLocaleString("en-US")}</td>
               </tr>
             </tbody>
           </table>
@@ -169,7 +187,10 @@ export default async function AdvertiseDetailsPage({
         {/* Payment Due */}
         <div className="mt-4 bg-yellow-50 border border-yellow-200 p-3 rounded-md text-yellow-800 text-sm relative z-10">
           <p className="font-semibold">🕒 Payment Due Date:</p>
-          <p>Please make the payment by <span className="font-bold text-red-600">{formattedDueDate}</span>.</p>
+          <p>
+            Please make the payment by{" "}
+            <span className="font-bold text-red-600">{formattedDueDate}</span>.
+          </p>
         </div>
 
         {/* Footer */}
