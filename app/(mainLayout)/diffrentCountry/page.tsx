@@ -128,7 +128,6 @@ export default async function CountryNews({
 
   return (
     <>
-      {/* ✅ Existing layout (unchanged) */}
       <div className="grid grid-cols-5 mt-4 md:mt-8">
         <div className="col-span-5 md:col-span-1 pr-1">
           <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
@@ -257,7 +256,7 @@ export default async function CountryNews({
 
           <SuperTwo country={country} />
 
-          {/* ✅ NEW SECTION: More from Country with pagination */}
+          {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
             <h2 className="font-extrabold text-xl mb-1 pl-2">
     More from {activeCountry.name} ({totalCount - 7} articles)
