@@ -96,7 +96,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     <div className="min-h-screen flex">
       {/* Sidebar - hidden on small screens */}
       <Card className="hidden md:flex w-64 shadow-md p-4 flex-col sticky top-50 h-screen">
-        <h1 className="text-xl font-bold mb-6">Admin Panel</h1>
+        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary rounded-2xl p-1">
+          Admin Panel
+        </h1>
 
         <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto">
           {links.map((link) => {
@@ -133,10 +135,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
       {/* Main content */}
       <div className="flex-1 overflow-auto relative min-h-screen shadow">
-        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary">
+        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary p-1">
           Admin Panel
         </h1>
-        <div className="p-6 ">{children}</div>
+        <div className="p-2 md:px-4">{children}</div>
       </div>
     </div>
   );

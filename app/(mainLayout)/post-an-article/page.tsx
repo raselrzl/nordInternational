@@ -31,7 +31,7 @@ export default async function PostAnArticle() {
    await trackRoute("PostAnArticle");
 
   return (
-    <div className="max-w-7xl mx-auto px-2 md:px-1 mb-10">
+    <div className="max-w-7xl mx-auto">
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2">Fill in everything available in the news.</h1>
       <div className="py-10">
         <CreateNewsArticleForm

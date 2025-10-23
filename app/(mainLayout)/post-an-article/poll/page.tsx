@@ -8,7 +8,7 @@ export default async function AdminPollPage() {
     await requireArticlePoster();
 
   return (
-    <div className="p-6">
+    <div className="">
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Write a Poll Question?</h1>
       <PollForm />
     </div>
