@@ -66,7 +66,7 @@ export default function PackageForm() {
         onSubmit={handleSubmit}
         className="p-2 md:p-6 rounded-xs border-2 border-green-500 shadow-md mb-8 gap-2 md:gap-4"
       >
-        <div className="grid grid-cols-2 gap-2 w-full">
+        <div className="grid grid-cols-2 gap-2 w-full text-sm">
           <label className="block mb-2 font-medium">
             Select Package
             <select
@@ -105,16 +105,16 @@ export default function PackageForm() {
 
       {/* All Packages Display */}
       <h3 className="text-xl font-semibold mb-4">All Packages</h3>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
         {advertisementPackages.map((pkg) => (
           <div
             key={pkg.id}
-            className={`border rounded-xs p-4 shadow transition-shadow bg-accent-foreground/5 ${
+            className={`border rounded-xs p-2 shadow transition-shadow bg-accent-foreground/5 ${
               pkg.id === selectedPackageId ? "border-green-500 shadow-lg" : ""
             }`}
           >
-            <h4 className="font-bold text-lg mb-1">{pkg.name}</h4>
-            <p className="text-sm mb-2">{pkg.page}</p>
+            <h4 className="font-bold text-md">{pkg.name}</h4>
+            <p className="text-sm">{pkg.page}</p>
             <p className="font-medium">
               Price: <span className="text-primary">SEK{dbPrices[pkg.id] ?? 0}</span>
             </p>
