@@ -79,7 +79,7 @@ const advertisementPackages = [
     id: "ENTERPRISE_1",
     name: "Enterprise 1",
     page: "Hm-Pg. Popup",
-    dailyPrice: 22, 
+    dailyPrice: 22,
   },
 
   {
@@ -222,89 +222,221 @@ export function CreateAdvertisementForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardContent className="space-y-6 pt-6">
+              <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
+                <FormField
+                  control={control}
+                  name="isFeatured"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Do you want to display this advertisement on the front
+                        page?
+                      </FormLabel>
+
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="companyName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Advertisement Company Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter company name..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="companyaddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company Address</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter company address..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="supervisedName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Supervisor's Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter observer's name..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="supervisedPhonenumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Supervisor's Phone Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter phone number..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
               <FormField
                 control={control}
-                name="isFeatured"
+                name="advertiseBanner"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      Do you want to display this advertisement on the front
-                      page?
+                      Upload a banner that will be displayed as your
+                      advertisement
                     </FormLabel>
 
                     <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      {field.value ? (
+                        <div className="relative w-fit">
+                          <img
+                            src={field.value}
+                            alt="Banner"
+                            className="w-32 h-32 object-cover rounded"
+                          />
+                          <Button
+                            type="button"
+                            variant="destructive"
+                            size="icon"
+                            className="absolute -top-2 -right-2"
+                            onClick={() => field.onChange("")}
+                          >
+                            <XIcon className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      ) : (
+                        <UploadDropzone
+                          endpoint="imageUploader"
+                          className="border-primary ut-button:bg-primary"
+                          onClientUploadComplete={(res) =>
+                            field.onChange(res[0].url)
+                          }
+                          onUploadError={async (err) => {
+                            toast.error("Upload failed: " + err.message);
+                          }}
+                        />
+                      )}
                     </FormControl>
                   </FormItem>
                 )}
               />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  control={control}
+                  name="websiteLink"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Do you want the image to redirect to a specific link
+                        when clicked?
+                      </FormLabel>
+
+                      <FormControl>
+                        <Input
+                          placeholder="nordinternational.com"
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={control}
+                  name="additionalInfo"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Short Description</FormLabel>
+
+                      <FormControl>
+                        <Input
+                          placeholder="Short Description..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="space-y-6">
+              {" "}
               <FormField
-                control={control}
-                name="companyName"
+                control={form.control}
+                name="advertisedCategory"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Advertisement Company Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter company name..."
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
+                    <FormLabel>Select Advertisement Package</FormLabel>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
+                      {advertisementPackages.map((pkg) => (
+                        <Button
+                          className="flex flex-col text-xs h-20 cursor-pointer"
+                          key={pkg.id}
+                          type="button"
+                          variant={
+                            field.value === pkg.id ? "default" : "outline"
+                          }
+                          onClick={() => {
+                            field.onChange(pkg.id);
+                            form.setValue("dailyPrice", pkg.dailyPrice); // 💥 auto-update dailyPrice
+                          }}
+                        >
+                          <div>
+                            <span>{pkg.name}</span>
+                            <span className="text-primary p-1 ml-2 rounded bg-gray-800">
+                              SEK {pkg.dailyPrice}
+                            </span>
+                          </div>
+                          <span>{pkg.page}</span>
+                        </Button>
+                      ))}
+                    </div>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
-                control={control}
-                name="companyaddress"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Company Address</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter company address..."
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="supervisedName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Observer's Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter observer's name..."
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="supervisedPhonenumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Supervisor's Phone Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter phone number..."
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="space-y-6 pt-6">
+              {" "}
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
@@ -337,7 +469,7 @@ export function CreateAdvertisementForm() {
                   />
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-1">
                   <FormField
                     control={control}
                     name="dailyPrice"
@@ -346,6 +478,8 @@ export function CreateAdvertisementForm() {
                         <FormLabel>Daily Price</FormLabel>
                         <FormControl>
                           <Input
+                            className="cursor-not-allowed"
+                            readOnly
                             type="number"
                             min={0}
                             {...field}
@@ -434,42 +568,8 @@ export function CreateAdvertisementForm() {
               </div>
             </CardContent>
           </Card>
-
           <Card>
             <CardContent className="space-y-6">
-              <FormField
-                control={form.control}
-                name="advertisedCategory"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Select Advertisement Package</FormLabel>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-                      {advertisementPackages.map((pkg) => (
-                        <Button
-                          className="flex flex-col text-xs h-20 cursor-pointer"
-                          key={pkg.id}
-                          type="button"
-                          variant={
-                            field.value === pkg.id ? "default" : "outline"
-                          }
-                          onClick={() => field.onChange(pkg.id)}
-                        >
-                          
-                          <div>
-                            <span>{pkg.name}</span>
-                            <span className="text-primary p-1 ml-2 rounded bg-gray-800">
-                              SEK{pkg.dailyPrice}
-                            </span>
-                          </div>
-                          <span>{pkg.page}</span>
-                        </Button>
-                      ))}
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <FormField
                 control={form.control}
                 name="country"
@@ -509,89 +609,6 @@ export function CreateAdvertisementForm() {
             <CardContent className="space-y-6 pt-6">
               <FormField
                 control={control}
-                name="advertiseBanner"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      Upload a banner that will be displayed as your
-                      advertisement
-                    </FormLabel>
-
-                    <FormControl>
-                      {field.value ? (
-                        <div className="relative w-fit">
-                          <img
-                            src={field.value}
-                            alt="Banner"
-                            className="w-32 h-32 object-cover rounded"
-                          />
-                          <Button
-                            type="button"
-                            variant="destructive"
-                            size="icon"
-                            className="absolute -top-2 -right-2"
-                            onClick={() => field.onChange("")}
-                          >
-                            <XIcon className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      ) : (
-                        <UploadDropzone
-                          endpoint="imageUploader"
-                          className="border-primary ut-button:bg-primary"
-                          onClientUploadComplete={(res) =>
-                            field.onChange(res[0].url)
-                          }
-                          onUploadError={async (err) => {
-                            toast.error("Upload failed: " + err.message);
-                          }}
-                        />
-                      )}
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={control}
-                name="websiteLink"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      Do you want the image to redirect to a specific link when
-                      clicked?
-                    </FormLabel>
-
-                    <FormControl>
-                      <Input
-                        placeholder="nordinternational.com"
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={control}
-                name="additionalInfo"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Short Description</FormLabel>
-
-                    <FormControl>
-                      <Input
-                        placeholder="Short Description..."
-                        {...field}
-                        className="placeholder:text-sm"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
                 name="advertiseStatus"
                 render={({ field }) => (
                   <FormItem>
@@ -628,7 +645,7 @@ export function CreateAdvertisementForm() {
               Publishing...
             </>
           ) : (
-            "Publish ad."
+            "Publish ads."
           )}
         </Button>
       </form>
