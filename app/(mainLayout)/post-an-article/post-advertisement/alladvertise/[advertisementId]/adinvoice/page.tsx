@@ -93,7 +93,7 @@ export default async function AdvertiseDetailsPage({
             <span className="text-gray-600 font-semibold text-lg">Invoice</span>
           </div>
           <div className="text-right text-sm text-gray-600">
-            <p>Invoice number: {ad.id.slice(0, 6).toUpperCase()}</p>
+            <p>Invoice number: {ad.id.slice(-8).toUpperCase()}</p>
             <p>Date: {formattedStartDate}</p>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default async function AdvertiseDetailsPage({
           <div className="mt-3 p-3 border bg-gray-100 rounded-md">
             <p className="font-semibold text-blue-700">📌 Bank Transfer Reference</p>
             <p>Please use the following reference in your transfer:</p>
-            <p className="mt-1 font-bold text-lg">INV-{ad.id.slice(0, 6).toUpperCase()}</p>
+            <p className="mt-1 font-bold text-lg">{ad.id.slice(-8).toUpperCase()}</p>
           </div>
         </div>
 
