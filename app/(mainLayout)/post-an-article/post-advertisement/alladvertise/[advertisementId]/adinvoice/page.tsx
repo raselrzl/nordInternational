@@ -46,6 +46,8 @@ export default async function AdvertiseDetailsPage({
     day: "numeric",
   });
 
+
+  
   // Duration
   const durationInDays = Math.max(
     1,
@@ -77,7 +79,7 @@ export default async function AdvertiseDetailsPage({
 
   return (
     <>
-      <PrintInvoiceClient ad={ad as any} />
+      <PrintInvoiceClient ad={ad as any}  />
       <div className="max-w-4xl mx-auto relative bg-white border shadow-md p-6 my-10 font-sans">
         {/* Watermark */}
         <div className="absolute top-1/2 left-1/2 w-3/4 opacity-5 -translate-x-1/2 -translate-y-1/2 rotate-[-18deg] pointer-events-none">
@@ -91,7 +93,7 @@ export default async function AdvertiseDetailsPage({
             <span className="text-gray-600 font-semibold text-lg">Invoice</span>
           </div>
           <div className="text-right text-sm text-gray-600">
-            <p>Invoice number: INV-{ad.id.slice(0, 6).toUpperCase()}</p>
+            <p>Invoice number: {ad.id.slice(0, 6).toUpperCase()}</p>
             <p>Date: {formattedStartDate}</p>
           </div>
         </div>
