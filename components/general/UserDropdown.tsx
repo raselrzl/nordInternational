@@ -168,7 +168,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
 
               {/* Dashboard Link */}
               <DropdownMenuItem asChild>
-                <Link href="/routeTrack">
+                <Link href="/post-an-article/routeTrack">
                   <Table size={16} strokeWidth={2} className="opacity-60" />
                   <span>Dashboard</span>
                 </Link>
