@@ -95,7 +95,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/my-article">
+                <Link href="/post-an-article/my-article">
                   <Newspaper size={16} strokeWidth={2} className="opacity-60" />
                   <span>List of My Published Articles</span>
                 </Link>

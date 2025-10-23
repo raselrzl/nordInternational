@@ -5,6 +5,10 @@ import Link from "next/link";
 import NavMenu from "@/components/general/NavMenu";
 import { Toaster } from "sonner";
 import NewsTicker from "@/components/general/NewsTicker";
+import Poll from "@/components/LivePoll/Poll";
+import Footer from "@/components/general/Footer";
+import VisitorTracker from "@/components/general/VisitorTracker";
+import ScrollToTopButton from "@/components/general/ScrollToTopButton";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -27,7 +31,10 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <NavMenu />
       </div>
       {children}
-
+  <Poll />
+          <Footer />
+          <VisitorTracker />
+          <ScrollToTopButton />
       <Toaster closeButton richColors />
     </div>
   );

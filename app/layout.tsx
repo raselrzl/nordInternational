@@ -65,10 +65,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="max-w-7xl mx-auto">{children}</div>
-          <Poll />
-          <Footer />
-          <VisitorTracker />
-          <ScrollToTopButton />
+        
         </ThemeProvider>
       </body>
     </html>
