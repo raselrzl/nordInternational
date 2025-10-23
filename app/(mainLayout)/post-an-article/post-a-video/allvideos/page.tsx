@@ -110,7 +110,7 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
                           href={item.videoLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 underline"
+                          className="text-green-600 underline"
                         >
                           View Video
                         </a>

@@ -115,7 +115,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
-                <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-blue-600" />
+                <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-green-600" />
               </a>
               <a
                 href="https://www.instagram.com"
