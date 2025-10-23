@@ -59,8 +59,8 @@ export default function PackageForm() {
 
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6 text-center">Manage Advertisement Packages</h2>
-
+   <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage Advertisement Packages</h1>
+     
       {/* Form */}
       <form
         onSubmit={handleSubmit}

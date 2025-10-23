@@ -71,14 +71,9 @@ export default async function AllNewsArticleList() {
 
   return (
     <>
+     <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All Articles</h1>
       {articles.length > 0 ? (
         <Card>
-          <CardHeader>
-            <CardTitle>All News Articles</CardTitle>
-            <CardDescription>
-              View all news articles, regardless of status or category.
-            </CardDescription>
-          </CardHeader>
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

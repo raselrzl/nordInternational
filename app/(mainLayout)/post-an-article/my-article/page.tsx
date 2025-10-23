@@ -53,14 +53,9 @@ export default async function MyArticle() {
 
   return (
     <>
+    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">My Published All News Articles?</h1>
       {data.length > 0 ? (
         <Card>
-          <CardHeader>
-            <CardTitle>All News Articles</CardTitle>
-            <CardDescription>
-              View all news articles, regardless of status or category.
-            </CardDescription>
-          </CardHeader>
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

@@ -74,14 +74,9 @@ export default async function AllUsersTable() {
 
   return (
     <>
+    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All USERS</h1>
       {users.length > 0 ? (
         <Card>
-          <CardHeader>
-            <CardTitle>All Users</CardTitle>
-            <CardDescription>
-              View all registered users and their roles.
-            </CardDescription>
-          </CardHeader>
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

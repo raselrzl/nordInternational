@@ -36,7 +36,7 @@ const Dashboard = async () => {
 
   return (
     <>
-    <UserLinks />
+    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Statistics</h1>
     <div className="flex justify-center flex-col md:flex-row p-4 shadow-lg">
       
       <div className="w-full max-w-[600px] rounded-lg p-6">

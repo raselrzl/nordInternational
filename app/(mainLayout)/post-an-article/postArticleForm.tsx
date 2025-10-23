@@ -159,13 +159,8 @@ export function CreateNewsArticleForm({
             </CardContent>
           </Card>
           <Card>
-            <CardHeader>
-              <CardTitle>
-                Fill in everything that is in your news here.
-              </CardTitle>
-            </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid  grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid  grid-cols-1 gap-6">
                 <FormField
                   control={form.control}
                   name="newsResource"
@@ -244,31 +239,6 @@ export function CreateNewsArticleForm({
                           onCheckedChange={field.onChange}
                         />
                       </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="newsArticleStatus"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>News Status</FormLabel>
-
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select News Status" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="DRAFT">DRAFT</SelectItem>
-                          <SelectItem value="ACTIVE">ACTIVE</SelectItem>
-                        </SelectContent>
-                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -503,6 +473,7 @@ export function CreateNewsArticleForm({
               </Button>
             </CardContent>
           </Card>
+       
           <div className="pointer-events-none cursor-not-allowed ">
             <Card className="bg-red-700 border-2 border-red-700">
               <CardHeader>
@@ -668,6 +639,33 @@ export function CreateNewsArticleForm({
               </CardContent>
             </Card>
           </div>
+             <Card className="p-10">
+            <FormField
+              control={form.control}
+              name="newsArticleStatus"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>News Status</FormLabel>
+
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select News Status" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="DRAFT">DRAFT</SelectItem>
+                      <SelectItem value="ACTIVE">ACTIVE</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </Card>
         </div>
 
         <Button

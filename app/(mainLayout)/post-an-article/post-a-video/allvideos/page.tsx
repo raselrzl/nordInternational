@@ -60,14 +60,10 @@ export default async function AllVideos() {
 
   return (
     <>
+     <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All videos</h1>
+     
       {vedio.length > 0 ? (
         <Card>
-          <CardHeader>
-            <CardTitle>All Vedios</CardTitle>
-            <CardDescription>
-              View all active and inactive Vedios.
-            </CardDescription>
-          </CardHeader>
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

@@ -56,16 +56,11 @@ export function PostVideoForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
-            <CardHeader>
-              <CardTitle>
-                Fill out everything related to the video here.
-              </CardTitle>
-            </CardHeader>
 
-            <CardContent className="space-y-6 pt-6">
+            <CardContent className="space-y-6 pt-4">
               <FormField
                 control={control}
                 name="videoAbout"

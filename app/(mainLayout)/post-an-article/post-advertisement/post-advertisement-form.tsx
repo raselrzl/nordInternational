@@ -170,10 +170,7 @@ export function CreateAdvertisementForm() {
 
   return (
     <Form {...form}>
-      <h1 className="text-lg my-2 font-bold">
-        Fill in all the details related to the advertisement here.
-      </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+     <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardContent className="space-y-6 pt-6">
@@ -317,6 +314,7 @@ export function CreateAdvertisementForm() {
                         Do you want the image to redirect to a specific link
                         when clicked?
                       </FormLabel>
+
 
                       <FormControl>
                         <Input

@@ -15,7 +15,6 @@ export default function PollForm() {
       }}
       className="p-4 border border-primary rounded-lg max-w-md mx-auto"
     >
-      <label className="block mb-2 font-semibold">Write a Poll Question?</label>
       <input
         type="text"
         name="question"

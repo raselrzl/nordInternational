@@ -710,7 +710,7 @@ export async function createPollQuestion(formData: FormData) {
     data: { question: parsed.data.question },
   });
   revalidatePath("/")
-  redirect("/");
+  redirect("/post-an-article/poll");
   
 }
 

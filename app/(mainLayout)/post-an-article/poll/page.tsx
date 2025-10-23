@@ -9,6 +9,7 @@ export default async function AdminPollPage() {
 
   return (
     <div className="p-6">
+      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Write a Poll Question?</h1>
       <PollForm />
     </div>
   );

@@ -19,6 +19,7 @@ import {
   Users,
 } from "lucide-react";
 import { signOut } from "@/app/utils/auth";
+import { Card } from "@/components/ui/card";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -52,9 +53,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex">
       {/* Sidebar - hidden on small screens */}
-      <aside className="hidden md:flex w-64 bg-white shadow-md p-4 flex-col sticky top-50 h-screen">
+      <Card className="hidden md:flex w-64 shadow-md p-4 flex-col sticky top-50 h-screen">
         <h1 className="text-xl font-bold mb-6">Admin Panel</h1>
 
         <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto">
@@ -64,8 +65,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-2 p-2 rounded hover:bg-gray-100 ${
-                  isActive ? "bg-blue-100 font-semibold" : ""
+                className={`flex items-center gap-2 p-2 rounded-xs hover:bg-gray-100 ${
+                  isActive ? "bg-gray-300 dark:text-black font-semibold" : ""
                 }`}
               >
                 <link.icon size={16} />
@@ -88,10 +89,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </button>
           </form>
         </div> */}
-      </aside>
+      </Card>
 
       {/* Main content */}
-      <main className="flex-1 p-6 overflow-auto relative min-h-screen">
+      <main className="flex-1 p-6 overflow-auto relative min-h-screen shadow">
         {loading && (
           <div className="absolute inset-0 bg-gray-100 bg-opacity-50 flex items-center justify-center z-50">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
