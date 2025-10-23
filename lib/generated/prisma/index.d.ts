@@ -88,6 +88,11 @@ export type PollQuestion = $Result.DefaultSelection<Prisma.$PollQuestionPayload>
  * 
  */
 export type PollAnswer = $Result.DefaultSelection<Prisma.$PollAnswerPayload>
+/**
+ * Model AdvertisementPackage
+ * 
+ */
+export type AdvertisementPackage = $Result.DefaultSelection<Prisma.$AdvertisementPackagePayload>
 
 /**
  * Enums
@@ -321,7 +326,7 @@ export const Country: typeof $Enums.Country
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -353,6 +358,13 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -572,6 +584,16 @@ export class PrismaClient<
     * ```
     */
   get pollAnswer(): Prisma.PollAnswerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.advertisementPackage`: Exposes CRUD operations for the **AdvertisementPackage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdvertisementPackages
+    * const advertisementPackages = await prisma.advertisementPackage.findMany()
+    * ```
+    */
+  get advertisementPackage(): Prisma.AdvertisementPackageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -630,8 +652,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.18.0
-   * Query Engine version: 34b5a692b7bd79939a9a2c3ef97d816e749cda2f
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -644,7 +666,6 @@ export namespace Prisma {
    */
 
 
-  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -1027,7 +1048,8 @@ export namespace Prisma {
     Videopost: 'Videopost',
     RouteVisit: 'RouteVisit',
     PollQuestion: 'PollQuestion',
-    PollAnswer: 'PollAnswer'
+    PollAnswer: 'PollAnswer',
+    AdvertisementPackage: 'AdvertisementPackage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1046,7 +1068,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "newsReporter" | "advertiser" | "newsArticle" | "quote" | "advertisement" | "opinion" | "account" | "session" | "verificationToken" | "advertiseRequest" | "videopost" | "routeVisit" | "pollQuestion" | "pollAnswer"
+      modelProps: "user" | "newsReporter" | "advertiser" | "newsArticle" | "quote" | "advertisement" | "opinion" | "account" | "session" | "verificationToken" | "advertiseRequest" | "videopost" | "routeVisit" | "pollQuestion" | "pollAnswer" | "advertisementPackage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2160,6 +2182,80 @@ export namespace Prisma {
           }
         }
       }
+      AdvertisementPackage: {
+        payload: Prisma.$AdvertisementPackagePayload<ExtArgs>
+        fields: Prisma.AdvertisementPackageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdvertisementPackageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdvertisementPackageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          findFirst: {
+            args: Prisma.AdvertisementPackageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdvertisementPackageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          findMany: {
+            args: Prisma.AdvertisementPackageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>[]
+          }
+          create: {
+            args: Prisma.AdvertisementPackageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          createMany: {
+            args: Prisma.AdvertisementPackageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AdvertisementPackageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>[]
+          }
+          delete: {
+            args: Prisma.AdvertisementPackageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          update: {
+            args: Prisma.AdvertisementPackageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AdvertisementPackageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdvertisementPackageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AdvertisementPackageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>[]
+          }
+          upsert: {
+            args: Prisma.AdvertisementPackageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdvertisementPackagePayload>
+          }
+          aggregate: {
+            args: Prisma.AdvertisementPackageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdvertisementPackage>
+          }
+          groupBy: {
+            args: Prisma.AdvertisementPackageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdvertisementPackageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdvertisementPackageCountArgs<ExtArgs>
+            result: $Utils.Optional<AdvertisementPackageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2203,24 +2299,16 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Shorthand for `emit: 'stdout'`
+     * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events only
+     * // Emit as events
      * log: [
-     *   { emit: 'event', level: 'query' },
-     *   { emit: 'event', level: 'info' },
-     *   { emit: 'event', level: 'warn' }
-     *   { emit: 'event', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
-     * 
-     * / Emit as events and log to stdout
-     * og: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
-     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -2235,10 +2323,6 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
-    /**
-     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
-     */
-    adapter?: runtime.SqlDriverAdapterFactory | null
     /**
      * Global configuration for omitting model fields by default.
      * 
@@ -2271,6 +2355,7 @@ export namespace Prisma {
     routeVisit?: RouteVisitOmit
     pollQuestion?: PollQuestionOmit
     pollAnswer?: PollAnswerOmit
+    advertisementPackage?: AdvertisementPackageOmit
   }
 
   /* Types for Logging */
@@ -2280,15 +2365,10 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
-
-  export type GetLogType<T> = CheckIsLogLevel<
-    T extends LogDefinition ? T['level'] : T
-  >;
-
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -2328,6 +2408,25 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -19086,6 +19185,1048 @@ export namespace Prisma {
 
 
   /**
+   * Model AdvertisementPackage
+   */
+
+  export type AggregateAdvertisementPackage = {
+    _count: AdvertisementPackageCountAggregateOutputType | null
+    _avg: AdvertisementPackageAvgAggregateOutputType | null
+    _sum: AdvertisementPackageSumAggregateOutputType | null
+    _min: AdvertisementPackageMinAggregateOutputType | null
+    _max: AdvertisementPackageMaxAggregateOutputType | null
+  }
+
+  export type AdvertisementPackageAvgAggregateOutputType = {
+    dailyPrice: number | null
+  }
+
+  export type AdvertisementPackageSumAggregateOutputType = {
+    dailyPrice: number | null
+  }
+
+  export type AdvertisementPackageMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    page: string | null
+    dailyPrice: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdvertisementPackageMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    page: string | null
+    dailyPrice: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdvertisementPackageCountAggregateOutputType = {
+    id: number
+    name: number
+    page: number
+    dailyPrice: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AdvertisementPackageAvgAggregateInputType = {
+    dailyPrice?: true
+  }
+
+  export type AdvertisementPackageSumAggregateInputType = {
+    dailyPrice?: true
+  }
+
+  export type AdvertisementPackageMinAggregateInputType = {
+    id?: true
+    name?: true
+    page?: true
+    dailyPrice?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdvertisementPackageMaxAggregateInputType = {
+    id?: true
+    name?: true
+    page?: true
+    dailyPrice?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdvertisementPackageCountAggregateInputType = {
+    id?: true
+    name?: true
+    page?: true
+    dailyPrice?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AdvertisementPackageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdvertisementPackage to aggregate.
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdvertisementPackages to fetch.
+     */
+    orderBy?: AdvertisementPackageOrderByWithRelationInput | AdvertisementPackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdvertisementPackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdvertisementPackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdvertisementPackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdvertisementPackages
+    **/
+    _count?: true | AdvertisementPackageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdvertisementPackageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdvertisementPackageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdvertisementPackageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdvertisementPackageMaxAggregateInputType
+  }
+
+  export type GetAdvertisementPackageAggregateType<T extends AdvertisementPackageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdvertisementPackage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdvertisementPackage[P]>
+      : GetScalarType<T[P], AggregateAdvertisementPackage[P]>
+  }
+
+
+
+
+  export type AdvertisementPackageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdvertisementPackageWhereInput
+    orderBy?: AdvertisementPackageOrderByWithAggregationInput | AdvertisementPackageOrderByWithAggregationInput[]
+    by: AdvertisementPackageScalarFieldEnum[] | AdvertisementPackageScalarFieldEnum
+    having?: AdvertisementPackageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdvertisementPackageCountAggregateInputType | true
+    _avg?: AdvertisementPackageAvgAggregateInputType
+    _sum?: AdvertisementPackageSumAggregateInputType
+    _min?: AdvertisementPackageMinAggregateInputType
+    _max?: AdvertisementPackageMaxAggregateInputType
+  }
+
+  export type AdvertisementPackageGroupByOutputType = {
+    id: string
+    name: string
+    page: string
+    dailyPrice: number
+    createdAt: Date
+    updatedAt: Date
+    _count: AdvertisementPackageCountAggregateOutputType | null
+    _avg: AdvertisementPackageAvgAggregateOutputType | null
+    _sum: AdvertisementPackageSumAggregateOutputType | null
+    _min: AdvertisementPackageMinAggregateOutputType | null
+    _max: AdvertisementPackageMaxAggregateOutputType | null
+  }
+
+  type GetAdvertisementPackageGroupByPayload<T extends AdvertisementPackageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdvertisementPackageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdvertisementPackageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdvertisementPackageGroupByOutputType[P]>
+            : GetScalarType<T[P], AdvertisementPackageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdvertisementPackageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    page?: boolean
+    dailyPrice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["advertisementPackage"]>
+
+  export type AdvertisementPackageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    page?: boolean
+    dailyPrice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["advertisementPackage"]>
+
+  export type AdvertisementPackageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    page?: boolean
+    dailyPrice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["advertisementPackage"]>
+
+  export type AdvertisementPackageSelectScalar = {
+    id?: boolean
+    name?: boolean
+    page?: boolean
+    dailyPrice?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AdvertisementPackageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "page" | "dailyPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisementPackage"]>
+
+  export type $AdvertisementPackagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdvertisementPackage"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      page: string
+      dailyPrice: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["advertisementPackage"]>
+    composites: {}
+  }
+
+  type AdvertisementPackageGetPayload<S extends boolean | null | undefined | AdvertisementPackageDefaultArgs> = $Result.GetResult<Prisma.$AdvertisementPackagePayload, S>
+
+  type AdvertisementPackageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdvertisementPackageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdvertisementPackageCountAggregateInputType | true
+    }
+
+  export interface AdvertisementPackageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdvertisementPackage'], meta: { name: 'AdvertisementPackage' } }
+    /**
+     * Find zero or one AdvertisementPackage that matches the filter.
+     * @param {AdvertisementPackageFindUniqueArgs} args - Arguments to find a AdvertisementPackage
+     * @example
+     * // Get one AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdvertisementPackageFindUniqueArgs>(args: SelectSubset<T, AdvertisementPackageFindUniqueArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AdvertisementPackage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdvertisementPackageFindUniqueOrThrowArgs} args - Arguments to find a AdvertisementPackage
+     * @example
+     * // Get one AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdvertisementPackageFindUniqueOrThrowArgs>(args: SelectSubset<T, AdvertisementPackageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdvertisementPackage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageFindFirstArgs} args - Arguments to find a AdvertisementPackage
+     * @example
+     * // Get one AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdvertisementPackageFindFirstArgs>(args?: SelectSubset<T, AdvertisementPackageFindFirstArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdvertisementPackage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageFindFirstOrThrowArgs} args - Arguments to find a AdvertisementPackage
+     * @example
+     * // Get one AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdvertisementPackageFindFirstOrThrowArgs>(args?: SelectSubset<T, AdvertisementPackageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AdvertisementPackages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdvertisementPackages
+     * const advertisementPackages = await prisma.advertisementPackage.findMany()
+     * 
+     * // Get first 10 AdvertisementPackages
+     * const advertisementPackages = await prisma.advertisementPackage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const advertisementPackageWithIdOnly = await prisma.advertisementPackage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdvertisementPackageFindManyArgs>(args?: SelectSubset<T, AdvertisementPackageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AdvertisementPackage.
+     * @param {AdvertisementPackageCreateArgs} args - Arguments to create a AdvertisementPackage.
+     * @example
+     * // Create one AdvertisementPackage
+     * const AdvertisementPackage = await prisma.advertisementPackage.create({
+     *   data: {
+     *     // ... data to create a AdvertisementPackage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdvertisementPackageCreateArgs>(args: SelectSubset<T, AdvertisementPackageCreateArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AdvertisementPackages.
+     * @param {AdvertisementPackageCreateManyArgs} args - Arguments to create many AdvertisementPackages.
+     * @example
+     * // Create many AdvertisementPackages
+     * const advertisementPackage = await prisma.advertisementPackage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdvertisementPackageCreateManyArgs>(args?: SelectSubset<T, AdvertisementPackageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AdvertisementPackages and returns the data saved in the database.
+     * @param {AdvertisementPackageCreateManyAndReturnArgs} args - Arguments to create many AdvertisementPackages.
+     * @example
+     * // Create many AdvertisementPackages
+     * const advertisementPackage = await prisma.advertisementPackage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AdvertisementPackages and only return the `id`
+     * const advertisementPackageWithIdOnly = await prisma.advertisementPackage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AdvertisementPackageCreateManyAndReturnArgs>(args?: SelectSubset<T, AdvertisementPackageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AdvertisementPackage.
+     * @param {AdvertisementPackageDeleteArgs} args - Arguments to delete one AdvertisementPackage.
+     * @example
+     * // Delete one AdvertisementPackage
+     * const AdvertisementPackage = await prisma.advertisementPackage.delete({
+     *   where: {
+     *     // ... filter to delete one AdvertisementPackage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdvertisementPackageDeleteArgs>(args: SelectSubset<T, AdvertisementPackageDeleteArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AdvertisementPackage.
+     * @param {AdvertisementPackageUpdateArgs} args - Arguments to update one AdvertisementPackage.
+     * @example
+     * // Update one AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdvertisementPackageUpdateArgs>(args: SelectSubset<T, AdvertisementPackageUpdateArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AdvertisementPackages.
+     * @param {AdvertisementPackageDeleteManyArgs} args - Arguments to filter AdvertisementPackages to delete.
+     * @example
+     * // Delete a few AdvertisementPackages
+     * const { count } = await prisma.advertisementPackage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdvertisementPackageDeleteManyArgs>(args?: SelectSubset<T, AdvertisementPackageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdvertisementPackages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdvertisementPackages
+     * const advertisementPackage = await prisma.advertisementPackage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdvertisementPackageUpdateManyArgs>(args: SelectSubset<T, AdvertisementPackageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdvertisementPackages and returns the data updated in the database.
+     * @param {AdvertisementPackageUpdateManyAndReturnArgs} args - Arguments to update many AdvertisementPackages.
+     * @example
+     * // Update many AdvertisementPackages
+     * const advertisementPackage = await prisma.advertisementPackage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AdvertisementPackages and only return the `id`
+     * const advertisementPackageWithIdOnly = await prisma.advertisementPackage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AdvertisementPackageUpdateManyAndReturnArgs>(args: SelectSubset<T, AdvertisementPackageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AdvertisementPackage.
+     * @param {AdvertisementPackageUpsertArgs} args - Arguments to update or create a AdvertisementPackage.
+     * @example
+     * // Update or create a AdvertisementPackage
+     * const advertisementPackage = await prisma.advertisementPackage.upsert({
+     *   create: {
+     *     // ... data to create a AdvertisementPackage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdvertisementPackage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdvertisementPackageUpsertArgs>(args: SelectSubset<T, AdvertisementPackageUpsertArgs<ExtArgs>>): Prisma__AdvertisementPackageClient<$Result.GetResult<Prisma.$AdvertisementPackagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AdvertisementPackages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageCountArgs} args - Arguments to filter AdvertisementPackages to count.
+     * @example
+     * // Count the number of AdvertisementPackages
+     * const count = await prisma.advertisementPackage.count({
+     *   where: {
+     *     // ... the filter for the AdvertisementPackages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdvertisementPackageCountArgs>(
+      args?: Subset<T, AdvertisementPackageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdvertisementPackageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdvertisementPackage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdvertisementPackageAggregateArgs>(args: Subset<T, AdvertisementPackageAggregateArgs>): Prisma.PrismaPromise<GetAdvertisementPackageAggregateType<T>>
+
+    /**
+     * Group by AdvertisementPackage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdvertisementPackageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdvertisementPackageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdvertisementPackageGroupByArgs['orderBy'] }
+        : { orderBy?: AdvertisementPackageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdvertisementPackageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdvertisementPackageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdvertisementPackage model
+   */
+  readonly fields: AdvertisementPackageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdvertisementPackage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdvertisementPackageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AdvertisementPackage model
+   */
+  interface AdvertisementPackageFieldRefs {
+    readonly id: FieldRef<"AdvertisementPackage", 'String'>
+    readonly name: FieldRef<"AdvertisementPackage", 'String'>
+    readonly page: FieldRef<"AdvertisementPackage", 'String'>
+    readonly dailyPrice: FieldRef<"AdvertisementPackage", 'Float'>
+    readonly createdAt: FieldRef<"AdvertisementPackage", 'DateTime'>
+    readonly updatedAt: FieldRef<"AdvertisementPackage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AdvertisementPackage findUnique
+   */
+  export type AdvertisementPackageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter, which AdvertisementPackage to fetch.
+     */
+    where: AdvertisementPackageWhereUniqueInput
+  }
+
+  /**
+   * AdvertisementPackage findUniqueOrThrow
+   */
+  export type AdvertisementPackageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter, which AdvertisementPackage to fetch.
+     */
+    where: AdvertisementPackageWhereUniqueInput
+  }
+
+  /**
+   * AdvertisementPackage findFirst
+   */
+  export type AdvertisementPackageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter, which AdvertisementPackage to fetch.
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdvertisementPackages to fetch.
+     */
+    orderBy?: AdvertisementPackageOrderByWithRelationInput | AdvertisementPackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdvertisementPackages.
+     */
+    cursor?: AdvertisementPackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdvertisementPackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdvertisementPackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdvertisementPackages.
+     */
+    distinct?: AdvertisementPackageScalarFieldEnum | AdvertisementPackageScalarFieldEnum[]
+  }
+
+  /**
+   * AdvertisementPackage findFirstOrThrow
+   */
+  export type AdvertisementPackageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter, which AdvertisementPackage to fetch.
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdvertisementPackages to fetch.
+     */
+    orderBy?: AdvertisementPackageOrderByWithRelationInput | AdvertisementPackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdvertisementPackages.
+     */
+    cursor?: AdvertisementPackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdvertisementPackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdvertisementPackages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdvertisementPackages.
+     */
+    distinct?: AdvertisementPackageScalarFieldEnum | AdvertisementPackageScalarFieldEnum[]
+  }
+
+  /**
+   * AdvertisementPackage findMany
+   */
+  export type AdvertisementPackageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter, which AdvertisementPackages to fetch.
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdvertisementPackages to fetch.
+     */
+    orderBy?: AdvertisementPackageOrderByWithRelationInput | AdvertisementPackageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdvertisementPackages.
+     */
+    cursor?: AdvertisementPackageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdvertisementPackages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdvertisementPackages.
+     */
+    skip?: number
+    distinct?: AdvertisementPackageScalarFieldEnum | AdvertisementPackageScalarFieldEnum[]
+  }
+
+  /**
+   * AdvertisementPackage create
+   */
+  export type AdvertisementPackageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AdvertisementPackage.
+     */
+    data: XOR<AdvertisementPackageCreateInput, AdvertisementPackageUncheckedCreateInput>
+  }
+
+  /**
+   * AdvertisementPackage createMany
+   */
+  export type AdvertisementPackageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdvertisementPackages.
+     */
+    data: AdvertisementPackageCreateManyInput | AdvertisementPackageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdvertisementPackage createManyAndReturn
+   */
+  export type AdvertisementPackageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * The data used to create many AdvertisementPackages.
+     */
+    data: AdvertisementPackageCreateManyInput | AdvertisementPackageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdvertisementPackage update
+   */
+  export type AdvertisementPackageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AdvertisementPackage.
+     */
+    data: XOR<AdvertisementPackageUpdateInput, AdvertisementPackageUncheckedUpdateInput>
+    /**
+     * Choose, which AdvertisementPackage to update.
+     */
+    where: AdvertisementPackageWhereUniqueInput
+  }
+
+  /**
+   * AdvertisementPackage updateMany
+   */
+  export type AdvertisementPackageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdvertisementPackages.
+     */
+    data: XOR<AdvertisementPackageUpdateManyMutationInput, AdvertisementPackageUncheckedUpdateManyInput>
+    /**
+     * Filter which AdvertisementPackages to update
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * Limit how many AdvertisementPackages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdvertisementPackage updateManyAndReturn
+   */
+  export type AdvertisementPackageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * The data used to update AdvertisementPackages.
+     */
+    data: XOR<AdvertisementPackageUpdateManyMutationInput, AdvertisementPackageUncheckedUpdateManyInput>
+    /**
+     * Filter which AdvertisementPackages to update
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * Limit how many AdvertisementPackages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdvertisementPackage upsert
+   */
+  export type AdvertisementPackageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AdvertisementPackage to update in case it exists.
+     */
+    where: AdvertisementPackageWhereUniqueInput
+    /**
+     * In case the AdvertisementPackage found by the `where` argument doesn't exist, create a new AdvertisementPackage with this data.
+     */
+    create: XOR<AdvertisementPackageCreateInput, AdvertisementPackageUncheckedCreateInput>
+    /**
+     * In case the AdvertisementPackage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdvertisementPackageUpdateInput, AdvertisementPackageUncheckedUpdateInput>
+  }
+
+  /**
+   * AdvertisementPackage delete
+   */
+  export type AdvertisementPackageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+    /**
+     * Filter which AdvertisementPackage to delete.
+     */
+    where: AdvertisementPackageWhereUniqueInput
+  }
+
+  /**
+   * AdvertisementPackage deleteMany
+   */
+  export type AdvertisementPackageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdvertisementPackages to delete
+     */
+    where?: AdvertisementPackageWhereInput
+    /**
+     * Limit how many AdvertisementPackages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdvertisementPackage without action
+   */
+  export type AdvertisementPackageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdvertisementPackage
+     */
+    select?: AdvertisementPackageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdvertisementPackage
+     */
+    omit?: AdvertisementPackageOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -19318,6 +20459,18 @@ export namespace Prisma {
   };
 
   export type PollAnswerScalarFieldEnum = (typeof PollAnswerScalarFieldEnum)[keyof typeof PollAnswerScalarFieldEnum]
+
+
+  export const AdvertisementPackageScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    page: 'page',
+    dailyPrice: 'dailyPrice',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AdvertisementPackageScalarFieldEnum = (typeof AdvertisementPackageScalarFieldEnum)[keyof typeof AdvertisementPackageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -20657,6 +21810,65 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"PollAnswer"> | Date | string
   }
 
+  export type AdvertisementPackageWhereInput = {
+    AND?: AdvertisementPackageWhereInput | AdvertisementPackageWhereInput[]
+    OR?: AdvertisementPackageWhereInput[]
+    NOT?: AdvertisementPackageWhereInput | AdvertisementPackageWhereInput[]
+    id?: StringFilter<"AdvertisementPackage"> | string
+    name?: StringFilter<"AdvertisementPackage"> | string
+    page?: StringFilter<"AdvertisementPackage"> | string
+    dailyPrice?: FloatFilter<"AdvertisementPackage"> | number
+    createdAt?: DateTimeFilter<"AdvertisementPackage"> | Date | string
+    updatedAt?: DateTimeFilter<"AdvertisementPackage"> | Date | string
+  }
+
+  export type AdvertisementPackageOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    page?: SortOrder
+    dailyPrice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdvertisementPackageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AdvertisementPackageWhereInput | AdvertisementPackageWhereInput[]
+    OR?: AdvertisementPackageWhereInput[]
+    NOT?: AdvertisementPackageWhereInput | AdvertisementPackageWhereInput[]
+    name?: StringFilter<"AdvertisementPackage"> | string
+    page?: StringFilter<"AdvertisementPackage"> | string
+    dailyPrice?: FloatFilter<"AdvertisementPackage"> | number
+    createdAt?: DateTimeFilter<"AdvertisementPackage"> | Date | string
+    updatedAt?: DateTimeFilter<"AdvertisementPackage"> | Date | string
+  }, "id">
+
+  export type AdvertisementPackageOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    page?: SortOrder
+    dailyPrice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AdvertisementPackageCountOrderByAggregateInput
+    _avg?: AdvertisementPackageAvgOrderByAggregateInput
+    _max?: AdvertisementPackageMaxOrderByAggregateInput
+    _min?: AdvertisementPackageMinOrderByAggregateInput
+    _sum?: AdvertisementPackageSumOrderByAggregateInput
+  }
+
+  export type AdvertisementPackageScalarWhereWithAggregatesInput = {
+    AND?: AdvertisementPackageScalarWhereWithAggregatesInput | AdvertisementPackageScalarWhereWithAggregatesInput[]
+    OR?: AdvertisementPackageScalarWhereWithAggregatesInput[]
+    NOT?: AdvertisementPackageScalarWhereWithAggregatesInput | AdvertisementPackageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AdvertisementPackage"> | string
+    name?: StringWithAggregatesFilter<"AdvertisementPackage"> | string
+    page?: StringWithAggregatesFilter<"AdvertisementPackage"> | string
+    dailyPrice?: FloatWithAggregatesFilter<"AdvertisementPackage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AdvertisementPackage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AdvertisementPackage"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -21901,6 +23113,69 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AdvertisementPackageCreateInput = {
+    id: string
+    name: string
+    page: string
+    dailyPrice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdvertisementPackageUncheckedCreateInput = {
+    id: string
+    name: string
+    page: string
+    dailyPrice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdvertisementPackageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    dailyPrice?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdvertisementPackageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    dailyPrice?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdvertisementPackageCreateManyInput = {
+    id: string
+    name: string
+    page: string
+    dailyPrice: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdvertisementPackageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    dailyPrice?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdvertisementPackageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    page?: StringFieldUpdateOperationsInput | string
+    dailyPrice?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -22918,6 +24193,68 @@ export namespace Prisma {
     pollQuestionId?: SortOrder
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type AdvertisementPackageCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    page?: SortOrder
+    dailyPrice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdvertisementPackageAvgOrderByAggregateInput = {
+    dailyPrice?: SortOrder
+  }
+
+  export type AdvertisementPackageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    page?: SortOrder
+    dailyPrice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdvertisementPackageMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    page?: SortOrder
+    dailyPrice?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdvertisementPackageSumOrderByAggregateInput = {
+    dailyPrice?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -23362,6 +24699,14 @@ export namespace Prisma {
     update?: XOR<XOR<PollQuestionUpdateToOneWithWhereWithoutAnswersInput, PollQuestionUpdateWithoutAnswersInput>, PollQuestionUncheckedUpdateWithoutAnswersInput>
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -23714,6 +25059,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumvedioStatusFilter<$PrismaModel>
     _max?: NestedEnumvedioStatusFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {

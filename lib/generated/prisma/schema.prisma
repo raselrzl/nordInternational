@@ -369,3 +369,12 @@ model PollAnswer {
 
   pollQuestion PollQuestion @relation(fields: [pollQuestionId], references: [id])
 }
+
+model AdvertisementPackage {
+  id         String   @id
+  name       String
+  page       String
+  dailyPrice Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

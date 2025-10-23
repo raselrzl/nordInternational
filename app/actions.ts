@@ -755,3 +755,64 @@ export async function submitPollVote(formData: FormData) {
 
   return { success: true };
 }
+
+
+export async function createAdvertisementPackage(data: {
+  id: string;
+  name: string;
+  page: string;
+  dailyPrice: number;
+}) {
+  const superadmin = await requireSuperAdmin();
+  if (!superadmin) throw new Error("Forbidden");
+
+  const req = await request();
+  const decision = await aj.protect(req);
+  if (decision.isDenied()) throw new Error("Forbidden");
+
+  const existing = await prisma.advertisementPackage.findUnique({
+    where: { id: data.id },
+  });
+
+  if (existing) {
+    if (existing.dailyPrice !== data.dailyPrice) {
+      await prisma.advertisementPackage.update({
+        where: { id: data.id },
+        data: { dailyPrice: data.dailyPrice },
+      });
+      return { status: "updated" };
+    } else {
+      return { status: "unchanged" };
+    }
+  }
+
+  await prisma.advertisementPackage.create({
+    data: {
+      id: data.id,
+      name: data.name,
+      page: data.page,
+      dailyPrice: data.dailyPrice,
+    },
+  });
+
+  return { status: "created" };
+}
+
+// New helper: fetch price from DB
+export async function getAdvertisementPackagePrice(id: string) {
+  const existing = await prisma.advertisementPackage.findUnique({
+    where: { id },
+  });
+  return existing?.dailyPrice ?? 0;
+}
+
+
+
+
+
+
+export async function getAdvertisementPackages() {
+  return prisma.advertisementPackage.findMany({
+    orderBy: { createdAt: "asc" },
+  });
+}
