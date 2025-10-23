@@ -64,7 +64,7 @@ export default function PackageForm() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="p-6 rounded border-2 border-green-500 shadow-md mb-8 gap-4"
+        className="p-2 md:p-6 rounded-xs border-2 border-green-500 shadow-md mb-8 gap-2 md:gap-4"
       >
         <div className="grid grid-cols-2 gap-2 w-full">
           <label className="block mb-2 font-medium">
