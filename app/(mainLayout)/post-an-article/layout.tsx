@@ -93,21 +93,21 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex">
+    <div className=" flex">
       {/* Sidebar - hidden on small screens */}
-      <Card className="hidden md:flex w-64 shadow-md p-4 flex-col sticky top-50 h-screen">
-        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary rounded-2xl p-1">
+      <Card className="hidden md:flex w-54  rounded-none flex-col sticky top-40 h-screen">
+        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary p-1">
           Admin Panel
         </h1>
 
-        <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto">
+        <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto px-4">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-2 p-2 rounded-xs hover:bg-gray-100 ${
+                className={`flex items-center gap-2 p-1 text-md hover:bg-gray-100 ${
                   isActive ? "bg-gray-300 dark:text-black font-semibold" : ""
                 }`}
               >
@@ -117,25 +117,11 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             );
           })}
         </nav>
-
-        {/* Logout */}
-        {/*    <div className="mt-auto pt-4 border-t">
-          <form
-            action={async () => {
-              "use server";
-              await signOut({ redirectTo: "/" });
-            }}
-          >
-            <button className="flex items-center gap-2 w-full p-2 rounded hover:bg-gray-100">
-              <LogOut size={16} /> Logout
-            </button>
-          </form>
-        </div> */}
       </Card>
 
       {/* Main content */}
       <div className="flex-1 overflow-auto relative min-h-screen shadow">
-        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary p-1">
+        <h1 className="text-xl font-bold bg-accent-foreground text-center text-primary p-1 mt-6">
           Admin Panel
         </h1>
         <div className="p-2 md:px-4">{children}</div>
