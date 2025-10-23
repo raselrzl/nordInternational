@@ -33,10 +33,10 @@ const links = [
   { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
   { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Advertisement Packages" },
   { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
-  { href: "/about/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
+  { href: "/post-an-article/about/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
   { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post YouTube Video" },
   { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
-  { href: "/routeTrack", icon: Table, label: "Dashboard" },
+  { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
   { href: "/post-an-article/allusers", icon: Users, label: "All Users" },
 ];
 

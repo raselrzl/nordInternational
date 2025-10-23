@@ -799,11 +799,17 @@ export async function createAdvertisementPackage(data: {
 }
 
 // New helper: fetch price from DB
-export async function getAdvertisementPackagePrice(id: string) {
-  const existing = await prisma.advertisementPackage.findUnique({
-    where: { id },
+export async function getAllAdvertisementPackagePrices() {
+  const packages = await prisma.advertisementPackage.findMany({
+    select: { id: true, dailyPrice: true },
   });
-  return existing?.dailyPrice ?? 0;
+
+  const prices: Record<string, number> = {};
+  for (const pkg of packages) {
+    prices[pkg.id] = pkg.dailyPrice ?? 0;
+  }
+
+  return prices;
 }
 
 

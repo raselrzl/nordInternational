@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createAdvertisementPackage, getAdvertisementPackagePrice } from "@/app/actions";
+import { createAdvertisementPackage, getAllAdvertisementPackagePrices } from "@/app/actions";
 import { advertisementPackages } from "./constantPackages";
 import { Loader } from "lucide-react";
 
@@ -13,16 +13,13 @@ export default function PackageForm() {
 
   // Fetch all package prices from DB
   useEffect(() => {
-    async function fetchPrices() {
-      const prices: Record<string, number> = {};
-      for (const pkg of advertisementPackages) {
-        prices[pkg.id] = await getAdvertisementPackagePrice(pkg.id);
-      }
-      setDbPrices(prices);
-      setPrice(prices[selectedPackageId] ?? 0);
-    }
-    fetchPrices();
-  }, []);
+  async function fetchPrices() {
+    const prices = await getAllAdvertisementPackagePrices();
+    setDbPrices(prices);
+    setPrice(prices[selectedPackageId] ?? 0);
+  }
+  fetchPrices();
+}, []);
 
   useEffect(() => {
     setPrice(dbPrices[selectedPackageId] ?? 0);
