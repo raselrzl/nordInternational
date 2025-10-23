@@ -76,7 +76,7 @@ export default async function AllUsersTable() {
     <>
     <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All USERS</h1>
       {users.length > 0 ? (
-        <Card>
+        <Card className="rounded-xs">
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

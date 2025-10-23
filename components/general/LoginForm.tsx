@@ -18,7 +18,7 @@ export default async function LoginForm() {
   }
   return (
     <div className=" flex flex-col gap-6">
-      <Card>
+      <Card className="rounded-xs">
         <Link href="/" className="flex items-center gap-2 self-center">
           <Image src="/n1w.png" height={60} width={150} alt="logo image" />
         </Link>

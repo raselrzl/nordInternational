@@ -60,7 +60,7 @@ export default async function AllAdvertiseRequestsTable() {
     <>
     <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage Advertisements Requests</h1>
       {requests.length > 0 ? (
-        <Card>
+        <Card className="rounded-xs">
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

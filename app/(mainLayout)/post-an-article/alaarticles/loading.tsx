@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function AllNewsArticleListSkeleton() {
   return (
-    <Card>
+    <Card className="rounded-xs">
       <CardHeader>
         <CardTitle>
           <Skeleton className="h-6 w-40" />

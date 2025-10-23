@@ -26,7 +26,7 @@ export function SorboseshAndJonoprioTab() {
         <TabsTrigger value="jonoprio">Popular</TabsTrigger>
       </TabsList>
       <TabsContent value="sorbosesh">
-        <Card>
+        <Card className="rounded-xs">
           <CardContent className="space-y-2">
             <SorboseshNews />
           </CardContent>

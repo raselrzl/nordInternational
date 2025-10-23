@@ -111,7 +111,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10 mb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <FormField
                 control={form.control}
@@ -169,7 +169,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardHeader>
               <CardTitle>
                 Details about the news
@@ -325,7 +325,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <CardHeader>
                 <CardTitle>Upload a picture.</CardTitle>

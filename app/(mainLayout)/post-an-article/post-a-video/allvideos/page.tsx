@@ -63,7 +63,7 @@ export default async function AllVideos() {
      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All videos</h1>
      
       {vedio.length > 0 ? (
-        <Card>
+        <Card className="rounded-xs">
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

@@ -57,7 +57,7 @@ export default function AdvertiseForm() {
 
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-4 pt-6">
               <FormField
                 control={control}

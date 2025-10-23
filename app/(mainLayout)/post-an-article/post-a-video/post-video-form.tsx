@@ -58,7 +58,7 @@ export function PostVideoForm() {
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="rounded-xs">
 
             <CardContent className="space-y-6 pt-4">
               <FormField
@@ -127,7 +127,7 @@ export function PostVideoForm() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <FormField
                 control={control}

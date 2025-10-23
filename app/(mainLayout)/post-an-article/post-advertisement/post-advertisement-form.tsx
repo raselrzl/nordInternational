@@ -172,7 +172,7 @@ export function CreateAdvertisementForm() {
     <Form {...form}>
      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6 pt-6">
               <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
                 <FormField
@@ -348,7 +348,7 @@ export function CreateAdvertisementForm() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               {" "}
               <FormField
@@ -387,7 +387,7 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6 pt-6">
               {" "}
               <div className="space-y-4">
@@ -521,7 +521,7 @@ export function CreateAdvertisementForm() {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <FormField
                 control={form.control}
@@ -558,7 +558,7 @@ export function CreateAdvertisementForm() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6 pt-6">
                  <FormField
                 control={control}

@@ -53,7 +53,7 @@ export default async function AllOpinionsTable() {
     <>
      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All Complaints</h1>
       {opinions.length > 0 ? (
-        <Card>
+        <Card className="rounded-xs">
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

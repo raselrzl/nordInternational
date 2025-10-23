@@ -103,7 +103,7 @@ export function CreateNewsArticleForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <FormField
                 control={form.control}
@@ -158,7 +158,7 @@ export function CreateNewsArticleForm({
               </>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <div className="grid  grid-cols-1 gap-6">
                 <FormField
@@ -329,7 +329,7 @@ export function CreateNewsArticleForm({
               />
             </CardContent>
           </Card>
-          <Card>
+          <Card className="rounded-xs">
             <CardContent className="space-y-6">
               <CardHeader>
                 <CardTitle>Upload a small image for the news?</CardTitle>
@@ -415,7 +415,7 @@ export function CreateNewsArticleForm({
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-xs">
             <CardHeader>
               <CardTitle>
                 Has anyone made any special comments on this news?
