@@ -3,24 +3,30 @@
 import { useState, useEffect } from "react";
 import { createAdvertisementPackage, getAdvertisementPackagePrice } from "@/app/actions";
 import { advertisementPackages } from "./constantPackages";
+import { Loader } from "lucide-react";
 
 export default function PackageForm() {
   const [selectedPackageId, setSelectedPackageId] = useState(advertisementPackages[0].id);
   const [price, setPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [dbPrices, setDbPrices] = useState<Record<string, number>>({});
 
-  // Fetch price from DB when package changes
+  // Fetch all package prices from DB
   useEffect(() => {
-    async function fetchPrice() {
-      const pkg = advertisementPackages.find((p) => p.id === selectedPackageId);
-      if (!pkg) return;
-
-      const dbPrice = await getAdvertisementPackagePrice(pkg.id);
-      setPrice(dbPrice);
+    async function fetchPrices() {
+      const prices: Record<string, number> = {};
+      for (const pkg of advertisementPackages) {
+        prices[pkg.id] = await getAdvertisementPackagePrice(pkg.id);
+      }
+      setDbPrices(prices);
+      setPrice(prices[selectedPackageId] ?? 0);
     }
+    fetchPrices();
+  }, []);
 
-    fetchPrice();
-  }, [selectedPackageId]);
+  useEffect(() => {
+    setPrice(dbPrices[selectedPackageId] ?? 0);
+  }, [selectedPackageId, dbPrices]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,13 +43,15 @@ export default function PackageForm() {
         dailyPrice: price,
       });
 
-      if (result.status === "created") {
-        alert("Package created successfully!");
-      } else if (result.status === "updated") {
-        alert("Package price updated successfully!");
-      } else {
-        alert("No changes made. Price is already the same.");
-      }
+      alert(
+        result.status === "created"
+          ? "Package created successfully!"
+          : result.status === "updated"
+          ? "Package price updated successfully!"
+          : "No changes made."
+      );
+
+      setDbPrices((prev) => ({ ...prev, [pkg.id]: price }));
     } catch (err) {
       console.error(err);
       alert("Failed to save package");
@@ -52,47 +60,70 @@ export default function PackageForm() {
     }
   };
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPackageId(e.target.value);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Create Advertisement Package</h2>
+    <div className="max-w-5xl mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-6 text-center">Manage Advertisement Packages</h2>
 
-      <label className="block mb-2">
-        Select Package
-        <select
-          value={selectedPackageId}
-          onChange={handleSelectChange}
-          className="w-full border rounded px-2 py-1 mt-1"
-        >
-          {advertisementPackages.map((pkg) => (
-            <option key={pkg.id} value={pkg.id}>
-              {pkg.name} ({pkg.page})
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="block mb-4">
-        Daily Price
-        <input
-          type="number"
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          className="w-full border rounded px-2 py-1 mt-1"
-          min={0}
-        />
-      </label>
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      {/* Form */}
+      <form
+        onSubmit={handleSubmit}
+        className="p-6 rounded border-2 border-green-500 shadow-md mb-8 gap-4"
       >
-        {loading ? "Saving..." : "Save Package"}
-      </button>
-    </form>
+        <div className="grid grid-cols-2 gap-2 w-full">
+          <label className="block mb-2 font-medium">
+            Select Package
+            <select
+              value={selectedPackageId}
+              onChange={(e) => setSelectedPackageId(e.target.value)}
+              className="w-full border border-green-500 rounded-xs px-3 py-2 mt-1 h-10"
+            >
+              {advertisementPackages.map((pkg) => (
+                <option key={pkg.id} value={pkg.id} className="dark:bg-accent">
+                  {pkg.name} ({pkg.page})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="block mb-2 font-medium">
+            Update Price (SEK)
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(Number(e.target.value))}
+              className="w-full border border-green-500 rounded-xs px-3 py-2 mt-1 h-10"
+              min={0}
+            />
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-green-500 text-white px-6 py-2 rounded-xs hover:bg-green-400 transition-colors h-10"
+        >
+          {loading ? <Loader className="animated-spin"/> : "Save"}
+        </button>
+      </form>
+
+      {/* All Packages Display */}
+      <h3 className="text-xl font-semibold mb-4">All Packages</h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        {advertisementPackages.map((pkg) => (
+          <div
+            key={pkg.id}
+            className={`border rounded-xs p-4 shadow transition-shadow bg-accent-foreground/5 ${
+              pkg.id === selectedPackageId ? "border-green-500 shadow-lg" : ""
+            }`}
+          >
+            <h4 className="font-bold text-lg mb-1">{pkg.name}</h4>
+            <p className="text-sm mb-2">{pkg.page}</p>
+            <p className="font-medium">
+              Price: <span className="text-primary">SEK{dbPrices[pkg.id] ?? 0}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

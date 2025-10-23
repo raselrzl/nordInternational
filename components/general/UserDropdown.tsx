@@ -8,6 +8,7 @@ import {
   Megaphone,
   MessagesSquare,
   Newspaper,
+  Package,
   PoundSterling,
   Settings2,
   Table,
@@ -77,9 +78,13 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
         <DropdownMenuGroup>
           {(canSeeSection1 || mkr) && (
             <>
-             <DropdownMenuItem asChild>
+              <DropdownMenuItem asChild>
                 <Link href="/post-an-article/poll">
-                  <FileQuestion size={16} strokeWidth={2} className="opacity-60" />
+                  <FileQuestion
+                    size={16}
+                    strokeWidth={2}
+                    className="opacity-60"
+                  />
                   <span>Write a Poll Question?</span>
                 </Link>
               </DropdownMenuItem>
@@ -120,7 +125,12 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
                   <span>Post an Advertisement</span>
                 </Link>
               </DropdownMenuItem>
-
+              <DropdownMenuItem asChild>
+                <Link href="/post-an-article/post-advertisement/advertisementPackage">
+                  <Package size={16} strokeWidth={2} className="opacity-60" />
+                  <span>Add an Advertisement Package</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/post-an-article/post-advertisement/alladvertise">
                   <PoundSterling
@@ -173,7 +183,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
               </DropdownMenuItem>
             </>
           )}
-        </DropdownMenuGroup> 
+        </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
 
