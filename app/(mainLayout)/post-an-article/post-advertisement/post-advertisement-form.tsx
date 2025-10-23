@@ -607,6 +607,32 @@ export function CreateAdvertisementForm() {
 
           <Card>
             <CardContent className="space-y-6 pt-6">
+                 <FormField
+                control={control}
+                name="advertiseduration"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>How long You wanna keep this ads on the system?</FormLabel>
+                    <div className="grid grid-cols-3 gap-1">
+                      {[1, 2, 3, 4, 5].map((y) => {
+                        const days = y * 365;
+                        return (
+                          <Button
+                            key={days}
+                            type="button"
+                            variant={
+                              field.value === days ? "default" : "outline"
+                            }
+                            onClick={() => field.onChange(days)}
+                          >
+                            {y} Year
+                          </Button>
+                        );
+                      })}
+                    </div>
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={control}
                 name="advertiseStatus"

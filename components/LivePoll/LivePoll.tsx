@@ -89,11 +89,12 @@ export default function LivePoll() {
       </button>
 
       <div className="mt-6 flex flex-col items-center justify-center">
-        <img
+       {/*  <img
           src="liveresult1.gif"
           alt="live result"
           className="w-[170px] h-[40px] rounded-xl mb-2"
-        />
+        /> */}
+        <h1 className="text-xl uppercase font-bold">Live result</h1>
 
         <div className="space-y-2 w-full">
           <div className="flex items-center justify-between">
