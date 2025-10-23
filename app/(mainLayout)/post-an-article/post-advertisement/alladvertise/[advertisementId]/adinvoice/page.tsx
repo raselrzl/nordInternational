@@ -32,6 +32,7 @@ export default async function AdvertiseDetailsPage({
     );
   }
 
+  // Dates
   const start = new Date(ad.startDate);
   const end = new Date(ad.endDate);
   const formattedStartDate = start.toLocaleDateString("en-US", {
@@ -45,17 +46,25 @@ export default async function AdvertiseDetailsPage({
     day: "numeric",
   });
 
-  const dailyRate = 400;
+  // Duration
   const durationInDays = Math.max(
     1,
     Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
   );
 
-  const subtotal = dailyRate * durationInDays;
-  const momsRate = 0.25; // 25% VAT
-  const momsAmount = subtotal * momsRate;
-  const totalWithMoms = subtotal + momsAmount;
+  // Rates from DB
+  const dailyRate = ad.dailyPrice || 0;
+  const discountRate = ad.discount || 0;
+  const momsRate = (ad.moms || 0) / 100;
 
+  // Calculations
+  const subtotal = dailyRate * durationInDays;
+  const discountAmount = (subtotal * discountRate) / 100;
+  const priceAfterDiscount = subtotal - discountAmount;
+  const momsAmount = priceAfterDiscount * momsRate;
+  const totalWithMoms = priceAfterDiscount + momsAmount;
+
+  // Payment due date
   const paymentDueDate = new Date(start);
   paymentDueDate.setDate(start.getDate() + 15);
   const formattedDueDate = paymentDueDate.toLocaleDateString("en-US", {
@@ -152,17 +161,43 @@ export default async function AdvertiseDetailsPage({
                   {subtotal.toLocaleString("en-US")}
                 </td>
               </tr>
+
+              {discountRate > 0 && (
+                <tr className="bg-gray-50">
+                  <td className="border px-3 py-2 text-right" colSpan={3}>
+                    Discount ({discountRate}%)
+                  </td>
+                  <td className="border px-3 py-2 text-right">
+                    -{discountAmount.toLocaleString("en-US")}
+                  </td>
+                </tr>
+              )}
+
               <tr className="bg-gray-50">
-                <td className="border px-3 py-2 text-right" colSpan={3}>Subtotal</td>
-                <td className="border px-3 py-2 text-right">{subtotal.toLocaleString("en-US")}</td>
+                <td className="border px-3 py-2 text-right" colSpan={3}>
+                  Subtotal (After Discount)
+                </td>
+                <td className="border px-3 py-2 text-right">
+                  {priceAfterDiscount.toLocaleString("en-US")}
+                </td>
               </tr>
+
               <tr className="bg-gray-50">
-                <td className="border px-3 py-2 text-right" colSpan={3}>Moms (25%)</td>
-                <td className="border px-3 py-2 text-right">{momsAmount.toLocaleString("en-US")}</td>
+                <td className="border px-3 py-2 text-right" colSpan={3}>
+                  Moms ({ad.moms}%)
+                </td>
+                <td className="border px-3 py-2 text-right">
+                  {momsAmount.toLocaleString("en-US")}
+                </td>
               </tr>
+
               <tr className="bg-gray-100 font-bold">
-                <td className="border px-3 py-2 text-right" colSpan={3}>Total (inkl. Moms)</td>
-                <td className="border px-3 py-2 text-right">{totalWithMoms.toLocaleString("en-US")}</td>
+                <td className="border px-3 py-2 text-right" colSpan={3}>
+                  Total (inkl. Moms)
+                </td>
+                <td className="border px-3 py-2 text-right">
+                  {totalWithMoms.toLocaleString("en-US")}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -195,8 +230,12 @@ export default async function AdvertiseDetailsPage({
 
         {/* Footer */}
         <div className="mt-6 text-xs text-gray-500 border-t pt-3 leading-6 relative z-10">
-          <p>This invoice is an automatically generated digital document and does not require a signature.</p>
-          <p>The advertisement will be published on Nord International according to the scheduled time.</p>
+          <p>
+            This invoice is an automatically generated digital document and does not require a signature.
+          </p>
+          <p>
+            The advertisement will be published on Nord International according to the scheduled time.
+          </p>
         </div>
       </div>
     </>

@@ -19,20 +19,21 @@ type Ad = {
   advertiseBanner?: string | null;
   startDate: string | Date;
   endDate: string | Date;
+  dailyPrice?: number | null;
+  moms?: number | null;
+  discount?: number | null;
 };
 
 export default function PrintInvoiceClient({
   ad,
-  dailyRate = 400,
   buttonClassName = "mt-10 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-white hover:bg-primary/70 active:bg-primary/70 transition cursor-pointer",
 }: {
   ad: Ad;
-  dailyRate?: number;
   buttonClassName?: string;
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
-  // ----- Dates & pricing -----
+  // ----- Dates -----
   const start = useMemo(() => new Date(ad.startDate), [ad.startDate]);
   const end = useMemo(() => new Date(ad.endDate), [ad.endDate]);
 
@@ -52,9 +53,16 @@ export default function PrintInvoiceClient({
     Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
   );
 
+  // ----- Dynamic Pricing Logic -----
+  const dailyRate = ad.dailyPrice ?? 0;
+  const discountRate = ad.discount ?? 0; // percentage
+  const momsRate = (ad.moms ?? 0) / 100;
+
   const subtotal = dailyRate * durationInDays;
-  const moms = subtotal * 0.25; // 25% VAT (MOMS)
-  const totalWithMoms = subtotal + moms;
+  const discountAmount = (subtotal * discountRate) / 100;
+  const priceAfterDiscount = subtotal - discountAmount;
+  const momsAmount = priceAfterDiscount * momsRate;
+  const totalWithMoms = priceAfterDiscount + momsAmount;
 
   const paymentDueDate = useMemo(() => {
     const d = new Date(start);
@@ -68,14 +76,12 @@ export default function PrintInvoiceClient({
     day: "numeric",
   });
 
-  // ----- Assets & refs -----
+  // ----- Assets -----
   const filename = `INV-${ad.id.slice(0, 6).toUpperCase()}.pdf`;
   const logoUrl = "/n1w.png";
-  const bannerUrl = ad.advertiseBanner || "";
-
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // ----- PDF Capture -----
+  // ----- PDF Download -----
   const handleDownload = async () => {
     if (!contentRef.current) return;
     setIsLoading(true);
@@ -93,15 +99,14 @@ export default function PrintInvoiceClient({
       format: "a4",
     });
 
-    const pageWidth = pdf.internal.pageSize.getWidth(); // 595.28 pt
-    const pageHeight = pdf.internal.pageSize.getHeight(); // 841.89 pt
-    const margin = 36; // 0.5 inch = 36 pt
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 36;
     const printableWidth = pageWidth - margin * 2;
     const printableHeight = pageHeight - margin * 2;
 
     const imgWidth = printableWidth;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
     const finalHeight = Math.min(imgHeight, printableHeight);
     const finalWidth = (canvas.width * finalHeight) / canvas.height;
 
@@ -118,11 +123,7 @@ export default function PrintInvoiceClient({
     <>
       {/* Download button */}
       <div className="flex justify-end mb-6 print:hidden">
-        <Button
-          onClick={handleDownload}
-          className={buttonClassName}
-          disabled={isLoading}
-        >
+        <Button onClick={handleDownload} className={buttonClassName} disabled={isLoading}>
           {isLoading ? (
             <div className="flex items-center justify-between">
               <Loader2 className="animate-spin w-5 h-5" />
@@ -140,7 +141,7 @@ export default function PrintInvoiceClient({
           ref={contentRef}
           style={{
             position: "relative",
-            width: "720px", // fits A4 printable width within 0.5" margins
+            width: "720px",
             backgroundColor: "#ffffff",
             color: "#000000",
             padding: "20px 36px",
@@ -183,13 +184,7 @@ export default function PrintInvoiceClient({
               }}
             >
               <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <img
-                  src={logoUrl}
-                  alt="Logo"
-                  width={150}
-                  height={60}
-                  crossOrigin="anonymous"
-                />
+                <img src={logoUrl} alt="Logo" width={150} height={60} crossOrigin="anonymous" />
                 <p style={{ fontSize: "15pt", color: "#555" }}>Invoice</p>
               </div>
               <div style={{ textAlign: "right", fontSize: "10pt", color: "#333" }}>
@@ -210,61 +205,23 @@ export default function PrintInvoiceClient({
             >
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontWeight: 600 }}>Company Information</h3>
-                <p>
-                  <strong>Name:</strong> {ad.companyName}
-                </p>
-                <p>
-                  <strong>Address:</strong> {ad.companyaddress}
-                </p>
-                <p>
-                  <strong>Supervisor:</strong> {ad.supervisedName}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {ad.supervisedPhonenumber}
-                </p>
-                {ad.websiteLink && (
-                  <p>
-                    <strong>Website:</strong> {ad.websiteLink}
-                  </p>
-                )}
+                <p><strong>Name:</strong> {ad.companyName}</p>
+                <p><strong>Address:</strong> {ad.companyaddress}</p>
+                <p><strong>Supervisor:</strong> {ad.supervisedName}</p>
+                <p><strong>Phone:</strong> {ad.supervisedPhonenumber}</p>
+                {ad.websiteLink && <p><strong>Website:</strong> {ad.websiteLink}</p>}
               </div>
 
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontWeight: 600 }}>Advertisement Info</h3>
-                <p>
-                  <strong>Category:</strong> {ad.advertisedCategory}
-                </p>
-                <p>
-                  <strong>Duration:</strong> {formattedStartDate} - {formattedEndDate}
-                </p>
-                <p>
-                  <strong>Days:</strong> {durationInDays}
-                </p>
-                <p>
-                  <strong>Status:</strong> {ad.advertiseStatus}
-                </p>
+                <p><strong>Category:</strong> {ad.advertisedCategory}</p>
+                <p><strong>Duration:</strong> {formattedStartDate} - {formattedEndDate}</p>
+                <p><strong>Days:</strong> {durationInDays}</p>
+                <p><strong>Status:</strong> {ad.advertiseStatus}</p>
               </div>
             </div>
 
-            {/* Banner */}
-         {/*    {ad.advertiseBanner && (
-              <div style={{ textAlign: "center", marginBottom: "10px" }}>
-                <img
-                  src={ad.advertiseBanner}
-                  alt="Banner"
-                  width={300}
-                  height={180}
-                  crossOrigin="anonymous"
-                  style={{
-                    border: "1px solid #ddd",
-                    objectFit: "cover",
-                  }}
-                />
-              </div>
-            )} */}
-
-            {/* Table */}
-            {/* <h3 style={{ fontWeight: 600, marginBottom: 4 }}>Calculation</h3> */}
+            {/* Calculation Table */}
             <table
               style={{
                 width: "100%",
@@ -296,14 +253,27 @@ export default function PrintInvoiceClient({
                     {subtotal.toLocaleString("en-US")}
                   </td>
                 </tr>
+
+                {discountRate > 0 && (
+                  <tr>
+                    <td colSpan={3} style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>
+                      Discount ({discountRate}%)
+                    </td>
+                    <td style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>
+                      -{discountAmount.toLocaleString("en-US")}
+                    </td>
+                  </tr>
+                )}
+
                 <tr>
                   <td colSpan={3} style={{ textAlign: "right", fontWeight: 600, border: "1px solid #ddd", padding: "8px" }}>
-                    MOMS (25%)
+                    Moms ({ad.moms ?? 0}%)
                   </td>
                   <td style={{ textAlign: "right", border: "1px solid #ddd", padding: "8px" }}>
-                    {moms.toLocaleString("en-US")}
+                    {momsAmount.toLocaleString("en-US")}
                   </td>
                 </tr>
+
                 <tr style={{ backgroundColor: "#f7f7f7" }}>
                   <td colSpan={3} style={{ textAlign: "right", fontWeight: 700, border: "1px solid #ddd", padding: "8px" }}>
                     Total (SEK)
@@ -317,21 +287,11 @@ export default function PrintInvoiceClient({
 
             {/* Bank Info */}
             <div style={{ fontSize: "10.5pt" }}>
-              <p>
-                <strong>Bank Name:</strong> Svenska Handelsbanken
-              </p>
-              <p>
-                <strong>Account Number:</strong> 987 654 321
-              </p>
-              <p>
-                <strong>Account Name:</strong> Nord International
-              </p>
-              <p>
-                <strong>Branch:</strong> Stockholm City
-              </p>
-              <p>
-                <strong>SWIFT:</strong> HANDSESS
-              </p>
+              <p><strong>Bank Name:</strong> Svenska Handelsbanken</p>
+              <p><strong>Account Number:</strong> 987 654 321</p>
+              <p><strong>Account Name:</strong> Nord International</p>
+              <p><strong>Branch:</strong> Stockholm City</p>
+              <p><strong>SWIFT:</strong> HANDSESS</p>
             </div>
 
             {/* Reference */}
