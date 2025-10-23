@@ -102,7 +102,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                <Link href="/alluseropinion/opiniontable">
+                <Link href="/post-an-article/alluseropinion/opiniontable">
                   <Settings2 size={16} strokeWidth={2} className="opacity-60" />
                   <span>Manage All Complaints</span>
                 </Link>
@@ -142,7 +142,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/about/advertise/allcontactinfo">
+                <Link href="/post-an-article/advertise/allcontactinfo">
                   <MessagesSquare
                     size={16}
                     strokeWidth={2}
