@@ -6,7 +6,7 @@ import { ChevronRight, Newspaper } from "lucide-react";
 async function getLatestOpinions() {
   const articles = await prisma.newsArticle.findMany({
     where: { newsCategory: "OPINION" },
-    take: 4,
+    take: 3,
     orderBy: { createdAt: "desc" },
     select: {
       id: true,
