@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
   return (
     <div className="flex">
       {/* Sidebar (Client Component) */}
-      <Card className=" hidden md:flex sticky top-0 h-[80%] py-0 rounded-none">
+      <Card className=" hidden md:flex sticky top-24 h-[80%] py-0 rounded-none">
         <Sidebar />
 
         <form
@@ -34,7 +34,10 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
 
       {/* Main content */}
       <div className="flex-1 overflow-auto relative min-h-screen">
-        <div className="md:shadow md:border"><Navbar /></div>
+        <div className="fixed top-0 left-0 right-0 z-50 bg-background shadow-md max-w-7xl mx-auto">
+          <Navbar />
+        </div>
+        <div className="mt-24"></div>
         <h1 className="md:hidden text-xl font-bold bg-gray-600 text-center text-primary p-2">
           Admin Panel
         </h1>

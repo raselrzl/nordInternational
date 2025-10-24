@@ -31,10 +31,10 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <NavMenu />
       </div>
       {children}
-  <Poll />
-          <Footer />
-          <VisitorTracker />
-          <ScrollToTopButton />
+      <Poll />
+      <Footer />
+      <VisitorTracker />
+      <ScrollToTopButton />
       <Toaster closeButton richColors />
     </div>
   );
