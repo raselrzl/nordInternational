@@ -58,7 +58,7 @@ export default function PackageForm() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto">
    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage Advertisement Packages</h1>
      
       {/* Form */}
