@@ -222,8 +222,8 @@ export default async function Home() {
                 href="/"
               />
             )}
-            <div className="bg-primary-foreground dark:bg-accent-foreground/5 mt-4 pt-2 border-1">
-              <h1 className="font-bold text-center text-2xl">"Top News"</h1>
+            <div className="bg-amber-200 dark:bg-gray-600 mt-4 pt-2 border-1">
+              <h1 className="font-bold text-center text-2xl uppercase">"Top News"</h1>
               <div className="relative h-56 overflow-y-scroll scrollbar-thin mx-4 md:mx-0 md:px-1  mb-6 px-4">
                 {InternationalAll &&
                 Object.keys(InternationalAll).length > 0 ? (
