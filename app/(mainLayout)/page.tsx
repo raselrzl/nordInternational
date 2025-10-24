@@ -58,7 +58,7 @@ async function getData() {
         orderBy: {
           createdAt: "desc",
         },
-        take: 7,
+        take: 10,
       }),
 
       prisma.newsArticle.findMany({
@@ -322,7 +322,7 @@ export default async function Home() {
           {lastFeaturedArticle &&
           Object.keys(lastFeaturedArticle).length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2 md:border-1 mt-23 md:mt-4 border-t-2">
-              {lastFeaturedArticle.slice(1, 7).map((article) => (
+              {lastFeaturedArticle.slice(1, 10).map((article) => (
                 <Link href={`/newsDetails/${article.id}`} key={article.id}>
                   <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                     <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
