@@ -42,7 +42,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
         </h1>
         </div>
         <div className="mt-34"></div>
-        <div className="p-2 md:px-4 border-1 mb-10 shadow">{children}</div>
+        <div className="p-2 md:px-4 border-1 mb-10 shadow min-h-[538px]">{children}</div>
       </div>
     </div>
   );
