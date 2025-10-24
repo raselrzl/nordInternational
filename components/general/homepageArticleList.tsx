@@ -1,12 +1,10 @@
 import { prisma } from "@/app/utils/db";
 import Image from "next/image";
 import { EmptyState } from "./EmptyState";
-import SocialLinks from "./socialLink";
 import Link from "next/link";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "../richTextEditor/JsonToHtml";
 import { SuperOne } from "../allAdvertisement/SuperOne";
-import { SizeOneAdvertise } from "../allAdvertisement/SizeOne";
 import { List } from "lucide-react";
 
 // getAllArticles.ts
