@@ -21,7 +21,9 @@ export default async function AdminNavbar() {
       {/*  desktop navigation */}
 
       <div className="hidden md:flex items-center gap-5">
+        <p className="font-bold">{user?.user?.name }</p>
         <ThemeToggle />
+        
 
         <div>
           {" "}
@@ -47,6 +49,7 @@ export default async function AdminNavbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-2">
+        <p className="font-bold">{user?.user?.name }</p>
         <div className="size-sm">
           <ThemeToggle />
         </div>
