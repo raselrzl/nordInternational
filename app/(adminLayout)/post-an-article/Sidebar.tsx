@@ -39,10 +39,6 @@ export default function Sidebar() {
 
   return (
     <Card className="hidden md:flex w-54 rounded-none flex-col pt-0 shadow-none border-none">
-      <h1 className="text-xl font-bold bg-gray-600 text-center text-primary p-2">
-        Admin Panel
-      </h1>
-
       <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto px-4">
         {links.map((link) => {
           const isActive = pathname === link.href;
