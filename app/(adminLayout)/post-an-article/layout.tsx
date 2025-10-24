@@ -4,6 +4,7 @@ import Navbar from "@/components/general/Navbar";
 import Sidebar from "./Sidebar";
 import { LogOut } from "lucide-react";
 import { signOut } from "@/app/utils/auth";
+import AdminNavbar from "./AdminNavbar";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -35,7 +36,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main content */}
       <div className="flex-1 overflow-auto relative min-h-screen">
         <div className="fixed top-0 left-0 right-0 z-50 bg-background shadow-md max-w-7xl mx-auto">
-          <Navbar />
+          <AdminNavbar />
            <h1 className="text-xl font-bold bg-gray-600 text-center text-primary p-2">
           Admin Panel
         </h1>
