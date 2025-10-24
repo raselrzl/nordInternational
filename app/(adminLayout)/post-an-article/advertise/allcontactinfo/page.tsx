@@ -170,7 +170,7 @@ export default async function AllAdvertiseRequestsTable({
                               <DropdownMenuSeparator />
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/about/advertise/allcontactinfo/${req.id}/delete`}
+                                  href={`/post-an-article/advertise/allcontactinfo/${req.id}/delete`}
                                   className="text-red-600"
                                 >
                                   <XCircle className="w-4 h-4 mr-2" />

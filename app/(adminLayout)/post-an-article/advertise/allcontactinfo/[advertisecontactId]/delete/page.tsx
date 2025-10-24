@@ -17,7 +17,7 @@ export default function ConfirmDeleteAdvertiseContactPage() {
     try {
       setLoading(true);
       await deleteadvertiseRequestMEssageById(advertiseContactId);
-      router.push('/about/advertise/allcontactinfo');
+      router.push('/post-an-article/advertise/allcontactinfo');
     } catch (error) {
       console.error('Error deleting advertise contact message:', error);
     } finally {
@@ -26,7 +26,7 @@ export default function ConfirmDeleteAdvertiseContactPage() {
   };
 
   const handleCancel = () => {
-    router.push('/about/advertise/allcontactinfo');
+    router.push('/post-an-article/advertise/allcontactinfo');
   };
 
   return (
