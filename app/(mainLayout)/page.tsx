@@ -4,7 +4,7 @@ import { EmptyState } from "@/components/general/EmptyState";
 import Link from "next/link";
 import Image from "next/image";
 import SocialLinks from "@/components/general/socialLink";
-import { Clock, Loader2 } from "lucide-react";
+import { Clock, Flame, Loader2 } from "lucide-react";
 import { aauth } from "../actions";
 import { Contact } from "@/components/general/Contact";
 import {
@@ -18,21 +18,15 @@ import { isJson } from "../utils/isJson";
 import Videos from "@/components/general/Videos";
 import { trackRoute } from "../utils/routeTracker";
 import { ProOneAdvertise } from "@/components/allAdvertisement/ProOne";
-import { SuperTwo } from "@/components/allAdvertisement/SuperTwo";
 import { DeluxeTwoAdvertise } from "@/components/allAdvertisement/DeluxeTwo";
-import { DeluxeOneAdvertise } from "@/components/allAdvertisement/DeluxeOne";
 import { PremiumOneAdvertise } from "@/components/allAdvertisement/PremiumOne";
 import { PremiumTwoAdvertise } from "@/components/allAdvertisement/PremiumTwo";
-import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
-import PopupOnViewClientWrapper from "@/components/PopupAd/PopupOnViewClientWrapper";
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
-import LivePoll from "@/components/LivePoll/LivePoll";
-import Poll from "@/components/LivePoll/Poll";
 import LatestOpinions from "@/components/general/LatestOpinions";
 
 async function getData() {
-  const [lastFeaturedArticle, latestNews, InternationalAll] = await Promise.all(
+  const [lastFeaturedArticle, latestUSANews, InternationalAll] = await Promise.all(
     [
       prisma.newsArticle.findMany({
         where: {
@@ -68,7 +62,7 @@ async function getData() {
       }),
 
       prisma.newsArticle.findMany({
-        where: { newsCategory: "ENTERTAINMENT" },
+        where: { newsLocation: "Usa" },
         select: {
           id: true,
           createdAt: true,
@@ -129,12 +123,12 @@ async function getData() {
 
   return {
     lastFeaturedArticle,
-    latestNews,
+    latestUSANews,
     InternationalAll,
   };
 }
 export default async function Home() {
-  const { lastFeaturedArticle, latestNews, InternationalAll } = await getData();
+  const { lastFeaturedArticle, latestUSANews, InternationalAll } = await getData();
   await trackRoute("Home");
   const session = await aauth();
   return (
@@ -143,10 +137,10 @@ export default async function Home() {
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
           <div className="flex flex-row gap-2 text-center items-center justify-center">
             <Clock />
-            <h1 className="text-2xl font-bold pt-2">Recent</h1>
+            <h1 className="text-xl font-bold pt-2 uppercase">USA Highlights</h1>
           </div>
-          {latestNews && latestNews.length > 0 ? (
-            latestNews.map((item) => (
+          {latestUSANews && latestUSANews.length > 0 ? (
+            latestUSANews.map((item) => (
               <Link key={item.id} href={`/newsDetails/${item.id}`}>
                 <div className="grid grid-cols-3 border-b py-2">
                   <div className="col-span-1">
@@ -223,7 +217,7 @@ export default async function Home() {
               />
             )}
             <div className="bg-amber-200 dark:bg-gray-600 mt-4 pt-2 border-1">
-              <h1 className="font-bold text-center text-2xl uppercase">"Top News"</h1>
+              <div className="flex flex-row items-center justify-center"><Flame /><h1 className="font-bold text-center text-xl uppercase">Top News</h1></div>
               <div className="relative h-56 overflow-y-scroll scrollbar-thin mx-4 md:mx-0 md:px-1  mb-6 px-4">
                 {InternationalAll &&
                 Object.keys(InternationalAll).length > 0 ? (
