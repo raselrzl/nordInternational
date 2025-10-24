@@ -42,19 +42,19 @@ export async function StandardOne({ country }: { country: string }) {
   return (
     <>
       {Advertise && Object.keys(Advertise).length > 0 ? (
-        <div className="flex items-center justify-center rounded-xl">
+         <div className="flex flex-col items-center justify-center rounded-xl">
           {Advertise.map((ad) => (
             <Link
               href={`https://${ad.websiteLink}`}
               key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-block"
-            >
+              className="inline-block text-white rounded-md text-xs transition w-[250px]"
+          >
               <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                className="w-full h-[170px] rounded-xl object-cover"
+                className="w-[250px] h-[170px] rounded-xl object-cover"
               />
               <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
                 Ad.
