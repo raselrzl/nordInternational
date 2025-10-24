@@ -6,12 +6,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function LoadingMyArticles() {
   return (
     <div className="max-w-6xl mx-auto mt-10 space-y-6 animate-pulse">
-      {/* Header Skeleton */}
-      <div className="space-y-2">
-        <Skeleton className="h-8 w-1/3 mx-auto" />
-        <Skeleton className="h-4 w-1/2 mx-auto" />
-      </div>
-
       {/* Card Table Skeleton */}
       <Card className="border border-gray-200 shadow-sm">
         <CardHeader>

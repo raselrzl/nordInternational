@@ -4,6 +4,7 @@ import { prisma } from "@/app/utils/db";
 import { requireArticlePoster } from "@/app/utils/NewsReporter";
 import { requireUser } from "@/app/utils/requireUser";
 import { trackRoute } from "@/app/utils/routeTracker";
+import Navbar from "@/components/general/Navbar";
 
 async function getNewsReporterInfo(userId: string) {
   const data = await prisma.newsReporter.findUnique({
@@ -32,6 +33,7 @@ export default async function PostAnArticle() {
 
   return (
     <div className="max-w-7xl mx-auto">
+     
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2">Fill in everything available in the news.</h1>
       <div className="py-10">
         <CreateNewsArticleForm

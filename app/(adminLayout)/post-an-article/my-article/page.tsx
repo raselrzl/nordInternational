@@ -1,17 +1,14 @@
 import { prisma } from "@/app/utils/db";
-import { PaginationComponent } from "@/components/general/PaginationComponent";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
+import { requireNewsReporter, requireUser } from "@/app/utils/requireUser";
+import { trackRoute } from "@/app/utils/routeTracker";
+import { EmptyState } from "@/components/general/EmptyState";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,15 +17,34 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
-import { EmptyState } from "@/components/general/EmptyState";
-import { requireSuperAdmin } from "@/app/utils/requireUser";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  CheckCircle,
+  MoreHorizontal,
+  PenBoxIcon,
+  XCircle,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { PaginationComponent } from "@/components/general/PaginationComponent";
 
-async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
+async function getMyArticles(userId: string, page: number = 1, pageSize: number = 8) {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
+      where: {
+        newsReporter: {
+          userId: userId,
+        },
+      },
       take: pageSize,
       skip: skip,
       select: {
@@ -49,18 +65,20 @@ async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
         newsPictureHeading: true,
         newsPictureCredit: true,
         newsLocation: true,
-        newsReporter: {
-          select: {
-            reporterName: true,
-          },
-        },
+        newsReporter: true,
         newsArticleStatus: true,
       },
       orderBy: {
         createdAt: "desc",
       },
     }),
-    prisma.newsArticle.count(),
+    prisma.newsArticle.count({
+      where: {
+        newsReporter: {
+          userId: userId,
+        },
+      },
+    }),
   ]);
 
   return {
@@ -76,23 +94,24 @@ type SearchParamsProps = {
   }>;
 };
 
-export default async function AllNewsArticleList({ searchParams }: SearchParamsProps) {
+export default async function MyArticle({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-  await requireSuperAdmin();
+  const session = await requireUser();
+  await requireNewsReporter();
+  await trackRoute("MyArticle");
 
-  const { articles, totalPages, totalCount } = await getAllnewsArticles(currentPage);
+  const { articles, totalPages, totalCount } = await getMyArticles(session.id as string, currentPage);
 
   return (
     <>
-      <div className="flex items-center justify-between mb-8 bg-accent-foreground/5 p-2">
-        <h1 className="text-xl font-bold">Manage All Articles</h1>
-        {/* ✅ Total Count Display */}
-        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mx-2 mb-2 flex justify-between items-center">
+        <span>My Published All News Articles</span>
+       <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
-      </div>
+      </h1>
 
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
@@ -177,7 +196,7 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                                   href={`/post-an-article/alaarticles/${article.id}/updatestatustodraft`}
                                 >
                                   <CheckCircle className="w-4 h-4 mr-2 text-yellow-500" />
-                                  Draft
+                                  Move to Draft
                                 </Link>
                               </DropdownMenuItem>
                             ) : (
@@ -200,14 +219,17 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
             </CardContent>
           </Card>
 
-          {/* ✅ Pagination */}
-          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
+          {/* ✅ Pagination (same as Country page) */}
+          <PaginationComponent
+            totalPages={totalPages}
+            currentPage={currentPage}
+          />
         </div>
       ) : (
         <EmptyState
-          title="Oops! Nothing to show yet."
-          description="Nothing has been added yet. Stay tuned!"
-          buttonText="Click here to go to the homepage"
+          title="No Articles Available"
+          description="There are no articles to show. Please add some."
+          buttonText="Go to Homepage"
           href="/"
         />
       )}
