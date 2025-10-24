@@ -12,7 +12,7 @@ import {
   ScienceNews,
   ScienceNewsHeadPost,
 } from "@/components/general/homepageArticleList";
-import { SorboseshAndJonoprioTab } from "@/components/general/SorboseshAndJonoprioTab";
+import { CrimeAndPopularTab } from "@/components/general/CrimeAndPopularTab";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { isJson } from "../utils/isJson";
 import Videos from "@/components/general/Videos";
@@ -364,7 +364,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {/* Left: Sorbosesh / Jonoprio */}
           <div className="border-0 md:border p-2">
-            <SorboseshAndJonoprioTab />
+            <CrimeAndPopularTab />
           </div>
 
           {/* Right: Premium Ad */}

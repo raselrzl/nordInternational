@@ -2,13 +2,7 @@ import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Tabs,
   TabsContent,
@@ -17,15 +11,15 @@ import {
 } from "@/components/ui/tabs"
 import { JonoprioNews, SorboseshNews } from "./homepageArticleList"
 
-export function SorboseshAndJonoprioTab() {
+export function CrimeAndPopularTab() {
   return (
     <div className="p-2 md:py-4">
-    <Tabs defaultValue="sorbosesh" className="w-full">
+    <Tabs defaultValue="crime" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="sorbosesh">Latest</TabsTrigger>
-        <TabsTrigger value="jonoprio">Popular</TabsTrigger>
+        <TabsTrigger value="crime">CRIME</TabsTrigger>
+        <TabsTrigger value="jonoprio">POPULAR</TabsTrigger>
       </TabsList>
-      <TabsContent value="sorbosesh">
+      <TabsContent value="crime">
         <Card className="rounded-xs">
           <CardContent className="space-y-2">
             <SorboseshNews />

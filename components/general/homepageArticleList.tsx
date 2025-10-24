@@ -109,7 +109,7 @@ export async function getLastFeaturedArticle() {
 // getLatestNews.ts
 export async function getLatestNews() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "EDUCATION" },
+    where: { newsCategory: "LATEST" },
     select: {
       id: true,
       createdAt: true,
@@ -203,7 +203,7 @@ export async function getScienceNewsHead() {
 export async function getEnvironmentNews() {
   return await prisma.newsArticle.findFirst({
     where: {
-      newsCategory: "EDUCATION",
+      newsCategory: "ENVIRONMENT",
       isFeatured: true,
     },
     select: {
@@ -236,7 +236,7 @@ export async function getEnvironmentNews() {
 // getPoliticsNews.ts
 export async function getPoliticsNews() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "EDUCATION" },
+    where: { newsCategory: "POLITICS" },
     select: {
       id: true,
       createdAt: true,
