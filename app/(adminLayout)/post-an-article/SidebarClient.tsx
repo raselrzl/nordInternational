@@ -40,14 +40,14 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
     { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
     ...(canSeeSection1 || mkrValue
       ? [
-          { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+         
           { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
           { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
-          { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
         ]
       : []),
     ...(canSeeSection2
-      ? [
+      ? [ { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+          { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
           { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
           { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
           { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },

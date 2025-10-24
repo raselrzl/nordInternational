@@ -37,17 +37,45 @@ interface iAppProps {
 
 export async function UserDropdown({ email, name, image }: iAppProps) {
   const mkr = ime(email);
-
   const currentUser = await getCurrentUserType();
-  const userType = currentUser?.userType;
-  const approvalStatus = currentUser?.approvalStatus;
+  const userType = currentUser?.userType ?? null;
+  const approvalStatus = currentUser?.approvalStatus ?? null;
 
   const canSeeSection1 =
     (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
     userType === "SOMPANDOK" ||
     userType === "SUPERADMIN";
   const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
-  const canSeeSection3 = userType === "SUPERADMIN";
+
+  const links = [
+    // Common for everyone
+    { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
+
+    // Section 1
+    ...(canSeeSection1 || mkr
+      ? [
+          { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
+          { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
+        ]
+      : []),
+
+    // Section 2 (Admin / Editor)
+    ...(canSeeSection2
+      ? [
+          { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+          { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
+          { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
+          { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
+          { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
+          { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
+          { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
+          { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
+          { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
+          { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
+          { href: "/post-an-article/allusers", icon: Users, label: "All Users" },
+        ]
+      : []),
+  ];
 
   return (
     <DropdownMenu>
@@ -61,128 +89,25 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
           <ChevronDown size={16} strokeWidth={2} />
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent className="w-60" align="end">
         <DropdownMenuLabel className="flex flex-col">
           <span className="text-sm font-medium text-foreground">{name}</span>
           <span className="text-xs font-medium text-foreground">{email}</span>
         </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
 
-        {/* Section 1 - User Options */}
-        <DropdownMenuItem asChild>
-          <Link href="/alluseropinion">
-            <MessagesSquare size={16} strokeWidth={2} className="opacity-60" />
-            <span>Complaints</span>
-          </Link>
-        </DropdownMenuItem>
+        {/* Dynamic links */}
         <DropdownMenuGroup>
-          {(canSeeSection1 || mkr) && (
-            <>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/poll">
-                  <FileQuestion
-                    size={16}
-                    strokeWidth={2}
-                    className="opacity-60"
-                  />
-                  <span>Write a Poll Question?</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article">
-                  <BookPlus size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Write a News Article</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/my-article">
-                  <Newspaper size={16} strokeWidth={2} className="opacity-60" />
-                  <span>List of My Published Articles</span>
-                </Link>
-              </DropdownMenuItem>
-
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/alluseropinion/opiniontable">
-                  <Settings2 size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Manage All Complaints</span>
-                </Link>
-              </DropdownMenuItem>
-            </>
-          )}
-
-          {/* Section 2 - Admin Options */}
-          {canSeeSection2 && (
-            <>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/alaarticles">
-                  <Layers2 size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Manage All Articles</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/post-advertisement">
-                  <Megaphone size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Post an Advertisement</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/post-advertisement/advertisementPackage">
-                  <Package size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Add an Advertisement Package</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/post-advertisement/alladvertise">
-                  <PoundSterling
-                    size={16}
-                    strokeWidth={2}
-                    className="opacity-60"
-                  />
-                  <span>Manage All Advertisements</span>
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/advertise/allcontactinfo">
-                  <MessagesSquare
-                    size={16}
-                    strokeWidth={2}
-                    className="opacity-60"
-                  />
-                  <span>All Advertisement Requests</span>
-                </Link>
-              </DropdownMenuItem>
-
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/post-a-video">
-                  <Settings2 size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Post a YouTube Video</span>
-                </Link>
-              </DropdownMenuItem>
-
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/post-a-video/allvideos">
-                  <BarChart size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Manage All Videos</span>
-                </Link>
-              </DropdownMenuItem>
-
-              {/* Dashboard Link */}
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/routeTrack">
-                  <Table size={16} strokeWidth={2} className="opacity-60" />
-                  <span>Dashboard</span>
-                </Link>
-              </DropdownMenuItem>
-
-              {/* All Users Link */}
-              <DropdownMenuItem asChild>
-                <Link href="/post-an-article/allusers">
-                  <Users size={16} strokeWidth={2} className="opacity-60" />
-                  <span>All Users of the App</span>
-                </Link>
-              </DropdownMenuItem>
-            </>
-          )}
+          {links.map((link) => (
+            <DropdownMenuItem key={link.href} asChild>
+              <Link href={link.href}>
+                <link.icon size={16} strokeWidth={2} className="opacity-60" />
+                <span>{link.label}</span>
+              </Link>
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
@@ -192,9 +117,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
           <form
             action={async () => {
               "use server";
-              await signOut({
-                redirectTo: "/",
-              });
+              await signOut({ redirectTo: "/" });
             }}
           >
             <button className="flex w-full items-center justify-center gap-2">
