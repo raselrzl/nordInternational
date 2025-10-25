@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
-import { requireSuperAdmin } from "@/app/utils/requireUser";
 import { requireRoleAccess } from "../roleBaseAccess";
 
 async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
@@ -81,18 +80,19 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
- const rewuireUserToAccessPage = await requireRoleAccess([
-        "SOMPANDOK",
-        "SUPERADMIN"
-      ]);
+  const rewuireUserToAccessPage = await requireRoleAccess([
+    "SOMPANDOK",
+    "SUPERADMIN",
+  ]);
 
   const { articles, totalPages, totalCount } = await getAllnewsArticles(currentPage);
+
+  const userRole = rewuireUserToAccessPage?.userType;
 
   return (
     <>
       <div className="flex items-center justify-between mb-8 bg-accent-foreground/5 p-2">
         <h1 className="text-xl font-bold">Manage All Articles</h1>
-        {/* ✅ Total Count Display */}
         <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
@@ -158,6 +158,8 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+                            {/* Always visible: Edit */}
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/alaarticles/${article.id}/editarticle`}
@@ -166,15 +168,23 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                                 Edit
                               </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/post-an-article/alaarticles/${article.id}/deletearticle`}
-                              >
-                                <XCircle className="w-4 h-4 mr-2 text-red-600" />
-                                Delete
-                              </Link>
-                            </DropdownMenuItem>
+
+                            {/* Only SUPERADMIN can see Delete */}
+                            {userRole === "SUPERADMIN" && (
+                              <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem asChild>
+                                  <Link
+                                    href={`/post-an-article/alaarticles/${article.id}/deletearticle`}
+                                  >
+                                    <XCircle className="w-4 h-4 mr-2 text-red-600" />
+                                    Delete
+                                  </Link>
+                                </DropdownMenuItem>
+                              </>
+                            )}
+
+                            {/* Status Change (Visible to both SOMPANDOK & SUPERADMIN) */}
                             {article.newsArticleStatus === "ACTIVE" ? (
                               <DropdownMenuItem asChild>
                                 <Link
@@ -204,7 +214,6 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
             </CardContent>
           </Card>
 
-          {/* ✅ Pagination */}
           <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </div>
       ) : (

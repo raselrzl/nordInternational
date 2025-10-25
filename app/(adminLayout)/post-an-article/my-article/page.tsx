@@ -3,7 +3,7 @@ import { requireNewsReporter, requireUser } from "@/app/utils/requireUser";
 import { trackRoute } from "@/app/utils/routeTracker";
 import { EmptyState } from "@/components/general/EmptyState";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -108,6 +108,12 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
     currentPage
   );
 
+  const userRole = rewuireUserToAccessPage?.userType;
+
+  const canPublishOrDraft =
+    userRole === "SOMPANDOK" || userRole === "SUPERADMIN";
+  const canDelete = userRole === "SUPERADMIN"; // ✅ Delete only for Superadmin
+
   return (
     <>
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mx-2 mb-2 flex justify-between items-center">
@@ -184,6 +190,8 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+                            {/* Always visible: Edit */}
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/alaarticles/${article.id}/editarticle`}
@@ -192,33 +200,46 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                                 Edit
                               </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/post-an-article/alaarticles/${article.id}/deletearticle`}
-                              >
-                                <XCircle className="w-4 h-4 mr-2 text-red-600" />
-                                Delete
-                              </Link>
-                            </DropdownMenuItem>
-                            {article.newsArticleStatus === "ACTIVE" ? (
-                              <DropdownMenuItem asChild>
-                                <Link
-                                  href={`/post-an-article/alaarticles/${article.id}/updatestatustodraft`}
-                                >
-                                  <CheckCircle className="w-4 h-4 mr-2 text-yellow-500" />
-                                  Move to Draft
-                                </Link>
-                              </DropdownMenuItem>
-                            ) : (
-                              <DropdownMenuItem asChild>
-                                <Link
-                                  href={`/post-an-article/alaarticles/${article.id}/updatestatustoactive`}
-                                >
-                                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                                  Publish
-                                </Link>
-                              </DropdownMenuItem>
+
+                            {/* ✅ Delete visible only to Superadmin */}
+                            {canDelete && (
+                              <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem asChild>
+                                  <Link
+                                    href={`/post-an-article/alaarticles/${article.id}/deletearticle`}
+                                  >
+                                    <XCircle className="w-4 h-4 mr-2 text-red-600" />
+                                    Delete
+                                  </Link>
+                                </DropdownMenuItem>
+                              </>
+                            )}
+
+                            {/* ✅ Publish/Draft visible to Sompadok & Superadmin */}
+                            {canPublishOrDraft && (
+                              <>
+                                <DropdownMenuSeparator />
+                                {article.newsArticleStatus === "ACTIVE" ? (
+                                  <DropdownMenuItem asChild>
+                                    <Link
+                                      href={`/post-an-article/alaarticles/${article.id}/updatestatustodraft`}
+                                    >
+                                      <CheckCircle className="w-4 h-4 mr-2 text-yellow-500" />
+                                      Move to Draft
+                                    </Link>
+                                  </DropdownMenuItem>
+                                ) : (
+                                  <DropdownMenuItem asChild>
+                                    <Link
+                                      href={`/post-an-article/alaarticles/${article.id}/updatestatustoactive`}
+                                    >
+                                      <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                                      Publish
+                                    </Link>
+                                  </DropdownMenuItem>
+                                )}
+                              </>
                             )}
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -230,7 +251,6 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
             </CardContent>
           </Card>
 
-          {/* ✅ Pagination (same as Country page) */}
           <PaginationComponent
             totalPages={totalPages}
             currentPage={currentPage}

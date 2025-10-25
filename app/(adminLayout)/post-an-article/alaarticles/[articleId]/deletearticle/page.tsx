@@ -6,7 +6,7 @@ import { use, useState } from "react";
 import { deleteArticleById } from "@/app/actions";
 import { Loader2 } from "lucide-react";
 
-export default function ConfirmDeletePage({
+export default function DeleteArticle({
   params,
 }: {
   params: Promise<{ articleId: string }>;

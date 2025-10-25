@@ -52,14 +52,15 @@ interface iAppProps {
     newsLocation: string | null;
     newsArticleStatus: string;
   };
+  userType: string | null;
 }
 
-export function EditNewsArticleForm({ article }: iAppProps) {
+export function EditNewsArticleForm({ article, userType }: iAppProps) {
   const {
     register,
     formState: { errors },
   } = useForm();
-  
+
   const form = useForm({
     defaultValues: {
       newsHeading: article.newsHeading,
@@ -71,11 +72,15 @@ export function EditNewsArticleForm({ article }: iAppProps) {
       newsPictureCredit: article.newsPictureCredit,
       newsDetails: article.newsDetails,
       isFeatured: article.isFeatured ?? false,
-      newsArticleStatus: article.newsArticleStatus as "EXPIRED" | "ACTIVE" | "DRAFT",
-      quotes: article.quotes?.map((quote) => ({
-        text: quote.text,
-        speakerInfo: quote.speakerInfo,
-      })) ?? [],
+      newsArticleStatus: article.newsArticleStatus as
+        | "EXPIRED"
+        | "ACTIVE"
+        | "DRAFT",
+      quotes:
+        article.quotes?.map((quote) => ({
+          text: quote.text,
+          speakerInfo: quote.speakerInfo,
+        })) ?? [],
     },
   });
 
@@ -103,7 +108,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
 
   const [useEditor, setUseEditor] = useState(false);
 
-   const handleCancel = () => {
+  const handleCancel = () => {
     router.push("/post-an-article/alaarticles");
   };
 
@@ -130,50 +135,47 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                   </FormItem>
                 )}
               />
-            <>
-      <div className="flex items-center gap-2 mb-4">
-        <Switch
-          id="toggle-editor"
-          checked={useEditor}
-          onCheckedChange={setUseEditor}
-        />
-        <Label htmlFor="toggle-editor">Do you wanna use the editor?</Label>
-      </div>
+              <>
+                <div className="flex items-center gap-2 mb-4">
+                  <Switch
+                    id="toggle-editor"
+                    checked={useEditor}
+                    onCheckedChange={setUseEditor}
+                  />
+                  <Label htmlFor="toggle-editor">
+                    Do you wanna use the editor?
+                  </Label>
+                </div>
 
-      <FormField
-        control={form.control}
-        name="newsDetails"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>News Details</FormLabel>
-            <FormControl>
-              {useEditor ? (
-                <NewsDescriptionEditor key="editor" field={field} />
-              ) : (
-                <Textarea
-                  key="textarea"
-                  placeholder="........"
-                  className="min-h-[160px] md:min-h-[350px] placeholder:text-xs"
-                  {...field}
+                <FormField
+                  control={form.control}
+                  name="newsDetails"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>News Details</FormLabel>
+                      <FormControl>
+                        {useEditor ? (
+                          <NewsDescriptionEditor key="editor" field={field} />
+                        ) : (
+                          <Textarea
+                            key="textarea"
+                            placeholder="........"
+                            className="min-h-[160px] md:min-h-[350px] placeholder:text-xs"
+                            {...field}
+                          />
+                        )}
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              )}
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-    </>
-
-
-
+              </>
             </CardContent>
           </Card>
 
           <Card className="rounded-xs">
             <CardHeader>
-              <CardTitle>
-                Details about the news
-              </CardTitle>
+              <CardTitle>Details about the news</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -185,21 +187,18 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                       <FormLabel>Source of the news?</FormLabel>
                       <FormControl>
                         <div className="flex gap-2">
-                          {["Online", "Print"].map(
-                            (option) => (
-                              <Button
-                                type="button"
-                                key={option}
-                                variant={
-                                  field.value === option ? "default" : "outline"
-                                }
-                                onClick={() => field.onChange(option)}
-                              >
-                                {option.charAt(0).toUpperCase() +
-                                  option.slice(1)}
-                              </Button>
-                            )
-                          )}
+                          {["Online", "Print"].map((option) => (
+                            <Button
+                              type="button"
+                              key={option}
+                              variant={
+                                field.value === option ? "default" : "outline"
+                              }
+                              onClick={() => field.onChange(option)}
+                            >
+                              {option.charAt(0).toUpperCase() + option.slice(1)}
+                            </Button>
+                          ))}
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -252,30 +251,31 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="newsArticleStatus"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>News Status</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="News Status" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="DRAFT">DRAFT</SelectItem>
-                          <SelectItem value="ACTIVE">ACTIVE</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                {["SOMPANDOK", "SUPERADMIN"].includes(userType ?? "") && (
+                  <FormField
+                    control={form.control}
+                    name="newsArticleStatus"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>News Status</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Status" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="DRAFT">DRAFT</SelectItem>
+                            <SelectItem value="ACTIVE">ACTIVE</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormItem>
+                    )}
+                  />
+                )}
               </div>
 
               <FormField
@@ -283,9 +283,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                 name="newsCategory"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      Select a news Category?
-                    </FormLabel>
+                    <FormLabel>Select a news Category?</FormLabel>
                     <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
                       {links.map((link) => {
                         const value = link.href
@@ -353,7 +351,10 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                           </Button>
                         </div>
                       ) : (
-                        <UploadDropzone onChange={field.onChange} endpoint="imageUploader"/>
+                        <UploadDropzone
+                          onChange={field.onChange}
+                          endpoint="imageUploader"
+                        />
                       )}
                     </FormControl>
                     <FormMessage />
@@ -367,10 +368,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                   <FormItem>
                     <FormLabel>About Picture</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="About Picture"
-                        {...field}
-                      />
+                      <Input placeholder="About Picture" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -383,10 +381,7 @@ export function EditNewsArticleForm({ article }: iAppProps) {
                   <FormItem>
                     <FormLabel>Photo Credit</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Photo credit"
-                        {...field}
-                      />
+                      <Input placeholder="Photo credit" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -407,4 +402,4 @@ export function EditNewsArticleForm({ article }: iAppProps) {
       </form>
     </Form>
   );
-} 
+}
