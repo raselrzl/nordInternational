@@ -200,8 +200,13 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
   }, [filteredAds]);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Advertisement Analysis</h1>
+    <div className="">
+      <div className="text-xl flex justify-between font-bold bg-accent-foreground/5 p-2 mb-8">
+        <h1>Advertisement Analysis</h1>
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+          Total Ads: {filteredAds.length}
+        </div>
+      </div>
 
       <div className="flex flex-wrap gap-4 mb-4 items-end">
         <Input
