@@ -62,6 +62,7 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
   // SUPERADMIN only
   const linksSuperAdmin = [
     { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
+    { href: "/post-an-article/post-advertisement/analysisadvertisement", icon: Package, label: "Analysis of Advertisement" },
     { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
   ];
 
