@@ -34,8 +34,8 @@ type AdvertisementWithProfile = {
   moms: number;
   advertiseStatus: string;
   createdAt: Date;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
 };
 
 interface Props {
@@ -86,10 +86,9 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
 
   // Calculate totals and durations based on start/end dates
   const calculateTotal = (ad: AdvertisementWithProfile) => {
-    const duration =
-      ad.startDate && ad.endDate
-        ? differenceInDays(new Date(ad.endDate), new Date(ad.startDate)) + 1
-        : 1;
+    const duration = ad.startDate && ad.endDate
+  ? differenceInDays(new Date(ad.endDate), new Date(ad.startDate)) + 1
+  : 1;
     const base = ad.dailyPrice * duration;
     const discountAmt = base * (ad.discount / 100);
     const withDiscount = base - discountAmt;
@@ -269,50 +268,56 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
           <CardContent>
             {/* Main Table */}
             <Table>
-             <TableHeader>
-  <TableRow>
-    <TableHead>Company</TableHead>
-    <TableHead>Supervisor</TableHead>
-    <TableHead>Category</TableHead>
-    <TableHead>Country</TableHead>
-    <TableHead>Price / Per day (SEK)</TableHead>
-    <TableHead>Start → End</TableHead>
-    <TableHead>Duration (Days)</TableHead>
-    <TableHead>Discount (%)</TableHead>
-    <TableHead>Moms (%)</TableHead>
-    <TableHead>Total (SEK)</TableHead>
-    <TableHead>Status</TableHead>
-    <TableHead>Created At</TableHead>
-  </TableRow>
-</TableHeader>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Company</TableHead>
+                  <TableHead>Supervisor</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Country</TableHead>
+                  <TableHead>Price / Per day (SEK)</TableHead>
+                  <TableHead>Start → End</TableHead>
+                  <TableHead>Duration (Days)</TableHead>
+                  <TableHead>Discount (%)</TableHead>
+                  <TableHead>Moms (%)</TableHead>
+                  <TableHead>Total (SEK)</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Created At</TableHead>
+                </TableRow>
+              </TableHeader>
 
-<TableBody>
-  {paginatedAds.map((ad) => {
-    const { totalWithMoms, duration } = calculateTotal(ad);
-    return (
-      <TableRow key={ad.id} className="hover:bg-muted/30 cursor-pointer transition-colors">
-        <TableCell>{ad.companyName}</TableCell>
-        <TableCell>{ad.supervisedName}</TableCell>
-        <TableCell>{ad.advertisedCategory}</TableCell>
-        <TableCell>{ad.country || "-"}</TableCell>
-        <TableCell>{ad.dailyPrice}</TableCell>
-        <TableCell>
-          {ad.startDate && ad.endDate
-            ? `${format(new Date(ad.startDate), "yyyy-MM-dd")} → ${format(new Date(ad.endDate), "yyyy-MM-dd")}`
-            : "-"}
-        </TableCell>
-        <TableCell>{duration}</TableCell>
-        <TableCell>{ad.discount || 0}%</TableCell>
-        <TableCell>{ad.moms || 25}%</TableCell>
-        <TableCell>{totalWithMoms.toFixed(2)}</TableCell>
-        <TableCell>{ad.advertiseStatus}</TableCell>
-        <TableCell>{format(new Date(ad.createdAt), "yyyy-MM-dd")}</TableCell>
-      </TableRow>
-    );
-  })}
-</TableBody>
-
-
+              <TableBody>
+                {paginatedAds.map((ad) => {
+                  const { totalWithMoms, duration } = calculateTotal(ad);
+                  return (
+                    <TableRow
+                      key={ad.id}
+                      className="hover:bg-muted/30 cursor-pointer transition-colors"
+                    >
+                      <TableCell>{ad.companyName}</TableCell>
+                      <TableCell>{ad.supervisedName}</TableCell>
+                      <TableCell>{ad.advertisedCategory}</TableCell>
+                      <TableCell>{ad.country || "-"}</TableCell>
+                      <TableCell>{ad.dailyPrice}</TableCell>
+                      <TableCell>
+                        {ad.startDate && ad.endDate
+                          ? `${format(
+                              new Date(ad.startDate),
+                              "yyyy-MM-dd"
+                            )} → ${format(new Date(ad.endDate), "yyyy-MM-dd")}`
+                          : "-"}
+                      </TableCell>
+                      <TableCell>{duration}</TableCell>
+                      <TableCell>{ad.discount || 0}%</TableCell>
+                      <TableCell>{ad.moms || 25}%</TableCell>
+                      <TableCell>{totalWithMoms.toFixed(2)}</TableCell>
+                      <TableCell>{ad.advertiseStatus}</TableCell>
+                      <TableCell>
+                        {format(new Date(ad.createdAt), "yyyy-MM-dd")}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
             </Table>
 
             {/* Pagination */}

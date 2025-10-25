@@ -8,6 +8,8 @@ export default async function AdvertisementAnalysisServer() {
     orderBy: { createdAt: "desc" },
   });
   const rewuireUserToAccessPage = await requireRoleAccess(["SUPERADMIN"]);
+
+  
   return (
     <>
       <AdvertisementAnalysisClient serverAds={ads} />
