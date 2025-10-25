@@ -357,7 +357,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       className="hover:bg-muted/30 cursor-pointer transition-colors"
                     >
                       <TableCell>
-                        <div className="flex flex-col text-xs border-l border-primary p-2">
+                        <div className="flex flex-col border-l border-primary pl-2">
                           <span>{ad.advertiseCollectedByName || "-"}</span>
                           {/*   <span>{ad.advertiseCollectedByEmail || "-"}</span>
                           <span>{ad.advertiseCollectedByPhone || "-"}</span>
