@@ -1,4 +1,5 @@
 import { prisma } from "@/app/utils/db";
+import { PaginationComponent } from "@/components/general/PaginationComponent";
 import {
   Table,
   TableBody,
@@ -7,12 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -22,204 +18,169 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
+import { CheckCircle, MoreHorizontal, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
-import {
-  isNewsReporter,
-  isNewsReporterOrSuperAdmin,
-  supperAdmin,
-} from "@/app/utils/ime";
-import { auth } from "@/app/utils/auth";
-import { getCurrentUserType } from "@/app/utils/getCurrentUserType";
 import { requireRoleAccess } from "../roleBaseAccess";
+import Link from "next/link";
 
-async function getAllUsers() {
-  const users = await prisma.user.findMany({
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      userType: true,
-      onboardingCompleted: true,
-      createdAt: true,
-      approvalStatus: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-  return users;
+async function getAllUsers(page: number = 1, pageSize: number = 10) {
+  const skip = (page - 1) * pageSize;
+
+  const [users, totalCount] = await Promise.all([
+    prisma.user.findMany({
+      take: pageSize,
+      skip,
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        userType: true,
+        onboardingCompleted: true,
+        createdAt: true,
+        approvalStatus: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    }),
+    prisma.user.count(),
+  ]);
+
+  return {
+    users,
+    totalCount,
+    totalPages: Math.ceil(totalCount / pageSize),
+  };
 }
 
-export default async function AllUsersTable() {
-  const users = await getAllUsers();
-  let user = await auth();
-  let email = user?.user?.email;
-  const newsReporter = await isNewsReporter(email);
-  const isSuperAdmin = await supperAdmin(email);
-  const newsReporterOrSuperAdmin = await isNewsReporterOrSuperAdmin(email);
+type SearchParamsProps = {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+};
 
-  const currentUser = await getCurrentUserType();
-  const userType = currentUser?.userType;
-  const approvalStatus = currentUser?.approvalStatus;
-
-  const canSeeSection1 =
-    (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
-    userType === "EDITOR" ||
-    userType === "SUPERADMIN";
-
-
-  const canSeeSection2 = userType === "EDITOR" || userType === "SUPERADMIN";
-
-  
-  const canSeeSection3 = userType === "SUPERADMIN";
+export default async function AllUsersTable({ searchParams }: SearchParamsProps) {
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
 
   const rewuireUserToAccessPage = await requireRoleAccess([
     "EDITOR",
     "SUPERADMIN",
   ]);
 
+  const userRole = rewuireUserToAccessPage?.userType;
+
+  const { users, totalCount, totalPages } = await getAllUsers(currentPage);
+
+  const canSeeSection2 = userRole === "EDITOR" || userRole === "SUPERADMIN";
+  const canSeeSection3 = userRole === "SUPERADMIN";
+
   return (
     <>
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        Manage All USERS
+        Manage All Users
       </h1>
+
       {users.length > 0 ? (
-        <Card className="rounded-xs">
-          <CardContent className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>User Type</TableHead>
-                  <TableHead>Onboarding</TableHead>
-                  <TableHead>Joined</TableHead>
-                  <TableHead>Approval Status</TableHead>
-                  <TableHead>Action</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell>
-                      {" "}
-                      {userType === "SUPERADMIN" ||
-                      user.userType !== "SUPERADMIN"
-                        ? user.name ?? "N/A"
-                        : null}{" "}
-                    </TableCell>
-                    <TableCell>
-                      {" "}
-                      {userType === "SUPERADMIN" ||
-                      user.userType !== "SUPERADMIN"
-                        ? user.email
-                        : null}{" "}
-                    </TableCell>
-                    <TableCell>
-                      {canSeeSection3
-                        ? user.userType === "ADVERTISER"
+        <div className="flex flex-col gap-6">
+          <Card className="rounded-xs">
+            <CardContent className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>User Type</TableHead>
+                    <TableHead>Onboarding</TableHead>
+                    <TableHead>Joined</TableHead>
+                    <TableHead>Approval Status</TableHead>
+                    <TableHead>Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {users.map((user) => (
+                    <TableRow key={user.id}>
+                      <TableCell>{user.name ?? "N/A"}</TableCell>
+                      <TableCell>{user.email}</TableCell>
+                      <TableCell>
+                        {canSeeSection3
+                          ? user.userType === "ADVERTISER"
+                            ? "Normal User"
+                            : user.userType
+                          : user.userType === "SUPERADMIN"
+                          ? null
+                          : user.userType === "ADVERTISER"
                           ? "Normal User"
-                          : user.userType
-                        : user.userType === "SUPERADMIN"
-                        ? null
-                        : user.userType === "ADVERTISER"
-                        ? "Normal User"
-                        : user.userType ?? "Unknown"}
-                    </TableCell>
-                    <TableCell>
-                      {" "}
-                      {userType === "SUPERADMIN" ||
-                      user.userType !== "SUPERADMIN" ? (
-                        user.onboardingCompleted ? (
+                          : user.userType ?? "Unknown"}
+                      </TableCell>
+                      <TableCell>
+                        {user.onboardingCompleted ? (
                           <CheckCircle className="text-green-500 w-4 h-4" />
                         ) : (
                           <XCircle className="text-red-500 w-4 h-4" />
-                        )
-                      ) : null}{" "}
-                    </TableCell>
-                    <TableCell>
-                      {" "}
-                      {userType === "SUPERADMIN" ||
-                      user.userType !== "SUPERADMIN"
-                        ? new Date(user.createdAt).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })
-                        : null}{" "}
-                    </TableCell>
-                    <TableCell>
-                      {userType === "SUPERADMIN" ||
-                      user.userType !== "SUPERADMIN"
-                        ? user.userType === "ADVERTISER"
-                          ? null
-                          : user.approvalStatus
-                          ? user.approvalStatus
-                          : "Pending"
-                        : null}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          {(userType === "SUPERADMIN" ||
-                            user.userType !== "SUPERADMIN") && (
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        {new Date(user.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </TableCell>
+                      <TableCell>
+                        {user.userType === "ADVERTISER" ? null : user.approvalStatus ?? "Pending"}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
                             <Button variant="ghost" size="icon">
                               <MoreHorizontal className="w-4 h-4" />
                             </Button>
-                          )}
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          {/*  <DropdownMenuItem asChild>
-                            <Link href={`/post-an-article/alaarticles/editarticle`}>
-                              <PenBoxIcon className="w-4 h-4 mr-2" />
-                              Edit
-                            </Link>
-                          </DropdownMenuItem> */}
-                          <DropdownMenuSeparator />
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
 
-                          {canSeeSection3 && (
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/post-an-article/allusers/${user.id}/deleteuser`}
-                              >
-                                <XCircle className="w-4 h-4 mr-2 text-red-600" />
-                                Delete
-                              </Link>
-                            </DropdownMenuItem>
-                          )}
+                            {canSeeSection3 && (
+                              <DropdownMenuItem asChild>
+                                <Link href={`/post-an-article/allusers/${user.id}/deleteuser`}>
+                                  <XCircle className="w-4 h-4 mr-2 text-red-600" />
+                                  Delete
+                                </Link>
+                              </DropdownMenuItem>
+                            )}
 
-                          {canSeeSection2 && (
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/post-an-article/allusers/${user.id}/approvalstatus`}
-                              >
-                                <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                                Update User Status
-                              </Link>
-                            </DropdownMenuItem>
-                          )}
+                            {canSeeSection2 && (
+                              <DropdownMenuItem asChild>
+                                <Link href={`/post-an-article/allusers/${user.id}/approvalstatus`}>
+                                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                                  Update User Status
+                                </Link>
+                              </DropdownMenuItem>
+                            )}
 
-                          {canSeeSection3 && (
-                            <DropdownMenuItem asChild>
-                              <Link
-                                href={`/post-an-article/allusers/${user.id}/approvalstatus/createsompadok`}
-                              >
-                                <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                                Update as Editor
-                              </Link>
-                            </DropdownMenuItem>
-                          )}
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+                            {canSeeSection3 && (
+                              <DropdownMenuItem asChild>
+                                <Link
+                                  href={`/post-an-article/allusers/${user.id}/approvalstatus/createsompadok`}
+                                >
+                                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                                  Update as Editor
+                                </Link>
+                              </DropdownMenuItem>
+                            )}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
+        </div>
       ) : (
         <EmptyState
           title="No Users Found"
