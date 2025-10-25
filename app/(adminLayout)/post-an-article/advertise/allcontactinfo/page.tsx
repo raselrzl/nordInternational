@@ -31,6 +31,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { requireRoleAccess } from "../../roleBaseAccess";
 
 async function getAllAdvertiseRequests(
   page: number = 1,
@@ -73,6 +74,10 @@ export default async function AllAdvertiseRequestsTable({
 }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
+   const rewuireUserToAccessPage = await requireRoleAccess([
+        "SOMPANDOK",
+        "SUPERADMIN"
+      ]);
 
   await requireNewsReporter();
   const currentUser = await getCurrentUserType();

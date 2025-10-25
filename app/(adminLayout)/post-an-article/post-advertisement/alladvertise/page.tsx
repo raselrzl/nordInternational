@@ -27,6 +27,7 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
+import { requireRoleAccess } from "../../roleBaseAccess";
 
 async function getAllAdvertisements(page: number = 1, pageSize: number = 10) {
   const skip = (page - 1) * pageSize;
@@ -74,6 +75,11 @@ export default async function AllAdvertisementTable({ searchParams }: SearchPara
   if (!SompandokOrSuperAdmin) return redirect("/restricted");
 
   const { ads, totalCount, totalPages } = await getAllAdvertisements(currentPage);
+
+   const rewuireUserToAccessPage = await requireRoleAccess([
+          "SOMPANDOK",
+          "SUPERADMIN"
+        ]);
 
   return (
     <>

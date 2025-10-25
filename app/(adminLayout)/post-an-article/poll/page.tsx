@@ -2,10 +2,14 @@
 import { requireUser } from "@/app/utils/requireUser";
 import { requireArticlePoster } from "@/app/utils/NewsReporter";
 import PollForm from "./PollForm";
+import { requireRoleAccess } from "../roleBaseAccess";
 
 export default async function AdminPollPage() {
    const session = await requireUser();
-    await requireArticlePoster();
+    const rewuireUserToAccessPage = await requireRoleAccess([
+           "SOMPANDOK",
+           "SUPERADMIN"
+         ]);
 
   return (
     <div className="">

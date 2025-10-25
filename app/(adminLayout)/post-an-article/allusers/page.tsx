@@ -62,7 +62,6 @@ export default async function AllUsersTable() {
   const users = await getAllUsers();
   let user = await auth();
   let email = user?.user?.email;
-
   const newsReporter = await isNewsReporter(email);
   const isSuperAdmin = await supperAdmin(email);
   const newsReporterOrSuperAdmin = await isNewsReporterOrSuperAdmin(email);
@@ -75,7 +74,11 @@ export default async function AllUsersTable() {
     (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
     userType === "SOMPANDOK" ||
     userType === "SUPERADMIN";
+
+
   const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
+
+  
   const canSeeSection3 = userType === "SUPERADMIN";
 
   const rewuireUserToAccessPage = await requireRoleAccess([

@@ -28,6 +28,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { requireSuperAdmin } from "@/app/utils/requireUser";
 import { EmptyState } from "@/components/general/EmptyState";
+import { requireRoleAccess } from "../../roleBaseAccess";
 
 async function getAllOpinions() {
   return await prisma.opinion.findMany({
@@ -47,7 +48,10 @@ async function getAllOpinions() {
 
 export default async function AllOpinionsTable() {
   const opinions = await getAllOpinions();
-  const superadmin = await requireSuperAdmin();
+   const rewuireUserToAccessPage = await requireRoleAccess([
+        "SOMPANDOK",
+        "SUPERADMIN",
+      ]);
 
   return (
     <>

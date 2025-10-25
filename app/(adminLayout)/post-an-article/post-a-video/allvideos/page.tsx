@@ -27,6 +27,7 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
+import { requireRoleAccess } from "../../roleBaseAccess";
 
 async function getAllVideos(page: number = 1, pageSize: number = 10) {
   const skip = (page - 1) * pageSize;
@@ -61,6 +62,11 @@ type SearchParamsProps = {
 export default async function AllVideos({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
+
+   const rewuireUserToAccessPage = await requireRoleAccess([
+          "SOMPANDOK",
+          "SUPERADMIN"
+        ]);
 
   const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();
   if (!SompandokOrSuperAdmin) return redirect("/restricted");

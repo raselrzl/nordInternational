@@ -23,6 +23,7 @@ import {
 import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
 import { requireSuperAdmin } from "@/app/utils/requireUser";
+import { requireRoleAccess } from "../roleBaseAccess";
 
 async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
   const skip = (page - 1) * pageSize;
@@ -80,7 +81,10 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-  await requireSuperAdmin();
+ const rewuireUserToAccessPage = await requireRoleAccess([
+        "SOMPANDOK",
+        "SUPERADMIN"
+      ]);
 
   const { articles, totalPages, totalCount } = await getAllnewsArticles(currentPage);
 

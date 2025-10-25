@@ -1,4 +1,4 @@
-import { updateAdvertisementStatus, updateVedioStatus } from "@/app/actions";
+import { updateVedioStatus } from "@/app/actions";
 import { redirect } from "next/navigation";
 import { use } from "react";
 
@@ -16,6 +16,8 @@ export default function UpdateVedioStatus(
   }
 ) {
   const { videoId } = use(params);
+
+  
   
   return (
     <form

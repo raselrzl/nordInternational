@@ -2,9 +2,15 @@ import React from "react";
 import { CreateAdvertisementForm } from "./post-advertisement-form";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
+import { requireRoleAccess } from "../roleBaseAccess";
 
 
 export default async function PostAnArticle() {
+
+   const rewuireUserToAccessPage = await requireRoleAccess([
+          "SOMPANDOK",
+          "SUPERADMIN"
+        ]);
   const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();
   if (!SompandokOrSuperAdmin) {
     return redirect("/restricted");

@@ -24,7 +24,7 @@ export default function ConfirmDeleteOpinionPage({ params }: { params: Promise<{
   };
 
   const handleCancel = () => {
-    router.push("/(mainLayout)/alluseropinion");
+    router.push("/post-an-article/alluseropinion");
   };
 
   return (

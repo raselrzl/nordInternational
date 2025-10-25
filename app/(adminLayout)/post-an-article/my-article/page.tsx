@@ -3,12 +3,7 @@ import { requireNewsReporter, requireUser } from "@/app/utils/requireUser";
 import { trackRoute } from "@/app/utils/routeTracker";
 import { EmptyState } from "@/components/general/EmptyState";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,17 +20,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  CheckCircle,
-  MoreHorizontal,
-  PenBoxIcon,
-  XCircle,
-} from "lucide-react";
+import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
+import { requireRoleAccess } from "../roleBaseAccess";
 
-async function getMyArticles(userId: string, page: number = 1, pageSize: number = 8) {
+async function getMyArticles(
+  userId: string,
+  page: number = 1,
+  pageSize: number = 8
+) {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -98,17 +93,26 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
+  const rewuireUserToAccessPage = await requireRoleAccess([
+    "SOMPANDOK",
+    "SUPERADMIN",
+    "NEWSREPORTER",
+  ]);
+
   const session = await requireUser();
   await requireNewsReporter();
   await trackRoute("MyArticle");
 
-  const { articles, totalPages, totalCount } = await getMyArticles(session.id as string, currentPage);
+  const { articles, totalPages, totalCount } = await getMyArticles(
+    session.id as string,
+    currentPage
+  );
 
   return (
     <>
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mx-2 mb-2 flex justify-between items-center">
         <span>My Published All News Articles</span>
-       <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
       </h1>
@@ -149,7 +153,11 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                         )}
                       </TableCell>
                       <TableCell className="font-medium">
-                        {article.newsHeading?.split(" ").slice(0, 3).join(" ") ?? ""}..
+                        {article.newsHeading
+                          ?.split(" ")
+                          .slice(0, 3)
+                          .join(" ") ?? ""}
+                        ..
                       </TableCell>
                       <TableCell>{article.newsCategory}</TableCell>
                       <TableCell>{article.newsArticleStatus}</TableCell>
@@ -157,11 +165,14 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                         {article.newsReporter?.reporterName ?? "Unknown"}
                       </TableCell>
                       <TableCell>
-                        {new Date(article.createdAt).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
+                        {new Date(article.createdAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          }
+                        )}
                       </TableCell>
                       <TableCell>{article.newsLocation ?? "N/A"}</TableCell>
                       <TableCell className="text-right">
