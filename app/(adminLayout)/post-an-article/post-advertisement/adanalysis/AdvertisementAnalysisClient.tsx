@@ -36,6 +36,11 @@ type AdvertisementWithProfile = {
   createdAt: Date;
   startDate: string;
   endDate: string;
+
+  advertiseCollectedByName?: string | null;
+  advertiseCollectedByEmail?: string | null;
+  advertiseCollectedByPhone?: string | null;
+  advertiseCollectedByCountry?: string | null;
 };
 
 interface Props {
@@ -44,7 +49,7 @@ interface Props {
 
 export default function AdvertisementAnalysisClient({ serverAds }: Props) {
   const [ads, setAds] = useState<AdvertisementWithProfile[]>(
-    serverAds.map(ad => ({
+    serverAds.map((ad) => ({
       ...ad,
       startDate: ad.startDate ? new Date(ad.startDate).toISOString() : "",
       endDate: ad.endDate ? new Date(ad.endDate).toISOString() : "",
@@ -56,12 +61,33 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  const [collectedByFilter, setCollectedByFilter] = useState<string | null>(
+    null
+  );
 
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
   useEffect(() => {
     let temp = [...ads];
+    if (collectedByFilter) {
+      temp = temp.filter(
+        (ad) =>
+          ad.advertiseCollectedByName
+            ?.toLowerCase()
+            .includes(collectedByFilter.toLowerCase()) ||
+          ad.advertiseCollectedByEmail
+            ?.toLowerCase()
+            .includes(collectedByFilter.toLowerCase()) ||
+          ad.advertiseCollectedByPhone
+            ?.toLowerCase()
+            .includes(collectedByFilter.toLowerCase()) ||
+          ad.advertiseCollectedByCountry
+            ?.toLowerCase()
+            .includes(collectedByFilter.toLowerCase())
+      );
+    }
+
     if (search) {
       temp = temp.filter(
         (ad) =>
@@ -76,7 +102,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
 
     setFilteredAds(temp);
     setPage(1);
-  }, [search, categoryFilter, statusFilter, ads]);
+  }, [search, categoryFilter, statusFilter, ads, collectedByFilter]);
 
   const totalPages = Math.ceil(filteredAds.length / pageSize);
   const paginatedAds = filteredAds.slice(
@@ -233,6 +259,11 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <Input
+          placeholder="Filter by Advertisement collected By (Name, Email, Phone, Country)"
+          value={collectedByFilter || ""}
+          onChange={(e) => setCollectedByFilter(e.target.value || null)}
+        />
 
         <Select onValueChange={(value) => setCategoryFilter(value || null)}>
           <SelectTrigger className="w-48">
@@ -301,6 +332,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             <Table>
               <TableHeader>
                 <TableRow className="bg-amber-600 hover:bg-amber-500">
+                  <TableHead>Advertisement Collected By</TableHead>
                   <TableHead>Company</TableHead>
                   <TableHead>Supervisor</TableHead>
                   <TableHead>Category</TableHead>
@@ -324,6 +356,14 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       key={ad.id}
                       className="hover:bg-muted/30 cursor-pointer transition-colors"
                     >
+                      <TableCell>
+                        <div className="flex flex-col text-xs">
+                          <span>{ad.advertiseCollectedByName || "-"}</span>
+                          <span>{ad.advertiseCollectedByEmail || "-"}</span>
+                          <span>{ad.advertiseCollectedByPhone || "-"}</span>
+                          <span>{ad.advertiseCollectedByCountry || "-"}</span>
+                        </div>
+                      </TableCell>
                       <TableCell>{ad.companyName}</TableCell>
                       <TableCell>{ad.supervisedName}</TableCell>
                       <TableCell>{ad.advertisedCategory}</TableCell>
@@ -376,6 +416,9 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                   <TabsTrigger value="category">By Category</TabsTrigger>
                   <TabsTrigger value="country">By Country</TabsTrigger>
                   <TabsTrigger value="company">By Company</TabsTrigger>
+                  <TabsTrigger value="collectedBy">
+                    Advertisement By
+                  </TabsTrigger>
                 </TabsList>
 
                 {/* Overall */}
@@ -394,7 +437,8 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       <strong>Total Days:</strong> {summary.totalDays}
                     </div>
                     <div className="p-4 bg-muted/30 rounded-lg border hover:shadow-lg transition-shadow">
-                      <strong>Total Base:</strong> {summary.totalBase.toFixed(2)} SEK
+                      <strong>Total Base:</strong>{" "}
+                      {summary.totalBase.toFixed(2)} SEK
                     </div>
                     <div className="p-4 bg-muted/30 rounded-lg border hover:shadow-lg transition-shadow">
                       <strong>Total Discount:</strong>{" "}
@@ -429,16 +473,20 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                             <strong>Total Days:</strong> {s.totalDays}
                           </p>
                           <p>
-                            <strong>Total Base:</strong> {s.totalBase.toFixed(2)} SEK
+                            <strong>Total Base:</strong>{" "}
+                            {s.totalBase.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Discount:</strong> {s.totalDiscountAmt.toFixed(2)} SEK
+                            <strong>Total Discount:</strong>{" "}
+                            {s.totalDiscountAmt.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Excl. Moms:</strong> {s.totalExclMoms.toFixed(2)} SEK
+                            <strong>Total Excl. Moms:</strong>{" "}
+                            {s.totalExclMoms.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Incl. Moms:</strong> {s.totalInclMoms.toFixed(2)} SEK
+                            <strong>Total Incl. Moms:</strong>{" "}
+                            {s.totalInclMoms.toFixed(2)} SEK
                           </p>
                         </div>
                       );
@@ -459,16 +507,20 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           <strong>Total Ads:</strong> {stats.count}
                         </p>
                         <p>
-                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
+                          <strong>Total Base:</strong>{" "}
+                          {stats.totalBase.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Discount:</strong> {stats.totalDiscount.toFixed(2)} SEK
+                          <strong>Total Discount:</strong>{" "}
+                          {stats.totalDiscount.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
+                          <strong>Total Excl. Moms:</strong>{" "}
+                          {stats.totalExclMoms.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
+                          <strong>Total Incl. Moms:</strong>{" "}
+                          {stats.totalInclMoms.toFixed(2)} SEK
                         </p>
                       </div>
                     ))}
@@ -512,16 +564,20 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           <strong>Total Ads:</strong> {stats.count}
                         </p>
                         <p>
-                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
+                          <strong>Total Base:</strong>{" "}
+                          {stats.totalBase.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Discount:</strong> {stats.totalDiscountAmt.toFixed(2)} SEK
+                          <strong>Total Discount:</strong>{" "}
+                          {stats.totalDiscountAmt.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
+                          <strong>Total Excl. Moms:</strong>{" "}
+                          {stats.totalExclMoms.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
+                          <strong>Total Incl. Moms:</strong>{" "}
+                          {stats.totalInclMoms.toFixed(2)} SEK
                         </p>
                       </div>
                     ))}
@@ -565,19 +621,94 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           <strong>Total Ads:</strong> {stats.count}
                         </p>
                         <p>
-                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
+                          <strong>Total Base:</strong>{" "}
+                          {stats.totalBase.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Discount:</strong> {stats.totalDiscountAmt.toFixed(2)} SEK
+                          <strong>Total Discount:</strong>{" "}
+                          {stats.totalDiscountAmt.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
+                          <strong>Total Excl. Moms:</strong>{" "}
+                          {stats.totalExclMoms.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
+                          <strong>Total Incl. Moms:</strong>{" "}
+                          {stats.totalInclMoms.toFixed(2)} SEK
                         </p>
                       </div>
                     ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="collectedBy">
+                  <div className="grid grid-cols-2 gap-4 border">
+                    {filteredAds.map((ad) => {
+                      const {
+                        totalWithMoms,
+                        duration,
+                        base,
+                        discountAmt,
+                        withDiscount,
+                      } = calculateTotal(ad);
+                      return (
+                        <div
+                          key={ad.id}
+                          className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow border-primary"
+                        >
+                          <h3 className="font-semibold mb-2">
+                            Ads Company Name: {ad.companyName}
+                          </h3>
+                          <p>
+                            <strong>Collected By Name:</strong>{" "}
+                            {ad.advertiseCollectedByName || "-"}
+                          </p>
+                          <p>
+                            <strong>Email:</strong>{" "}
+                            {ad.advertiseCollectedByEmail || "-"}
+                          </p>
+                          <p>
+                            <strong>Phone:</strong>{" "}
+                            {ad.advertiseCollectedByPhone || "-"}
+                          </p>
+                          <p>
+                            <strong>Country:</strong>{" "}
+                            {ad.advertiseCollectedByCountry || "-"}
+                          </p>
+                          <hr className="my-2" />
+                          <p>
+                            <strong>Start → End:</strong>{" "}
+                            {ad.startDate && ad.endDate
+                              ? `${format(
+                                  new Date(ad.startDate),
+                                  "yyyy-MM-dd"
+                                )} → ${format(
+                                  new Date(ad.endDate),
+                                  "yyyy-MM-dd"
+                                )}`
+                              : "-"}
+                          </p>
+                          <p>
+                            <strong>Duration:</strong> {duration} Days
+                          </p>
+                          <p>
+                            <strong>Base:</strong> {base.toFixed(2)} SEK
+                          </p>
+                          <p>
+                            <strong>Discount:</strong> {discountAmt.toFixed(2)}{" "}
+                            SEK
+                          </p>
+                          <p>
+                            <strong>Total Excl. Moms:</strong>{" "}
+                            {withDiscount.toFixed(2)} SEK
+                          </p>
+                          <p>
+                            <strong>Total Incl. Moms:</strong>{" "}
+                            {totalWithMoms.toFixed(2)} SEK
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </TabsContent>
               </Tabs>
