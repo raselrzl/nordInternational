@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { EmptyState } from "@/components/general/EmptyState";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 type AdvertisementWithProfile = {
   id: string;
@@ -30,6 +30,8 @@ type AdvertisementWithProfile = {
   country: string | null;
   dailyPrice: number;
   advertiseduration: number | null;
+  discount: number; // in %
+  moms: number; // VAT in %
   advertiseStatus: string;
   createdAt: Date;
 };
@@ -69,12 +71,31 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
   const totalPages = Math.ceil(filteredAds.length / pageSize);
   const paginatedAds = filteredAds.slice((page - 1) * pageSize, page * pageSize);
 
-  // Clear all filters
   const clearFilters = () => {
     setSearch("");
     setCategoryFilter(null);
     setStatusFilter(null);
   };
+
+  // Calculate total per ad
+  const calculateTotal = (ad: AdvertisementWithProfile) => {
+    const duration = ad.advertiseduration || 1;
+    return ad.dailyPrice * duration * (1 + ad.moms / 100) * (1 - (ad.discount || 0) / 100);
+  };
+
+  // Calculate total per category
+  const categoryTotals = useMemo(() => {
+    const totals: Record<string, number> = {};
+    filteredAds.forEach((ad) => {
+      const total = calculateTotal(ad);
+      if (totals[ad.advertisedCategory]) {
+        totals[ad.advertisedCategory] += total;
+      } else {
+        totals[ad.advertisedCategory] = total;
+      }
+    });
+    return totals;
+  }, [filteredAds]);
 
   return (
     <div className="p-4">
@@ -137,25 +158,44 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                   <TableHead>Country</TableHead>
                   <TableHead>Daily Price (SEK)</TableHead>
                   <TableHead>Duration</TableHead>
+                  <TableHead>Discount (%)</TableHead>
+                  <TableHead>Moms (%)</TableHead>
+                  <TableHead>Total (SEK)</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Created At</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {paginatedAds.map((ad) => (
-                  <TableRow key={ad.id}>
-                    <TableCell>{ad.companyName}</TableCell>
-                    <TableCell>{ad.supervisedName}</TableCell>
-                    <TableCell>{ad.advertisedCategory}</TableCell>
-                    <TableCell>{ad.country || "-"}</TableCell>
-                    <TableCell>{ad.dailyPrice} SEK</TableCell>
-                    <TableCell>{ad.advertiseduration || "-"}</TableCell>
-                    <TableCell>{ad.advertiseStatus}</TableCell>
-                    <TableCell>{format(new Date(ad.createdAt), "yyyy-MM-dd")}</TableCell>
-                  </TableRow>
-                ))}
+                {paginatedAds.map((ad) => {
+                  const total = calculateTotal(ad);
+                  return (
+                    <TableRow key={ad.id}>
+                      <TableCell>{ad.companyName}</TableCell>
+                      <TableCell>{ad.supervisedName}</TableCell>
+                      <TableCell>{ad.advertisedCategory}</TableCell>
+                      <TableCell>{ad.country || "-"}</TableCell>
+                      <TableCell>{ad.dailyPrice}</TableCell>
+                      <TableCell>{ad.advertiseduration || "-"}</TableCell>
+                      <TableCell>{ad.discount || 0}%</TableCell>
+                      <TableCell>{ad.moms || 25}%</TableCell>
+                      <TableCell>{total.toFixed(2)}</TableCell>
+                      <TableCell>{ad.advertiseStatus}</TableCell>
+                      <TableCell>{format(new Date(ad.createdAt), "yyyy-MM-dd")}</TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
+
+            <div className="mt-4">
+              <h2 className="font-bold mb-2">Category Totals (SEK)</h2>
+              {Object.entries(categoryTotals).map(([category, total]) => (
+                <div key={category} className="flex justify-between border-b py-1">
+                  <span>{category}</span>
+                  <span>{total.toFixed(2)} SEK</span>
+                </div>
+              ))}
+            </div>
 
             <div className="flex justify-center gap-2 mt-4">
               <Button disabled={page <= 1} onClick={() => setPage(page - 1)}>
