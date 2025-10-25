@@ -1,5 +1,6 @@
 // SidebarClient.tsx (client)
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Card } from "@/components/ui/card";
@@ -30,36 +31,54 @@ interface SidebarClientProps {
 export default function SidebarClient({ email, name, userType, approvalStatus, mkrValue }: SidebarClientProps) {
   const pathname = usePathname();
 
-  const canSeeSection1 =
-    (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
-    userType === "SOMPANDOK" ||
-    userType === "SUPERADMIN";
-  const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
+  const isNewsReporter = userType === "NEWSREPORTER" && approvalStatus === "APPROVED";
+  const isSompadok = userType === "SOMPANDOK";
+  const isSuperAdmin = userType === "SUPERADMIN";
 
-  const links = [
+  // Everyone sees
+  const linksCommon = [
     { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
-    ...(canSeeSection1 || mkrValue
-      ? [
-         
-          { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
-          { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
-        ]
-      : []),
-    ...(canSeeSection2
-      ? [ { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
-          { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
-          { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
-          { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
-          { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
-          { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
-          { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
-          { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
-          { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
-          { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
-          { href: "/post-an-article/allusers", icon: Users, label: "All Users" },
-        ]
-      : []),
   ];
+
+  // NEWSREPORTER approved only
+  const linksNewsReporter = [
+    { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
+    { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
+  ];
+
+  // SOMPADOK + SUPERADMIN (common links)
+  const linksSompadokSuperAdmin = [
+    { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+    { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
+    { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
+    { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
+    { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
+    { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
+    { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
+    { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
+    { href: "/post-an-article/allusers", icon: Users, label: "Users" },
+  ];
+
+  // SUPERADMIN only
+  const linksSuperAdmin = [
+    { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
+    { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
+  ];
+
+  // Compose final links
+  let allVisibleLinks = [...linksCommon];
+
+  if (isNewsReporter) {
+    allVisibleLinks.push(...linksNewsReporter);
+  }
+
+  if (isSompadok || isSuperAdmin) {
+    allVisibleLinks.push(...linksSompadokSuperAdmin);
+  }
+
+  if (isSuperAdmin) {
+    allVisibleLinks.push(...linksSuperAdmin);
+  }
 
   return (
     <Card className="hidden md:flex w-54 rounded-none flex-col pt-0 shadow-none border-none">
@@ -68,7 +87,7 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
         <p className="text-xs text-gray-500">{email}</p>
       </div>
       <nav className="flex-1 flex flex-col gap-2 text-xs overflow-y-auto px-4">
-        {links.map((link) => {
+        {allVisibleLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
             <Link

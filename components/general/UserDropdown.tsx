@@ -41,41 +41,54 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
   const userType = currentUser?.userType ?? null;
   const approvalStatus = currentUser?.approvalStatus ?? null;
 
-  const canSeeSection1 =
-    (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
-    userType === "SOMPANDOK" ||
-    userType === "SUPERADMIN";
-  const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
+  const isNewsReporter = userType === "NEWSREPORTER" && approvalStatus === "APPROVED";
+  const isSompadok = userType === "SOMPANDOK";
+  const isSuperAdmin = userType === "SUPERADMIN";
 
-  const links = [
-    // Common for everyone
+  // Common links for everyone
+  const linksCommon = [
     { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
-
-    // Section 1
-    ...(canSeeSection1 || mkr
-      ? [
-          { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
-          { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
-        ]
-      : []),
-
-    // Section 2 (Admin / Editor)
-    ...(canSeeSection2
-      ? [
-          { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
-          { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
-          { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
-          { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
-          { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
-          { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
-          { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
-          { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
-          { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
-          { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
-          { href: "/post-an-article/allusers", icon: Users, label: "All Users" },
-        ]
-      : []),
   ];
+
+  // Links for NEWSREPORTER approved
+  const linksNewsReporter = [
+    { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
+    { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
+  ];
+
+  // Links for SOMPADOK and SUPERADMIN
+  const linksSompadokSuperAdmin = [
+    { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+    { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
+    { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
+    { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
+    { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
+    { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
+    { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
+    { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
+    { href: "/post-an-article/allusers", icon: Users, label: "Users" },
+  ];
+
+  // SUPERADMIN-only links
+  const linksSuperAdmin = [
+    { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
+    { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
+  ];
+
+  // Compose final links
+  let allLinks = [...linksCommon];
+
+  if (isNewsReporter || mkr) {
+    allLinks.push(...linksNewsReporter);
+  }
+
+  if (isSompadok || isSuperAdmin) {
+    allLinks.push(...linksSompadokSuperAdmin);
+  }
+
+  if (isSuperAdmin) {
+    allLinks.push(...linksSuperAdmin);
+  }
 
   return (
     <DropdownMenu>
@@ -98,9 +111,8 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
 
         <DropdownMenuSeparator />
 
-        {/* Dynamic links */}
         <DropdownMenuGroup>
-          {links.map((link) => (
+          {allLinks.map((link) => (
             <DropdownMenuItem key={link.href} asChild>
               <Link href={link.href}>
                 <link.icon size={16} strokeWidth={2} className="opacity-60" />
