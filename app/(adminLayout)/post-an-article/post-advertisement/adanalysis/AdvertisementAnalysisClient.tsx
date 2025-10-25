@@ -51,7 +51,6 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
   const [page, setPage] = useState(1);
   const pageSize = 10;
 
-  // Filtering logic
   useEffect(() => {
     let temp = [...ads];
     if (search) {
@@ -77,24 +76,104 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
     setStatusFilter(null);
   };
 
-  // Calculate total per ad
   const calculateTotal = (ad: AdvertisementWithProfile) => {
     const duration = ad.advertiseduration || 1;
-    return ad.dailyPrice * duration * (1 + ad.moms / 100) * (1 - (ad.discount || 0) / 100);
+    const base = ad.dailyPrice * duration;
+    const discountAmt = base * (ad.discount / 100);
+    const withDiscount = base - discountAmt;
+    const momsAmt = withDiscount * (ad.moms / 100);
+    return {
+      base,
+      discountAmt,
+      momsAmt,
+      withDiscount,
+      totalWithMoms: withDiscount + momsAmt,
+      duration,
+    };
   };
 
-  // Calculate total per category
   const categoryTotals = useMemo(() => {
     const totals: Record<string, number> = {};
     filteredAds.forEach((ad) => {
-      const total = calculateTotal(ad);
+      const { totalWithMoms } = calculateTotal(ad);
       if (totals[ad.advertisedCategory]) {
-        totals[ad.advertisedCategory] += total;
+        totals[ad.advertisedCategory] += totalWithMoms;
       } else {
-        totals[ad.advertisedCategory] = total;
+        totals[ad.advertisedCategory] = totalWithMoms;
       }
     });
     return totals;
+  }, [filteredAds]);
+
+  // ✅ Overall summary
+  const summary = useMemo(() => {
+    let totalActive = 0;
+    let totalDraft = 0;
+    let totalExpired = 0;
+    let totalDays = 0;
+    let totalBase = 0;
+    let totalDiscountAmt = 0;
+    let totalExclMoms = 0;
+    let totalInclMoms = 0;
+
+    filteredAds.forEach((ad) => {
+      const { base, discountAmt, momsAmt, withDiscount, totalWithMoms, duration } = calculateTotal(ad);
+      totalDays += duration;
+      totalBase += base;
+      totalDiscountAmt += discountAmt;
+      totalExclMoms += withDiscount;
+      totalInclMoms += totalWithMoms;
+      if (ad.advertiseStatus === "ACTIVE") totalActive++;
+      if (ad.advertiseStatus === "DRAFT") totalDraft++;
+      if (ad.advertiseStatus === "EXPIRED") totalExpired++;
+    });
+
+    return {
+      totalActive,
+      totalDraft,
+      totalExpired,
+      totalDays,
+      totalBase,
+      totalDiscountAmt,
+      totalExclMoms,
+      totalInclMoms,
+      totalAfterDiscount: totalExclMoms,
+    };
+  }, [filteredAds]);
+
+  // ✅ Separate summaries for each status
+  const summaryByStatus = useMemo(() => {
+    const statuses = ["ACTIVE", "DRAFT", "EXPIRED"];
+    const result: Record<string, any> = {};
+
+    statuses.forEach((status) => {
+      const filtered = filteredAds.filter((ad) => ad.advertiseStatus === status);
+      let totalDays = 0;
+      let totalBase = 0;
+      let totalDiscountAmt = 0;
+      let totalExclMoms = 0;
+      let totalInclMoms = 0;
+
+      filtered.forEach((ad) => {
+        const { base, discountAmt, momsAmt, withDiscount, totalWithMoms, duration } = calculateTotal(ad);
+        totalDays += duration;
+        totalBase += base;
+        totalDiscountAmt += discountAmt;
+        totalExclMoms += withDiscount;
+        totalInclMoms += totalWithMoms;
+      });
+
+      result[status] = {
+        count: filtered.length,
+        totalDays,
+        totalBase,
+        totalDiscountAmt,
+        totalExclMoms,
+        totalInclMoms,
+      };
+    });
+
+    return result;
   }, [filteredAds]);
 
   return (
@@ -149,6 +228,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
       ) : (
         <Card className="overflow-x-auto">
           <CardContent>
+            {/* Main Table */}
             <Table>
               <TableHeader>
                 <TableRow>
@@ -167,7 +247,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
               </TableHeader>
               <TableBody>
                 {paginatedAds.map((ad) => {
-                  const total = calculateTotal(ad);
+                  const { totalWithMoms } = calculateTotal(ad);
                   return (
                     <TableRow key={ad.id}>
                       <TableCell>{ad.companyName}</TableCell>
@@ -178,7 +258,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       <TableCell>{ad.advertiseduration || "-"}</TableCell>
                       <TableCell>{ad.discount || 0}%</TableCell>
                       <TableCell>{ad.moms || 25}%</TableCell>
-                      <TableCell>{total.toFixed(2)}</TableCell>
+                      <TableCell>{totalWithMoms.toFixed(2)}</TableCell>
                       <TableCell>{ad.advertiseStatus}</TableCell>
                       <TableCell>{format(new Date(ad.createdAt), "yyyy-MM-dd")}</TableCell>
                     </TableRow>
@@ -187,6 +267,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
               </TableBody>
             </Table>
 
+            {/* Category Totals */}
             <div className="mt-4">
               <h2 className="font-bold mb-2">Category Totals (SEK)</h2>
               {Object.entries(categoryTotals).map(([category, total]) => (
@@ -197,6 +278,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
               ))}
             </div>
 
+            {/* Pagination */}
             <div className="flex justify-center gap-2 mt-4">
               <Button disabled={page <= 1} onClick={() => setPage(page - 1)}>
                 Prev
@@ -205,6 +287,39 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
               <Button disabled={page >= totalPages} onClick={() => setPage(page + 1)}>
                 Next
               </Button>
+            </div>
+
+            {/* ✅ Overall Summary */}
+            <div className="mt-8 p-4 bg-muted/30 rounded-lg border">
+              <h2 className="text-lg font-semibold mb-3">Overall Advertisement Summary</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 text-sm">
+                <p><strong>Active Ads:</strong> {summary.totalActive}</p>
+                <p><strong>Draft Ads:</strong> {summary.totalDraft}</p>
+                <p><strong>Expired Ads:</strong> {summary.totalExpired}</p>
+                <p><strong>Total Days:</strong> {summary.totalDays}</p>
+                <p><strong>Total Base Price:</strong> {summary.totalBase.toFixed(2)} SEK</p>
+                <p><strong>Total Discount Amount:</strong> {summary.totalDiscountAmt.toFixed(2)} SEK</p>
+                <p><strong>Total Excl. Moms:</strong> {summary.totalExclMoms.toFixed(2)} SEK</p>
+                <p><strong>Total Incl. Moms:</strong> {summary.totalInclMoms.toFixed(2)} SEK</p>
+              </div>
+            </div>
+
+            {/* ✅ 3 More Divs for Active, Draft, Expired */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {["ACTIVE", "DRAFT", "EXPIRED"].map((status) => {
+                const s = summaryByStatus[status];
+                return (
+                  <div key={status} className="p-4 border rounded-lg bg-muted/20">
+                    <h3 className="font-semibold mb-2">{status} Advertisements</h3>
+                    <p><strong>Total Count:</strong> {s.count}</p>
+                    <p><strong>Total Days:</strong> {s.totalDays}</p>
+                    <p><strong>Total Base:</strong> {s.totalBase.toFixed(2)} SEK</p>
+                    <p><strong>Total Discount:</strong> {s.totalDiscountAmt.toFixed(2)} SEK</p>
+                    <p><strong>Total Excl. Moms:</strong> {s.totalExclMoms.toFixed(2)} SEK</p>
+                    <p><strong>Total Incl. Moms:</strong> {s.totalInclMoms.toFixed(2)} SEK</p>
+                  </div>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
