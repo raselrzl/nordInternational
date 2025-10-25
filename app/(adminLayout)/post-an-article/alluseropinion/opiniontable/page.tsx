@@ -52,25 +52,27 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
   return { opinions: data, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
 }
 
+// Use Next.js recommended type for App Router pages
 type Props = {
-  searchParams: { page?: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function AllOpinionsTable({ searchParams }: Props) {
-  const currentPage = Number(searchParams.page) || 1;
+  const currentPage = Array.isArray(searchParams.page)
+    ? Number(searchParams.page[0]) || 1
+    : Number(searchParams.page) || 1;
+
   const pageSize = 10;
 
   await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
 
-  const { opinions, totalCount, totalPages } = await getAllOpinions(currentPage);
+  const { opinions, totalCount, totalPages } = await getAllOpinions(currentPage, pageSize);
 
   return (
     <>
       <div className="flex justify-between text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        <h1 >
-        Manage All Complaints
-      </h1>
-       <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+        <h1>Manage All Complaints</h1>
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
       </div>
