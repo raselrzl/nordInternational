@@ -43,7 +43,13 @@ interface Props {
 }
 
 export default function AdvertisementAnalysisClient({ serverAds }: Props) {
-  const [ads, setAds] = useState<AdvertisementWithProfile[]>(serverAds);
+  const [ads, setAds] = useState<AdvertisementWithProfile[]>(
+    serverAds.map(ad => ({
+      ...ad,
+      startDate: ad.startDate ? new Date(ad.startDate).toISOString() : "",
+      endDate: ad.endDate ? new Date(ad.endDate).toISOString() : "",
+    }))
+  );
   const [filteredAds, setFilteredAds] =
     useState<AdvertisementWithProfile[]>(serverAds);
 
@@ -84,11 +90,12 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
     setStatusFilter(null);
   };
 
-  // Calculate totals and durations based on start/end dates
+  // Calculate totals and durations
   const calculateTotal = (ad: AdvertisementWithProfile) => {
-    const duration = ad.startDate && ad.endDate
-  ? differenceInDays(new Date(ad.endDate), new Date(ad.startDate)) + 1
-  : 1;
+    const duration =
+      ad.startDate && ad.endDate
+        ? differenceInDays(new Date(ad.endDate), new Date(ad.startDate)) + 1
+        : 1;
     const base = ad.dailyPrice * duration;
     const discountAmt = base * (ad.discount / 100);
     const withDiscount = base - discountAmt;
@@ -103,17 +110,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
     };
   };
 
-  const categoryTotals = useMemo(() => {
-    const totals: Record<string, number> = {};
-    filteredAds.forEach((ad) => {
-      const { totalWithMoms } = calculateTotal(ad);
-      if (totals[ad.advertisedCategory])
-        totals[ad.advertisedCategory] += totalWithMoms;
-      else totals[ad.advertisedCategory] = totalWithMoms;
-    });
-    return totals;
-  }, [filteredAds]);
-
+  // Summary calculations
   const summary = useMemo(() => {
     let totalActive = 0,
       totalDraft = 0,
@@ -183,6 +180,40 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
     });
 
     return result;
+  }, [filteredAds]);
+
+  // Category totals with full breakdown
+  const categoryTotals = useMemo(() => {
+    const totals: Record<
+      string,
+      {
+        count: number;
+        totalBase: number;
+        totalDiscount: number;
+        totalExclMoms: number;
+        totalInclMoms: number;
+      }
+    > = {};
+
+    filteredAds.forEach((ad) => {
+      const { base, discountAmt, withDiscount, totalWithMoms } =
+        calculateTotal(ad);
+      if (!totals[ad.advertisedCategory])
+        totals[ad.advertisedCategory] = {
+          count: 0,
+          totalBase: 0,
+          totalDiscount: 0,
+          totalExclMoms: 0,
+          totalInclMoms: 0,
+        };
+      totals[ad.advertisedCategory].count += 1;
+      totals[ad.advertisedCategory].totalBase += base;
+      totals[ad.advertisedCategory].totalDiscount += discountAmt;
+      totals[ad.advertisedCategory].totalExclMoms += withDiscount;
+      totals[ad.advertisedCategory].totalInclMoms += totalWithMoms;
+    });
+
+    return totals;
   }, [filteredAds]);
 
   return (
@@ -337,7 +368,6 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             </div>
 
             {/* Tabs */}
-             {/* Tabs */}
             <div className="mt-8">
               <Tabs defaultValue="overall" className="w-full">
                 <TabsList className="flex flex-wrap justify-start mb-4">
@@ -364,8 +394,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       <strong>Total Days:</strong> {summary.totalDays}
                     </div>
                     <div className="p-4 bg-muted/30 rounded-lg border hover:shadow-lg transition-shadow">
-                      <strong>Total Base:</strong>{" "}
-                      {summary.totalBase.toFixed(2)} SEK
+                      <strong>Total Base:</strong> {summary.totalBase.toFixed(2)} SEK
                     </div>
                     <div className="p-4 bg-muted/30 rounded-lg border hover:shadow-lg transition-shadow">
                       <strong>Total Discount:</strong>{" "}
@@ -400,20 +429,16 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                             <strong>Total Days:</strong> {s.totalDays}
                           </p>
                           <p>
-                            <strong>Total Base:</strong>{" "}
-                            {s.totalBase.toFixed(2)} SEK
+                            <strong>Total Base:</strong> {s.totalBase.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Discount:</strong>{" "}
-                            {s.totalDiscountAmt.toFixed(2)} SEK
+                            <strong>Total Discount:</strong> {s.totalDiscountAmt.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Excl. Moms:</strong>{" "}
-                            {s.totalExclMoms.toFixed(2)} SEK
+                            <strong>Total Excl. Moms:</strong> {s.totalExclMoms.toFixed(2)} SEK
                           </p>
                           <p>
-                            <strong>Total Incl. Moms:</strong>{" "}
-                            {s.totalInclMoms.toFixed(2)} SEK
+                            <strong>Total Incl. Moms:</strong> {s.totalInclMoms.toFixed(2)} SEK
                           </p>
                         </div>
                       );
@@ -424,13 +449,27 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                 {/* By Category */}
                 <TabsContent value="category">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(categoryTotals).map(([category, total]) => (
+                    {Object.entries(categoryTotals).map(([category, stats]) => (
                       <div
                         key={category}
-                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow flex justify-between"
+                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
                       >
-                        <span>{category}</span>
-                        <span>{total.toFixed(2)} SEK</span>
+                        <h3 className="font-semibold mb-2">{category}</h3>
+                        <p>
+                          <strong>Total Ads:</strong> {stats.count}
+                        </p>
+                        <p>
+                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Discount:</strong> {stats.totalDiscount.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -473,20 +512,16 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           <strong>Total Ads:</strong> {stats.count}
                         </p>
                         <p>
-                          <strong>Total Base:</strong>{" "}
-                          {stats.totalBase.toFixed(2)} SEK
+                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Discount:</strong>{" "}
-                          {stats.totalDiscountAmt.toFixed(2)} SEK
+                          <strong>Total Discount:</strong> {stats.totalDiscountAmt.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Excl. Moms:</strong>{" "}
-                          {stats.totalExclMoms.toFixed(2)} SEK
+                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Incl. Moms:</strong>{" "}
-                          {stats.totalInclMoms.toFixed(2)} SEK
+                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
                         </p>
                       </div>
                     ))}
@@ -530,20 +565,16 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           <strong>Total Ads:</strong> {stats.count}
                         </p>
                         <p>
-                          <strong>Total Base:</strong>{" "}
-                          {stats.totalBase.toFixed(2)} SEK
+                          <strong>Total Base:</strong> {stats.totalBase.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Discount:</strong>{" "}
-                          {stats.totalDiscountAmt.toFixed(2)} SEK
+                          <strong>Total Discount:</strong> {stats.totalDiscountAmt.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Excl. Moms:</strong>{" "}
-                          {stats.totalExclMoms.toFixed(2)} SEK
+                          <strong>Total Excl. Moms:</strong> {stats.totalExclMoms.toFixed(2)} SEK
                         </p>
                         <p>
-                          <strong>Total Incl. Moms:</strong>{" "}
-                          {stats.totalInclMoms.toFixed(2)} SEK
+                          <strong>Total Incl. Moms:</strong> {stats.totalInclMoms.toFixed(2)} SEK
                         </p>
                       </div>
                     ))}
