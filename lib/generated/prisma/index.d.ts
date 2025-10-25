@@ -8448,6 +8448,10 @@ export namespace Prisma {
     dailyPrice: number | null
     moms: number | null
     discount: number | null
+    advertiseCollectedByName: string | null
+    advertiseCollectedByEmail: string | null
+    advertiseCollectedByPhone: string | null
+    advertiseCollectedByCountry: string | null
     advertiseStatus: $Enums.advertiseStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8471,6 +8475,10 @@ export namespace Prisma {
     dailyPrice: number | null
     moms: number | null
     discount: number | null
+    advertiseCollectedByName: string | null
+    advertiseCollectedByEmail: string | null
+    advertiseCollectedByPhone: string | null
+    advertiseCollectedByCountry: string | null
     advertiseStatus: $Enums.advertiseStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8494,6 +8502,10 @@ export namespace Prisma {
     dailyPrice: number
     moms: number
     discount: number
+    advertiseCollectedByName: number
+    advertiseCollectedByEmail: number
+    advertiseCollectedByPhone: number
+    advertiseCollectedByCountry: number
     advertiseStatus: number
     createdAt: number
     updatedAt: number
@@ -8533,6 +8545,10 @@ export namespace Prisma {
     dailyPrice?: true
     moms?: true
     discount?: true
+    advertiseCollectedByName?: true
+    advertiseCollectedByEmail?: true
+    advertiseCollectedByPhone?: true
+    advertiseCollectedByCountry?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8556,6 +8572,10 @@ export namespace Prisma {
     dailyPrice?: true
     moms?: true
     discount?: true
+    advertiseCollectedByName?: true
+    advertiseCollectedByEmail?: true
+    advertiseCollectedByPhone?: true
+    advertiseCollectedByCountry?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8579,6 +8599,10 @@ export namespace Prisma {
     dailyPrice?: true
     moms?: true
     discount?: true
+    advertiseCollectedByName?: true
+    advertiseCollectedByEmail?: true
+    advertiseCollectedByPhone?: true
+    advertiseCollectedByCountry?: true
     advertiseStatus?: true
     createdAt?: true
     updatedAt?: true
@@ -8689,6 +8713,10 @@ export namespace Prisma {
     dailyPrice: number
     moms: number
     discount: number
+    advertiseCollectedByName: string | null
+    advertiseCollectedByEmail: string | null
+    advertiseCollectedByPhone: string | null
+    advertiseCollectedByCountry: string | null
     advertiseStatus: $Enums.advertiseStatus
     createdAt: Date
     updatedAt: Date
@@ -8731,6 +8759,10 @@ export namespace Prisma {
     dailyPrice?: boolean
     moms?: boolean
     discount?: boolean
+    advertiseCollectedByName?: boolean
+    advertiseCollectedByEmail?: boolean
+    advertiseCollectedByPhone?: boolean
+    advertiseCollectedByCountry?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8754,6 +8786,10 @@ export namespace Prisma {
     dailyPrice?: boolean
     moms?: boolean
     discount?: boolean
+    advertiseCollectedByName?: boolean
+    advertiseCollectedByEmail?: boolean
+    advertiseCollectedByPhone?: boolean
+    advertiseCollectedByCountry?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8777,6 +8813,10 @@ export namespace Prisma {
     dailyPrice?: boolean
     moms?: boolean
     discount?: boolean
+    advertiseCollectedByName?: boolean
+    advertiseCollectedByEmail?: boolean
+    advertiseCollectedByPhone?: boolean
+    advertiseCollectedByCountry?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8800,12 +8840,16 @@ export namespace Prisma {
     dailyPrice?: boolean
     moms?: boolean
     discount?: boolean
+    advertiseCollectedByName?: boolean
+    advertiseCollectedByEmail?: boolean
+    advertiseCollectedByPhone?: boolean
+    advertiseCollectedByCountry?: boolean
     advertiseStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "country" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "dailyPrice" | "moms" | "discount" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
+  export type AdvertisementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "companyaddress" | "supervisedName" | "advertisedCategory" | "country" | "websiteLink" | "additionalInfo" | "advertiseBanner" | "isFeatured" | "endDate" | "startDate" | "supervisedPhonenumber" | "advertiseduration" | "dailyPrice" | "moms" | "discount" | "advertiseCollectedByName" | "advertiseCollectedByEmail" | "advertiseCollectedByPhone" | "advertiseCollectedByCountry" | "advertiseStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["advertisement"]>
 
   export type $AdvertisementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Advertisement"
@@ -8828,6 +8872,10 @@ export namespace Prisma {
       dailyPrice: number
       moms: number
       discount: number
+      advertiseCollectedByName: string | null
+      advertiseCollectedByEmail: string | null
+      advertiseCollectedByPhone: string | null
+      advertiseCollectedByCountry: string | null
       advertiseStatus: $Enums.advertiseStatus
       createdAt: Date
       updatedAt: Date
@@ -9271,6 +9319,10 @@ export namespace Prisma {
     readonly dailyPrice: FieldRef<"Advertisement", 'Int'>
     readonly moms: FieldRef<"Advertisement", 'Int'>
     readonly discount: FieldRef<"Advertisement", 'Int'>
+    readonly advertiseCollectedByName: FieldRef<"Advertisement", 'String'>
+    readonly advertiseCollectedByEmail: FieldRef<"Advertisement", 'String'>
+    readonly advertiseCollectedByPhone: FieldRef<"Advertisement", 'String'>
+    readonly advertiseCollectedByCountry: FieldRef<"Advertisement", 'String'>
     readonly advertiseStatus: FieldRef<"Advertisement", 'advertiseStatus'>
     readonly createdAt: FieldRef<"Advertisement", 'DateTime'>
     readonly updatedAt: FieldRef<"Advertisement", 'DateTime'>
@@ -20341,6 +20393,10 @@ export namespace Prisma {
     dailyPrice: 'dailyPrice',
     moms: 'moms',
     discount: 'discount',
+    advertiseCollectedByName: 'advertiseCollectedByName',
+    advertiseCollectedByEmail: 'advertiseCollectedByEmail',
+    advertiseCollectedByPhone: 'advertiseCollectedByPhone',
+    advertiseCollectedByCountry: 'advertiseCollectedByCountry',
     advertiseStatus: 'advertiseStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -21143,6 +21199,10 @@ export namespace Prisma {
     dailyPrice?: IntFilter<"Advertisement"> | number
     moms?: IntFilter<"Advertisement"> | number
     discount?: IntFilter<"Advertisement"> | number
+    advertiseCollectedByName?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByEmail?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByPhone?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByCountry?: StringNullableFilter<"Advertisement"> | string | null
     advertiseStatus?: EnumadvertiseStatusFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -21166,6 +21226,10 @@ export namespace Prisma {
     dailyPrice?: SortOrder
     moms?: SortOrder
     discount?: SortOrder
+    advertiseCollectedByName?: SortOrderInput | SortOrder
+    advertiseCollectedByEmail?: SortOrderInput | SortOrder
+    advertiseCollectedByPhone?: SortOrderInput | SortOrder
+    advertiseCollectedByCountry?: SortOrderInput | SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21192,6 +21256,10 @@ export namespace Prisma {
     dailyPrice?: IntFilter<"Advertisement"> | number
     moms?: IntFilter<"Advertisement"> | number
     discount?: IntFilter<"Advertisement"> | number
+    advertiseCollectedByName?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByEmail?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByPhone?: StringNullableFilter<"Advertisement"> | string | null
+    advertiseCollectedByCountry?: StringNullableFilter<"Advertisement"> | string | null
     advertiseStatus?: EnumadvertiseStatusFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -21215,6 +21283,10 @@ export namespace Prisma {
     dailyPrice?: SortOrder
     moms?: SortOrder
     discount?: SortOrder
+    advertiseCollectedByName?: SortOrderInput | SortOrder
+    advertiseCollectedByEmail?: SortOrderInput | SortOrder
+    advertiseCollectedByPhone?: SortOrderInput | SortOrder
+    advertiseCollectedByCountry?: SortOrderInput | SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21246,6 +21318,10 @@ export namespace Prisma {
     dailyPrice?: IntWithAggregatesFilter<"Advertisement"> | number
     moms?: IntWithAggregatesFilter<"Advertisement"> | number
     discount?: IntWithAggregatesFilter<"Advertisement"> | number
+    advertiseCollectedByName?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
+    advertiseCollectedByEmail?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
+    advertiseCollectedByPhone?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
+    advertiseCollectedByCountry?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     advertiseStatus?: EnumadvertiseStatusWithAggregatesFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
@@ -22377,6 +22453,10 @@ export namespace Prisma {
     dailyPrice: number
     moms: number
     discount: number
+    advertiseCollectedByName?: string | null
+    advertiseCollectedByEmail?: string | null
+    advertiseCollectedByPhone?: string | null
+    advertiseCollectedByCountry?: string | null
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22400,6 +22480,10 @@ export namespace Prisma {
     dailyPrice: number
     moms: number
     discount: number
+    advertiseCollectedByName?: string | null
+    advertiseCollectedByEmail?: string | null
+    advertiseCollectedByPhone?: string | null
+    advertiseCollectedByCountry?: string | null
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22423,6 +22507,10 @@ export namespace Prisma {
     dailyPrice?: IntFieldUpdateOperationsInput | number
     moms?: IntFieldUpdateOperationsInput | number
     discount?: IntFieldUpdateOperationsInput | number
+    advertiseCollectedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByCountry?: NullableStringFieldUpdateOperationsInput | string | null
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22446,6 +22534,10 @@ export namespace Prisma {
     dailyPrice?: IntFieldUpdateOperationsInput | number
     moms?: IntFieldUpdateOperationsInput | number
     discount?: IntFieldUpdateOperationsInput | number
+    advertiseCollectedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByCountry?: NullableStringFieldUpdateOperationsInput | string | null
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22469,6 +22561,10 @@ export namespace Prisma {
     dailyPrice: number
     moms: number
     discount: number
+    advertiseCollectedByName?: string | null
+    advertiseCollectedByEmail?: string | null
+    advertiseCollectedByPhone?: string | null
+    advertiseCollectedByCountry?: string | null
     advertiseStatus?: $Enums.advertiseStatus
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22492,6 +22588,10 @@ export namespace Prisma {
     dailyPrice?: IntFieldUpdateOperationsInput | number
     moms?: IntFieldUpdateOperationsInput | number
     discount?: IntFieldUpdateOperationsInput | number
+    advertiseCollectedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByCountry?: NullableStringFieldUpdateOperationsInput | string | null
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22515,6 +22615,10 @@ export namespace Prisma {
     dailyPrice?: IntFieldUpdateOperationsInput | number
     moms?: IntFieldUpdateOperationsInput | number
     discount?: IntFieldUpdateOperationsInput | number
+    advertiseCollectedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    advertiseCollectedByCountry?: NullableStringFieldUpdateOperationsInput | string | null
     advertiseStatus?: EnumadvertiseStatusFieldUpdateOperationsInput | $Enums.advertiseStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23747,6 +23851,10 @@ export namespace Prisma {
     dailyPrice?: SortOrder
     moms?: SortOrder
     discount?: SortOrder
+    advertiseCollectedByName?: SortOrder
+    advertiseCollectedByEmail?: SortOrder
+    advertiseCollectedByPhone?: SortOrder
+    advertiseCollectedByCountry?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -23777,6 +23885,10 @@ export namespace Prisma {
     dailyPrice?: SortOrder
     moms?: SortOrder
     discount?: SortOrder
+    advertiseCollectedByName?: SortOrder
+    advertiseCollectedByEmail?: SortOrder
+    advertiseCollectedByPhone?: SortOrder
+    advertiseCollectedByCountry?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -23800,6 +23912,10 @@ export namespace Prisma {
     dailyPrice?: SortOrder
     moms?: SortOrder
     discount?: SortOrder
+    advertiseCollectedByName?: SortOrder
+    advertiseCollectedByEmail?: SortOrder
+    advertiseCollectedByPhone?: SortOrder
+    advertiseCollectedByCountry?: SortOrder
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder

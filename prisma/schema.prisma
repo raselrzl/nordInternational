@@ -155,13 +155,18 @@ model Advertisement {
   startDate             String
   supervisedPhonenumber String
   advertiseduration     Int?
-  dailyPrice           Int 
-  moms                 Int
-  discount             Int 
+  dailyPrice            Int
+  moms                  Int
+  discount              Int
 
-  advertiseStatus       advertiseStatus @default(DRAFT)
-  createdAt             DateTime        @default(now())
-  updatedAt             DateTime        @updatedAt
+  advertiseCollectedByName    String?
+  advertiseCollectedByEmail   String?
+  advertiseCollectedByPhone   String?
+  advertiseCollectedByCountry String?
+
+  advertiseStatus advertiseStatus @default(DRAFT)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 }
 
 enum advertiseStatus {
@@ -355,31 +360,27 @@ enum Country {
   NORWAY
 }
 
-
 model PollQuestion {
-  id        Int       @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   question  String
-  createdAt DateTime  @default(now())
+  createdAt DateTime     @default(now())
   answers   PollAnswer[]
 }
 
 model PollAnswer {
-  id          Int       @id @default(autoincrement())
+  id             Int      @id @default(autoincrement())
   pollQuestionId Int
-  answer      String
-  createdAt   DateTime  @default(now())
+  answer         String
+  createdAt      DateTime @default(now())
 
   pollQuestion PollQuestion @relation(fields: [pollQuestionId], references: [id])
 }
 
-
 model AdvertisementPackage {
-  id         String  @id
+  id         String   @id
   name       String
   page       String
   dailyPrice Float
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
-
-

@@ -67,8 +67,6 @@ const countries = [
   { id: "NORWAY", name: "Norway", flag: "/flags/norway.webp" },
 ];
 
-
-
 export function CreateAdvertisementForm() {
   const [pending, setPending] = useState(false);
   const today = new Date().toISOString().split("T")[0];
@@ -102,6 +100,11 @@ export function CreateAdvertisementForm() {
       dailyPrice: 0,
       moms: 0,
       discount: 0,
+
+      advertiseCollectedByName: "",
+      advertiseCollectedByEmail: "",
+      advertiseCollectedByPhone: "",
+      advertiseCollectedByCountry: "",
     },
   });
 
@@ -170,9 +173,12 @@ export function CreateAdvertisementForm() {
 
   return (
     <Form {...form}>
-     <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="rounded-xs">
+            <h3 className="text-lg font-medium uppercase pl-6">
+              Ads Company Details
+            </h3>
             <CardContent className="space-y-6 pt-6">
               <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
                 <FormField
@@ -314,7 +320,6 @@ export function CreateAdvertisementForm() {
                         Do you want the image to redirect to a specific link
                         when clicked?
                       </FormLabel>
-
 
                       <FormControl>
                         <Input
@@ -528,7 +533,12 @@ export function CreateAdvertisementForm() {
                 name="country"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select Country</FormLabel>
+                    <FormLabel>
+                      {" "}
+                      <strong>Select Country </strong>
+                      {"    "}(This is for advertise placement in the
+                      application)
+                    </FormLabel>
                     <div className="grid grid-cols-3 md:grid-cols-4 gap-1">
                       {countries.map((country) => (
                         <Button
@@ -557,15 +567,101 @@ export function CreateAdvertisementForm() {
               />
             </CardContent>
           </Card>
-
           <Card className="rounded-xs">
             <CardContent className="space-y-6 pt-6">
-                 <FormField
+              <h3 className="text-lg font-medium uppercase">
+                Ads Collected By Information
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FormField
+                  control={control}
+                  name="advertiseCollectedByName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Collector's name..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="advertiseCollectedByEmail"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Collector's email..."
+                          type="email"
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="advertiseCollectedByPhone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Collector's phone..."
+                          {...field}
+                          className="placeholder:text-sm"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="advertiseCollectedByCountry"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Country</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select country" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {countries.map((c) => (
+                            <SelectItem key={c.id} value={c.id}>
+                              {c.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="rounded-xs">
+            <CardContent className="space-y-6 pt-6">
+              <FormField
                 control={control}
                 name="advertiseduration"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>How long You wanna keep this ads on the system?</FormLabel>
+                    <FormLabel>
+                      How long You wanna keep this ads on the system?
+                    </FormLabel>
                     <div className="grid grid-cols-3 gap-1">
                       {[1, 2, 3, 4, 5].map((y) => {
                         const days = y * 365;

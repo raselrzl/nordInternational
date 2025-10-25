@@ -1,7 +1,11 @@
 "use server";
 import { z } from "zod";
 import { prisma } from "./utils/db";
-import { requireNewsReporter, requireSuperAdmin, requireUser } from "./utils/requireUser";
+import {
+  requireNewsReporter,
+  requireSuperAdmin,
+  requireUser,
+} from "./utils/requireUser";
 import {
   AdvertiseRequestSchema,
   AdvertiserSchema,
@@ -11,7 +15,14 @@ import {
 import { redirect } from "next/navigation";
 import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
-import { AdvertisedCategory, advertiseStatus, Country, NewsCountry, UserType, vedioStatus } from "@/lib/generated/prisma";
+import {
+  AdvertisedCategory,
+  advertiseStatus,
+  Country,
+  NewsCountry,
+  UserType,
+  vedioStatus,
+} from "@/lib/generated/prisma";
 import { auth } from "./utils/auth";
 import { revalidatePath } from "next/cache";
 /* import { inngest } from "./utils/inngest/client"; */
@@ -109,7 +120,7 @@ export async function createAdvertiser(data: z.infer<typeof AdvertiserSchema>) {
 }
 
 export async function createAnArticle(data: z.infer<typeof newsArticleSchema>) {
-  const approvedreporter =await requireNewsReporter()
+  const approvedreporter = await requireNewsReporter();
   if (!approvedreporter) {
     return redirect("/restricted");
   }
@@ -163,7 +174,7 @@ export async function createAnArticle(data: z.infer<typeof newsArticleSchema>) {
 }
 
 export async function updateArticleStatusToActive(articleId: string) {
-  const superadmin =await requireSuperAdmin()
+  const superadmin = await requireSuperAdmin();
   if (!superadmin) {
     return redirect("/restricted");
   }
@@ -187,7 +198,7 @@ export async function updateArticleStatusToActive(articleId: string) {
 }
 
 export async function updateArticleStatusToDraft(articleId: string) {
-  const superadmin =await requireSuperAdmin()
+  const superadmin = await requireSuperAdmin();
   if (!superadmin) {
     return redirect("/restricted");
   }
@@ -210,7 +221,7 @@ export async function updateArticleStatusToDraft(articleId: string) {
 }
 
 export async function deleteArticleById(articleId: string) {
-  const superadmin =await requireSuperAdmin()
+  const superadmin = await requireSuperAdmin();
   if (!superadmin) {
     return redirect("/restricted");
   }
@@ -242,7 +253,7 @@ export async function deleteArticleById(articleId: string) {
 }
 
 export async function updateNewsArticle(data: any, articleId: string) {
-  const approvednewsreporter =await requireNewsReporter()
+  const approvednewsreporter = await requireNewsReporter();
   if (!approvednewsreporter) {
     return redirect("/restricted");
   }
@@ -278,8 +289,6 @@ export async function updateNewsArticle(data: any, articleId: string) {
 
   return redirect("/post-an-article/alaarticles");
 }
-
-
 
 export async function deleteUserById(userId: string) {
   const superuser = await requireSuperAdmin();
@@ -331,10 +340,10 @@ export async function deleteUserById(userId: string) {
   return redirect("/post-an-article/alaarticles");
 }
 
-
-
-export async function updateUserApprovalStatus(userId: string, status: 'PENDING' | 'APPROVED' | 'REJECT') {
-
+export async function updateUserApprovalStatus(
+  userId: string,
+  status: "PENDING" | "APPROVED" | "REJECT"
+) {
   const superuser = await requireSuperAdmin();
   if (!superuser) {
     return redirect("/restricted");
@@ -356,11 +365,10 @@ export async function updateUserApprovalStatus(userId: string, status: 'PENDING'
 
     return { success: true, updatedUser };
   } catch (error) {
-    console.error('Error updating user approval status:', error);
-    throw new Error('Failed to update approval status');
+    console.error("Error updating user approval status:", error);
+    throw new Error("Failed to update approval status");
   }
 }
-
 
 export async function createAnAdvertisement(data: {
   companyName: string;
@@ -376,10 +384,15 @@ export async function createAnAdvertisement(data: {
   additionalInfo?: string;
   startDate: string;
   endDate: string;
-  country:Country;
+  country: Country;
   dailyPrice?: number;
   moms?: number;
   discount?: number;
+
+  advertiseCollectedByName?: string;
+  advertiseCollectedByEmail?: string;
+  advertiseCollectedByPhone?: string;
+  advertiseCollectedByCountry?: Country;
 }) {
   const user = await requireUser();
   const req = await request();
@@ -403,17 +416,25 @@ export async function createAnAdvertisement(data: {
       additionalInfo: data.additionalInfo ?? "",
       startDate: data.startDate,
       endDate: data.endDate,
-      country:data.country,
+      country: data.country,
       dailyPrice: data.dailyPrice ?? 0,
       moms: data.moms ?? 0,
       discount: data.discount ?? 0,
+
+      advertiseCollectedByName: data.advertiseCollectedByName ?? "",
+      advertiseCollectedByEmail: data.advertiseCollectedByEmail ?? "",
+      advertiseCollectedByPhone: data.advertiseCollectedByPhone ?? "",
+      advertiseCollectedByCountry: data.advertiseCollectedByCountry,
     },
   });
 
   return redirect("/post-an-article/post-advertisement/alladvertise");
 }
 
-export async function promoteToUserType(userId: string, userType: UserType): Promise<void> {
+export async function promoteToUserType(
+  userId: string,
+  userType: UserType
+): Promise<void> {
   await requireSuperAdmin();
 
   await prisma.user.update({
@@ -424,16 +445,11 @@ export async function promoteToUserType(userId: string, userType: UserType): Pro
   redirect("/post-an-article/allusers");
 }
 
-
 const OpinionSchema = z.object({
-  name: z.string().min(1, 'Name'),
-  email: z.string().email('Write a correct email').optional(),
-  phone: z
-    .string()
-    .min(10, '10 digit')
-    .max(15, 'max 15')
-    .optional(),
-  opinion: z.string().min(10, '10 words'),
+  name: z.string().min(1, "Name"),
+  email: z.string().email("Write a correct email").optional(),
+  phone: z.string().min(10, "10 digit").max(15, "max 15").optional(),
+  opinion: z.string().min(10, "10 words"),
 });
 
 export async function submitOpinion(formData: FormData) {
@@ -446,7 +462,7 @@ export async function submitOpinion(formData: FormData) {
   const parsed = OpinionSchema.safeParse(raw);
 
   if (!parsed.success) {
-    throw new Error('Invalid form data');
+    throw new Error("Invalid form data");
   }
 
   const data = parsed.data;
@@ -462,9 +478,8 @@ export async function submitOpinion(formData: FormData) {
   return { success: true, message: "Opinion submitted successfully" };
 }
 
-
 export async function deleteOpinionById(opinionId: string) {
-  const superadmin =await requireSuperAdmin()
+  const superadmin = await requireSuperAdmin();
   if (!superadmin) {
     return redirect("/restricted");
   }
@@ -489,8 +504,6 @@ export async function deleteOpinionById(opinionId: string) {
     throw new Error("Failed to delete article");
   }
 }
-
-
 
 export async function submitAdvertiseRequest(formData: FormData) {
   const req = await request();
@@ -523,10 +536,10 @@ export async function submitAdvertiseRequest(formData: FormData) {
   redirect("/thank-you");
 }
 
-
-
-export async function deleteadvertiseRequestMEssageById(advertisecontactId: string) {
-  const superadmin =await requireSuperAdmin()
+export async function deleteadvertiseRequestMEssageById(
+  advertisecontactId: string
+) {
+  const superadmin = await requireSuperAdmin();
   if (!superadmin) {
     return redirect("/restricted");
   }
@@ -552,9 +565,10 @@ export async function deleteadvertiseRequestMEssageById(advertisecontactId: stri
   }
 }
 
-
-
-export async function updateAdvertisementStatus(advertisementId: string, status: "ACTIVE" | "DRAFT" | "EXPIRED") {
+export async function updateAdvertisementStatus(
+  advertisementId: string,
+  status: "ACTIVE" | "DRAFT" | "EXPIRED"
+) {
   const superuser = await requireSuperAdmin();
   if (!superuser) redirect("/restricted");
 
@@ -573,7 +587,6 @@ export async function updateAdvertisementStatus(advertisementId: string, status:
     data: { advertiseStatus: status },
   });
 }
-
 
 export async function deleteAdvertisementById(advertisementId: string) {
   const superuser = await requireSuperAdmin();
@@ -600,11 +613,6 @@ export async function deleteAdvertisementById(advertisementId: string) {
     throw new Error("Failed to delete advertisement");
   }
 }
-
-
-
-
-
 
 export async function createVideoPost(data: {
   videoAbout: string;
@@ -635,9 +643,10 @@ export async function createVideoPost(data: {
   return redirect("/post-an-article/post-a-video/allvideos");
 }
 
-
-
-export async function updateVedioStatus(videoId: string, status: "ACTIVE" | "DRAFT" | "EXPIRED") {
+export async function updateVedioStatus(
+  videoId: string,
+  status: "ACTIVE" | "DRAFT" | "EXPIRED"
+) {
   const superuser = await requireSuperAdmin();
   if (!superuser) redirect("/restricted");
 
@@ -656,7 +665,6 @@ export async function updateVedioStatus(videoId: string, status: "ACTIVE" | "DRA
     data: { vedioStatus: status },
   });
 }
-
 
 export async function deleteVedioById(videoId: string) {
   const superuser = await requireSuperAdmin();
@@ -684,19 +692,12 @@ export async function deleteVedioById(videoId: string) {
   }
 }
 
-
-
-
-
-
-
-
 const PollQuestionSchema = z.object({
   question: z.string().min(5, "Question must be at least 5 characters"),
 });
 
 export async function createPollQuestion(formData: FormData) {
-  const approvedreporter =await requireNewsReporter()
+  const approvedreporter = await requireNewsReporter();
   if (!approvedreporter) {
     return redirect("/restricted");
   }
@@ -711,9 +712,7 @@ export async function createPollQuestion(formData: FormData) {
   });
   revalidatePath("/");
   return { status: "success" };
-  
 }
-
 
 export async function getLatestPoll() {
   const poll = await prisma.pollQuestion.findFirst({
@@ -731,9 +730,6 @@ export async function getLatestPoll() {
 
   return { poll, results };
 }
-
-
-
 
 const PollVoteSchema = z.object({
   pollQuestionId: z.string(),
@@ -755,7 +751,6 @@ export async function submitPollVote(formData: FormData) {
 
   return { success: true };
 }
-
 
 export async function createAdvertisementPackage(data: {
   id: string;
@@ -811,11 +806,6 @@ export async function getAllAdvertisementPackagePrices() {
 
   return prices;
 }
-
-
-
-
-
 
 export async function getAdvertisementPackages() {
   return prisma.advertisementPackage.findMany({
