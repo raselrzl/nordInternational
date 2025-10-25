@@ -13,7 +13,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 
-async function getAllPolls(page: number = 1, pageSize: number = 10) {
+async function getAllPolls(page: number = 1, pageSize: number = 7) {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -52,18 +52,20 @@ export default async function AdminPollPage({
   const { polls, totalPages, totalCount } = await getAllPolls(currentPage);
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        Write a Poll Question?
-      </h1>
+    <div className="">
+      <div className="flex items-center justify-between text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
+        {" "}
+        <h1 className="">
+          Write a Poll Question?
+        </h1>
+         <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+          Total: {totalCount}
+        </div>
+      </div>
       <PollForm />
 
-      <h2 className="text-lg font-bold mt-8 mb-4">
-        All Poll Questions ({totalCount})
-      </h2>
-
       {polls.length > 0 ? (
-        <Card className="rounded-xs">
+        <Card className="rounded-xs mt-3">
           <CardContent className="overflow-x-auto">
             <Table>
               <TableHeader>

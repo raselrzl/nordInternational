@@ -59,7 +59,9 @@ type SearchParamsProps = {
   }>;
 };
 
-export default async function AllUsersTable({ searchParams }: SearchParamsProps) {
+export default async function AllUsersTable({
+  searchParams,
+}: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
@@ -77,9 +79,12 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
 
   return (
     <>
-      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        Manage All Users
-      </h1>
+      <div className="text-xl flex justify-between font-bold bg-accent-foreground/5 p-2 mb-8">
+        <h1>Manage All Users</h1>
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+          Total: {totalCount}
+        </div>
+      </div>
 
       {users.length > 0 ? (
         <div className="flex flex-col gap-6">
@@ -128,7 +133,9 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
                         })}
                       </TableCell>
                       <TableCell>
-                        {user.userType === "ADVERTISER" ? null : user.approvalStatus ?? "Pending"}
+                        {user.userType === "ADVERTISER"
+                          ? null
+                          : user.approvalStatus ?? "Pending"}
                       </TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
@@ -143,7 +150,9 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
 
                             {canSeeSection3 && (
                               <DropdownMenuItem asChild>
-                                <Link href={`/post-an-article/allusers/${user.id}/deleteuser`}>
+                                <Link
+                                  href={`/post-an-article/allusers/${user.id}/deleteuser`}
+                                >
                                   <XCircle className="w-4 h-4 mr-2 text-red-600" />
                                   Delete
                                 </Link>
@@ -152,7 +161,9 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
 
                             {canSeeSection2 && (
                               <DropdownMenuItem asChild>
-                                <Link href={`/post-an-article/allusers/${user.id}/approvalstatus`}>
+                                <Link
+                                  href={`/post-an-article/allusers/${user.id}/approvalstatus`}
+                                >
                                   <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                                   Update User Status
                                 </Link>
@@ -179,7 +190,10 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
             </CardContent>
           </Card>
 
-          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
+          <PaginationComponent
+            totalPages={totalPages}
+            currentPage={currentPage}
+          />
         </div>
       ) : (
         <EmptyState
