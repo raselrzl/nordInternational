@@ -337,6 +337,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             </div>
 
             {/* Tabs */}
+             {/* Tabs */}
             <div className="mt-8">
               <Tabs defaultValue="overall" className="w-full">
                 <TabsList className="flex flex-wrap justify-start mb-4">
@@ -430,6 +431,120 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       >
                         <span>{category}</span>
                         <span>{total.toFixed(2)} SEK</span>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                {/* By Country */}
+                <TabsContent value="country">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Object.entries(
+                      filteredAds.reduce((acc, ad) => {
+                        const country = ad.country || "Unknown";
+                        const {
+                          base,
+                          discountAmt,
+                          withDiscount,
+                          totalWithMoms,
+                        } = calculateTotal(ad);
+                        if (!acc[country])
+                          acc[country] = {
+                            count: 0,
+                            totalBase: 0,
+                            totalDiscountAmt: 0,
+                            totalExclMoms: 0,
+                            totalInclMoms: 0,
+                          };
+                        acc[country].count += 1;
+                        acc[country].totalBase += base;
+                        acc[country].totalDiscountAmt += discountAmt;
+                        acc[country].totalExclMoms += withDiscount;
+                        acc[country].totalInclMoms += totalWithMoms;
+                        return acc;
+                      }, {} as Record<string, any>)
+                    ).map(([country, stats]) => (
+                      <div
+                        key={country}
+                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
+                      >
+                        <h3 className="font-semibold mb-2">{country}</h3>
+                        <p>
+                          <strong>Total Ads:</strong> {stats.count}
+                        </p>
+                        <p>
+                          <strong>Total Base:</strong>{" "}
+                          {stats.totalBase.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Discount:</strong>{" "}
+                          {stats.totalDiscountAmt.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Excl. Moms:</strong>{" "}
+                          {stats.totalExclMoms.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Incl. Moms:</strong>{" "}
+                          {stats.totalInclMoms.toFixed(2)} SEK
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                {/* By Company */}
+                <TabsContent value="company">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Object.entries(
+                      filteredAds.reduce((acc, ad) => {
+                        const company = ad.companyName || "Unknown Company";
+                        const {
+                          base,
+                          discountAmt,
+                          withDiscount,
+                          totalWithMoms,
+                        } = calculateTotal(ad);
+                        if (!acc[company])
+                          acc[company] = {
+                            count: 0,
+                            totalBase: 0,
+                            totalDiscountAmt: 0,
+                            totalExclMoms: 0,
+                            totalInclMoms: 0,
+                          };
+                        acc[company].count += 1;
+                        acc[company].totalBase += base;
+                        acc[company].totalDiscountAmt += discountAmt;
+                        acc[company].totalExclMoms += withDiscount;
+                        acc[company].totalInclMoms += totalWithMoms;
+                        return acc;
+                      }, {} as Record<string, any>)
+                    ).map(([company, stats]) => (
+                      <div
+                        key={company}
+                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
+                      >
+                        <h3 className="font-semibold mb-2">{company}</h3>
+                        <p>
+                          <strong>Total Ads:</strong> {stats.count}
+                        </p>
+                        <p>
+                          <strong>Total Base:</strong>{" "}
+                          {stats.totalBase.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Discount:</strong>{" "}
+                          {stats.totalDiscountAmt.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Excl. Moms:</strong>{" "}
+                          {stats.totalExclMoms.toFixed(2)} SEK
+                        </p>
+                        <p>
+                          <strong>Total Incl. Moms:</strong>{" "}
+                          {stats.totalInclMoms.toFixed(2)} SEK
+                        </p>
                       </div>
                     ))}
                   </div>
