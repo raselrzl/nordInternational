@@ -75,7 +75,7 @@ export default async function AllAdvertiseRequestsTable({
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
    const rewuireUserToAccessPage = await requireRoleAccess([
-        "SOMPANDOK",
+        "EDITOR",
         "SUPERADMIN"
       ]);
 
@@ -83,7 +83,7 @@ export default async function AllAdvertiseRequestsTable({
   const currentUser = await getCurrentUserType();
   const userType = currentUser?.userType;
   const isPrivilegedUser =
-    userType === "SOMPANDOK" || userType === "SUPERADMIN";
+    userType === "EDITOR" || userType === "SUPERADMIN";
 
   const { requests, totalCount, totalPages } = await getAllAdvertiseRequests(
     currentPage

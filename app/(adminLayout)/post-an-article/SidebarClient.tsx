@@ -32,7 +32,7 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
   const pathname = usePathname();
 
   const isNewsReporter = userType === "NEWSREPORTER" && approvalStatus === "APPROVED";
-  const isSompadok = userType === "SOMPANDOK";
+  const isSompadok = userType === "EDITOR";
   const isSuperAdmin = userType === "SUPERADMIN";
 
   // Everyone sees

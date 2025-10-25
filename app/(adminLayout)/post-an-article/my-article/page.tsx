@@ -94,7 +94,7 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
   const currentPage = Number(params.page) || 1;
 
   const rewuireUserToAccessPage = await requireRoleAccess([
-    "SOMPANDOK",
+    "EDITOR",
     "SUPERADMIN",
     "NEWSREPORTER",
   ]);
@@ -111,7 +111,7 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
   const userRole = rewuireUserToAccessPage?.userType;
 
   const canPublishOrDraft =
-    userRole === "SOMPANDOK" || userRole === "SUPERADMIN";
+    userRole === "EDITOR" || userRole === "SUPERADMIN";
   const canDelete = userRole === "SUPERADMIN"; // ✅ Delete only for Superadmin
 
   return (
@@ -216,7 +216,7 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                               </>
                             )}
 
-                            {/* ✅ Publish/Draft visible to Sompadok & Superadmin */}
+                            {/* ✅ Publish/Draft visible to Editor & Superadmin */}
                             {canPublishOrDraft && (
                               <>
                                 <DropdownMenuSeparator />

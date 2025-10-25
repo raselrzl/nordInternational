@@ -64,7 +64,7 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
   const currentPage = Number(params.page) || 1;
 
    const rewuireUserToAccessPage = await requireRoleAccess([
-          "SOMPANDOK",
+          "EDITOR",
           "SUPERADMIN"
         ]);
 

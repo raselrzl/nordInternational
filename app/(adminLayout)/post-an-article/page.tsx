@@ -24,7 +24,7 @@ export default async function PostAnArticle() {
   const session = await requireUser();
   await requireArticlePoster();
 
-  const user = await requireRoleAccess(["SOMPANDOK", "SUPERADMIN", "NEWSREPORTER"]);
+  const user = await requireRoleAccess(["EDITOR", "SUPERADMIN", "NEWSREPORTER"]);
   await trackRoute("PostAnArticle");
 
   const data = await getNewsReporterInfo(session.id as string);

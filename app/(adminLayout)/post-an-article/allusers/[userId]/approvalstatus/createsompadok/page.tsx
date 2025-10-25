@@ -9,14 +9,14 @@ import { useState } from "react";
 const userTypes = [
   { label: "NEWS REPORTER", value: "NEWSREPORTER" },
   { label: "ADVERTISER", value: "ADVERTISER" },
-  { label: "EDITOR", value: "SOMPANDOK" },
+  { label: "EDITOR", value: "EDITOR" },
   { label: "Super Admin", value: "SUPERADMIN" },
 ];
 
 export default function CreateSompandokPage() {
   const params = useParams();
   const router = useRouter();
-  const [selectedType, setSelectedType] = useState<UserType>("SOMPANDOK");
+  const [selectedType, setSelectedType] = useState<UserType>("EDITOR");
   const [isLoading, setIsLoading] = useState(false);
 
   const handlePromote = async () => {

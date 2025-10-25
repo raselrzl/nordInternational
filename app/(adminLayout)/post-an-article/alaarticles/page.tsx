@@ -81,7 +81,7 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
   const currentPage = Number(params.page) || 1;
 
   const rewuireUserToAccessPage = await requireRoleAccess([
-    "SOMPANDOK",
+    "EDITOR",
     "SUPERADMIN",
   ]);
 

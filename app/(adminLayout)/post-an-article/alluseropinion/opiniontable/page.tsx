@@ -49,7 +49,7 @@ async function getAllOpinions() {
 export default async function AllOpinionsTable() {
   const opinions = await getAllOpinions();
    const rewuireUserToAccessPage = await requireRoleAccess([
-        "SOMPANDOK",
+        "EDITOR",
         "SUPERADMIN",
       ]);
 

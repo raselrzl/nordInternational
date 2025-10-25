@@ -8,7 +8,7 @@ import { requireRoleAccess } from "../roleBaseAccess";
 export default async function PostAnArticle() {
 
    const rewuireUserToAccessPage = await requireRoleAccess([
-          "SOMPANDOK",
+          "EDITOR",
           "SUPERADMIN",
         ]);
   const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();

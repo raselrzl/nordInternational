@@ -10,9 +10,6 @@ import {
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,10 +24,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
-import {
-  requireNewsReporter,
-  requireSuperAdmin,
-} from "@/app/utils/requireUser";
 import {
   isNewsReporter,
   isNewsReporterOrSuperAdmin,
@@ -72,17 +65,17 @@ export default async function AllUsersTable() {
 
   const canSeeSection1 =
     (userType === "NEWSREPORTER" && approvalStatus === "APPROVED") ||
-    userType === "SOMPANDOK" ||
+    userType === "EDITOR" ||
     userType === "SUPERADMIN";
 
 
-  const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
+  const canSeeSection2 = userType === "EDITOR" || userType === "SUPERADMIN";
 
   
   const canSeeSection3 = userType === "SUPERADMIN";
 
   const rewuireUserToAccessPage = await requireRoleAccess([
-    "SOMPANDOK",
+    "EDITOR",
     "SUPERADMIN",
   ]);
 

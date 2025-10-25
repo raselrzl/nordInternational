@@ -251,7 +251,7 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
                     </FormItem>
                   )}
                 />
-                {["SOMPANDOK", "SUPERADMIN"].includes(userType ?? "") && (
+                {["EDITOR", "SUPERADMIN"].includes(userType ?? "") && (
                   <FormField
                     control={form.control}
                     name="newsArticleStatus"

@@ -75,7 +75,7 @@ type Params= Promise<{ articleId: string }>
 
 export default async function EditNewsArticleFormPage({params}:{ params:Params }) {
     const approvednewsreporter=await requireNewsReporter()
-    const user = await requireRoleAccess(["SOMPANDOK", "SUPERADMIN", "NEWSREPORTER"]);
+    const user = await requireRoleAccess(["EDITOR", "SUPERADMIN", "NEWSREPORTER"]);
     const {articleId}=await params
     const data =await getData(articleId)
 

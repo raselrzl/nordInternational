@@ -7,7 +7,7 @@ import { requireRoleAccess } from "../roleBaseAccess";
 export default async function AdminPollPage() {
    const session = await requireUser();
     const rewuireUserToAccessPage = await requireRoleAccess([
-           "SOMPANDOK",
+           "EDITOR",
            "SUPERADMIN"
          ]);
 

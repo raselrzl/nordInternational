@@ -16,7 +16,7 @@ interface AdminLayoutProps {
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const user = await auth();
      const rewuireUserToAccessPage = await requireRoleAccess([
-        "SOMPANDOK",
+        "EDITOR",
         "SUPERADMIN",
         "NEWSREPORTER",
       ]);

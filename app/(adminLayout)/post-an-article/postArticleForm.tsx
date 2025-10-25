@@ -641,7 +641,7 @@ export function CreateNewsArticleForm({
               </CardContent>
             </Card>
           </div>
-          {["SOMPANDOK", "SUPERADMIN"].includes(userType ?? "") && (
+          {["EDITOR", "SUPERADMIN"].includes(userType ?? "") && (
             <Card className="p-10">
               <FormField
                 control={form.control}

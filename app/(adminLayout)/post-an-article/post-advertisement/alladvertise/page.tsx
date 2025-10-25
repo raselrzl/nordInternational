@@ -77,7 +77,7 @@ export default async function AllAdvertisementTable({ searchParams }: SearchPara
   const { ads, totalCount, totalPages } = await getAllAdvertisements(currentPage);
 
    const rewuireUserToAccessPage = await requireRoleAccess([
-          "SOMPANDOK",
+          "EDITOR",
           "SUPERADMIN"
         ]);
 

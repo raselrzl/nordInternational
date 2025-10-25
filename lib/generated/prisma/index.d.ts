@@ -102,7 +102,8 @@ export namespace $Enums {
   NEWSREPORTER: 'NEWSREPORTER',
   ADVERTISER: 'ADVERTISER',
   SUPERADMIN: 'SUPERADMIN',
-  SOMPANDOK: 'SOMPANDOK'
+  ADMIN: 'ADMIN',
+  EDITOR: 'EDITOR'
 };
 
 export type UserType = (typeof UserType)[keyof typeof UserType]
