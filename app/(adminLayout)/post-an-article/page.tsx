@@ -1,16 +1,14 @@
 import React from "react";
 import { CreateNewsArticleForm } from "./postArticleForm";
 import { prisma } from "@/app/utils/db";
-import { requireArticlePoster } from "@/app/utils/NewsReporter";
 import { requireUser } from "@/app/utils/requireUser";
+import { requireArticlePoster } from "@/app/utils/NewsReporter";
+import { requireRoleAccess } from "./roleBaseAccess";
 import { trackRoute } from "@/app/utils/routeTracker";
-import Navbar from "@/components/general/Navbar";
 
 async function getNewsReporterInfo(userId: string) {
-  const data = await prisma.newsReporter.findUnique({
-    where: {
-      userId: userId,
-    },
+  return await prisma.newsReporter.findUnique({
+    where: { userId },
     select: {
       reporterName: true,
       location: true,
@@ -20,21 +18,23 @@ async function getNewsReporterInfo(userId: string) {
       facebookProfileAddress: true,
     },
   });
-
-  return data ?? null;
 }
 
 export default async function PostAnArticle() {
   const session = await requireUser();
   await requireArticlePoster();
 
+  const user = await requireRoleAccess(["SOMPANDOK", "SUPERADMIN", "NEWSREPORTER"]);
+  await trackRoute("PostAnArticle");
+
   const data = await getNewsReporterInfo(session.id as string);
-   await trackRoute("PostAnArticle");
 
   return (
     <div className="max-w-7xl mx-auto">
-     
-      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2">Fill in everything available in the news.</h1>
+      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2">
+        Fill in everything available in the news.
+      </h1>
+
       <div className="py-10">
         <CreateNewsArticleForm
           reporterName={data?.reporterName ?? ""}
@@ -43,6 +43,7 @@ export default async function PostAnArticle() {
           reporterProfilePicture={data?.profilePicture ?? ""}
           reporterPhoneNumber={data?.phoneNumber ?? ""}
           reporterFacebookProfileAddress={data?.facebookProfileAddress ?? ""}
+          userType={user.userType ?? null}
         />
       </div>
     </div>

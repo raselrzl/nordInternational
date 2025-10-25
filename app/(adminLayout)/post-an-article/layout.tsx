@@ -7,6 +7,7 @@ import AdminNavbar from "./AdminNavbar";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import SidebarServer from "./SidebarServer";
+import { requireRoleAccess } from "./roleBaseAccess";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -14,6 +15,11 @@ interface AdminLayoutProps {
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
   const user = await auth();
+     const rewuireUserToAccessPage = await requireRoleAccess([
+        "SOMPANDOK",
+        "SUPERADMIN",
+        "NEWSREPORTER",
+      ]);
 
   return (
     <div className="flex">

@@ -31,9 +31,14 @@ import {
   requireNewsReporter,
   requireSuperAdmin,
 } from "@/app/utils/requireUser";
-import { isNewsReporterOrSuperAdmin, supperAdmin } from "@/app/utils/ime";
+import {
+  isNewsReporter,
+  isNewsReporterOrSuperAdmin,
+  supperAdmin,
+} from "@/app/utils/ime";
 import { auth } from "@/app/utils/auth";
 import { getCurrentUserType } from "@/app/utils/getCurrentUserType";
+import { requireRoleAccess } from "../roleBaseAccess";
 
 async function getAllUsers() {
   const users = await prisma.user.findMany({
@@ -58,6 +63,7 @@ export default async function AllUsersTable() {
   let user = await auth();
   let email = user?.user?.email;
 
+  const newsReporter = await isNewsReporter(email);
   const isSuperAdmin = await supperAdmin(email);
   const newsReporterOrSuperAdmin = await isNewsReporterOrSuperAdmin(email);
 
@@ -72,9 +78,16 @@ export default async function AllUsersTable() {
   const canSeeSection2 = userType === "SOMPANDOK" || userType === "SUPERADMIN";
   const canSeeSection3 = userType === "SUPERADMIN";
 
+  const rewuireUserToAccessPage = await requireRoleAccess([
+    "SOMPANDOK",
+    "SUPERADMIN",
+  ]);
+
   return (
     <>
-    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Manage All USERS</h1>
+      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
+        Manage All USERS
+      </h1>
       {users.length > 0 ? (
         <Card className="rounded-xs">
           <CardContent className="overflow-x-auto">
