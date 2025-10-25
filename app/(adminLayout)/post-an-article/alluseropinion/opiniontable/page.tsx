@@ -94,7 +94,7 @@ export default async function AllOpinionsTable() {
                           <DropdownMenuSeparator />
                           <DropdownMenuItem asChild>
                             <Link
-                              href={`/alluseropinion/opiniontable/${opinion.id}/delete`}
+                              href={`/post-an-article/alluseropinion/deleteopinion/${opinion.id}/delete`}
                               className="text-red-600"
                             >
                               <XCircle className="w-4 h-4 mr-2" />
