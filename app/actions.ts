@@ -709,8 +709,8 @@ export async function createPollQuestion(formData: FormData) {
   await prisma.pollQuestion.create({
     data: { question: parsed.data.question },
   });
-  revalidatePath("/")
-  redirect("/post-an-article/poll");
+  revalidatePath("/");
+  return { status: "success" };
   
 }
 
