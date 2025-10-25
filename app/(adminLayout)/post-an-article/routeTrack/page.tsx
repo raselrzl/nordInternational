@@ -4,6 +4,7 @@ import ChartComponent from "@/components/general/ChartComponent";
 import Statistics from "@/components/general/Statistics";
 import { UserLinks } from "@/components/general/UserLinks";
 import { notFound } from "next/navigation";
+import { requireRoleAccess } from "../roleBaseAccess";
 
 async function getRouteHits() {
 
@@ -33,6 +34,7 @@ const Dashboard = async () => {
     notFound();
   }
   const totalHits = routeHits.reduce((acc, route) => acc + route.hits, 0);
+  const rewuireUserToAccessPage = await requireRoleAccess(["SUPERADMIN"]);
 
   return (
     <>
