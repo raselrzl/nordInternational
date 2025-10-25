@@ -7,10 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,10 +44,13 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
     prisma.opinion.count(),
   ]);
 
-  return { opinions: data, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
+  return {
+    opinions: data,
+    totalCount,
+    totalPages: Math.ceil(totalCount / pageSize),
+  };
 }
 
-// **No custom Props type needed**
 export default async function AllOpinionsTable({
   searchParams,
 }: {
@@ -59,6 +59,7 @@ export default async function AllOpinionsTable({
   const currentPage = Number(searchParams.page) || 1;
   const pageSize = 10;
 
+  // Require access
   await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
 
   const { opinions, totalCount, totalPages } = await getAllOpinions(currentPage, pageSize);
@@ -66,7 +67,7 @@ export default async function AllOpinionsTable({
   return (
     <>
       <div className="flex justify-between text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        <h1>Manage All Complaints</h1>
+        <h1>Manage All User Opinions</h1>
         <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
@@ -84,7 +85,7 @@ export default async function AllOpinionsTable({
                     <TableHead>Phone</TableHead>
                     <TableHead>Opinion</TableHead>
                     <TableHead>Date</TableHead>
-                    <TableHead className="text-right">Action</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -128,7 +129,6 @@ export default async function AllOpinionsTable({
             </CardContent>
           </Card>
 
-          {/* Pagination */}
           <div className="mt-4 flex justify-center">
             <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
           </div>
@@ -136,7 +136,7 @@ export default async function AllOpinionsTable({
       ) : (
         <EmptyState
           title="Oops! Nothing to show yet."
-          description="Nothing has been added yet. Stay tuned!"
+          description="No opinions have been submitted yet."
           buttonText="Homepage"
           href="/"
         />
