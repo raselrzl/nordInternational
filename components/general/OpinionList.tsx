@@ -48,7 +48,7 @@ export default async function OpinionsList() {
           className="p-4 border rounded-2xl shadow-md shadow-blue-300"
           aria-label={`Complaint submitted by: ${name}`}
         >
-          <p className="mb-2 text-justify italic">
+          <p className="mb-2 text-xs text-justify italic">
             " {opinion} "
           </p>
           <div className="text-xs text-gray-400 flex flex-col sm:flex-row space-x-4">

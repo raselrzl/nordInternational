@@ -459,7 +459,7 @@ export async function submitOpinion(formData: FormData) {
       opinion: data.opinion,
     },
   });
-  redirect("/alluseropinion");
+  return { success: true, message: "Opinion submitted successfully" };
 }
 
 

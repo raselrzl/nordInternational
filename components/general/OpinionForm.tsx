@@ -18,6 +18,7 @@ import { toast } from 'sonner';
 import { useState } from 'react';
 import { submitOpinion } from '@/app/actions'; // server action
 import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export const OpinionSchema = z.object({
 name: z.string().min(1, 'Please enter your name'),
@@ -51,6 +52,7 @@ export function OpinionForm() {
     opinion: string;
   };
   const [pending, setPending] = useState(false);
+const router = useRouter();
 
   async function onSubmit(data: z.infer<typeof OpinionSchema>) {
     try {
@@ -62,7 +64,7 @@ export function OpinionForm() {
       if (data.phone) formData.append('phone', data.phone);
   
       await submitOpinion(formData);
-  
+      router.push("/alluseropinion#UserComplaints");
       toast.success('✅ Your complaint has been submitted successfully!');
 
       form.reset();
