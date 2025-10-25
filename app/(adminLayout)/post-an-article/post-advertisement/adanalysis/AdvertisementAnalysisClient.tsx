@@ -357,11 +357,11 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                       className="hover:bg-muted/30 cursor-pointer transition-colors"
                     >
                       <TableCell>
-                        <div className="flex flex-col text-xs">
+                        <div className="flex flex-col text-xs border-l border-primary p-2">
                           <span>{ad.advertiseCollectedByName || "-"}</span>
-                          <span>{ad.advertiseCollectedByEmail || "-"}</span>
+                          {/*   <span>{ad.advertiseCollectedByEmail || "-"}</span>
                           <span>{ad.advertiseCollectedByPhone || "-"}</span>
-                          <span>{ad.advertiseCollectedByCountry || "-"}</span>
+                          <span>{ad.advertiseCollectedByCountry || "-"}</span> */}
                         </div>
                       </TableCell>
                       <TableCell>{ad.companyName}</TableCell>
@@ -417,7 +417,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                   <TabsTrigger value="country">By Country</TabsTrigger>
                   <TabsTrigger value="company">By Company</TabsTrigger>
                   <TabsTrigger value="collectedBy">
-                    Advertisement By
+                    Advertisement Collected By
                   </TabsTrigger>
                 </TabsList>
 
