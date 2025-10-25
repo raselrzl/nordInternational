@@ -269,7 +269,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             {/* Main Table */}
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className="bg-amber-600 hover:bg-amber-500">
                   <TableHead>Company</TableHead>
                   <TableHead>Supervisor</TableHead>
                   <TableHead>Category</TableHead>
