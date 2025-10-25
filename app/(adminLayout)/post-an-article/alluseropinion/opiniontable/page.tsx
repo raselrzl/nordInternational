@@ -34,9 +34,7 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
     prisma.opinion.findMany({
       skip,
       take: pageSize,
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
       select: {
         id: true,
         name: true,
@@ -52,16 +50,13 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
   return { opinions: data, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
 }
 
-// Use Next.js recommended type for App Router pages
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export default async function AllOpinionsTable({ searchParams }: Props) {
-  const currentPage = Array.isArray(searchParams.page)
-    ? Number(searchParams.page[0]) || 1
-    : Number(searchParams.page) || 1;
-
+// **No custom Props type needed**
+export default async function AllOpinionsTable({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const currentPage = Number(searchParams.page) || 1;
   const pageSize = 10;
 
   await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
