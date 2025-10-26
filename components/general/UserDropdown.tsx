@@ -42,7 +42,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
   const approvalStatus = currentUser?.approvalStatus ?? null;
 
   const isNewsReporter = userType === "NEWSREPORTER" && approvalStatus === "APPROVED";
-  const isSompadok = userType === "EDITOR";
+  const isEditor = userType === "EDITOR";
   const isSuperAdmin = userType === "SUPERADMIN";
 
   // Common links for everyone
@@ -83,7 +83,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
     allLinks.push(...linksNewsReporter);
   }
 
-  if (isSompadok || isSuperAdmin) {
+  if (isEditor || isSuperAdmin) {
     allLinks.push(...linksSompadokSuperAdmin);
   }
 

@@ -18,11 +18,11 @@ export async function requireArticlePoster() {
   });
 
   const isSuperAdmin = user?.userType === "SUPERADMIN";
-  const isSompadok = user?.userType === "EDITOR";
+  const isEditor = user?.userType === "EDITOR";
   const isApprovedNewsReporter =
     user?.userType === "NEWSREPORTER" && user.approvalStatus === "APPROVED";
 
-  if (!user || (!isSuperAdmin && !isSompadok && !isApprovedNewsReporter)) {
+  if (!user || (!isSuperAdmin && !isEditor && !isApprovedNewsReporter)) {
     return redirect("/restricted");
   }
 

@@ -30,11 +30,11 @@ export async function requireNewsReporter() {
 
   // Allow if user is SUPERADMIN or an APPROVED NEWSREPORTER
   const isSuperAdmin = user?.userType === "SUPERADMIN";
-  const isSompadok = user?.userType === "EDITOR";
+  const isEditor = user?.userType === "EDITOR";
   const isApprovedNewsReporter =
     user?.userType === "NEWSREPORTER" && user.approvalStatus === "APPROVED";
 
-  if (!user || (!isSuperAdmin && !isApprovedNewsReporter && !isSompadok)) {
+  if (!user || (!isSuperAdmin && !isApprovedNewsReporter && !isEditor)) {
     return redirect("/restricted");
   }
 
