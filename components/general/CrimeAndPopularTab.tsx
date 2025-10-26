@@ -9,27 +9,37 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { JonoprioNews, SorboseshNews } from "./homepageArticleList"
+import { EconomyNews, JonoprioNews, SorboseshNews } from "./homepageArticleList"
 
 export function CrimeAndPopularTab() {
   return (
-    <div className="p-2">
+    <div className="">
     <Tabs defaultValue="crime" className="w-full">
       <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger className=" font-bold" value="crime">CRIME</TabsTrigger>
-        <TabsTrigger className=" font-bold" value="jonoprio">POPULAR</TabsTrigger>
+        <TabsTrigger className=" font-bold" value="politics">POLITICS</TabsTrigger>
+        <TabsTrigger className=" font-bold" value="economy">ECONOMY</TabsTrigger>
       </TabsList>
-      <TabsContent value="crime">
+      <TabsContent value="crime" className="">
         <Card className="rounded-xs">
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-1 px-1">
             <SorboseshNews />
           </CardContent>
         </Card>
       </TabsContent>
-      <TabsContent value="jonoprio">
+      <TabsContent value="politics">
         <Card>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-1 px-1">
             <JonoprioNews />
+          </CardContent>
+        </Card>
+      </TabsContent>
+
+
+       <TabsContent value="economy">
+        <Card>
+          <CardContent className="space-y-1 px-1">
+            <EconomyNews />
           </CardContent>
         </Card>
       </TabsContent>
