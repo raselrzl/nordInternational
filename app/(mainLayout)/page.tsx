@@ -363,7 +363,7 @@ export default async function Home() {
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {/* Left: Sorbosesh / Jonoprio */}
-          <div className="border p-2">
+          <div className="mx-4 md:mx-0">
             <CrimeAndPopularTab />
           </div>
 
