@@ -642,7 +642,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                 </TabsContent>
 
                 <TabsContent value="collectedBy">
-                  <div className="grid grid-cols-2 gap-4 border">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border">
                     {filteredAds.map((ad) => {
                       const {
                         totalWithMoms,
