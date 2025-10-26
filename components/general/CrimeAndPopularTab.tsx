@@ -9,7 +9,8 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { EconomyNews, JonoprioNews, SorboseshNews } from "./homepageArticleList"
+import {JonoprioNews, SorboseshNews } from "./homepageArticleList"
+import { EconomyNews } from "../NewsCategory/EconomyNews"
 
 export function CrimeAndPopularTab() {
   return (
