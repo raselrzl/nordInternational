@@ -12,7 +12,6 @@ import {
   Package,
   PoundSterling,
   Settings2,
-  Table,
   TableProperties,
   Users,
 } from "lucide-react";
