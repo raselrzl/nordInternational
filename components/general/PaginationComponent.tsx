@@ -72,7 +72,7 @@ export function PaginationComponent({
   };
 
   return (
-    <Pagination className="mt-4">
+    <Pagination className="pt-1">
       <PaginationContent>
         <PaginationItem>
           <Link

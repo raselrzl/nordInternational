@@ -252,9 +252,9 @@ export default async function CountryNews({
 
           {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
-            <div className="flex items-center justify-between bg-amber-700 p-4 rounded-md mb-4">
-              <h2 className="flex items-center font-extrabold text-xl border-l-8 border-primary pl-2">
-                More from {activeCountry.name} ({totalCount - 7})
+            <div className="flex items-center justify-between bg-amber-700 px-4 rounded-md pb-1 mb-4">
+              <h2 className="flex items-center font-extrabold text-sm md:text-lg border-l-8 border-primary pl-2">
+                More in {activeCountry.name}
               </h2>
 
               <div >
@@ -285,7 +285,7 @@ export default async function CountryNews({
                           <h1 className="text-md font-bold">
                             {article.newsHeading}
                           </h1>
-                          <p className="text-sm text-muted-foreground text-right font-bold italic pr-2">
+                          <p className="text-xs text-muted-foreground text-right font-bold italic pr-2">
                             {formatRelativeTime(article.createdAt)}
                           </p>
                         </div>

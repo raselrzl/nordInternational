@@ -79,7 +79,7 @@ const router = useRouter();
 
   return (
     <div className="w-full mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6 text-center">Write Your Complaint</h2>
+      <h2 className="text-md font-bold mb-6 text-center uppercase">Write Your Complaint</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           {/* Name */}

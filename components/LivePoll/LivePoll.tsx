@@ -53,53 +53,47 @@ export default function LivePoll() {
   const totalVotes = results.YES + results.NO + results.NO_OPINION || 1;
 
   return (
-    <div className="max-w-md mx-auto p-10 shadow-lg rounded-lg border">
-      <h2 className="text-lg font-bold mb-4 text-center">{poll.question}</h2>
-
-      <div className="space-y-3 mb-4">
-        {["YES", "NO", "NO_OPINION"].map((opt) => (
-          <label
-            key={opt}
-            className="flex items-center bg-gray-100 rounded-xs px-3 py-2 cursor-pointer hover:bg-gray-200 transition"
-          >
-            <input
-              type="radio"
-              name="answer"
-              value={opt}
-              checked={selected === opt}
-              onChange={() => setSelected(opt)}
-              disabled={loading}
-              className="mr-3 w-4 h-4 accent-primary"
-            />
-            <span className="font-medium text-black">
-              {opt.replace("_", " ")}
-            </span>
-          </label>
-        ))}
+    <div className="mx-auto grid grid-cols-2 p-6 shadow-lg rounded-lg border">
+      <div className="col-span-2 md:col-span-1">
+        {" "}
+        <h2 className="text-lg font-bold mb-4 text-left">{poll.question}</h2>
+        <div className="space-y-3 mb-3 text-sm flex gap-2">
+          {["YES", "NO", "NO_OPINION"].map((opt) => (
+            <label
+              key={opt}
+              className="flex h-8 text-xs items-center bg-gray-100 rounded-xs px-3 py-1 cursor-pointer hover:bg-gray-200 transition"
+            >
+              <input
+                type="radio"
+                name="answer"
+                value={opt}
+                checked={selected === opt}
+                onChange={() => setSelected(opt)}
+                disabled={loading}
+                className="mr-3 w-3 h-3 accent-primary "
+              />
+              <span className="font-medium text-xs text-black">
+                {opt.replace("_", " ")}
+              </span>
+            </label>
+          ))}
+        </div>
+        <button
+          onClick={handleVote}
+          disabled={loading}
+          className={`w-[120px] text-white px-4 py-1 rounded-xs bg-primary hover:bg-primary/90 transition cursor-pointer ${
+            loading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
+        >
+          {loading ? "Submitting..." : "Submit"}
+        </button>
       </div>
 
-      <button
-        onClick={handleVote}
-        disabled={loading}
-        className={`w-full text-white px-4 py-2 rounded-xs bg-primary hover:bg-primary/90 transition cursor-pointer ${
-          loading ? "opacity-70 cursor-not-allowed" : ""
-        }`}
-      >
-        {loading ? "Submitting..." : "Submit Vote"}
-      </button>
-
-      <div className="mt-6 flex flex-col items-center justify-center">
-       {/*  <img
-          src="liveresult1.gif"
-          alt="live result"
-          className="w-[170px] h-[40px] rounded-xl mb-2"
-        /> */}
-        <h1 className="text-xl uppercase font-bold">Live result</h1>
-
+      <div className="flex flex-col items-center justify-center col-span-2 md:col-span-1 md:pl-4 mt-2">
         <div className="space-y-2 w-full">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <ThumbsUp className="text-green-500" />
+            <div className="flex items-center gap-2 text-sm">
+              <ThumbsUp className="text-green-500 h-4" />
               <span>Yes</span>
             </div>
             <span>{results.YES}</span>
@@ -112,8 +106,8 @@ export default function LivePoll() {
           </div>
 
           <div className="flex items-center justify-between mt-2">
-            <div className="flex items-center gap-2">
-              <ThumbsDown className="text-red-500" />
+            <div className="flex items-center gap-2 text-sm">
+              <ThumbsDown className="text-red-500 h-4" />
               <span>No</span>
             </div>
             <span>{results.NO}</span>
@@ -126,8 +120,8 @@ export default function LivePoll() {
           </div>
 
           <div className="flex items-center justify-between mt-2">
-            <div className="flex items-center gap-2">
-              <Banana className="text-yellow-500" />
+            <div className="flex items-center gap-2 text-sm">
+              <Banana className="text-yellow-500 h-4" />
               <span>No Opinion</span>
             </div>
             <span>{results.NO_OPINION}</span>
