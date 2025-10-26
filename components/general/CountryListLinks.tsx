@@ -191,7 +191,7 @@ export default function CountryListLinks() {
           className="flex items-center justify-center gap-2 border p-1 transition-all 
                      hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
         >
-          <Image
+          <img
             src={country.flag}
             alt={`${country.name} flag`}
             width={20}

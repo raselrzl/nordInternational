@@ -598,7 +598,7 @@ export function CreateNewsArticleForm({
                         <div>
                           {field.value ? (
                             <div className="relative w-fit">
-                              <Image
+                              <img
                                 src={field.value}
                                 alt="profilePicture"
                                 width={100}

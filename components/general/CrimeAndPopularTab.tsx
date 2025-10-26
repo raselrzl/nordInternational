@@ -13,11 +13,11 @@ import { JonoprioNews, SorboseshNews } from "./homepageArticleList"
 
 export function CrimeAndPopularTab() {
   return (
-    <div className="p-2 md:py-4">
+    <div className="p-2">
     <Tabs defaultValue="crime" className="w-full">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="crime">CRIME</TabsTrigger>
-        <TabsTrigger value="jonoprio">POPULAR</TabsTrigger>
+      <TabsList className="grid w-full grid-cols-3">
+        <TabsTrigger className=" font-bold" value="crime">CRIME</TabsTrigger>
+        <TabsTrigger className=" font-bold" value="jonoprio">POPULAR</TabsTrigger>
       </TabsList>
       <TabsContent value="crime">
         <Card className="rounded-xs">

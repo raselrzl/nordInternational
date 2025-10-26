@@ -39,7 +39,7 @@ export default async function Country({ searchParams }: SearchParamsProps) {
         <div id="BelgiumNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/belgium.webp"
                 alt="Belgium flag"
                 width={28}

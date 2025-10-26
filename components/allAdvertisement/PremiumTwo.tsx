@@ -49,7 +49,7 @@ export async function PremiumTwoAdvertise() {
         </div>
       ) : (
           <div className="flex flex-col items-center justify-center">
-            <Image
+            <img
               src="/noad.png"
               alt="No Advertisement"
               width={300} // adjust as needed

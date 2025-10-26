@@ -177,7 +177,7 @@ export default function DropDownCountryList() {
             <DropdownMenuItem asChild className="cursor-pointer">
               <Link href={country.link}>
                 <div className="flex items-center gap-2 pl-3">
-                  <Image
+                  <img
                     src={country.flag}
                     alt={`${country.name} flag`}
                     width={26}

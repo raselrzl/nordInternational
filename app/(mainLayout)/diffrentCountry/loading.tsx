@@ -46,7 +46,7 @@ export default function Loading() {
                   key={c.name}
                   className="flex items-center gap-2 border rounded-lg px-3 py-1"
                 >
-                  <Image
+                  <img
                     src={c.flag}
                     alt=""
                     width={22}

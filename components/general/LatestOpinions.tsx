@@ -51,7 +51,7 @@ export default async function LatestOpinions() {
             <div className="absolute bottom-3 right-4 flex items-center gap-3">
               {item.newsPicture && (
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-primary">
-                  <Image
+                  <img
                     src={item.newsPicture}
                     alt={item.quotes[0].speakerInfo || "Speaker"}
                     width={40}
@@ -80,7 +80,7 @@ export default async function LatestOpinions() {
             <div className="absolute bottom-3 right-4 flex items-center gap-3">
               {item.newsPicture && (
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-primary">
-                  <Image
+                  <img
                     src={item.newsPicture}
                     alt={item.quotes[0].speakerInfo || "Speaker"}
                     width={40}

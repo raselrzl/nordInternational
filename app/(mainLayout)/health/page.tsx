@@ -32,7 +32,7 @@ export default async function Health({ searchParams }: SearchParamsProps) {
         <div id="FinlandNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/finland.jpg"
                 alt="Finland flag"
                 width={28}

@@ -49,7 +49,7 @@ export async function BesicOneAdvertise() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center px-2 mb-10">
-          <Image
+          <img
             src="/noad.png"
             alt="no ad. image"
             width={400} // adjust as needed

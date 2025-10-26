@@ -123,7 +123,7 @@ export default async function AllAdvertisementTable({
                       <TableCell>{ad.endDate ?? "N/A"}</TableCell>
                       <TableCell>
                         {ad.advertiseBanner ? (
-                          <Image
+                          <img
                             src={ad.advertiseBanner}
                             alt={ad.companyName}
                             width={100}

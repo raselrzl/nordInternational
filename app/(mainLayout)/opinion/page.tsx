@@ -33,7 +33,7 @@ export default async function Opinion({ searchParams }: SearchParamsProps) {
         <div id="FranceNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/france.jpg"
                 alt="France flag"
                 width={28}

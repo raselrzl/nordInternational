@@ -20,7 +20,7 @@ export default async function LoginForm() {
     <div className=" flex flex-col gap-6">
       <Card className="rounded-xs">
         <Link href="/" className="flex items-center gap-2 self-center">
-          <Image src="/n1w.png" height={60} width={150} alt="logo image" />
+          <img src="/n1w.png" height={60} width={150} alt="logo image" />
         </Link>
         <CardHeader className="text-center ">
           <CardTitle className="text-xl">
@@ -46,7 +46,7 @@ export default async function LoginForm() {
                 variant="default"
                 text="Log in with Google"
                 icon={
-                  <Image
+                  <img
                     src="/google_icon.svg"
                     height={20}
                     width={20}

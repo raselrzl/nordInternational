@@ -278,12 +278,11 @@ export default async function Home() {
                 <Link href={`/newsDetails/${lastFeaturedArticle[0].id}`}>
                   <div className="grid grid-cols-5 px-2">
                     <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3">
-                      <Image
+                      <img
                         src={lastFeaturedArticle[0].newsPicture}
                         alt="picture"
                         width={500}
                         height={270}
-                        unoptimized
                         className="w-full h-full object-fill"
                       />
                     </div>
@@ -327,12 +326,11 @@ export default async function Home() {
                 <Link href={`/newsDetails/${article.id}`} key={article.id}>
                   <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                     <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
-                      <Image
+                      <img
                         src={article.newsPicture}
                         alt="picture"
                         width={190}
                         height={140}
-                        unoptimized
                         className="w-full h-full md:h-[150px] object-fit"
                       />
                     </div>

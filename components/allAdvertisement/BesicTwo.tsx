@@ -37,7 +37,7 @@ export async function BesicTwoAdvertise() {
               rel="noopener noreferrer"
               className="inline-block relative"
             >
-              <Image
+              <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
                 fill
@@ -52,7 +52,7 @@ export async function BesicTwoAdvertise() {
         </div>
       ) : (
         <div className="relative w-full h-[100px] md:h-[200px] flex ">
-          <Image
+          <img
             src="/noad.png"
             alt="image"
             fill

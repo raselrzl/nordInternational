@@ -37,7 +37,7 @@ export default async function Economy({ searchParams }: SearchParamsProps) {
         <div id="DenmarkNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/denmark.jpg"
                 alt="Bulgaria flag"
                 width={28}

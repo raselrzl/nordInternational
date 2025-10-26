@@ -41,7 +41,7 @@ export async function UltimateTwo() {
               rel="noopener noreferrer"
               className="relative inline-block"
             >
-              <Image
+              <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
                 width={360}

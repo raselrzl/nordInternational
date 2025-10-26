@@ -38,7 +38,7 @@ export default async function Politics({ searchParams }: SearchParamsProps) {
         <div id="CyprusNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/cyprus.jpg"
                 alt="Swedish flag"
                 width={28}

@@ -89,7 +89,7 @@ export default async function FinlandNews() {
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
               <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
-                <Image
+                <img
                   src={lastFeaturedArticle.newsPicture}
                   alt="picture"
                   width={500}
@@ -138,7 +138,7 @@ export default async function FinlandNews() {
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
-                    <Image
+                    <img
                       src={article.newsPicture}
                       alt="picture"
                       width={190}

@@ -37,7 +37,7 @@ export default async function Religion({ searchParams }: SearchParamsProps) {
         <div id="PortugalNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/portugal.webp"
                 alt="Portugal flag"
                 width={28}

@@ -120,7 +120,7 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                     <TableRow key={article.id}>
                       <TableCell>
                         {article.newsPicture ? (
-                          <Image
+                          <img
                             src={article.newsPicture}
                             alt="News Image"
                             width={80}

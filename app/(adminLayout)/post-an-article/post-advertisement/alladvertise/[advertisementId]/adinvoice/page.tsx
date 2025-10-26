@@ -83,13 +83,13 @@ export default async function AdvertiseDetailsPage({
       <div className="max-w-4xl mx-auto relative bg-white border shadow-md p-6 my-10 font-sans">
         {/* Watermark */}
         <div className="absolute top-1/2 left-1/2 w-3/4 opacity-5 -translate-x-1/2 -translate-y-1/2 rotate-[-18deg] pointer-events-none">
-          <Image src={logoUrl} alt="Watermark" width={500} height={500} />
+          <img src={logoUrl} alt="Watermark" width={500} height={500} />
         </div>
 
         {/* Header */}
         <div className="flex justify-between items-center border-b pb-4 mb-6 relative z-10">
           <div className="flex items-center gap-3">
-            <Image src={logoUrl} alt="Logo" width={160} height={50} />
+            <img src={logoUrl} alt="Logo" width={160} height={50} />
             <span className="text-gray-600 font-semibold text-lg">Invoice</span>
           </div>
           <div className="text-right text-sm text-gray-600">
@@ -128,7 +128,7 @@ export default async function AdvertiseDetailsPage({
         {/* Banner */}
         {ad.advertiseBanner && (
           <div className="mb-6 flex justify-center relative z-10">
-            <Image
+            <img
               src={ad.advertiseBanner}
               alt="Advertisement Banner"
               width={300}

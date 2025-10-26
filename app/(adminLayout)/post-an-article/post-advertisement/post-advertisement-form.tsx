@@ -550,7 +550,7 @@ export function CreateAdvertisementForm() {
                           }
                           onClick={() => field.onChange(country.id)}
                         >
-                          <Image
+                          <img
                             src={country.flag}
                             alt={`${country.name} flag`}
                             width={20}

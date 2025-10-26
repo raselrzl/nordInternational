@@ -28,7 +28,7 @@ export default function PopupOnView({
   const handleClose = () => setShowPopup(false);
 
   const Img = (
-    <Image
+    <img
       src={imageSrc}
       alt={alt}
       fill

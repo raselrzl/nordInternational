@@ -91,7 +91,7 @@ export default function PrintNews({
           className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-green-600 shadow border rounded-xl"
           variant="outline"
         >
-          <Image
+          <img
             src="/whatsapp.svg"
             alt="WhatsApp"
             width={40}
@@ -105,7 +105,7 @@ export default function PrintNews({
           className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-950 shadow border rounded-xl"
           variant="outline"
         >
-          <Image
+          <img
             src="/fb.webp"
             alt="Facebook"
             width={45}
@@ -119,7 +119,7 @@ export default function PrintNews({
           className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-800 shadow border rounded-xl"
           variant="outline"
         >
-          <Image
+          <img
             src="/messanger.svg"
             alt="Messenger"
             width={40}

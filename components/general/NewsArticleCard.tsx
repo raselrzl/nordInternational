@@ -44,12 +44,11 @@ export function NewsArticleCard({ article }: iAppProps) {
     <Link href={`/newsDetails/${article.id}`}>
       <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary relative grid grid-cols-3 border-0 px-2 py-2">
         <div className="col-span-1">
-          <Image
+          <img
             src={article.newsPicture}
             alt={article.newsPictureHeading}
             width={56}
             height={60}
-            unoptimized
             className="h-[60px] w-full object-fill rounded-xl"
           />
         </div>

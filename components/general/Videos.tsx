@@ -27,7 +27,7 @@ export default async function Videos() {
     <Card className="p-4 shadow-lg mb-20 mt-8 rounded-none">
       <CardHeader className="p-0 flex flex-row justify-between">
         <div className="flex flex-row items-center space-x-2">
-          <Image
+          <img
             src="/youtube.gif"
             alt="YouTube GIF"
             width={50}
@@ -37,7 +37,7 @@ export default async function Videos() {
           <p className="font-bold text-2xl">VIDEOS</p>
         </div>
         <div className="text-primary flex flex-row items-center justify-center">
-          <Image
+          <img
             src="/arrow1.gif"
             alt="Arrow GIF"
             width={50}

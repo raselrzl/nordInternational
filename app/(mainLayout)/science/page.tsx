@@ -37,7 +37,7 @@ export default async function Science({ searchParams }: SearchParamsProps) {
         <div id="NetherlandsNews" className="col-span-3 md:col-span-2">
           <div>
             <div className="flex items-center gap-2 pl-2 mb-2">
-              <Image
+              <img
                 src="/flags/netherlands.webp"
                 alt="Natherlands flag"
                 width={28}

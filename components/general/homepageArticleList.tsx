@@ -278,7 +278,7 @@ export default async function AllArticleList() {
             >
               <div className="grid grid-cols-5">
                 <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
-                  <Image
+                  <img
                     src={lastFeaturedArticle.newsPicture}
                     alt="picture"
                     width={500}
@@ -329,7 +329,7 @@ export default async function AllArticleList() {
             <Link href={`/newsDetails/${article.id}`} key={article.id}>
               <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                 <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
-                  <Image
+                  <img
                     src={article.newsPicture}
                     alt="picture"
                     width={190}
@@ -575,7 +575,7 @@ export async function ScienceNewsHeadPost() {
   return (
     <>
       <div className="flex flex-row items-center space-x-2">
-        <Image
+        <img
           src="/clock.gif"
           alt="YouTube GIF"
           width={50} // adjust as needed
@@ -616,7 +616,7 @@ export async function Bachaikreto() {
   return (
     <>
       <div className="flex flex-row items-center space-x-2">
-        <Image
+        <img
           src="/clock.gif"
           alt="YouTube GIF"
           width={50} // adjust as needed
@@ -658,7 +658,7 @@ export async function Binodon() {
     <>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center space-x-2">
-          <Image
+          <img
             src="/binodon.gif"
             alt="YouTube GIF"
             width={50} // adjust as needed
@@ -668,7 +668,7 @@ export async function Binodon() {
           <p className="font-bold text-2xl">Entertainment</p>
         </div>
         <div className="md:block hidden">
-          <Image
+          <img
             src="/arrow.gif"
             alt="YouTube GIF"
             width={50} // adjust as needed
@@ -683,7 +683,7 @@ export async function Binodon() {
             <Link href={`/newsDetails/${article.id}`} key={article.id}>
               <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                 <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
-                  <Image
+                  <img
                     src={article.newsPicture}
                     alt="picture"
                     width={190}
@@ -716,7 +716,7 @@ export async function Binodon() {
 // getsorboseshnews
 export async function getSorboseshNews() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "LATEST" },
+    where: { newsCategory: "CRIME" },
     select: {
       id: true,
       createdAt: true,
@@ -790,7 +790,7 @@ export async function SorboseshNews() {
 // getsorboseshnews
 export async function getJonoprioNews() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "CRIME" },
+    where: { newsCategory: "POLITICS" },
     select: {
       id: true,
       createdAt: true,
