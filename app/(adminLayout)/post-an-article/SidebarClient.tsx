@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import {
   BarChart,
   BookPlus,
+  ChartColumnBig,
   FileQuestion,
   Layers2,
   Megaphone,
@@ -16,6 +17,7 @@ import {
   PoundSterling,
   Settings2,
   Table,
+  TableProperties,
   Users,
 } from "lucide-react";
 
@@ -64,8 +66,8 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
   // SUPERADMIN only
   const linksSuperAdmin = [
     { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
-    { href: "/post-an-article/post-advertisement/adanalysis", icon: Package, label: "Analysis of Advertisement" },
-    { href: "/post-an-article/routeTrack", icon: Table, label: "Dashboard" },
+    { href: "/post-an-article/post-advertisement/adanalysis", icon: TableProperties, label: "Economy" },
+    { href: "/post-an-article/routeTrack", icon: ChartColumnBig, label: "Dashboard" },
   ];
 
   // Compose final links
