@@ -283,7 +283,8 @@ export default async function Home() {
                         alt="picture"
                         width={500}
                         height={270}
-                        className="w-full h-full object-fit"
+                        unoptimized
+                        className="w-full h-full object-"
                       />
                     </div>
                     <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
@@ -331,6 +332,7 @@ export default async function Home() {
                         alt="picture"
                         width={190}
                         height={140}
+                        unoptimized
                         className="w-full h-full md:h-[150px] object-fit"
                       />
                     </div>
