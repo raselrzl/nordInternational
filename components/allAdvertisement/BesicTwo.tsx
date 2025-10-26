@@ -40,9 +40,9 @@ export async function BesicTwoAdvertise() {
               <img
                 src={pro1.advertiseBanner}
                 alt={pro1.companyName}
-                fill
+         
                 className="object-cover rounded"
-                priority
+            
               />
               <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
                 Ad.
@@ -55,9 +55,9 @@ export async function BesicTwoAdvertise() {
           <img
             src="/noad.png"
             alt="image"
-            fill
+     
             className="object-cover md:rounded"
-            priority
+ 
           />
             <Link
               href="/about/advertise"
