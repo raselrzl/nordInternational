@@ -27,22 +27,20 @@ export async function BesicTwoAdvertise() {
 
   return (
     <>
-      {Advertise && Advertise.length > 0 ? (
-        <div className="relative w-full h-[100px] md:h-[200px]">
-          {Advertise.map((pro1) => (
+        {Advertise && Object.keys(Advertise).length > 0 ? (
+         <div className="flex flex-col items-center justify-center rounded-xl">
+          {Advertise.map((ad) => (
             <Link
-              href={`https://${pro1.websiteLink}`}
-              key={pro1.id}
+              href={`https://${ad.websiteLink}`}
+              key={ad.id}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block relative"
-            >
+              className="inline-block text-white rounded-md text-xs transition w-[250px]"
+          >
               <img
-                src={pro1.advertiseBanner}
-                alt={pro1.companyName}
-         
-                className="object-cover rounded"
-            
+                src={ad.advertiseBanner}
+                alt={ad.companyName}
+                className="w-[350px] h-[170px] rounded-xl object-cover"
               />
               <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
                 Ad.
@@ -51,20 +49,18 @@ export async function BesicTwoAdvertise() {
           ))}
         </div>
       ) : (
-        <div className="relative w-full h-[100px] md:h-[200px] flex ">
+        <div className="flex flex-col items-center justify-center rounded-xl">
           <img
             src="/noad.png"
-            alt="image"
-     
-            className="object-cover md:rounded"
- 
-          />
-            <Link
-              href="/about/advertise"
-              className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
-            >
-              Contact us for (BASIC_2) Advertisement 
-            </Link>
+            alt="no ad. image"
+           className="w-[350px] h-[170px] rounded-xl md:pt-0 py-2 mt-5 object-cover"
+          /> 
+          <Link
+            href="/about/advertise"
+            className="inline-block text-white bg-primary hover:bg-primary/90 px-4 py-1.5 rounded-md text-xs transition"
+          >
+            Contact us for (BASIC_2)
+          </Link>
         </div>
       )}
     </>
