@@ -11,7 +11,7 @@ export default function Poll() {
         <div className="order-1 md:order-1 col-span-2 md:col-span-1 py-10 px-4 md:px-0">
           <LivePoll />
         </div>
-        <div className="order-2 md:order-2 col-span-2 md:col-span-1 py-10">
+        <div className="order-2 md:order-2 col-span-2 md:col-span-1 py-10 px-2">
           <Suspense
             fallback={
               <div className="flex justify-center items-center h-full">
