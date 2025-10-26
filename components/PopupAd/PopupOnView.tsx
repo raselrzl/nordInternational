@@ -31,10 +31,7 @@ export default function PopupOnView({
     <img
       src={imageSrc}
       alt={alt}
-      fill
-      unoptimized={unoptimized}
       className="object-fill rounded-xs"
-      priority
     />
   );
 
