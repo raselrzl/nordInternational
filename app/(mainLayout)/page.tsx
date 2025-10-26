@@ -291,7 +291,7 @@ export default async function Home() {
                         {lastFeaturedArticle[0].newsHeading}
                       </h2>
                       {isJson(lastFeaturedArticle[0].newsDetails) ? (
-                        <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
+                        <div className="text-sm md:text-md text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
                           <JsonToHtml
                             json={JSON.parse(
                               lastFeaturedArticle[0].newsDetails
@@ -299,8 +299,8 @@ export default async function Home() {
                           />
                         </div>
                       ) : (
-                        <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
-                          {lastFeaturedArticle[0].newsDetails}
+                        <p className="text-sm md:text-md text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
+                         {lastFeaturedArticle[0].newsDetails}
                         </p>
                       )}
                     </div>
