@@ -15,7 +15,7 @@ export function CrimeAndPopularTab() {
   return (
     <div className="">
     <Tabs defaultValue="crime" className="w-full">
-      <TabsList className="grid w-full grid-cols-3">
+      <TabsList className="grid w-full grid-cols-3 bg-amber-800">
         <TabsTrigger className=" font-bold" value="crime">CRIME</TabsTrigger>
         <TabsTrigger className=" font-bold" value="politics">POLITICS</TabsTrigger>
         <TabsTrigger className=" font-bold" value="economy">ECONOMY</TabsTrigger>
