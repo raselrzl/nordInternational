@@ -49,6 +49,7 @@ export function NewsArticleCard({ article }: iAppProps) {
             alt={article.newsPictureHeading}
             width={56}
             height={60}
+            unoptimized
             className="h-[60px] w-full object-fill rounded-xl"
           />
         </div>
