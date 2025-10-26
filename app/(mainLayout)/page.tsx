@@ -216,9 +216,9 @@ export default async function Home() {
                 href="/"
               />
             )}
-       <div className="bg-amber-200 dark:bg-gray-700 mt-6 rounded-xl border border-amber-300 dark:border-gray-600 shadow-md mx-2 md:mx-0">
+       <div className="bg-primary/55 dark:bg-gray-700 mt-6 rounded-xl border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
       {/* Header */}
-      <div className="flex items-center justify-center py-3 gap-2 border-b border-amber-200 dark:border-gray-600">
+      <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
         <Flame className="text-red-600 dark:text-amber-400 w-6 h-6" />
         <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
           Top News
@@ -231,7 +231,7 @@ export default async function Home() {
           <div className="space-y-3">
             {InternationalAll.slice(1).map((article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
-                <div className="rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-amber-200 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
+                <div className="rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
                   <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
                     {article.newsHeading}
                   </h2>
