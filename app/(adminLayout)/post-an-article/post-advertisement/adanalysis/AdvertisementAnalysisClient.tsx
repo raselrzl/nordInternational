@@ -114,6 +114,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
     setSearch("");
     setCategoryFilter(null);
     setStatusFilter(null);
+    setCollectedByFilter(null);
   };
 
   // Calculate totals and durations
@@ -411,12 +412,22 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             <div className="mt-10">
               <Tabs defaultValue="overall" className="w-full">
                 <TabsList className="flex flex-wrap  mb-8">
-                  <TabsTrigger className="bg-amber-700" value="overall">Summary</TabsTrigger>
-                  <TabsTrigger className="bg-amber-700"  value="status">Status</TabsTrigger>
-                  <TabsTrigger className="bg-amber-700"  value="category">Category</TabsTrigger>
-                  <TabsTrigger className="bg-amber-700"  value="country">Country</TabsTrigger>
-                  <TabsTrigger className="bg-amber-700"  value="company">Company</TabsTrigger>
-                  <TabsTrigger className="bg-amber-700"  value="collectedBy">
+                  <TabsTrigger className="bg-amber-700" value="overall">
+                    Summary
+                  </TabsTrigger>
+                  <TabsTrigger className="bg-amber-700" value="status">
+                    Status
+                  </TabsTrigger>
+                  <TabsTrigger className="bg-amber-700" value="category">
+                    Category
+                  </TabsTrigger>
+                  <TabsTrigger className="bg-amber-700" value="country">
+                    Country
+                  </TabsTrigger>
+                  <TabsTrigger className="bg-amber-700" value="company">
+                    Company
+                  </TabsTrigger>
+                  <TabsTrigger className="bg-amber-700" value="collectedBy">
                     Ads. Collected By
                   </TabsTrigger>
                 </TabsList>
@@ -496,41 +507,81 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
 
                 {/* By Category */}
                 <TabsContent value="category">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(categoryTotals).map(([category, stats]) => (
-                      <div
-                        key={category}
-                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
-                      >
-                        <h3 className="font-semibold mb-2">{category}</h3>
-                        <p>
-                          <strong>Total Ads:</strong> {stats.count}
-                        </p>
-                        <p>
-                          <strong>Total Base:</strong>{" "}
-                          {stats.totalBase.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Discount:</strong>{" "}
-                          {stats.totalDiscount.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Excl. Moms:</strong>{" "}
-                          {stats.totalExclMoms.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Incl. Moms:</strong>{" "}
-                          {stats.totalInclMoms.toFixed(2)} SEK
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                  {(() => {
+                    const categoryEntries = Object.entries(categoryTotals);
+
+                    // Pagination setup
+                    const itemsPerPage = 6;
+                    const totalPages = Math.ceil(
+                      categoryEntries.length / itemsPerPage
+                    );
+                    const startIndex = (page - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const paginatedCategories = categoryEntries.slice(
+                      startIndex,
+                      endIndex
+                    );
+
+                    return (
+                      <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {paginatedCategories.map(([category, stats]) => (
+                            <div
+                              key={category}
+                              className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow border-primary"
+                            >
+                              <h3 className="font-semibold mb-2">{category}</h3>
+                              <p>
+                                <strong>Total Ads:</strong> {stats.count}
+                              </p>
+                              <p>
+                                <strong>Total Base:</strong>{" "}
+                                {stats.totalBase.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Discount:</strong>{" "}
+                                {stats.totalDiscount.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Excl. Moms:</strong>{" "}
+                                {stats.totalExclMoms.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Incl. Moms:</strong>{" "}
+                                {stats.totalInclMoms.toFixed(2)} SEK
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Pagination Controls */}
+                        <div className="flex justify-center gap-2 mt-4">
+                          <Button
+                            disabled={page <= 1}
+                            onClick={() => setPage(page - 1)}
+                          >
+                            Prev
+                          </Button>
+                          <span className="flex items-center">
+                            {page} / {totalPages}
+                          </span>
+                          <Button
+                            disabled={page >= totalPages}
+                            onClick={() => setPage(page + 1)}
+                          >
+                            Next
+                          </Button>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </TabsContent>
 
                 {/* By Country */}
                 <TabsContent value="country">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(
+                  {(() => {
+                    // Calculate country-level summaries
+                    const countryStats = Object.entries(
                       filteredAds.reduce((acc, ad) => {
                         const country = ad.country || "Unknown";
                         const {
@@ -539,7 +590,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           withDiscount,
                           totalWithMoms,
                         } = calculateTotal(ad);
-                        if (!acc[country])
+                        if (!acc[country]) {
                           acc[country] = {
                             count: 0,
                             totalBase: 0,
@@ -547,6 +598,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                             totalExclMoms: 0,
                             totalInclMoms: 0,
                           };
+                        }
                         acc[country].count += 1;
                         acc[country].totalBase += base;
                         acc[country].totalDiscountAmt += discountAmt;
@@ -554,40 +606,80 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                         acc[country].totalInclMoms += totalWithMoms;
                         return acc;
                       }, {} as Record<string, any>)
-                    ).map(([country, stats]) => (
-                      <div
-                        key={country}
-                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
-                      >
-                        <h3 className="font-semibold mb-2">{country}</h3>
-                        <p>
-                          <strong>Total Ads:</strong> {stats.count}
-                        </p>
-                        <p>
-                          <strong>Total Base:</strong>{" "}
-                          {stats.totalBase.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Discount:</strong>{" "}
-                          {stats.totalDiscountAmt.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Excl. Moms:</strong>{" "}
-                          {stats.totalExclMoms.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Incl. Moms:</strong>{" "}
-                          {stats.totalInclMoms.toFixed(2)} SEK
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                    );
+
+                    // Pagination setup
+                    const itemsPerPage = 6;
+                    const totalPages = Math.ceil(
+                      countryStats.length / itemsPerPage
+                    );
+                    const startIndex = (page - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const paginatedCountries = countryStats.slice(
+                      startIndex,
+                      endIndex
+                    );
+
+                    return (
+                      <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {paginatedCountries.map(([country, stats]) => (
+                            <div
+                              key={country}
+                              className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow border-primary"
+                            >
+                              <h3 className="font-semibold mb-2">{country}</h3>
+                              <p>
+                                <strong>Total Ads:</strong> {stats.count}
+                              </p>
+                              <p>
+                                <strong>Total Base:</strong>{" "}
+                                {stats.totalBase.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Discount:</strong>{" "}
+                                {stats.totalDiscountAmt.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Excl. Moms:</strong>{" "}
+                                {stats.totalExclMoms.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Incl. Moms:</strong>{" "}
+                                {stats.totalInclMoms.toFixed(2)} SEK
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Pagination Controls */}
+                        <div className="flex justify-center gap-2 mt-4">
+                          <Button
+                            disabled={page <= 1}
+                            onClick={() => setPage(page - 1)}
+                          >
+                            Prev
+                          </Button>
+                          <span className="flex items-center">
+                            {page} / {totalPages}
+                          </span>
+                          <Button
+                            disabled={page >= totalPages}
+                            onClick={() => setPage(page + 1)}
+                          >
+                            Next
+                          </Button>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </TabsContent>
 
                 {/* By Company */}
                 <TabsContent value="company">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(
+                  {/* Calculate company-level summaries */}
+                  {(() => {
+                    const companyStats = Object.entries(
                       filteredAds.reduce((acc, ad) => {
                         const company = ad.companyName || "Unknown Company";
                         const {
@@ -596,7 +688,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                           withDiscount,
                           totalWithMoms,
                         } = calculateTotal(ad);
-                        if (!acc[company])
+                        if (!acc[company]) {
                           acc[company] = {
                             count: 0,
                             totalBase: 0,
@@ -604,6 +696,7 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                             totalExclMoms: 0,
                             totalInclMoms: 0,
                           };
+                        }
                         acc[company].count += 1;
                         acc[company].totalBase += base;
                         acc[company].totalDiscountAmt += discountAmt;
@@ -611,39 +704,79 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                         acc[company].totalInclMoms += totalWithMoms;
                         return acc;
                       }, {} as Record<string, any>)
-                    ).map(([company, stats]) => (
-                      <div
-                        key={company}
-                        className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow"
-                      >
-                        <h3 className="font-semibold mb-2">{company}</h3>
-                        <p>
-                          <strong>Total Ads:</strong> {stats.count}
-                        </p>
-                        <p>
-                          <strong>Total Base:</strong>{" "}
-                          {stats.totalBase.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Discount:</strong>{" "}
-                          {stats.totalDiscountAmt.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Excl. Moms:</strong>{" "}
-                          {stats.totalExclMoms.toFixed(2)} SEK
-                        </p>
-                        <p>
-                          <strong>Total Incl. Moms:</strong>{" "}
-                          {stats.totalInclMoms.toFixed(2)} SEK
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                    );
+
+                    // Pagination setup
+                    const itemsPerPage = 6;
+                    const totalPages = Math.ceil(
+                      companyStats.length / itemsPerPage
+                    );
+                    const startIndex = (page - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const paginatedCompanies = companyStats.slice(
+                      startIndex,
+                      endIndex
+                    );
+
+                    return (
+                      <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {paginatedCompanies.map(([company, stats]) => (
+                            <div
+                              key={company}
+                              className="p-4 border rounded-lg bg-background hover:shadow-lg transition-shadow border-primary"
+                            >
+                              <h3 className="font-semibold mb-2">{company}</h3>
+                              <p>
+                                <strong>Total Ads:</strong> {stats.count}
+                              </p>
+                              <p>
+                                <strong>Total Base:</strong>{" "}
+                                {stats.totalBase.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Discount:</strong>{" "}
+                                {stats.totalDiscountAmt.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Excl. Moms:</strong>{" "}
+                                {stats.totalExclMoms.toFixed(2)} SEK
+                              </p>
+                              <p>
+                                <strong>Total Incl. Moms:</strong>{" "}
+                                {stats.totalInclMoms.toFixed(2)} SEK
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Pagination Controls */}
+                        <div className="flex justify-center gap-2 mt-4">
+                          <Button
+                            disabled={page <= 1}
+                            onClick={() => setPage(page - 1)}
+                          >
+                            Prev
+                          </Button>
+                          <span className="flex items-center">
+                            {page} / {totalPages}
+                          </span>
+                          <Button
+                            disabled={page >= totalPages}
+                            onClick={() => setPage(page + 1)}
+                          >
+                            Next
+                          </Button>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </TabsContent>
 
                 <TabsContent value="collectedBy">
+                  {/* Paginated collected ads */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border">
-                    {filteredAds.map((ad) => {
+                    {paginatedAds.map((ad) => {
                       const {
                         totalWithMoms,
                         duration,
@@ -709,6 +842,25 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
                         </div>
                       );
                     })}
+                  </div>
+
+                  {/* Pagination for collected ads */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    <Button
+                      disabled={page <= 1}
+                      onClick={() => setPage(page - 1)}
+                    >
+                      Prev
+                    </Button>
+                    <span className="flex items-center">
+                      {page} / {totalPages}
+                    </span>
+                    <Button
+                      disabled={page >= totalPages}
+                      onClick={() => setPage(page + 1)}
+                    >
+                      Next
+                    </Button>
                   </div>
                 </TabsContent>
               </Tabs>
