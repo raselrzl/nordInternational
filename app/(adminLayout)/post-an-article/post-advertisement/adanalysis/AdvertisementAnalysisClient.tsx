@@ -408,16 +408,16 @@ export default function AdvertisementAnalysisClient({ serverAds }: Props) {
             </div>
 
             {/* Tabs */}
-            <div className="mt-8">
+            <div className="mt-10">
               <Tabs defaultValue="overall" className="w-full">
-                <TabsList className="flex flex-wrap justify-start mb-4">
-                  <TabsTrigger value="overall">Overall Summary</TabsTrigger>
-                  <TabsTrigger value="status">By Status</TabsTrigger>
-                  <TabsTrigger value="category">By Category</TabsTrigger>
-                  <TabsTrigger value="country">By Country</TabsTrigger>
-                  <TabsTrigger value="company">By Company</TabsTrigger>
-                  <TabsTrigger value="collectedBy">
-                    Advertisement Collected By
+                <TabsList className="flex flex-wrap  mb-8">
+                  <TabsTrigger className="bg-amber-700" value="overall">Summary</TabsTrigger>
+                  <TabsTrigger className="bg-amber-700"  value="status">Status</TabsTrigger>
+                  <TabsTrigger className="bg-amber-700"  value="category">Category</TabsTrigger>
+                  <TabsTrigger className="bg-amber-700"  value="country">Country</TabsTrigger>
+                  <TabsTrigger className="bg-amber-700"  value="company">Company</TabsTrigger>
+                  <TabsTrigger className="bg-amber-700"  value="collectedBy">
+                    Ads. Collected By
                   </TabsTrigger>
                 </TabsList>
 
