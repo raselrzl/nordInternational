@@ -216,55 +216,55 @@ export default async function Home() {
                 href="/"
               />
             )}
-            <div className="bg-amber-200 dark:bg-gray-600 mt-4 pt-2 border-1">
-              <div className="flex flex-row items-center justify-center"><Flame /><h1 className="font-bold text-center text-xl uppercase">Top News</h1></div>
-              <div className="relative h-56 overflow-y-scroll scrollbar-thin mx-4 md:mx-0 md:px-1  mb-6 px-4">
-                {InternationalAll &&
-                Object.keys(InternationalAll).length > 0 ? (
-                  <div className="rounded-xl">
-                    {InternationalAll.slice(1).map((article) => (
-                      <Link
-                        href={`/newsDetails/${article.id}`}
-                        key={article.id}
-                      >
-                        <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2">
-                          <div className="p-1">
-                            <h2 className="text-lg  font-semibold line-clamp-1 pl-1">
-                              {article.newsHeading}
-                            </h2>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <EmptyState
-                    title="Oops! Nothing to show yet."
-                    description="Nothing has been added yet. Stay tuned!"
-                    buttonText="Homepage"
-                    href="/"
-                  />
-                )}
+       <div className="bg-amber-200 dark:bg-gray-700 mt-6 rounded-xl border border-amber-300 dark:border-gray-600 shadow-md mx-2 md:mx-0">
+      {/* Header */}
+      <div className="flex items-center justify-center py-3 gap-2 border-b border-amber-200 dark:border-gray-600">
+        <Flame className="text-red-600 dark:text-amber-400 w-6 h-6" />
+        <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
+          Top News
+        </h1>
+      </div>
 
-                {/* Fade & Scroll Hint */}
-                <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-accent-foreground/5 to-transparent pointer-events-none" />
-                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
-                  <svg
-                    className="w-5 h-5 text-gray-400 animate-bounce"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+      {/* Scrollable List */}
+      <div className="relative h-64 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
+        {InternationalAll && InternationalAll.length > 0 ? (
+          <div className="space-y-3">
+            {InternationalAll.slice(1).map((article) => (
+              <Link href={`/newsDetails/${article.id}`} key={article.id}>
+                <div className="rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-amber-200 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
+                  <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
+                    {article.newsHeading}
+                  </h2>
                 </div>
-              </div>
-            </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="py-8">
+            <EmptyState
+              title="Oops! Nothing to show yet."
+              description="Nothing has been added yet. Stay tuned!"
+              buttonText="Homepage"
+              href="/"
+            />
+          </div>
+        )}
+
+        {/* Gradient & Scroll Hint */}
+        <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-amber-100 dark:from-gray-700 to-transparent pointer-events-none" />
+        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-gray-500 dark:text-gray-300 animate-bounce">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </div>
           </div>
           <div className="flex justify-center items-center pt-4 border-t-1">
             <DeluxeTwoAdvertise />
