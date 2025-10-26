@@ -363,18 +363,19 @@ export default async function Home() {
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {/* Left: Sorbosesh / Jonoprio */}
-          <div className="mx-4 md:mx-0">
+          <div className="mx-4 md:mx-0 py-4">
             <CrimeAndPopularTab />
           </div>
 
           {/* Right: Premium Ad */}
-          <div className="border-0 p-2 ">
+          <div className="py-4">
             <Suspense fallback={<Loader2 className="animate-spin" />}>
               <PremiarOne />
             </Suspense>          
          
           </div>
-           <LatestOpinions />
+          <div className="py-4"><LatestOpinions /></div>
+           
         </div>
       </div>
 
