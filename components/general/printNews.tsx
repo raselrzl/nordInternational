@@ -152,7 +152,7 @@ export default function PrintNews({
               <img
                 src={newsPicture}
                 alt="Description"
-                className="absolute inset-0 w-full h-full object-fill z-0"
+                className="absolute inset-0 w-full h-full object-fit z-0"
               />
 
               {/* Text Layer (bottom with background) */}

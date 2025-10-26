@@ -284,7 +284,7 @@ export default async function Home() {
                         width={500}
                         height={270}
                         unoptimized
-                        className="w-full h-full object-"
+                        className="w-full h-full object-fill"
                       />
                     </div>
                     <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
