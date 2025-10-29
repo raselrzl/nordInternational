@@ -9,14 +9,20 @@ import { Clock, List, Notebook, User2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
 import { trackRoute } from "@/app/utils/routeTracker";
-import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
-import { SizeTwoAdvertise } from "@/components/allAdvertisement/SizeTwo";
 import type { Metadata } from "next";
-import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { StandardTwo } from "@/components/allAdvertisement/StandardTwo";
 import { EnterPrizeTwo } from "@/components/allAdvertisement/EnterprizeTwo";
-import { quote } from "@prisma/client";
+
+
+type Quote = {
+  id: string;
+  createdAt: Date;
+  text: string;
+  speakerInfo: string;
+  articleId: string;
+};
+
 
 async function getNewsArticle(articleId: string) {
   const newsArticle = await prisma.newsArticle.findUnique({
@@ -168,23 +174,24 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
           <StandardTwo />
           <div>
             {/* Quotes Section */}
-            {data.quotes && data.quotes.length > 0 && (
-              <div className="mt-6 px-4">
-                <div className="space-y-4">
-                {data.quotes.map((quote: quote, index: number) => (
-  <div
-    key={index}
-    className="flex flex-col border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
-  >
-    <p className="italic mb-6">"{quote.text}"</p>
-    <p className="text-right bottom-2 right-4 text-sm text-accent-foreground/60">
-      — {quote.speakerInfo}
-    </p>
+          {data.quotes && data.quotes.length > 0 && (
+  <div className="mt-6 px-4">
+    <div className="space-y-4">
+      {data.quotes.map((quote: Quote, index: number) => (
+        <div
+          key={index}
+          className="flex flex-col border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[100px] text-justify"
+        >
+          <p className="italic mb-6">"{quote.text}"</p>
+          <p className="text-right bottom-2 right-4 text-sm text-accent-foreground/60">
+            — {quote.speakerInfo}
+          </p>
+        </div>
+      ))}
+    </div>
   </div>
-))}
-                </div>
-              </div>
-            )}
+)}
+
           </div>
         </div>
       </div>
