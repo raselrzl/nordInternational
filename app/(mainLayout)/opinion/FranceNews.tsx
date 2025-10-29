@@ -1,15 +1,37 @@
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Link from "next/link";
 
-// ✅ Get all ACTIVE France articles
-export async function getAllArticles() {
+// ✅ Type definitions
+type Quote = {
+  speakerInfo: string;
+  text: string;
+};
+
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: Quote[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any;
+  newsArticleStatus: string;
+};
+
+// ✅ Fetch all ACTIVE France articles (limit 9)
+export async function getAllArticles(): Promise<Article[]> {
   return await prisma.newsArticle.findMany({
-    where: { 
+    where: {
       newsArticleStatus: "ACTIVE",
       newsLocation: "France",
     },
@@ -34,8 +56,8 @@ export async function getAllArticles() {
   });
 }
 
-// ✅ Get last featured article from France
-export async function getLastFeaturedArticle() {
+// ✅ Fetch last featured France article
+export async function getLastFeaturedArticle(): Promise<Article | null> {
   return await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -62,13 +84,14 @@ export async function getLastFeaturedArticle() {
   });
 }
 
+// ✅ Main FranceNews Component
 export default async function FranceNews() {
-  const allArticles = await getAllArticles();
-  const lastFeaturedArticle = await getLastFeaturedArticle();
+  const allArticles: Article[] = await getAllArticles();
+  const lastFeaturedArticle: Article | null = await getLastFeaturedArticle();
 
   return (
     <>
-      {/* ✅ Featured France article */}
+      {/* Featured France article */}
       {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
@@ -109,16 +132,17 @@ export default async function FranceNews() {
         />
       )}
 
+      {/* Advertisement */}
       <div className="px-2 md:px-0">
         <UltimateOne />
       </div>
 
-      {/* ✅ All France articles */}
+      {/* All France articles */}
       {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
-            .filter((a) => a.id !== lastFeaturedArticle?.id)
-            .map((article) => (
+            .filter((a: Article) => a.id !== lastFeaturedArticle?.id)
+            .map((article: Article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
