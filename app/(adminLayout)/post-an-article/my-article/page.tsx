@@ -21,98 +21,89 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 import { requireRoleAccess } from "../roleBaseAccess";
+
+// ✅ Define TypeScript type matching your Prisma schema
+type MyArticleType = {
+  id: string;
+  newsHeading: string;
+  newsResource: string;
+  newsLocation?: string | null;
+  newsCategory: string;
+  newsPicture: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  isFeatured: boolean;
+  newsDetails: string;
+  newsReporter?: { reporterName: string | null } | null;
+  newsArticleStatus: "ACTIVE" | "DRAFT" | "EXPIRED";
+  createdAt: Date;
+  updatedAt: Date; // ✅ Include updatedAt
+  quotes: { speakerInfo: string; text: string }[];
+};
 
 async function getMyArticles(
   userId: string,
   page: number = 1,
   pageSize: number = 8
-) {
+): Promise<{ articles: MyArticleType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
-      where: {
-        newsReporter: {
-          userId: userId,
-        },
-      },
+      where: { newsReporter: { userId } },
       take: pageSize,
-      skip: skip,
+      skip,
+      orderBy: { createdAt: "desc" },
       select: {
         id: true,
         createdAt: true,
+        updatedAt: true, // ✅ include updatedAt
         isFeatured: true,
         newsCategory: true,
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
         newsLocation: true,
-        newsReporter: true,
+        newsReporter: { select: { reporterName: true } },
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
     }),
-    prisma.newsArticle.count({
-      where: {
-        newsReporter: {
-          userId: userId,
-        },
-      },
-    }),
+    prisma.newsArticle.count({ where: { newsReporter: { userId } } }),
   ]);
 
-  return {
-    articles: data,
-    totalCount,
-    totalPages: Math.ceil(totalCount / pageSize),
-  };
+  return { articles: data, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
 }
 
 type SearchParamsProps = {
-  searchParams: Promise<{
-    page?: string;
-  }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
 export default async function MyArticle({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-  const rewuireUserToAccessPage = await requireRoleAccess([
+  const requireUserToAccessPage = await requireRoleAccess([
     "EDITOR",
     "SUPERADMIN",
     "NEWSREPORTER",
   ]);
-
   const session = await requireUser();
   await requireNewsReporter();
   await trackRoute("MyArticle");
 
-  const { articles, totalPages, totalCount } = await getMyArticles(
-    session.id as string,
-    currentPage
-  );
+  const { articles, totalPages, totalCount } = await getMyArticles( session.id as string,
+    currentPage);
+  const userRole = requireUserToAccessPage?.userType;
 
-  const userRole = rewuireUserToAccessPage?.userType;
-
-  const canPublishOrDraft =
-    userRole === "EDITOR" || userRole === "SUPERADMIN";
-  const canDelete = userRole === "SUPERADMIN"; // ✅ Delete only for Superadmin
+  const canPublishOrDraft = userRole === "EDITOR" || userRole === "SUPERADMIN";
+  const canDelete = userRole === "SUPERADMIN";
 
   return (
     <>
@@ -159,26 +150,17 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                         )}
                       </TableCell>
                       <TableCell className="font-medium">
-                        {article.newsHeading
-                          ?.split(" ")
-                          .slice(0, 3)
-                          .join(" ") ?? ""}
-                        ..
+                        {article.newsHeading?.split(" ").slice(0, 3).join(" ") ?? ""}..
                       </TableCell>
                       <TableCell>{article.newsCategory}</TableCell>
                       <TableCell>{article.newsArticleStatus}</TableCell>
+                      <TableCell>{article.newsReporter?.reporterName ?? "Unknown"}</TableCell>
                       <TableCell>
-                        {article.newsReporter?.reporterName ?? "Unknown"}
-                      </TableCell>
-                      <TableCell>
-                        {new Date(article.createdAt).toLocaleDateString(
-                          "en-US",
-                          {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          }
-                        )}
+                        {new Date(article.createdAt).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        })}
                       </TableCell>
                       <TableCell>{article.newsLocation ?? "N/A"}</TableCell>
                       <TableCell className="text-right">
@@ -191,7 +173,6 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-                            {/* Always visible: Edit */}
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/alaarticles/${article.id}/editarticle`}
@@ -201,7 +182,6 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                               </Link>
                             </DropdownMenuItem>
 
-                            {/* ✅ Delete visible only to Superadmin */}
                             {canDelete && (
                               <>
                                 <DropdownMenuSeparator />
@@ -216,7 +196,6 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
                               </>
                             )}
 
-                            {/* ✅ Publish/Draft visible to Editor & Superadmin */}
                             {canPublishOrDraft && (
                               <>
                                 <DropdownMenuSeparator />
@@ -251,10 +230,7 @@ export default async function MyArticle({ searchParams }: SearchParamsProps) {
             </CardContent>
           </Card>
 
-          <PaginationComponent
-            totalPages={totalPages}
-            currentPage={currentPage}
-          />
+          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </div>
       ) : (
         <EmptyState
