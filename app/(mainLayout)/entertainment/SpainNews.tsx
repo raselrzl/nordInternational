@@ -4,16 +4,42 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import Image from "next/image";
 import Link from "next/link";
 
-// ✅ Get all ACTIVE Spain articles
-export async function getAllArticles() {
-  return await prisma.newsArticle.findMany({
-    where: { 
-      newsArticleStatus: "ACTIVE",
-      newsLocation: "Spain",
-    },
+// ✅ Article type
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  };
+  newsArticleStatus: string;
+  quotes: { speakerInfo: string; text: string }[];
+};
+
+// ✅ Fetch all ACTIVE Spain articles
+export async function getAllArticles(): Promise<Article[]> {
+  const data = await prisma.newsArticle.findMany({
+    where: { newsArticleStatus: "ACTIVE", newsLocation: "Spain" },
     select: {
       id: true,
       createdAt: true,
@@ -22,34 +48,39 @@ export async function getAllArticles() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
       newsLocation: true,
-      newsReporter: true,
+      newsReporter: {
+        select: {
+          id: true,
+          reporterName: true,
+          location: true,
+          bio: true,
+          profilePicture: true,
+          phoneNumber: true,
+          facebookProfileAddress: true,
+          registered: true,
+          createdAt: true,
+          updatedAt: true,
+          userId: true,
+        },
+      },
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
+
+  return data as Article[];
 }
 
-// ✅ Get last featured article from Spain
-export async function getLastFeaturedArticle() {
-  return await prisma.newsArticle.findFirst({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      isFeatured: true,
-      newsLocation: "Spain",
-    },
+// ✅ Fetch last featured Spain article
+export async function getLastFeaturedArticle(): Promise<Article | null> {
+  const data = await prisma.newsArticle.findFirst({
+    where: { newsArticleStatus: "ACTIVE", isFeatured: true, newsLocation: "Spain" },
     select: {
       id: true,
       createdAt: true,
@@ -58,33 +89,43 @@ export async function getLastFeaturedArticle() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
       newsLocation: true,
-      newsReporter: true,
+      newsReporter: {
+        select: {
+          id: true,
+          reporterName: true,
+          location: true,
+          bio: true,
+          profilePicture: true,
+          phoneNumber: true,
+          facebookProfileAddress: true,
+          registered: true,
+          createdAt: true,
+          updatedAt: true,
+          userId: true,
+        },
+      },
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
+
+  return data as Article | null;
 }
 
+// ✅ Component
 export default async function SpainNews() {
   const allArticles = await getAllArticles();
   const lastFeaturedArticle = await getLastFeaturedArticle();
 
   return (
     <>
-      {/* ✅ Featured Spain article */}
-      {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
+      {/* Featured Spain article */}
+      {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
@@ -102,7 +143,6 @@ export default async function SpainNews() {
                   {lastFeaturedArticle.newsHeading}
                   <span className="md:hidden sm:block">Details....</span>
                 </h2>
-
                 {isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
@@ -126,15 +166,15 @@ export default async function SpainNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <UltimateOne  />
+        <UltimateOne />
       </div>
 
-      {/* ✅ All Spain articles */}
-      {allArticles && allArticles.length > 0 ? (
+      {/* All Spain articles */}
+      {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
             .filter((a) => a.id !== lastFeaturedArticle?.id)
-            .map((article) => (
+            .map((article: Article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
