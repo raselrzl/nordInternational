@@ -3,10 +3,41 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
+// ✅ Define Article type
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  };
+  newsArticleStatus: string;
+  quotes: { speakerInfo: string; text: string }[];
+};
+
+// ✅ Fetch ENVIRONMENT articles with pagination
 async function getAllEnvironmentArticles(
   page: number = 1,
   pageSize: number = 8
-) {
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -32,12 +63,24 @@ async function getAllEnvironmentArticles(
         newsPictureHeading: true,
         newsPictureCredit: true,
         newsLocation: true,
-        newsReporter: true,
+        newsReporter: {
+          select: {
+            id: true,
+            reporterName: true,
+            location: true,
+            bio: true,
+            profilePicture: true,
+            phoneNumber: true,
+            facebookProfileAddress: true,
+            registered: true,
+            createdAt: true,
+            updatedAt: true,
+            userId: true,
+          },
+        },
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
     prisma.newsArticle.count({
       where: { newsCategory: "ENVIRONMENT" },
@@ -45,11 +88,12 @@ async function getAllEnvironmentArticles(
   ]);
 
   return {
-    articles: data,
+    articles: data as Article[],
     totalPages: Math.ceil(totalCount / pageSize),
   };
 }
 
+// ✅ Component
 export default async function AllEnvironmentArticles({
   currentPage,
 }: {
@@ -61,8 +105,8 @@ export default async function AllEnvironmentArticles({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
-            <NewsArticleCard article={article} key={index} />
+          {articles.map((article: Article) => (
+            <NewsArticleCard article={article} key={article.id} />
           ))}
         </div>
       ) : (
