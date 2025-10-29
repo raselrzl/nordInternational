@@ -33,10 +33,25 @@ import {
 } from "@/components/ui/dialog";
 import { requireRoleAccess } from "../../roleBaseAccess";
 
+type AdvertiseRequest = {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  companyWebsite: string;
+  message: string;
+  createdAt: Date;
+};
+
 async function getAllAdvertiseRequests(
   page: number = 1,
   pageSize: number = 10
-) {
+): Promise<{
+  requests: AdvertiseRequest[];
+  totalCount: number;
+  totalPages: number;
+}> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -64,6 +79,7 @@ async function getAllAdvertiseRequests(
     totalPages: Math.ceil(totalCount / pageSize),
   };
 }
+
 
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;

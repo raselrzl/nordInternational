@@ -150,7 +150,6 @@ export const newsCategory: {
 export type newsCategory = (typeof newsCategory)[keyof typeof newsCategory]
 
 
-<<<<<<< HEAD
 export const paymentStatus: {
   PAID: 'PAID',
   UNPAID: 'UNPAID',
@@ -162,8 +161,6 @@ export const paymentStatus: {
 export type paymentStatus = (typeof paymentStatus)[keyof typeof paymentStatus]
 
 
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
 export const advertiseStatus: {
   ACTIVE: 'ACTIVE',
   DRAFT: 'DRAFT',
