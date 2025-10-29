@@ -4,7 +4,6 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import Image from "next/image";
 import Link from "next/link";
 
 // ✅ Get all ACTIVE France articles
@@ -22,12 +21,7 @@ export async function getAllArticles() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -35,9 +29,7 @@ export async function getAllArticles() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
 }
@@ -58,12 +50,7 @@ export async function getLastFeaturedArticle() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -71,9 +58,7 @@ export async function getLastFeaturedArticle() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
 }
 
@@ -84,17 +69,17 @@ export default async function FranceNews() {
   return (
     <>
       {/* ✅ Featured France article */}
-      {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
+      {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
               <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
                 <img
                   src={lastFeaturedArticle.newsPicture}
-                  alt="picture"
+                  alt={lastFeaturedArticle.newsHeading}
                   width={500}
                   height={270}
-                  className="w-full h-full object-fit"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
@@ -102,7 +87,6 @@ export default async function FranceNews() {
                   {lastFeaturedArticle.newsHeading}
                   <span className="md:hidden sm:block">Details....</span>
                 </h2>
-
                 {isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
@@ -126,11 +110,11 @@ export default async function FranceNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <UltimateOne  />
+        <UltimateOne />
       </div>
 
       {/* ✅ All France articles */}
-      {allArticles && allArticles.length > 0 ? (
+      {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
             .filter((a) => a.id !== lastFeaturedArticle?.id)
@@ -140,10 +124,10 @@ export default async function FranceNews() {
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
                     <img
                       src={article.newsPicture}
-                      alt="picture"
+                      alt={article.newsHeading}
                       width={190}
                       height={140}
-                      className="w-full h-full md:h-[150px] object-fit"
+                      className="w-full h-full md:h-[150px] object-cover"
                     />
                   </div>
                   <div className="pt-4">
