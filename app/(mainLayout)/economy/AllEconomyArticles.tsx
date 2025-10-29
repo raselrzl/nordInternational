@@ -116,11 +116,14 @@ export default async function AllEconomyArticles({
 }) {
   const { articles, totalPages } = await getAllEconomyArticles(currentPage);
 
+  // 👇 tell TypeScript what the type is
+  const typedArticles: Article[] = articles;
+
   return (
     <>
-      {articles.length > 0 ? (
+      {typedArticles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article) => (
+          {typedArticles.map((article) => (
             <NewsArticleCard article={article} key={article.id} />
           ))}
         </div>
@@ -136,3 +139,4 @@ export default async function AllEconomyArticles({
     </>
   );
 }
+
