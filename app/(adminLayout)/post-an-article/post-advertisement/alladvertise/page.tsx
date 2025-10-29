@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,7 +25,58 @@ import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
 import { requireRoleAccess } from "../../roleBaseAccess";
 
-async function getAllAdvertisements(page: number = 1, pageSize: number = 10) {
+// TypeScript type based on Prisma schema
+type AdvertisementType = {
+  id: string;
+  companyName: string;
+  companyaddress: string;
+  supervisedName: string;
+  supervisedPhonenumber: string;
+  advertisedCategory:
+    | "PREMIER_1"
+    | "PREMIER_2"
+    | "SIZE_1"
+    | "SIZE_2"
+    | "SUPER_1"
+    | "SUPER_2"
+    | "PREMIUM_1"
+    | "PREMIUM_2"
+    | "STANDARD_1"
+    | "STANDARD_2"
+    | "DELUXE_1"
+    | "DELUXE_2"
+    | "ULTIMATE_1"
+    | "ULTIMATE_2"
+    | "BASIC_1"
+    | "BASIC_2"
+    | "PRO_1"
+    | "PRO_2"
+    | "ENTERPRISE_1"
+    | "ENTERPRISE_2";
+  websiteLink: string;
+  additionalInfo: string;
+  advertiseBanner: string | null;
+  isFeatured: boolean;
+  endDate: string | null;
+  startDate: string | null;
+  advertiseduration: number | null;
+  advertiseStatus: "ACTIVE" | "DRAFT" | "EXPIRED";
+  paymentStatus: "PAID" | "UNPAID" | "PENDING" | "REJECTED" | "EXPIRED";
+  country: 
+    | "BANGLADESH" | "AUSTRIA" | "BELGIUM" | "BULGARIA" | "CROATIA" | "CYPRUS" 
+    | "CZECH_REPUBLIC" | "DENMARK" | "ESTONIA" | "FINLAND" | "FRANCE" | "GERMANY" 
+    | "GREECE" | "HUNGARY" | "IRELAND" | "ITALY" | "LATVIA" | "LITHUANIA" | "LUXEMBOURG" 
+    | "MALTA" | "NETHERLANDS" | "POLAND" | "PORTUGAL" | "ROMANIA" | "SLOVAKIA" | "SLOVENIA" 
+    | "SPAIN" | "SWEDEN" | "UK" | "SWITZERLAND" | "USA" | "AUSTRALIA" | "CANADA" | "NORWAY" 
+    | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+async function getAllAdvertisements(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ ads: AdvertisementType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -52,7 +102,7 @@ async function getAllAdvertisements(page: number = 1, pageSize: number = 10) {
         createdAt: true,
         updatedAt: true,
         country: true,
-        paymentStatus:true,
+        paymentStatus: true,
       },
     }),
     prisma.advertisement.count(),
@@ -71,11 +121,7 @@ export default async function AllAdvertisementTable({
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-  const requireUserToAccessPage = await requireRoleAccess([
-    "EDITOR",
-    "SUPERADMIN",
-  ]);
-
+  const requireUserToAccessPage = await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
   const userRole = requireUserToAccessPage?.userType;
 
   const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();
@@ -152,7 +198,6 @@ export default async function AllAdvertisementTable({
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-                            {/* Update Status — visible to all allowed roles */}
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/updatestatus`}
@@ -162,18 +207,15 @@ export default async function AllAdvertisementTable({
                               </Link>
                             </DropdownMenuItem>
 
-                              <DropdownMenuItem asChild>
+                            <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/paymentstatus`}
                               >
-                                <UserCheck  className="w-4 h-4 mr-2" />
+                                <UserCheck className="w-4 h-4 mr-2" />
                                 Update Payment Status
                               </Link>
                             </DropdownMenuItem>
 
-                              <DropdownMenuSeparator />
-
-                            {/* Delete — only visible for SUPERADMIN */}
                             {userRole === "SUPERADMIN" && (
                               <>
                                 <DropdownMenuSeparator />
@@ -188,7 +230,6 @@ export default async function AllAdvertisementTable({
                               </>
                             )}
 
-                            {/* Invoice — visible to all */}
                             <DropdownMenuSeparator />
                             <DropdownMenuItem asChild>
                               <Link
@@ -208,7 +249,6 @@ export default async function AllAdvertisementTable({
             </CardContent>
           </Card>
 
-          {/* Pagination */}
           <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </div>
       ) : (
