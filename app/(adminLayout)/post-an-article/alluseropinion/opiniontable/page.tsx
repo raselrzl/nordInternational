@@ -8,10 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,7 +24,21 @@ import Link from "next/link";
 import { requireRoleAccess } from "../../roleBaseAccess";
 import { EmptyState } from "@/components/general/EmptyState";
 
-async function getAllOpinions(page: number = 1, pageSize: number = 10) {
+// Define Opinion type matching your Prisma schema
+type OpinionType = {
+  id: string;
+  name: string;
+  email?: string | null;
+  phone?: string | null;
+  opinion: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+async function getAllOpinions(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ opinions: OpinionType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [opinions, totalCount] = await Promise.all([
@@ -42,6 +53,7 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
         phone: true,
         opinion: true,
         createdAt: true,
+        updatedAt: true, // ✅ include updatedAt
       },
     }),
     prisma.opinion.count(),
@@ -55,9 +67,7 @@ async function getAllOpinions(page: number = 1, pageSize: number = 10) {
 }
 
 type SearchParamsProps = {
-  searchParams: Promise<{
-    page?: string;
-  }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
 export default async function AllOpinionsTable({ searchParams }: SearchParamsProps) {
