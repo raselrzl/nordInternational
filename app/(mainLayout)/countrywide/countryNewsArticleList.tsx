@@ -3,14 +3,47 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
-async function getAllCountryArticles(page: number = 1, pageSize: number = 8) {
+// ✅ Define the Article type matching Prisma selection
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: { speakerInfo: string; text: string }[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  };
+  newsArticleStatus: string;
+};
+
+async function getAllCountryArticles(
+  page: number = 1,
+  pageSize: number = 8
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       where: { newsCategory: "COUNTRYWIDE" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -19,12 +52,7 @@ async function getAllCountryArticles(page: number = 1, pageSize: number = 8) {
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
@@ -32,13 +60,9 @@ async function getAllCountryArticles(page: number = 1, pageSize: number = 8) {
         newsReporter: true,
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
-    prisma.newsArticle.count({
-      where: { newsCategory: "COUNTRYWIDE" },
-    }),
+    prisma.newsArticle.count({ where: { newsCategory: "COUNTRYWIDE" } }),
   ]);
 
   return {
@@ -58,8 +82,8 @@ export default async function AllCountryNewsArticleList({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
-            <NewsArticleCard article={article} key={index} />
+          {articles.map((article: Article) => (
+            <NewsArticleCard article={article} key={article.id} />
           ))}
         </div>
       ) : (
@@ -70,6 +94,7 @@ export default async function AllCountryNewsArticleList({
           href="/"
         />
       )}
+
       <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
     </>
   );
