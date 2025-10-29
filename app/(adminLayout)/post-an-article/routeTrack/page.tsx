@@ -1,82 +1,293 @@
 import { prisma } from "@/app/utils/db";
+import { PaginationComponent } from "@/components/general/PaginationComponent";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Book, MoreHorizontal, PenBoxIcon, UserCheck, XCircle } from "lucide-react";
+import { EmptyState } from "@/components/general/EmptyState";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
-import ChartComponent from "@/components/general/ChartComponent";
-import Statistics from "@/components/general/Statistics";
-import { UserLinks } from "@/components/general/UserLinks";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { requireRoleAccess } from "../roleBaseAccess";
 
-async function getRouteHits() {
+// TypeScript type for Advertisement based on your Prisma schema
+type AdvertisementType = {
+  id: string;
+  companyName: string;
+  companyaddress: string;
+  supervisedName: string;
+  supervisedPhonenumber: string;
+  advertisedCategory:
+    | "PREMIER_1"
+    | "PREMIER_2"
+    | "SIZE_1"
+    | "SIZE_2"
+    | "SUPER_1"
+    | "SUPER_2"
+    | "PREMIUM_1"
+    | "PREMIUM_2"
+    | "STANDARD_1"
+    | "STANDARD_2"
+    | "DELUXE_1"
+    | "DELUXE_2"
+    | "ULTIMATE_1"
+    | "ULTIMATE_2"
+    | "BASIC_1"
+    | "BASIC_2"
+    | "PRO_1"
+    | "PRO_2"
+    | "ENTERPRISE_1"
+    | "ENTERPRISE_2";
+  country: 
+    | "BANGLADESH"
+    | "AUSTRIA"
+    | "BELGIUM"
+    | "BULGARIA"
+    | "CROATIA"
+    | "CYPRUS"
+    | "CZECH_REPUBLIC"
+    | "DENMARK"
+    | "ESTONIA"
+    | "FINLAND"
+    | "FRANCE"
+    | "GERMANY"
+    | "GREECE"
+    | "HUNGARY"
+    | "IRELAND"
+    | "ITALY"
+    | "LATVIA"
+    | "LITHUANIA"
+    | "LUXEMBOURG"
+    | "MALTA"
+    | "NETHERLANDS"
+    | "POLAND"
+    | "PORTUGAL"
+    | "ROMANIA"
+    | "SLOVAKIA"
+    | "SLOVENIA"
+    | "SPAIN"
+    | "SWEDEN"
+    | "UK"
+    | "SWITZERLAND"
+    | "USA"
+    | "AUSTRALIA"
+    | "CANADA"
+    | "NORWAY"
+    | null;
+  websiteLink: string;
+  additionalInfo: string;
+  advertiseBanner: string | null;
+  isFeatured: boolean;
+  endDate: string | null;
+  startDate: string | null;
+  advertiseduration: number | null;
+  advertiseStatus: "ACTIVE" | "DRAFT" | "EXPIRED";
+  paymentStatus: "PAID" | "UNPAID" | "PENDING" | "REJECTED" | "EXPIRED";
+  createdAt: Date;
+  updatedAt: Date;
+};
 
-  try {
-    const routeVisits = await prisma.routeVisit.findMany({
+async function getAllAdvertisements(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ ads: AdvertisementType[]; totalCount: number; totalPages: number }> {
+  const skip = (page - 1) * pageSize;
+
+  const [data, totalCount] = await Promise.all([
+    prisma.advertisement.findMany({
+      take: pageSize,
+      skip,
+      orderBy: { createdAt: "desc" },
       select: {
-        fullUrl: true,
-        hits: true,
+        id: true,
+        companyName: true,
+        companyaddress: true,
+        supervisedName: true,
+        supervisedPhonenumber: true,
+        advertisedCategory: true,
+        country: true,
+        websiteLink: true,
+        additionalInfo: true,
+        advertiseBanner: true,
+        isFeatured: true,
+        endDate: true,
+        startDate: true,
+        advertiseduration: true,
+        advertiseStatus: true,
+        paymentStatus: true,
+        createdAt: true,
+        updatedAt: true,
       },
-      orderBy: {
-        hits: "desc",
-      },
-    });
-    return routeVisits;
-  } catch (error) {
-    console.error("Error fetching route hits:", error);
-    return [];
-  }
+    }),
+    prisma.advertisement.count(),
+  ]);
+
+  return { ads: data, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
 }
 
-const Dashboard = async () => {
+type SearchParamsProps = {
+  searchParams: Promise<{ page?: string }>;
+};
 
-  await requireSompandokOrSuperAdmin()
+export default async function AllAdvertisementTable({
+  searchParams,
+}: SearchParamsProps) {
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
 
-  const routeHits = await getRouteHits();
-  if (routeHits.length === 0) {
-    notFound();
-  }
-  const totalHits = routeHits.reduce((acc, route) => acc + route.hits, 0);
-  const rewuireUserToAccessPage = await requireRoleAccess(["SUPERADMIN"]);
+  const requireUserToAccessPage = await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
+  const userRole = requireUserToAccessPage?.userType;
+
+  const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();
+  if (!SompandokOrSuperAdmin) return redirect("/restricted");
+
+  const { ads, totalCount, totalPages } = await getAllAdvertisements(currentPage);
 
   return (
     <>
-    <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Statistics</h1>
-    <div className="flex justify-center flex-col md:flex-row p-4 shadow-lg">
-      
-      <div className="w-full max-w-[600px] rounded-lg p-6">
-        {/* Table displaying route hit counts */}
-        <div className="mb-6">
-          <table className="w-full border-collapse ">
-            <thead >
-              <tr className="text-primary bg-accent-foreground/10">
-                <th className="border p-2 text-left">URL</th>
-                <th className="border p-2 text-left">Hits</th>
-              </tr>
-            </thead>
-            <tbody>
-              {routeHits.map((route, index) => (
-                <tr
-                  key={route.fullUrl}
-                  className={index % 2 === 0 ? "bg-primary-foreground text-primary" : "bg-primary-foreground/10 text-primary"}
-                >
-                  <td className="border p-2">{route.fullUrl}</td>
-                  <td className="border p-2">{route.hits}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="flex items-center justify-between mb-8 bg-accent-foreground/5 p-2">
+        <h1 className="text-xl font-bold">Manage Advertisements</h1>
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+          Total: {totalCount}
         </div>
       </div>
 
-      {/* Chart Section */}
-      <div className="p-4 w-full max-w-[1000px] sm:max-w-[800px] md:max-w-[900px]">
-        <p className="text-xl font-medium text-center text-orange-400 mb-6">
-          Total Route Hits by all users: {totalHits}
-        </p>
-        <ChartComponent routeHits={routeHits} />
-        <Statistics />
-      </div>
-    </div>
+      {ads.length > 0 ? (
+        <div className="flex flex-col gap-6">
+          <Card className="rounded-xs">
+            <CardContent className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Company</TableHead>
+                    <TableHead>Supervisor</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Payment Status</TableHead>
+                    <TableHead>Duration</TableHead>
+                    <TableHead>Start</TableHead>
+                    <TableHead>End</TableHead>
+                    <TableHead>Banner</TableHead>
+                    <TableHead>Country</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody>
+                  {ads.map((ad) => (
+                    <TableRow key={ad.id}>
+                      <TableCell>{ad.companyName}</TableCell>
+                      <TableCell>{ad.supervisedName}</TableCell>
+                      <TableCell>{ad.advertisedCategory}</TableCell>
+                      <TableCell>{ad.advertiseStatus}</TableCell>
+                      <TableCell>{ad.paymentStatus}</TableCell>
+                      <TableCell>{ad.advertiseduration ?? "N/A"}</TableCell>
+                      <TableCell>{ad.startDate ?? "N/A"}</TableCell>
+                      <TableCell>{ad.endDate ?? "N/A"}</TableCell>
+                      <TableCell>
+                        {ad.advertiseBanner ? (
+                          <img
+                            src={ad.advertiseBanner}
+                            alt={ad.companyName}
+                            width={100}
+                            height={50}
+                            className="rounded object-cover"
+                          />
+                        ) : (
+                          <div className="bg-gray-200 size-10 rounded flex items-center justify-center text-xs">
+                            No Banner
+                          </div>
+                        )}
+                      </TableCell>
+                      <TableCell>{ad.country ?? "N/A"}</TableCell>
+
+                      {/* Actions */}
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="w-4 h-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+                            <DropdownMenuItem asChild>
+                              <Link
+                                href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/updatestatus`}
+                              >
+                                <PenBoxIcon className="w-4 h-4 mr-2" />
+                                Update Status
+                              </Link>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem asChild>
+                              <Link
+                                href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/paymentstatus`}
+                              >
+                                <UserCheck className="w-4 h-4 mr-2" />
+                                Update Payment Status
+                              </Link>
+                            </DropdownMenuItem>
+
+                            {userRole === "SUPERADMIN" && (
+                              <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem asChild>
+                                  <Link
+                                    href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/delete`}
+                                  >
+                                    <XCircle className="w-4 h-4 mr-2 text-red-600" />
+                                    Delete
+                                  </Link>
+                                </DropdownMenuItem>
+                              </>
+                            )}
+
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem asChild>
+                              <Link
+                                href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/adinvoice`}
+                              >
+                                <Book className="w-4 h-4 mr-2" />
+                                Invoice
+                              </Link>
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
+        </div>
+      ) : (
+        <EmptyState
+          title="No Advertisements Found"
+          description="There are currently no advertisements available."
+          buttonText="Go to Dashboard"
+          href="/"
+        />
+      )}
     </>
   );
-};
-
-export default Dashboard;
+}
