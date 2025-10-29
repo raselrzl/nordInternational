@@ -1,5 +1,5 @@
 import { prisma } from "@/app/utils/db";
-import { Country } from "@/lib/generated/prisma";
+import { Country } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
