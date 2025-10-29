@@ -7,11 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
-import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,7 +25,23 @@ import { redirect } from "next/navigation";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 import { requireRoleAccess } from "../../roleBaseAccess";
 
-async function getAllVideos(page: number = 1, pageSize: number = 10) {
+// TypeScript types based on your Prisma schema
+type VideoType = {
+  id: string;
+  videoAbout: string;
+  videoHeadings: string;
+  videoLink: string;
+  isFeatured: boolean;
+  startDate: string;
+  vedioStatus: "ACTIVE" | "DRAFT" | "EXPIRED";
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+async function getAllVideos(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ videos: VideoType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [videos, totalCount] = await Promise.all([
@@ -63,13 +75,10 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-   const rewuireUserToAccessPage = await requireRoleAccess([
-          "EDITOR",
-          "SUPERADMIN"
-        ]);
-
-  const SompandokOrSuperAdmin = await requireSompandokOrSuperAdmin();
-  if (!SompandokOrSuperAdmin) return redirect("/restricted");
+  // Role-based access
+  await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
+  const userHasAccess = await requireSompandokOrSuperAdmin();
+  if (!userHasAccess) return redirect("/restricted");
 
   const { videos, totalCount, totalPages } = await getAllVideos(currentPage);
 
@@ -77,7 +86,7 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
     <>
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-2 flex justify-between items-center">
         <span>Manage All Videos</span>
-       <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
       </h1>
@@ -100,12 +109,12 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {videos.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>{item.videoHeadings}</TableCell>
-                      <TableCell>{item.videoAbout}</TableCell>
+                  {videos.map((video) => (
+                    <TableRow key={video.id}>
+                      <TableCell>{video.videoHeadings}</TableCell>
+                      <TableCell>{video.videoAbout}</TableCell>
                       <TableCell>
-                        {item.vedioStatus === "ACTIVE" ? (
+                        {video.vedioStatus === "ACTIVE" ? (
                           <CheckCircle className="text-green-600 w-4 h-4" />
                         ) : (
                           <XCircle className="text-red-600 w-4 h-4" />
@@ -113,7 +122,7 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
                       </TableCell>
                       <TableCell>
                         <a
-                          href={item.videoLink}
+                          href={video.videoLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-green-600 underline"
@@ -121,13 +130,11 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
                           View Video
                         </a>
                       </TableCell>
-                      <TableCell>{item.isFeatured ? "Yes" : "No"}</TableCell>
+                      <TableCell>{video.isFeatured ? "Yes" : "No"}</TableCell>
                       <TableCell>
-                        {new Date(item.startDate).toLocaleDateString()}
+                        {new Date(video.startDate).toLocaleDateString()}
                       </TableCell>
-                      <TableCell>
-                        {new Date(item.createdAt).toLocaleString()}
-                      </TableCell>
+                      <TableCell>{new Date(video.createdAt).toLocaleString()}</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -137,18 +144,21 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
                             <DropdownMenuItem asChild>
                               <Link
-                                href={`/post-an-article/post-a-video/allvideos/${item.id}/updatestatus`}
+                                href={`/post-an-article/post-a-video/allvideos/${video.id}/updatestatus`}
                               >
                                 <PenBoxIcon className="w-4 h-4 mr-2" />
                                 Update
                               </Link>
                             </DropdownMenuItem>
+
                             <DropdownMenuSeparator />
+
                             <DropdownMenuItem asChild>
                               <Link
-                                href={`/post-an-article/post-a-video/allvideos/${item.id}/delete`}
+                                href={`/post-an-article/post-a-video/allvideos/${video.id}/delete`}
                               >
                                 <XCircle className="w-4 h-4 mr-2 text-red-500" />
                                 Delete
@@ -164,7 +174,6 @@ export default async function AllVideos({ searchParams }: SearchParamsProps) {
             </CardContent>
           </Card>
 
-          {/* ✅ Pagination below table */}
           <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </>
       ) : (
