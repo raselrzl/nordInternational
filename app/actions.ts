@@ -6,6 +6,7 @@ import {
   requireSuperAdmin,
   requireUser,
 } from "./utils/requireUser";
+import { AdvertisedCategory, advertiseStatus, Country, NewsCountry, UserType, vedioStatus } from "@prisma/client";
 import {
   AdvertiseRequestSchema,
   AdvertiserSchema,
@@ -15,14 +16,6 @@ import {
 import { redirect } from "next/navigation";
 import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
-import {
-  AdvertisedCategory,
-  advertiseStatus,
-  Country,
-  NewsCountry,
-  UserType,
-  vedioStatus,
-} from "@/lib/generated/prisma";
 import { auth } from "./utils/auth";
 import { revalidatePath } from "next/cache";
 /* import { inngest } from "./utils/inngest/client"; */
@@ -430,6 +423,7 @@ export async function createAnAdvertisement(data: {
 
   return redirect("/post-an-article/post-advertisement/alladvertise");
 }
+
 
 export async function promoteToUserType(
   userId: string,
