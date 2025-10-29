@@ -812,6 +812,7 @@ export async function getAdvertisementPackages() {
     orderBy: { createdAt: "asc" },
   });
 }
+<<<<<<< HEAD
 
 
 
@@ -848,3 +849,5 @@ export async function updateAdvertisePaymentStatus(
 
   return updatedAd;
 }
+=======
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150

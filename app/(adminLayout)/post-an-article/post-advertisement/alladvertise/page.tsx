@@ -20,7 +20,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+<<<<<<< HEAD
 import { Book, MoreHorizontal, PenBoxIcon, UserCheck, XCircle } from "lucide-react";
+=======
+import { Book, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
 import { EmptyState } from "@/components/general/EmptyState";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
@@ -52,7 +56,10 @@ async function getAllAdvertisements(page: number = 1, pageSize: number = 10) {
         createdAt: true,
         updatedAt: true,
         country: true,
+<<<<<<< HEAD
         paymentStatus:true,
+=======
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
       },
     }),
     prisma.advertisement.count(),
@@ -103,7 +110,10 @@ export default async function AllAdvertisementTable({
                     <TableHead>Supervisor</TableHead>
                     <TableHead>Category</TableHead>
                     <TableHead>Status</TableHead>
+<<<<<<< HEAD
                     <TableHead>Payment Status</TableHead>
+=======
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
                     <TableHead>Duration</TableHead>
                     <TableHead>Start</TableHead>
                     <TableHead>End</TableHead>
@@ -120,7 +130,10 @@ export default async function AllAdvertisementTable({
                       <TableCell>{ad.supervisedName}</TableCell>
                       <TableCell>{ad.advertisedCategory}</TableCell>
                       <TableCell>{ad.advertiseStatus}</TableCell>
+<<<<<<< HEAD
                       <TableCell>{ad.paymentStatus}</TableCell>
+=======
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
                       <TableCell>{ad.advertiseduration ?? "N/A"}</TableCell>
                       <TableCell>{ad.startDate ?? "N/A"}</TableCell>
                       <TableCell>{ad.endDate ?? "N/A"}</TableCell>
@@ -162,6 +175,7 @@ export default async function AllAdvertisementTable({
                               </Link>
                             </DropdownMenuItem>
 
+<<<<<<< HEAD
                               <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/paymentstatus`}
@@ -173,6 +187,8 @@ export default async function AllAdvertisementTable({
 
                               <DropdownMenuSeparator />
 
+=======
+>>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
                             {/* Delete — only visible for SUPERADMIN */}
                             {userRole === "SUPERADMIN" && (
                               <>
