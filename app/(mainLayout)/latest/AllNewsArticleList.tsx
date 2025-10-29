@@ -3,13 +3,35 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
-async function getAllnewsArticles(page: number = 1, pageSize: number = 8) {
+// ✅ Define the Article type
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: { speakerInfo: string; text: string }[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any; // Adjust if you have a proper type
+  newsArticleStatus: string;
+};
+
+async function getAllnewsArticles(
+  page: number = 1,
+  pageSize: number = 8
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
+
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       where: { newsArticleStatus: "ACTIVE" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -18,12 +40,7 @@ async function getAllnewsArticles(page: number = 1, pageSize: number = 8) {
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
@@ -31,14 +48,10 @@ async function getAllnewsArticles(page: number = 1, pageSize: number = 8) {
         newsReporter: true,
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
     prisma.newsArticle.count({
-      where: {
-        newsArticleStatus: "ACTIVE",
-      },
+      where: { newsArticleStatus: "ACTIVE" },
     }),
   ]);
 
@@ -59,7 +72,7 @@ export default async function AllNewsArticleList({
     <>
       {articles.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
-          {articles.map((article, index) => (
+          {articles.map((article: Article, index) => (
             <NewsArticleCard article={article} key={index} />
           ))}
         </div>
