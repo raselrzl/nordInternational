@@ -1,16 +1,47 @@
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import Image from "next/image";
 import Link from "next/link";
 
+// ✅ Define Article type matching your Prisma selection
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: {
+    speakerInfo: string;
+    text: string;
+  }[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  };
+  newsArticleStatus: string;
+};
+
 // ✅ Get all ACTIVE Bulgaria articles
-export async function getAllArticles() {
-  return await prisma.newsArticle.findMany({
-    where: { 
+export async function getAllArticles(): Promise<Article[]> {
+  return prisma.newsArticle.findMany({
+    where: {
       newsArticleStatus: "ACTIVE",
       newsLocation: "Bulgaria",
     },
@@ -35,16 +66,14 @@ export async function getAllArticles() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
 }
 
 // ✅ Get last featured article from Bulgaria
-export async function getLastFeaturedArticle() {
-  return await prisma.newsArticle.findFirst({
+export async function getLastFeaturedArticle(): Promise<Article | null> {
+  return prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
@@ -71,9 +100,7 @@ export async function getLastFeaturedArticle() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
 }
 
@@ -84,7 +111,7 @@ export default async function BulgariaNews() {
   return (
     <>
       {/* ✅ Featured Bulgaria article */}
-      {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
+      {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
@@ -102,7 +129,6 @@ export default async function BulgariaNews() {
                   {lastFeaturedArticle.newsHeading}
                   <span className="md:hidden sm:block">Details....</span>
                 </h2>
-
                 {isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
@@ -126,15 +152,15 @@ export default async function BulgariaNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <UltimateOne  />
+        <UltimateOne />
       </div>
 
       {/* ✅ All Bulgaria articles */}
-      {allArticles && allArticles.length > 0 ? (
+      {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
-            .filter((a) => a.id !== lastFeaturedArticle?.id)
-            .map((article) => (
+            .filter((a: Article) => a.id !== lastFeaturedArticle?.id)
+            .map((article: Article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
