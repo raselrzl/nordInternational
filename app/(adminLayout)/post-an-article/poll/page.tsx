@@ -13,21 +13,42 @@ import {
   TableCell,
 } from "@/components/ui/table";
 
-async function getAllPolls(page: number = 1, pageSize: number = 7) {
+// Type definitions matching your Prisma schema
+type PollAnswerType = {
+  id: number;
+  pollQuestionId: number;
+  answer: "YES" | "NO" | "NO_OPINION" | string;
+  createdAt: Date;
+};
+
+type PollType = {
+  id: number;
+  question: string;
+  createdAt: Date;
+  updatedAt: Date;
+  answers: PollAnswerType[];
+};
+
+async function getAllPolls(
+  page: number = 1,
+  pageSize: number = 7
+): Promise<{ polls: PollType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.pollQuestion.findMany({
       take: pageSize,
-      skip: skip,
+      skip,
       orderBy: { createdAt: "desc" },
-      include: { answers: true }, // include answers
+      include: {
+        answers: true, // include all answers
+      },
     }),
     prisma.pollQuestion.count(),
   ]);
 
   return {
-    polls: data,
+    polls: data as PollType[],
     totalCount,
     totalPages: Math.ceil(totalCount / pageSize),
   };
@@ -37,14 +58,9 @@ type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
 };
 
-export default async function AdminPollPage({
-  searchParams,
-}: SearchParamsProps) {
+export default async function AdminPollPage({ searchParams }: SearchParamsProps) {
   await requireUser();
-  const rewuireUserToAccessPage = await requireRoleAccess([
-    "EDITOR",
-    "SUPERADMIN",
-  ]);
+  const rewuireUserToAccessPage = await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
 
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
@@ -54,14 +70,12 @@ export default async function AdminPollPage({
   return (
     <div className="">
       <div className="flex items-center justify-between text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
-        {" "}
-        <h1 className="">
-          Write a Poll Question?
-        </h1>
-         <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
+        <h1>Write a Poll Question?</h1>
+        <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
           Total: {totalCount}
         </div>
       </div>
+
       <PollForm />
 
       {polls.length > 0 ? (
@@ -82,12 +96,11 @@ export default async function AdminPollPage({
                 {polls.map((poll) => {
                   // Count answers
                   const answerCounts = { YES: 0, NO: 0, NO_OPINION: 0 };
-                  if (poll.answers && poll.answers.length > 0) {
-                    poll.answers.forEach((a) => {
-                      if (a.answer in answerCounts)
-                        answerCounts[a.answer as keyof typeof answerCounts]++;
-                    });
-                  }
+                  poll.answers.forEach((a) => {
+                    if (a.answer in answerCounts) {
+                      answerCounts[a.answer as keyof typeof answerCounts]++;
+                    }
+                  });
 
                   return (
                     <TableRow key={poll.id}>
@@ -117,10 +130,7 @@ export default async function AdminPollPage({
       )}
 
       {polls.length > 0 && (
-        <PaginationComponent
-          totalPages={totalPages}
-          currentPage={currentPage}
-        />
+        <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
       )}
     </div>
   );
