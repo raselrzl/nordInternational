@@ -225,7 +225,7 @@ export default async function CountryNews({
 
           {allArticles.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
-              {allArticles.filter((a) => a.id !== lastFeaturedArticle?.id).map((article) => (
+              {allArticles.filter((a:Article) => a.id !== lastFeaturedArticle?.id).map((article) => (
                 <Link href={`/newsDetails/${article.id}`} key={article.id}>
                   <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                     <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
