@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,40 +23,55 @@ import { CheckCircle, MoreHorizontal, PenBoxIcon, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
 import { requireRoleAccess } from "../roleBaseAccess";
 
-async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
+type Article = {
+  id: string;
+  newsHeading: string;
+  newsResource: string;
+  newsLocation?: string | null;
+  newsCategory: string;
+  newsPicture: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  isFeatured: boolean;
+  newsDetails: string;
+  newsReporter?: { reporterName: string | null } | null;
+  newsArticleStatus: "ACTIVE" | "DRAFT" | "EXPIRED";
+  createdAt: Date;
+  updatedAt: Date;
+  quotes: { speakerInfo: string; text: string }[];
+};
+
+type SearchParamsProps = {
+  searchParams: Promise<{ page?: string }>;
+};
+
+async function getAllnewsArticles(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ articles: Article[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       take: pageSize,
-      skip: skip,
+      skip,
+      orderBy: { createdAt: "desc" },
       select: {
         id: true,
         createdAt: true,
+        updatedAt: true, // ✅ include updatedAt
         isFeatured: true,
         newsCategory: true,
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
         newsLocation: true,
-        newsReporter: {
-          select: {
-            reporterName: true,
-          },
-        },
+        newsReporter: { select: { reporterName: true } },
         newsArticleStatus: true,
-      },
-      orderBy: {
-        createdAt: "desc",
       },
     }),
     prisma.newsArticle.count(),
@@ -70,12 +84,6 @@ async function getAllnewsArticles(page: number = 1, pageSize: number = 10) {
   };
 }
 
-type SearchParamsProps = {
-  searchParams: Promise<{
-    page?: string;
-  }>;
-};
-
 export default async function AllNewsArticleList({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
@@ -86,7 +94,6 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
   ]);
 
   const { articles, totalPages, totalCount } = await getAllnewsArticles(currentPage);
-
   const userRole = rewuireUserToAccessPage?.userType;
 
   return (
@@ -159,7 +166,6 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-                            {/* Always visible: Edit */}
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/alaarticles/${article.id}/editarticle`}
@@ -169,7 +175,6 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                               </Link>
                             </DropdownMenuItem>
 
-                            {/* Only SUPERADMIN can see Delete */}
                             {userRole === "SUPERADMIN" && (
                               <>
                                 <DropdownMenuSeparator />
@@ -184,7 +189,6 @@ export default async function AllNewsArticleList({ searchParams }: SearchParamsP
                               </>
                             )}
 
-                            {/* Status Change (Visible to both SOMPANDOK & SUPERADMIN) */}
                             {article.newsArticleStatus === "ACTIVE" ? (
                               <DropdownMenuItem asChild>
                                 <Link

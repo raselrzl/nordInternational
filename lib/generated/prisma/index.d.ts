@@ -302,13 +302,10 @@ export type newsCategory = $Enums.newsCategory
 
 export const newsCategory: typeof $Enums.newsCategory
 
-<<<<<<< HEAD
 export type paymentStatus = $Enums.paymentStatus
 
 export const paymentStatus: typeof $Enums.paymentStatus
 
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
 export type advertiseStatus = $Enums.advertiseStatus
 
 export const advertiseStatus: typeof $Enums.advertiseStatus
@@ -9393,10 +9390,7 @@ export namespace Prisma {
     readonly advertiseCollectedByEmail: FieldRef<"Advertisement", 'String'>
     readonly advertiseCollectedByPhone: FieldRef<"Advertisement", 'String'>
     readonly advertiseCollectedByCountry: FieldRef<"Advertisement", 'String'>
-<<<<<<< HEAD
     readonly paymentStatus: FieldRef<"Advertisement", 'paymentStatus'>
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
     readonly advertiseStatus: FieldRef<"Advertisement", 'advertiseStatus'>
     readonly createdAt: FieldRef<"Advertisement", 'DateTime'>
     readonly updatedAt: FieldRef<"Advertisement", 'DateTime'>
@@ -21329,10 +21323,7 @@ export namespace Prisma {
     advertiseCollectedByEmail?: SortOrderInput | SortOrder
     advertiseCollectedByPhone?: SortOrderInput | SortOrder
     advertiseCollectedByCountry?: SortOrderInput | SortOrder
-<<<<<<< HEAD
     paymentStatus?: SortOrder
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21363,10 +21354,7 @@ export namespace Prisma {
     advertiseCollectedByEmail?: StringNullableFilter<"Advertisement"> | string | null
     advertiseCollectedByPhone?: StringNullableFilter<"Advertisement"> | string | null
     advertiseCollectedByCountry?: StringNullableFilter<"Advertisement"> | string | null
-<<<<<<< HEAD
     paymentStatus?: EnumpaymentStatusFilter<"Advertisement"> | $Enums.paymentStatus
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
     advertiseStatus?: EnumadvertiseStatusFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeFilter<"Advertisement"> | Date | string
@@ -21394,10 +21382,7 @@ export namespace Prisma {
     advertiseCollectedByEmail?: SortOrderInput | SortOrder
     advertiseCollectedByPhone?: SortOrderInput | SortOrder
     advertiseCollectedByCountry?: SortOrderInput | SortOrder
-<<<<<<< HEAD
     paymentStatus?: SortOrder
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
     advertiseStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21433,10 +21418,7 @@ export namespace Prisma {
     advertiseCollectedByEmail?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     advertiseCollectedByPhone?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
     advertiseCollectedByCountry?: StringNullableWithAggregatesFilter<"Advertisement"> | string | null
-<<<<<<< HEAD
     paymentStatus?: EnumpaymentStatusWithAggregatesFilter<"Advertisement"> | $Enums.paymentStatus
-=======
->>>>>>> a598dfa78f015fc482ad26a08e310fd3fa80f150
     advertiseStatus?: EnumadvertiseStatusWithAggregatesFilter<"Advertisement"> | $Enums.advertiseStatus
     createdAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Advertisement"> | Date | string
