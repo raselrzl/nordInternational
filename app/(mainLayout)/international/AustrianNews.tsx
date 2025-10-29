@@ -4,13 +4,30 @@ import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import Image from "next/image";
 import Link from "next/link";
 
+// ✅ Define the Article type
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: { speakerInfo: string; text: string }[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any; // adjust if you have a proper type
+  newsArticleStatus: string;
+};
+
 // ✅ Get all ACTIVE Austrian articles
-export async function getAllArticles() {
+export async function getAllArticles(): Promise<Article[]> {
   return await prisma.newsArticle.findMany({
-    where: { 
+    where: {
       newsArticleStatus: "ACTIVE",
       newsLocation: "Austria",
     },
@@ -22,12 +39,7 @@ export async function getAllArticles() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -35,15 +47,13 @@ export async function getAllArticles() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
 }
 
-// ✅ Get last featured article from Austrian
-export async function getLastFeaturedArticle() {
+// ✅ Get last featured article from Austria
+export async function getLastFeaturedArticle(): Promise<Article | null> {
   return await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
@@ -58,12 +68,7 @@ export async function getLastFeaturedArticle() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -71,9 +76,7 @@ export async function getLastFeaturedArticle() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
 }
 
@@ -84,7 +87,7 @@ export default async function AustrianNews() {
   return (
     <>
       {/* ✅ Featured Austrian article */}
-      {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
+      {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
@@ -126,11 +129,11 @@ export default async function AustrianNews() {
       )}
 
       <div className="px-2 md:px-0">
-        <UltimateOne  />
+        <UltimateOne />
       </div>
 
       {/* ✅ All Austrian articles */}
-      {allArticles && allArticles.length > 0 ? (
+      {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
             .filter((a) => a.id !== lastFeaturedArticle?.id)

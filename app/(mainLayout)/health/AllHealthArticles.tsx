@@ -3,7 +3,28 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
-async function getAllHealthArticles(page: number = 1, pageSize: number = 8) {
+// ✅ Define the article type
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: { speakerInfo: string; text: string }[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any; // Adjust if you have a proper type
+  newsArticleStatus: string;
+};
+
+async function getAllHealthArticles(
+  page: number = 1,
+  pageSize: number = 8
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
@@ -19,12 +40,7 @@ async function getAllHealthArticles(page: number = 1, pageSize: number = 8) {
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
@@ -32,9 +48,7 @@ async function getAllHealthArticles(page: number = 1, pageSize: number = 8) {
         newsReporter: true,
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
     prisma.newsArticle.count({
       where: { newsCategory: "HEALTH" },
@@ -58,7 +72,7 @@ export default async function AllHealthArticles({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
+          {articles.map((article: Article, index) => (
             <NewsArticleCard article={article} key={index} />
           ))}
         </div>
