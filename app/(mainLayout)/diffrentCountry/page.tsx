@@ -9,11 +9,40 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { RecentNews } from "@/components/general/homepageArticleList";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
-import Image from "next/image";
-import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 import { formatRelativeTime } from "@/app/utils/formatRelativeTime";
 
+// ✅ Article type matching Prisma selection
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+  };
+  newsArticleStatus: string;
+  quotes: { speakerInfo: string; text: string }[];
+};
+
+// ✅ List of EU countries with flags
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
   { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
@@ -51,55 +80,65 @@ const euCountries = [
   { name: "Norway", flag: "/flags/norway.webp" },
 ];
 
+// ✅ Map raw Prisma result to Article type
+function mapPrismaArticle(a: any): Article {
+  return {
+    id: a.id,
+    createdAt: a.createdAt,
+    isFeatured: a.isFeatured,
+    newsCategory: a.newsCategory,
+    newsDetails: a.newsDetails,
+    newsHeading: a.newsHeading,
+    newsPicture: a.newsPicture,
+    newsPictureHeading: a.newsPictureHeading,
+    newsPictureCredit: a.newsPictureCredit,
+    newsLocation: a.newsLocation ? String(a.newsLocation) : null,
+    newsReporter: a.newsReporter,
+    newsArticleStatus: a.newsArticleStatus,
+    quotes: a.quotes,
+  };
+}
+
+// ✅ Fetch top 7 latest + featured article
 async function getCountryNews(country: string) {
-  const dbCountry = country;
-  const allArticles = await prisma.newsArticle.findMany({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      newsLocation: dbCountry as any,
-    },
+  const allArticlesRaw = await prisma.newsArticle.findMany({
+    where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
     orderBy: { createdAt: "desc" },
     take: 7,
   });
 
-  const lastFeaturedArticle = await prisma.newsArticle.findFirst({
-    where: {
-      newsArticleStatus: "ACTIVE",
-      isFeatured: true,
-      newsLocation: dbCountry as any,
-    },
+  const lastFeaturedArticleRaw = await prisma.newsArticle.findFirst({
+    where: { newsArticleStatus: "ACTIVE", isFeatured: true, newsLocation: country as any },
     orderBy: { createdAt: "desc" },
   });
 
-  return { allArticles, lastFeaturedArticle };
-}
-
-// Fetch paginated list starting after the first 7 articles
-async function getPaginatedCountryArticles(
-  country: string,
-  page: number = 1,
-  pageSize: number = 10
-) {
-  const skip = 7 + (page - 1) * pageSize; // skip first 7
-  const [data, totalCount] = await Promise.all([
-    prisma.newsArticle.findMany({
-      where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
-      orderBy: { createdAt: "desc" },
-      take: pageSize,
-      skip: skip,
-    }),
-    prisma.newsArticle.count({
-      where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
-    }),
-  ]);
-
   return {
-    articles: data,
-    totalPages: Math.ceil((totalCount - 7) / pageSize),
-    totalCount, // ✅ return total count
+    allArticles: allArticlesRaw.map(mapPrismaArticle),
+    lastFeaturedArticle: lastFeaturedArticleRaw ? mapPrismaArticle(lastFeaturedArticleRaw) : null,
   };
 }
 
+// ✅ Fetch paginated articles starting after the first 7
+async function getPaginatedCountryArticles(country: string, page: number = 1, pageSize: number = 10) {
+  const skip = 7 + (page - 1) * pageSize;
+  const [dataRaw, totalCount] = await Promise.all([
+    prisma.newsArticle.findMany({
+      where: { newsArticleStatus: "ACTIVE", newsLocation: country as any },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take: pageSize,
+    }),
+    prisma.newsArticle.count({ where: { newsArticleStatus: "ACTIVE", newsLocation: country as any } }),
+  ]);
+
+  return {
+    articles: dataRaw.map(mapPrismaArticle),
+    totalPages: Math.ceil((totalCount - 7) / pageSize),
+    totalCount,
+  };
+}
+
+// ✅ Full Component
 export default async function CountryNews({
   searchParams,
 }: {
@@ -110,12 +149,9 @@ export default async function CountryNews({
   const currentPage = Number(params?.page) || 1;
 
   const { allArticles, lastFeaturedArticle } = await getCountryNews(country);
-  const { articles, totalPages, totalCount } =
-    await getPaginatedCountryArticles(country, currentPage);
+  const { articles, totalPages } = await getPaginatedCountryArticles(country, currentPage);
 
-  const activeCountry = euCountries.find(
-    (c) => c.name.toLowerCase() === country.toLowerCase()
-  ) ?? {
+  const activeCountry = euCountries.find((c) => c.name.toLowerCase() === country.toLowerCase()) ?? {
     name: country,
     flag: "/flags/default.png",
   };
@@ -132,18 +168,10 @@ export default async function CountryNews({
                     key={c.name}
                     href={`?country=${encodeURIComponent(c.name)}`}
                     className={`flex items-center gap-2 border rounded-lg px-3 py-1 transition-all ${
-                      c.name === country
-                        ? "bg-primary text-white border-primary"
-                        : "hover:bg-muted"
+                      c.name === country ? "bg-primary text-white border-primary" : "hover:bg-muted"
                     }`}
                   >
-                    <img
-                      src={c.flag}
-                      alt={`${c.name} flag`}
-                      width={18}
-                      height={12}
-                      className="rounded-sm"
-                    />
+                    <img src={c.flag} alt={`${c.name} flag`} width={18} height={12} className="rounded-sm" />
                     <span className="text-xs font-semibold">{c.name}</span>
                   </Link>
                 ))}
@@ -157,13 +185,7 @@ export default async function CountryNews({
 
         <div className="col-span-5 md:col-span-3">
           <div className="flex items-center gap-2 pl-2 mb-2">
-            <img
-              src={activeCountry.flag}
-              alt={`${activeCountry.name} flag`}
-              width={28}
-              height={18}
-              className="rounded-sm"
-            />
+            <img src={activeCountry.flag} alt={`${activeCountry.name} flag`} width={28} height={18} className="rounded-sm" />
             <h1 className="font-extrabold">{activeCountry.name} Latest</h1>
           </div>
 
@@ -172,13 +194,7 @@ export default async function CountryNews({
               <Link href={`/newsDetails/${lastFeaturedArticle.id}`}>
                 <div className="grid grid-cols-5">
                   <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
-                    <img
-                      src={lastFeaturedArticle.newsPicture}
-                      alt="picture"
-                      width={500}
-                      height={270}
-                      className="w-full h-full object-fit"
-                    />
+                    <img src={lastFeaturedArticle.newsPicture} alt="picture" width={500} height={270} className="w-full h-full object-fit" />
                   </div>
                   <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
                     <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
@@ -188,9 +204,7 @@ export default async function CountryNews({
 
                     {isJson(lastFeaturedArticle.newsDetails) ? (
                       <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
-                        <JsonToHtml
-                          json={JSON.parse(lastFeaturedArticle.newsDetails)}
-                        />
+                        <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                       </div>
                     ) : (
                       <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
@@ -202,50 +216,30 @@ export default async function CountryNews({
               </Link>
             </div>
           ) : (
-            <EmptyState
-              title="Oops! There's nothing to show yet."
-              description="No featured article available yet."
-              buttonText="Homepage"
-              href="/"
-            />
+            <EmptyState title="Oops! There's nothing to show yet." description="No featured article available yet." buttonText="Homepage" href="/" />
           )}
 
           <div className="px-2 md:px-0">
             <SuperOne country={country} />
           </div>
 
-          {allArticles?.length > 0 ? (
+          {allArticles.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
-              {allArticles
-                .filter((a) => a.id !== lastFeaturedArticle?.id)
-                .map((article) => (
-                  <Link href={`/newsDetails/${article.id}`} key={article.id}>
-                    <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
-                      <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
-                        <img
-                          src={article.newsPicture}
-                          alt="picture"
-                          width={190}
-                          height={140}
-                          className="w-full h-full md:h-[150px] object-fit"
-                        />
-                      </div>
-                      <div className="pt-4">
-                        <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
-                          {article.newsHeading}
-                        </h2>
-                      </div>
+              {allArticles.filter((a) => a.id !== lastFeaturedArticle?.id).map((article) => (
+                <Link href={`/newsDetails/${article.id}`} key={article.id}>
+                  <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
+                    <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
+                      <img src={article.newsPicture} alt="picture" width={190} height={140} className="w-full h-full md:h-[150px] object-fit" />
                     </div>
-                  </Link>
-                ))}
+                    <div className="pt-4">
+                      <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">{article.newsHeading}</h2>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           ) : (
-            <EmptyState
-              title="Oops! There's nothing to show yet."
-              description="No article available yet. Stay tuned!"
-              buttonText="Homepage"
-              href="/"
-            />
+            <EmptyState title="Oops! There's nothing to show yet." description="No article available yet. Stay tuned!" buttonText="Homepage" href="/" />
           )}
 
           <SuperTwo country={country} />
@@ -253,59 +247,28 @@ export default async function CountryNews({
           {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
             <div className="flex items-center justify-between bg-amber-700 px-4 rounded-md pb-1 mb-4">
-              <h2 className="flex items-center font-extrabold text-sm md:text-lg border-l-8 border-primary pl-2">
-                More in {activeCountry.name}
-              </h2>
-
-              <div >
-                <PaginationComponent
-                  totalPages={totalPages}
-                  currentPage={currentPage}
-                />
-              </div>
+              <h2 className="flex items-center font-extrabold text-sm md:text-lg border-l-8 border-primary pl-2">More in {activeCountry.name}</h2>
+              <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
             </div>
 
             {articles.length > 0 ? (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
-                  {articles.map((article) => (
-                    <Link href={`/newsDetails/${article.id}`} key={article.id}>
-                      <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary relative grid grid-cols-3 border-0 px-2 py-2">
-                        <div className="col-span-1">
-                          <img
-                            src={article.newsPicture}
-                            alt={article.newsPictureHeading}
-                            width={56}
-                            height={60}
-                            className="h-[60px] w-full object-fill rounded-xl"
-                          />
-                        </div>
-
-                        <div className="col-span-2">
-                          <h1 className="text-md font-bold">
-                            {article.newsHeading}
-                          </h1>
-                          <p className="text-xs text-muted-foreground text-right font-bold italic pr-2">
-                            {formatRelativeTime(article.createdAt)}
-                          </p>
-                        </div>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-                <div className=""> <PaginationComponent
-                  totalPages={totalPages}
-                  currentPage={currentPage}
-                /></div>
-               
-              </>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+                {articles.map((article) => (
+                  <Link href={`/newsDetails/${article.id}`} key={article.id}>
+                    <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary relative grid grid-cols-3 border-0 px-2 py-2">
+                      <div className="col-span-1">
+                        <img src={article.newsPicture} alt={article.newsPictureHeading} width={56} height={60} className="h-[60px] w-full object-fill rounded-xl" />
+                      </div>
+                      <div className="col-span-2">
+                        <h1 className="text-md font-bold">{article.newsHeading}</h1>
+                        <p className="text-xs text-muted-foreground text-right font-bold italic pr-2">{formatRelativeTime(article.createdAt)}</p>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
             ) : (
-              <EmptyState
-                title="No more news yet."
-                description="Please check again later."
-                buttonText="Homepage"
-                href="/"
-              />
+              <EmptyState title="No more news yet." description="Please check again later." buttonText="Homepage" href="/" />
             )}
           </div>
         </div>
