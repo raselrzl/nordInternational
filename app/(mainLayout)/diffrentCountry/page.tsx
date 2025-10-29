@@ -253,7 +253,7 @@ export default async function CountryNews({
 
             {articles.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
-                {articles.map((article) => (
+                {articles.map((article:Article) => (
                   <Link href={`/newsDetails/${article.id}`} key={article.id}>
                     <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary relative grid grid-cols-3 border-0 px-2 py-2">
                       <div className="col-span-1">
