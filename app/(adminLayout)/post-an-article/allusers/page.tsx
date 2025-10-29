@@ -23,24 +23,38 @@ import { EmptyState } from "@/components/general/EmptyState";
 import { requireRoleAccess } from "../roleBaseAccess";
 import Link from "next/link";
 
-async function getAllUsers(page: number = 1, pageSize: number = 10) {
+// Define User type matching your Prisma schema
+type UserType = {
+  id: string;
+  name?: string | null;
+  email: string;
+  userType?: "NEWSREPORTER" | "ADVERTISER" | "SUPERADMIN" | "ADMIN" | "EDITOR" | null;
+  onboardingCompleted: boolean;
+  approvalStatus?: "PENDING" | "APPROVED" | "REJECT" | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+async function getAllUsers(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<{ users: UserType[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [users, totalCount] = await Promise.all([
     prisma.user.findMany({
       take: pageSize,
       skip,
+      orderBy: { createdAt: "desc" },
       select: {
         id: true,
         name: true,
         email: true,
         userType: true,
         onboardingCompleted: true,
-        createdAt: true,
         approvalStatus: true,
-      },
-      orderBy: {
-        createdAt: "desc",
+        createdAt: true,
+        updatedAt: true, // ✅ include updatedAt
       },
     }),
     prisma.user.count(),
@@ -54,23 +68,15 @@ async function getAllUsers(page: number = 1, pageSize: number = 10) {
 }
 
 type SearchParamsProps = {
-  searchParams: Promise<{
-    page?: string;
-  }>;
+  searchParams: Promise<{ page?: string }>;
 };
 
-export default async function AllUsersTable({
-  searchParams,
-}: SearchParamsProps) {
+export default async function AllUsersTable({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
-  const rewuireUserToAccessPage = await requireRoleAccess([
-    "EDITOR",
-    "SUPERADMIN",
-  ]);
-
-  const userRole = rewuireUserToAccessPage?.userType;
+  const requireUserToAccessPage = await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
+  const userRole = requireUserToAccessPage?.userType;
 
   const { users, totalCount, totalPages } = await getAllUsers(currentPage);
 
@@ -190,10 +196,7 @@ export default async function AllUsersTable({
             </CardContent>
           </Card>
 
-          <PaginationComponent
-            totalPages={totalPages}
-            currentPage={currentPage}
-          />
+          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </div>
       ) : (
         <EmptyState
