@@ -7,10 +7,40 @@ import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import Image from "next/image";
 import Link from "next/link";
 
-// ✅ Get all ACTIVE Austrian articles
-export async function getAllArticles() {
-  return await prisma.newsArticle.findMany({
-    where: { 
+// ✅ Define Article type matching Prisma selection
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+    reporterName: string | null;
+    location: string;
+    bio: string;
+    profilePicture: string;
+    phoneNumber: string;
+    facebookProfileAddress: string | null;
+    registered: boolean;
+  };
+  newsArticleStatus: string;
+  newsResource: string;
+  quotes: { speakerInfo: string; text: string }[];
+};
+
+// ✅ Get all ACTIVE Denmark articles
+export async function getAllArticles(): Promise<Article[]> {
+  const dataRaw = await prisma.newsArticle.findMany({
+    where: {
       newsArticleStatus: "ACTIVE",
       newsLocation: "Denmark",
     },
@@ -35,16 +65,16 @@ export async function getAllArticles() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
+
+  return dataRaw as Article[];
 }
 
-// ✅ Get last featured article from Austrian
-export async function getLastFeaturedArticle() {
-  return await prisma.newsArticle.findFirst({
+// ✅ Get last featured Denmark article
+export async function getLastFeaturedArticle(): Promise<Article | null> {
+  const data = await prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
@@ -71,10 +101,10 @@ export async function getLastFeaturedArticle() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
+
+  return data as Article | null;
 }
 
 export default async function DenmarkNews() {
@@ -126,15 +156,15 @@ export default async function DenmarkNews() {
       )}
 
       <div className="px-2 md:px-0">
-    <UltimateOne  />
+        <UltimateOne />
       </div>
 
       {/* ✅ All Denmark articles */}
       {allArticles && allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
-            .filter((a) => a.id !== lastFeaturedArticle?.id)
-            .map((article) => (
+            .filter((a: Article) => a.id !== lastFeaturedArticle?.id)
+            .map((article: Article) => (
               <Link href={`/newsDetails/${article.id}`} key={article.id}>
                 <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
