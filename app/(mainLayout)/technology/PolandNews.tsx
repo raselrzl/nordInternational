@@ -1,16 +1,45 @@
 import { prisma } from "@/app/utils/db";
 import { isJson } from "@/app/utils/isJson";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
 import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { EmptyState } from "@/components/general/EmptyState";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import Image from "next/image";
 import Link from "next/link";
 
+export type Reporter = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  reporterName: string | null;
+  location: string;
+  bio: string;
+  profilePicture: string;
+  phoneNumber: string;
+  facebookProfileAddress: string | null;
+  registered: boolean;
+};
+
+export type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string | null;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: { speakerInfo: string; text: string }[];
+  newsResource: string | null;
+  newsPictureHeading: string | null;
+  newsPictureCredit: string | null;
+  newsLocation: string | null;
+  newsReporter: Reporter | null; // ✅ updated
+  newsArticleStatus: string;
+};
+
 // ✅ Get all ACTIVE Poland articles
-export async function getAllArticles() {
-  return await prisma.newsArticle.findMany({
-    where: { 
+export async function getAllArticles(): Promise<Article[]> {
+  return prisma.newsArticle.findMany({
+    where: {
       newsArticleStatus: "ACTIVE",
       newsLocation: "Poland",
     },
@@ -22,12 +51,7 @@ export async function getAllArticles() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -35,16 +59,14 @@ export async function getAllArticles() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
     take: 9,
   });
 }
 
 // ✅ Get last featured article from Poland
-export async function getLastFeaturedArticle() {
-  return await prisma.newsArticle.findFirst({
+export async function getLastFeaturedArticle(): Promise<Article | null> {
+  return prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
@@ -58,12 +80,7 @@ export async function getLastFeaturedArticle() {
       newsDetails: true,
       newsHeading: true,
       newsPicture: true,
-      quotes: {
-        select: {
-          speakerInfo: true,
-          text: true,
-        },
-      },
+      quotes: { select: { speakerInfo: true, text: true } },
       newsResource: true,
       newsPictureHeading: true,
       newsPictureCredit: true,
@@ -71,9 +88,7 @@ export async function getLastFeaturedArticle() {
       newsReporter: true,
       newsArticleStatus: true,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
 }
 
@@ -84,14 +99,14 @@ export default async function PolandNews() {
   return (
     <>
       {/* ✅ Featured Poland article */}
-      {lastFeaturedArticle && Object.keys(lastFeaturedArticle).length > 0 ? (
+      {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
             <div className="grid grid-cols-5">
               <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3 mt-10 md:mt-0">
                 <img
                   src={lastFeaturedArticle.newsPicture}
-                  alt="picture"
+                  alt={lastFeaturedArticle.newsHeading}
                   width={500}
                   height={270}
                   className="w-full h-full object-fit"
@@ -103,13 +118,13 @@ export default async function PolandNews() {
                   <span className="md:hidden sm:block">Details....</span>
                 </h2>
 
-                {isJson(lastFeaturedArticle.newsDetails) ? (
+                {lastFeaturedArticle.newsDetails && isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                   </div>
                 ) : (
                   <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
-                    {lastFeaturedArticle.newsDetails}
+                    {lastFeaturedArticle.newsDetails || ""}
                   </p>
                 )}
               </div>
@@ -126,11 +141,11 @@ export default async function PolandNews() {
       )}
 
       <div className="px-2 md:px-0">
-       <UltimateOne  />
+        <UltimateOne />
       </div>
 
       {/* ✅ All Poland articles */}
-      {allArticles && allArticles.length > 0 ? (
+      {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
             .filter((a) => a.id !== lastFeaturedArticle?.id)
@@ -140,7 +155,7 @@ export default async function PolandNews() {
                   <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
                     <img
                       src={article.newsPicture}
-                      alt="picture"
+                      alt={article.newsHeading}
                       width={190}
                       height={140}
                       className="w-full h-full md:h-[150px] object-fit"

@@ -3,6 +3,30 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
+// ---------------------- TYPES ----------------------
+type Quote = {
+  speakerInfo: string;
+  text: string;
+};
+
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: Quote[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any;
+  newsArticleStatus: string;
+};
+
+// ---------------------- DATA FETCH ----------------------
 async function getAllSportsArticles(page: number = 1, pageSize: number = 8) {
   const skip = (page - 1) * pageSize;
 
@@ -10,7 +34,7 @@ async function getAllSportsArticles(page: number = 1, pageSize: number = 8) {
     prisma.newsArticle.findMany({
       where: { newsCategory: "SPORTS" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -47,6 +71,7 @@ async function getAllSportsArticles(page: number = 1, pageSize: number = 8) {
   };
 }
 
+// ---------------------- COMPONENT ----------------------
 export default async function AllSportsArticles({
   currentPage,
 }: {
@@ -58,7 +83,7 @@ export default async function AllSportsArticles({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
+          {articles.map((article: Article, index: number) => (
             <NewsArticleCard article={article} key={index} />
           ))}
         </div>
@@ -70,6 +95,7 @@ export default async function AllSportsArticles({
           href="/"
         />
       )}
+
       <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
     </>
   );

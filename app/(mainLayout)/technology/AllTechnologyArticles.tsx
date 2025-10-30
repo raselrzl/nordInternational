@@ -1,19 +1,43 @@
 import { prisma } from "@/app/utils/db";
-import { EmptyState } from "../../../components/general/EmptyState";
-import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
+import { EmptyState } from "@/components/general/EmptyState";
+import { NewsArticleCard } from "@/components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
+// ---------------------- TYPES ----------------------
+type Quote = {
+  speakerInfo: string;
+  text: string;
+};
+
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string | null;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: Quote[];
+  newsResource: string | null;
+  newsPictureHeading: string | null;
+  newsPictureCredit: string | null;
+  newsLocation: string | null;
+  newsReporter: any; // adjust if you have a proper reporter type
+  newsArticleStatus: string;
+};
+
+// ---------------------- DATA FETCH ----------------------
 async function getAllTechnologyArticles(
   page: number = 1,
   pageSize: number = 8
-) {
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       where: { newsCategory: "TECHNOLOGY" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -22,12 +46,7 @@ async function getAllTechnologyArticles(
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
@@ -35,13 +54,9 @@ async function getAllTechnologyArticles(
         newsReporter: true,
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
-    prisma.newsArticle.count({
-      where: { newsCategory: "TECHNOLOGY" },
-    }),
+    prisma.newsArticle.count({ where: { newsCategory: "TECHNOLOGY" } }),
   ]);
 
   return {
@@ -50,6 +65,7 @@ async function getAllTechnologyArticles(
   };
 }
 
+// ---------------------- COMPONENT ----------------------
 export default async function AllTechnologyArticles({
   currentPage,
 }: {
@@ -61,18 +77,29 @@ export default async function AllTechnologyArticles({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
-            <NewsArticleCard article={article} key={index} />
-          ))}
+         {articles.map((article) => (
+  <NewsArticleCard
+    key={article.id}
+    article={{
+      ...article,
+      newsDetails: article.newsDetails ?? "",
+      newsResource: article.newsResource ?? "",
+      newsPictureHeading: article.newsPictureHeading ?? "",
+      newsPictureCredit: article.newsPictureCredit ?? "",
+    }}
+  />
+))}
+
         </div>
       ) : (
         <EmptyState
           title="Oops! Nothing to show yet."
-          description="Nothing has been added yet. Stay tuned!"
+          description="No technology articles have been added yet. Stay tuned!"
           buttonText="Homepage"
           href="/"
         />
       )}
+
       <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
     </>
   );
