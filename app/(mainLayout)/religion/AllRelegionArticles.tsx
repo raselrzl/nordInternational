@@ -3,13 +3,41 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
-async function getAllRelegionArticles(page: number = 1, pageSize: number = 8) {
+// ✅ Article type
+type Quote = {
+  speakerInfo: string;
+  text: string;
+};
+
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: Quote[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any; // adjust if you have a proper type
+  newsArticleStatus: string;
+};
+
+// ✅ Fetch Religion articles with pagination
+async function getAllReligionArticles(
+  page: number = 1,
+  pageSize: number = 8
+): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
+
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       where: { newsCategory: "RELIGION" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -18,12 +46,7 @@ async function getAllRelegionArticles(page: number = 1, pageSize: number = 8) {
         newsDetails: true,
         newsHeading: true,
         newsPicture: true,
-        quotes: {
-          select: {
-            speakerInfo: true,
-            text: true,
-          },
-        },
+        quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,
         newsPictureHeading: true,
         newsPictureCredit: true,
@@ -31,9 +54,7 @@ async function getAllRelegionArticles(page: number = 1, pageSize: number = 8) {
         newsReporter: true,
         newsArticleStatus: true,
       },
-      orderBy: {
-        createdAt: "desc",
-      },
+      orderBy: { createdAt: "desc" },
     }),
     prisma.newsArticle.count({
       where: { newsCategory: "RELIGION" },
@@ -46,18 +67,19 @@ async function getAllRelegionArticles(page: number = 1, pageSize: number = 8) {
   };
 }
 
-export default async function AllRelegionArticles({
+// ✅ Religion Articles Component
+export default async function AllReligionArticles({
   currentPage,
 }: {
   currentPage: number;
 }) {
-  const { articles, totalPages } = await getAllRelegionArticles(currentPage);
+  const { articles, totalPages } = await getAllReligionArticles(currentPage);
 
   return (
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
+          {articles.map((article: Article, index: number) => (
             <NewsArticleCard article={article} key={index} />
           ))}
         </div>
