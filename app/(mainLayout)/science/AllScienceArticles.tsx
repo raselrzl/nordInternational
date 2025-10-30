@@ -3,14 +3,38 @@ import { EmptyState } from "../../../components/general/EmptyState";
 import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 
+// ---------------------- TYPES ----------------------
+type Quote = {
+  speakerInfo: string;
+  text: string;
+};
+
+type Article = {
+  id: string;
+  createdAt: Date;
+  isFeatured: boolean;
+  newsCategory: string;
+  newsDetails: string;
+  newsHeading: string;
+  newsPicture: string;
+  quotes: Quote[];
+  newsResource: string;
+  newsPictureHeading: string;
+  newsPictureCredit: string;
+  newsLocation: string | null;
+  newsReporter: any;
+  newsArticleStatus: string;
+};
+
+// ---------------------- DATA FETCH ----------------------
 async function getAllScienceArticles(page: number = 1, pageSize: number = 8) {
   const skip = (page - 1) * pageSize;
 
-  const [data, totalCount] = await Promise.all([
+  const [articles, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
       where: { newsCategory: "SCIENCE" },
       take: pageSize,
-      skip: skip,
+      skip,
       select: {
         id: true,
         createdAt: true,
@@ -42,11 +66,12 @@ async function getAllScienceArticles(page: number = 1, pageSize: number = 8) {
   ]);
 
   return {
-    articles: data,
+    articles,
     totalPages: Math.ceil(totalCount / pageSize),
   };
 }
 
+// ---------------------- COMPONENT ----------------------
 export default async function AllScienceArticles({
   currentPage,
 }: {
@@ -58,8 +83,8 @@ export default async function AllScienceArticles({
     <>
       {articles.length > 0 ? (
         <div className="flex flex-col gap-6 px-2">
-          {articles.map((article, index) => (
-            <NewsArticleCard article={article} key={index} />
+          {articles.map((article: Article, index: number) => (
+            <NewsArticleCard article={article} key={article.id} />
           ))}
         </div>
       ) : (
@@ -70,6 +95,7 @@ export default async function AllScienceArticles({
           href="/"
         />
       )}
+
       <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
     </>
   );
