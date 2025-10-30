@@ -65,10 +65,10 @@ export default async function LiveUpdate() {
 
               {/* News heading with minutes */}
               <div className="flex-1 flex flex-col">
-                <span className="text-xs text-gray-500">
-                  {diffMinutes} {diffMinutes === 1 ? "m" : "m"} ago:
+                <span className="text-xs text-gray-500 italic">
+                  {diffMinutes} {diffMinutes === 1 ? "m" : "m"} ago
                 </span>
-                  <span className="font-medium text-md">{item.headings}</span>
+                  <span className="font-medium text-sm">{item.headings}</span>
               </div>
             </div>
           );

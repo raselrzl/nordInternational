@@ -22,8 +22,8 @@ import LatestOpinions from "@/components/general/LatestOpinions";
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 import Image from "next/image";
 import { aauth } from "../actions";
-import PublicSourceNews from "@/components/general/PublicSourceNews";
-import LiveUpdate from "@/components/general/PublicSourceNews";
+import PublicSourceNews from "@/components/general/PublicSourceNewsLiveUpdate";
+import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -131,8 +131,8 @@ export default async function Home() {
 
   return (
     <>
-    <LiveUpdate />
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 py-10">
+    <div className="grid grid-cols-3 mt-4"><div className="bg-red-50 col-span-3 md:col-span-1"><LiveUpdate /></div><div></div><div></div></div>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10 pt-4">
 
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
