@@ -18,7 +18,6 @@ import arcjet, { detectBot, shield } from "./utils/arcjet";
 import { request } from "@arcjet/next";
 import { auth } from "./utils/auth";
 import { revalidatePath } from "next/cache";
-/* import { inngest } from "./utils/inngest/client"; */
 const aj = arcjet
   .withRule(
     shield({
