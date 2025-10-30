@@ -19,7 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Book, MoreHorizontal, PenBoxIcon, UserCheck, XCircle } from "lucide-react";
+import { Book, MoreHorizontal, PenBoxIcon, Receipt, UserCheck, XCircle } from "lucide-react";
 import { EmptyState } from "@/components/general/EmptyState";
 import { requireSompandokOrSuperAdmin } from "@/app/utils/requireUser";
 import { redirect } from "next/navigation";
@@ -211,7 +211,7 @@ export default async function AllAdvertisementTable({
                               <Link
                                 href={`/post-an-article/post-advertisement/alladvertise/${ad.id}/paymentstatus`}
                               >
-                                <UserCheck className="w-4 h-4 mr-2" />
+                                <Receipt className="w-4 h-4 mr-2" />
                                 Update Payment Status
                               </Link>
                             </DropdownMenuItem>
