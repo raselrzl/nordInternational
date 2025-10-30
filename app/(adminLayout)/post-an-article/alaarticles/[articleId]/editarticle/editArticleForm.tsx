@@ -28,11 +28,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { districts } from "@/app/utils/locationList";
 import { links } from "@/app/utils/linkList";
 import { Switch } from "@/components/ui/switch";
-import { newsCategory } from "@/lib/generated/prisma";
 import { updateNewsArticle } from "@/app/actions";
 import NewsDescriptionEditor from "@/components/richTextEditor/newsDescriptionEditor";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { newsCategory } from "@prisma/client";
 
 interface iAppProps {
   article: {
