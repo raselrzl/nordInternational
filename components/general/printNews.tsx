@@ -6,7 +6,7 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { NewsDetailsDisplay } from "../richTextEditor/NewsDetailsDisplay";
 import { PrintNewsDetailsClient } from "@/components/general/PrintNewsClient";
-import { quote } from "@/lib/generated/prisma";
+import { quote } from "@prisma/client";
 
 interface PrintNewsProps {
   newsPicture: string | null;

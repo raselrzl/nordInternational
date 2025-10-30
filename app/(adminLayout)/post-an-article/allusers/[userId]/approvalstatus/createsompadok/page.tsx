@@ -1,7 +1,7 @@
 "use client";
 
 import { promoteToUserType } from "@/app/actions";
-import { UserType } from "@/lib/generated/prisma";
+import { UserType } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
