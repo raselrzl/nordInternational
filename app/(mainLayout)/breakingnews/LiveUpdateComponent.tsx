@@ -11,7 +11,7 @@ type NewsItem = {
 
 async function getPaginatedNews(
   page: number = 1,
-  pageSize: number = 2
+  pageSize: number = 10
 ): Promise<{ news: NewsItem[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
@@ -51,8 +51,8 @@ function formatTimeAgo(date: Date): string {
   });
 }
 
-export default async function LiveUpdate({ currentPage }: { currentPage: number }) {
-  const pageSize = 2;
+export default async function LiveUpdateComponent({ currentPage }: { currentPage: number }) {
+  const pageSize = 10;
   const { news, totalPages } = await getPaginatedNews(currentPage, pageSize);
 
   return (

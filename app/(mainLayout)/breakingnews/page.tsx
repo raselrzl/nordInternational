@@ -1,4 +1,5 @@
-import LiveUpdate from "./LiveUpdate";
+import LiveUpdateComponent from "./LiveUpdateComponent";
+
 
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
@@ -10,7 +11,7 @@ export default async function NewsPage({ searchParams }: SearchParamsProps) {
 
   return (
     <div className="p-6">
-      <LiveUpdate currentPage={currentPage} />
+      <LiveUpdateComponent currentPage={currentPage} />
     </div>
   );
 }
