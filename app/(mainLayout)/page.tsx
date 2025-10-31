@@ -131,7 +131,7 @@ export default async function Home() {
 
   return (
     <>
-   <div className="bg-red-50 mb-2"> <LiveUpdate /></div>
+   <div className="bg-red-50 mb-2"> <LiveUpdate /> </div>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
 
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
