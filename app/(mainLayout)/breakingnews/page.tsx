@@ -10,7 +10,7 @@ export default async function NewsPage({ searchParams }: SearchParamsProps) {
   const currentPage = Number(params.page) || 1;
 
   return (
-    <div className="p-6">
+    <div className="pt-2">
       <LiveUpdateComponent currentPage={currentPage} />
     </div>
   );

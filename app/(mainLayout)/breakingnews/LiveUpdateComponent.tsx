@@ -11,7 +11,7 @@ type NewsItem = {
 
 async function getPaginatedNews(
   page: number = 1,
-  pageSize: number = 10
+  pageSize: number = 20
 ): Promise<{ news: NewsItem[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
@@ -52,15 +52,15 @@ function formatTimeAgo(date: Date): string {
 }
 
 export default async function LiveUpdateComponent({ currentPage }: { currentPage: number }) {
-  const pageSize = 10;
+  const pageSize = 20;
   const { news, totalPages } = await getPaginatedNews(currentPage, pageSize);
 
   return (
-    <div className="mt-4 px-6 py-3 bg-red-50 rounded-md mx-auto max-w-7xl grid grid-cols-5">
-      <div className="col-span-1"></div>
-      <div className="col-span-3">
+    <div className="px-6 py-3 bg-red-50 dark:bg-black rounded-md mx-auto max-w-7xl grid grid-cols-5">
+      <div className="col-span-5 md:col-span-1"></div>
+      <div className="col-span-5 md:col-span-3 px-4">
         <div className="flex items-center justify-between mb-3">
-          <h1 className="text-sm uppercase font-bold">Breaking News</h1>
+          <h1 className="text-sm uppercase font-bold text-red-800">Breaking News</h1>
         </div>
 
         {news.length > 0 ? (
@@ -113,7 +113,7 @@ export default async function LiveUpdateComponent({ currentPage }: { currentPage
         {/* ✅ Pagination */}
         <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
       </div>
-      <div className="col-span-1"></div>
+      <div className="col-span-5 md:col-span-1"></div>
     </div>
   );
 }
