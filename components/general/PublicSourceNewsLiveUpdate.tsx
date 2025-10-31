@@ -28,7 +28,7 @@ export default async function LiveUpdate() {
 
   return (
     <div className="mt-4 px-6 py-3">
-      <h1 className="text-sm uppercase font-bold mb-2">Live updates</h1>
+      <h1 className="text-sm uppercase font-bold mb-2 text-red-800">Live updates</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
         {news.map((item, index) => {
           const created = new Date(item.createdAt);
