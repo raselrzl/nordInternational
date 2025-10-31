@@ -22,9 +22,25 @@ async function getLatestNews(): Promise<NewsItem[]> {
 const outerSizes = [16, 16, 16, 16];
 const innerSizes = [8, 8, 8, 8];
 
+// Helper to format “time ago”
+function formatTimeAgo(date: Date): string {
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffSec = Math.floor(diffMs / 1000);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHr = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHr / 24);
+
+  if (diffSec < 60) return `${diffSec}s ago`;
+  if (diffMin < 60) return `${diffMin}m ago`;
+  if (diffHr < 24) return `${diffHr}h ago`;
+  if (diffDay < 30) return `${diffDay}d ago`;
+
+  return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+
 export default async function LiveUpdate() {
   const news = await getLatestNews();
-  const now = new Date();
 
   return (
     <div className="mt-4 px-6 py-3">
@@ -32,7 +48,6 @@ export default async function LiveUpdate() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
         {news.map((item, index) => {
           const created = new Date(item.createdAt);
-          const diffMinutes = Math.floor((now.getTime() - created.getTime()) / 60000);
           const isLast = index === news.length - 1;
 
           return (
@@ -65,10 +80,10 @@ export default async function LiveUpdate() {
                 )}
               </div>
 
-              {/* News heading with minutes */}
+              {/* News heading with “time ago” */}
               <div className="flex-1 flex flex-col">
                 <span className="text-xs text-gray-500 italic">
-                  {diffMinutes} {diffMinutes === 1 ? "m" : "m"} ago
+                  {formatTimeAgo(created)}
                 </span>
                 <span className="font-medium text-sm">{item.headings}</span>
               </div>
@@ -76,11 +91,12 @@ export default async function LiveUpdate() {
           );
         })}
       </div>
-       <div className="flex justify-end mt-4">
-    <Link href="/breakingnews" className="text-sm text-primary hover:underline">
-      More →
-    </Link>
-  </div>
+
+      <div className="flex justify-end mt-4">
+        <Link href="/breakingnews" className="text-sm text-primary hover:underline">
+          More →
+        </Link>
+      </div>
     </div>
   );
 }
