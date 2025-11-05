@@ -123,7 +123,7 @@ export function PrintNewsDetailsClient({
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <img
-                src="/n333.png"
+                src="/kkkk.png"
                 alt="Logo"
                 style={{ height: "40px", objectFit: "contain" }}
                 width={120}
