@@ -289,7 +289,6 @@ export default async function AllArticleList() {
                 <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
                   <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
                     {lastFeaturedArticle.newsHeading}
-                    
                   </h2>
                   {/*     <p className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     {lastFeaturedArticle.newsDetails}
@@ -320,8 +319,8 @@ export default async function AllArticleList() {
         />
       )}
       <div className="px-2 md:px-0">
-        <SuperOne country="Sweden"  />
-      </div> 
+        <SuperOne country="Sweden" />
+      </div>
 
       {allArticles && Object.keys(allArticles).length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
@@ -365,10 +364,9 @@ export async function RecentNews() {
   return (
     <>
       <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
-          <div className="font-extrabold pl-2 mb-2 flex items-center text-2xl my-4">
-            <List className="h-7 w-7 mr-2" />
-            Top News
-          </div>
+        <div className="font-extrabold pl-2 mb-2 flex text-md uppercase my-4">
+          Top News
+        </div>
         {latestNews && latestNews.length > 0 ? (
           latestNews.map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
@@ -381,7 +379,7 @@ export async function RecentNews() {
                   />
                 </div>
                 <div className="col-span-2">
-                  <h3 className="text-lg font-semibold ml-2">
+                  <h3 className="text-sm font-semibold ml-2">
                     {item.newsHeading}
                   </h3>
                 </div>
@@ -436,42 +434,40 @@ export async function ShirShoNewsHeadings() {
   const Politics = await getPoliticsNews();
 
   return (
-  <>
-  {Politics && Object.keys(Politics).length > 0 ? (
-    <div className="bg-primary/55 dark:bg-gray-700 mt-6 border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
-      {/* Header */}
-      <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
-        <List className="text-red-600 dark:text-amber-400 w-6 h-6" />
-        <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
-          Important & Trending
-        </h1>
-      </div>
+    <>
+      {Politics && Object.keys(Politics).length > 0 ? (
+        <div className="bg-primary/55 dark:bg-gray-700 mt-6 border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
+          {/* Header */}
+          <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
+            <h1 className="font-bold text-md uppercase text-gray-900 dark:text-gray-100 tracking-wide">
+              Important & Trending
+            </h1>
+          </div>
 
-      {/* Scrollable content */}
-      <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
-        <div className="space-y-3">
-          {Politics.map((article) => (
-            <Link key={article.id} href={`/newsDetails/${article.id}`}>
-              <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
-                <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
-                  {article.newsHeading}
-                </h2>
-              </div>
-            </Link>
-          ))}
+          {/* Scrollable content */}
+          <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
+            <div className="space-y-3">
+              {Politics.map((article) => (
+                <Link key={article.id} href={`/newsDetails/${article.id}`}>
+                  <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
+                    <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
+                      {article.newsHeading}
+                    </h2>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  ) : (
-    <EmptyState
-      title="Oops! There's nothing to show yet."
-      description="Nothing has been added yet. Stay tuned!"
-      buttonText="Homepage"
-      href="/"
-    />
-  )}
-</>
-
+      ) : (
+        <EmptyState
+          title="Oops! There's nothing to show yet."
+          description="Nothing has been added yet. Stay tuned!"
+          buttonText="Homepage"
+          href="/"
+        />
+      )}
+    </>
   );
 }
 
@@ -866,6 +862,3 @@ export async function JonoprioNews() {
     </>
   );
 }
-
-
-
