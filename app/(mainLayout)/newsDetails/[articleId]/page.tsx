@@ -147,7 +147,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         <div className="flex flex-col font-bold mb-1 text-xl">
           <div className="flex flex-row pl-2 items-center">
             <User2 className="size-5 mr-1" />
-            <p>NORD Reporter</p>
+            <p>GLOBAL EYE Reporter</p>
           </div>
           <div className="flex flex-row  pl-2 items-center">
             <Clock className="size-5 mr-1" />
