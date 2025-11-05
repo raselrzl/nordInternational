@@ -58,6 +58,7 @@ export const newsArticleSchema = z.object({
     "LAW_AND_JUSTICE",
     "ENVIRONMENT",
     "SCIENCE",
+    "WAR"
   ]),
   newsPicture: z.string().url("Required"),
   newsPictureHeading: z.string(),
