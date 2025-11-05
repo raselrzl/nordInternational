@@ -75,7 +75,7 @@ export default async function AdvertiseDetailsPage({
     day: "numeric",
   });
 
-  const logoUrl = "/n1w.png";
+  const logoUrl = "/k111.png";
 
   return (
     <>
