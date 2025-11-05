@@ -48,14 +48,14 @@ export default function Footer() {
               Publication and Communication
             </h1>
             <h3 className="font-bold text-lg">
-              Editor & Publisher: Shahab Rasel
+              Editor & Publisher: Global Eye
             </h3>
-            <p className="mb-1 text-sm text-muted-foreground">
+           {/*  <p className="mb-1 text-sm text-muted-foreground">
               <a
-                href="mailto:editor@globaleye.press"
+                href="mailto:contact@globaleye.press"
                 className="text-orange-600 hover:underline"
               >
-                editor@globaleye.press
+                contact@globaleye.press
               </a>
               <br />
               <a
@@ -64,15 +64,15 @@ export default function Footer() {
               >
                 contact@globaleye.press
               </a>
-            </p>
+            </p> */}
 
             <div>
-              <p>Smedjegatan 35, 60219, Norrköping, Sweden</p>
+              <p>Norrköping, Sweden</p>
               <a
-                href="mailto:info@globaleye.press"
+                href="mailto:contact@globaleye.press"
                 className="text-primary hover:underline"
               >
-                info@globaleye.press
+                contact@globaleye.press
               </a>
             </div>
           </div>
@@ -93,10 +93,10 @@ export default function Footer() {
 
             <p> or Email us for advertisement</p>
             <a
-              href="mailto:ads@globaleye.press"
+              href="mailto:contact@globaleye.press"
               className="text-primary hover:underline"
             >
-              ads@globaleye.press
+              contact@globaleye.press
             </a>
             <Link href="/" className="flex items-center p-4">
               <div className="w-[200px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')] bg-cover bg-center" />

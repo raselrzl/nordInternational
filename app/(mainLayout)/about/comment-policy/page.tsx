@@ -73,10 +73,10 @@ export default async function CommentPolicyPage() {
         <li>
           <strong>Email:</strong>{" "}
           <a
-            href="mailto:info@globaleye.press"
+            href="mailto:contact@globaleye.press"
             className="text-primary hover:underline"
           >
-            info@globaleye.press
+            contact@globaleye.press
           </a>
         </li>
       </ul>

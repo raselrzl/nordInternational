@@ -57,7 +57,7 @@ export default async function TermsPage() {
         For questions or feedback regarding these terms, please contact us:
       </p>
       <ul className="list-none mb-6 text-base">
-        <li><strong>Email:</strong> <a href="mailto:info@globaleye.press" className="text-primary hover:underline">info@globaleye.press</a></li>
+        <li><strong>Email:</strong> <a href="mailto:contact@globaleye.press" className="text-primary hover:underline">contact@globaleye.press</a></li>
       </ul>
 
       <p className="text-base italic">
