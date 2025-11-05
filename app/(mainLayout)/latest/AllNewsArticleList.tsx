@@ -23,7 +23,7 @@ type Article = {
 
 async function getAllnewsArticles(
   page: number = 1,
-  pageSize: number = 8
+  pageSize: number = 20
 ): Promise<{ articles: Article[]; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 

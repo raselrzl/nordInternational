@@ -436,36 +436,42 @@ export async function ShirShoNewsHeadings() {
   const Politics = await getPoliticsNews();
 
   return (
-    <>
-      {Politics && Object.keys(Politics).length > 0 ? (
-        <div className="bg-primary-foreground dark:bg-accent-foreground/5 py-2">
-          <div className="font-extrabold mb-2 pl-2 text-2xl flex flex-row">
-            {" "}
-            <List className="h-7 w-7 mr-2"/>Important and Trending
-          </div>
-          <div className="rounded-xs py-2">
-            {Politics.map((article) => (
-              <Link href={`/newsDetails/${article.id}`} key={article.id}>
-                <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
-                  <div className="p-1">
-                    <h2 className="text-lg text-accent-foreground font-semibold line-clamp-1">
-                      {article.newsHeading}
-                    </h2>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+  <>
+  {Politics && Object.keys(Politics).length > 0 ? (
+    <div className="bg-primary/55 dark:bg-gray-700 mt-6 border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
+      {/* Header */}
+      <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
+        <List className="text-red-600 dark:text-amber-400 w-6 h-6" />
+        <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
+          Important & Trending
+        </h1>
+      </div>
+
+      {/* Scrollable content */}
+      <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
+        <div className="space-y-3">
+          {Politics.map((article) => (
+            <Link key={article.id} href={`/newsDetails/${article.id}`}>
+              <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
+                <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
+                  {article.newsHeading}
+                </h2>
+              </div>
+            </Link>
+          ))}
         </div>
-      ) : (
-        <EmptyState
-          title="Oops! There's nothing to show yet."
-          description="Nothing has been added yet. Stay tuned!"
-          buttonText="Homepage"
-          href="/"
-        />
-      )}
-    </>
+      </div>
+    </div>
+  ) : (
+    <EmptyState
+      title="Oops! There's nothing to show yet."
+      description="Nothing has been added yet. Stay tuned!"
+      buttonText="Homepage"
+      href="/"
+    />
+  )}
+</>
+
   );
 }
 

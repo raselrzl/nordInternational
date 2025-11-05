@@ -54,10 +54,10 @@ export function NewsArticleCard({ article }: iAppProps) {
         </div>
 
         <div className="col-span-2">
-          <h1 className="text-lg md:text-xl font-bold">
+          <h1 className="text-sm md:text-md font-bold line-clamp-2">
             {article.newsHeading}
           </h1>
-          <p className="text-sm text-muted-foreground text-right font-bold italic pr-2">
+          <p className="text-xs text-muted-foreground text-right font-bold italic pr-2 mt-2">
             {formatRelativeTime(article.createdAt)}
           </p>
         </div>
