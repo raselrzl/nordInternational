@@ -3,23 +3,23 @@ import { trackRoute } from "@/app/utils/routeTracker";
 export default async function About() {
   await trackRoute("about");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground text-justify">
-      <h1 className="text-3xl font-bold mb-4 text-center ">
-        About Global Eye
+    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground text-justify bg-gray-100">
+      <h1 className="text-xl font-bold mb-4 text-center uppercase">
+        Global Eye
       </h1>
-      <p className="mb-4 leading-relaxed">
+      <p className="mb-4 leading-relaxed text-sm">
         <strong>Global Eye</strong> is an independent and neutral online news platform that delivers important daily news, analysis, opinions, and fact-based reports to its readers. Our goal is to provide truthful news coverage and contribute to building an informed society.
       </p>
 
-      <p className="mb-4 leading-relaxed">
+      <p className="mb-4 leading-relaxed  text-sm">
         We believe that information is power, and it is our responsibility to bring that power to everyone. We cover various categories with due importance, including politics, economy, science, international affairs, technology, opinions, and entertainment.
       </p>
 
-      <p className="mb-4 leading-relaxed">
+      <p className="mb-4 leading-relaxed  text-sm">
         Global Eye has no place for false or deliberately misleading information. Our journalists and reporters place the highest priority on objectivity and neutrality.
       </p>
 
-      <p className="mb-4 leading-relaxed">
+      <p className="mb-4 leading-relaxed  text-sm">
         We welcome readers’ feedback, suggestions, and criticisms. You can also send us a direct message through our{" "}
         <a href="mailto:contact@globaleye.press" className="text-orange-600 hover:underline">
           contact
@@ -27,7 +27,7 @@ export default async function About() {
         page if you wish.
       </p>
 
-      <p className="font-medium mt-6 text-center">
+      <p className="font-medium mt-6 text-center  text-sm">
         Stay aware, stay informed with Global Eye.
       </p>
     </div>
