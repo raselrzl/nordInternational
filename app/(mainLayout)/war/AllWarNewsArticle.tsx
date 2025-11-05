@@ -1,10 +1,8 @@
 import { prisma } from "@/app/utils/db";
 import { EmptyState } from "../../../components/general/EmptyState";
-import { NewsArticleCard } from "../../../components/general/NewsArticleCard";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 import { WarnewsCard } from "@/components/general/WarnewsCard";
 
-// ✅ Define the Article type
 type Article = {
   id: string;
   createdAt: Date;
@@ -18,7 +16,7 @@ type Article = {
   newsPictureHeading: string;
   newsPictureCredit: string;
   newsLocation: string | null;
-  newsReporter: any; // Adjust if you have a proper type
+  newsReporter: any;
   newsArticleStatus: string;
 };
 
@@ -30,7 +28,7 @@ async function getAllWarnewsArticles(
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
-      where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME"  },
+      where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME" },
       take: pageSize,
       skip,
       select: {
@@ -51,8 +49,9 @@ async function getAllWarnewsArticles(
       },
       orderBy: { createdAt: "desc" },
     }),
+    // ✅ Fixed: Count only CRIME articles
     prisma.newsArticle.count({
-      where: { newsArticleStatus: "ACTIVE" },
+      where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME" },
     }),
   ]);
 
