@@ -28,7 +28,7 @@ async function getAllWarnewsArticles(
 
   const [data, totalCount] = await Promise.all([
     prisma.newsArticle.findMany({
-      where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME" },
+      where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
       take: pageSize,
       skip,
       select: {
@@ -51,7 +51,7 @@ async function getAllWarnewsArticles(
     }),
     // ✅ Fixed: Count only CRIME articles
     prisma.newsArticle.count({
-      where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME" },
+      where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
     }),
   ]);
 
