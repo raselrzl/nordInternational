@@ -34,7 +34,7 @@ export default async function LatestOpinions() {
   return (
     <section className="md:rounded-xs dark:bg-gray-600">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-2 bg-amber-800 px-4 md:rounded-xl py-1">
+      <div className="flex items-center justify-between mb-2 px-4 md:rounded-xl py-1">
         <h1 className="font-bold py-1 flex"> <Newspaper className="mr-4"/> OPINIONS</h1>
         <ChevronRight className="block md:hidden" />
       </div>
