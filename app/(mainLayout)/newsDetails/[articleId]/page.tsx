@@ -83,7 +83,7 @@ export async function generateMetadata({
   const description = toExcerpt("For details click the link...");
 
   const base =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://nord-international.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.globaleye.press";
   const pic = article.newsPicture ?? "/n2.png";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
