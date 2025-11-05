@@ -5,7 +5,6 @@ import { buttonVariants } from "../ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { auth } from "@/app/utils/auth";
 import { UserDropdown } from "./UserDropdown";
-import DropDownMenuList from "./dropDownMenuList";
 import { Loader2, User2 } from "lucide-react";
 import { Suspense } from "react";
 import { DeluxeOneAdvertise } from "../allAdvertisement/DeluxeOne";
@@ -17,7 +16,7 @@ export default async function Navbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center pl-2">
-        <div className="w-[100px] h-[50px] sm:w-[140px] sm:h-[60px] md:w-[160px] md:h-[80px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')] bg-cover bg-center" />
+        <div className="w-[120px] h-[50px] md:w-[160px] md:h-[80px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')] bg-cover bg-center" />
       </Link>
 
       <div className="hidden sm:block">
