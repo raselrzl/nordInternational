@@ -39,6 +39,11 @@ const Dashboard = async () => {
   return (
     <>
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Statistics</h1>
+
+      <p className="text-xl font-medium text-center text-orange-400 mb-6">
+            Total Route Hits by all users: {totalHits}
+          </p>
+          <ChartComponent routeHits={routeHits} />
       <div className="flex justify-center flex-col md:flex-row p-4 shadow-lg">
         <div className="w-full max-w-[600px] rounded-lg p-6">
           {/* Table displaying route hit counts */}
@@ -71,10 +76,6 @@ const Dashboard = async () => {
 
         {/* Chart Section */}
         <div className="p-4 w-full max-w-[1000px] sm:max-w-[800px] md:max-w-[900px]">
-          <p className="text-xl font-medium text-center text-orange-400 mb-6">
-            Total Route Hits by all users: {totalHits}
-          </p>
-          <ChartComponent routeHits={routeHits} />
           <Statistics />
         </div>
       </div>

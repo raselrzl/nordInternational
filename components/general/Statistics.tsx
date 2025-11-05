@@ -3,11 +3,15 @@ import { prisma } from "@/app/utils/db";
 import { notFound } from "next/navigation";
 
 // Utility function to fetch counts for various models
+// Utility function to fetch counts for various models, including draft advertisements
 async function getStatistics() {
   try {
     const totalUsers = await prisma.user.count();
     const totalNewsReporters = await prisma.newsReporter.count();
     const totalAdvertisements = await prisma.advertisement.count();
+    const totalDraftAdvertisements = await prisma.advertisement.count({
+      where: { advertiseStatus: "DRAFT" },
+    });
     const totalNewsArticles = await prisma.newsArticle.count();
     const totalOpinions = await prisma.opinion.count();
     const totalVideos = await prisma.videopost.count();
@@ -26,6 +30,7 @@ async function getStatistics() {
       totalUsers,
       totalNewsReporters,
       totalAdvertisements,
+      totalDraftAdvertisements, // added
       totalNewsArticles,
       totalOpinions,
       totalVideos,
@@ -39,6 +44,7 @@ async function getStatistics() {
     return null;
   }
 }
+
 
 // Server Component that will display the statistics
 const Statistics = async () => {
@@ -103,11 +109,17 @@ const Statistics = async () => {
             {stats.totalAdvertiseRequests}
           </p>
         </div>
+        {/* Total Draft Advertisements Card */}
+<div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
+  <h2 className="text-md font-semibold">Draft Advertisements</h2>
+  <p className="text-3xl font-bold mt-4 text-primary">{stats.totalDraftAdvertisements}</p>
+</div>
+
 
         {/* Total Sompandoks Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold ">
-             Sompandoks
+             Editor
           </h2>
           <p className="text-3xl font-bold mt-4 text-primary">{stats.totalSompandoks}</p>
         </div>
