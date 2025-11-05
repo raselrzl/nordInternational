@@ -19,10 +19,10 @@ export default async function NewsTicker() {
     : [{ id: "fallback", newsHeading: fallbackMessage }];
 
   return (
-    <div className="overflow-hidden bg-primary text-white font-bold py-1">
+    <div className="overflow-hidden bg-primary/50 text-black font-bold py-1">
       <div
         className="flex gap-10 whitespace-nowrap [will-change:transform] animate-ticker"
-        style={{ ["--ticker-speed" as any]: "20s" }}
+        style={{ ["--ticker-speed" as any]: "35s" }}
         aria-label="Latest headlines"
       >
         {itemsToShow.map((item) =>

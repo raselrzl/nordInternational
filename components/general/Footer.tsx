@@ -99,7 +99,7 @@ export default function Footer() {
               ads@globaleye.press
             </a>
             <Link href="/" className="flex items-center p-4">
-              <div className="w-[160px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/k111.png')] dark:bg-[url('/kkkk.png')] bg-cover bg-center" />
+              <div className="w-[200px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')] bg-cover bg-center" />
             </Link>
           </div>
           <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">
