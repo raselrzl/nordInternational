@@ -32,7 +32,7 @@ export async function UltimateOne() {
   return (
     <>
       {Advertise && Advertise.length > 0 ? (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-18 md:mt-4">
           {Advertise.map((ad) => (
             <Link
               href={`https://${ad.websiteLink}`}
@@ -55,7 +55,7 @@ export async function UltimateOne() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center mt-18 md:mt-4">
           <img
             src="/noad.png"
             alt="no ad. image"

@@ -100,7 +100,7 @@ export default async function AdvertisePage() {
           Contact us to book your ad or to inquire about pricing.
         </p>
 
-        <h4 className="text-sm md:text-lg font-semibold text-orange-600 mb-4">
+        <h4 className="text-[14px] font-semibold text-orange-600 mb-4">
           Or fill out the form below
         </h4>
 

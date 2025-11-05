@@ -203,15 +203,15 @@ export default async function CountryNews({
                   <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
                     <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
                       {lastFeaturedArticle.newsHeading}
-                      <span className="md:hidden sm:block">Details....</span>
+                      
                     </h2>
 
                     {isJson(lastFeaturedArticle.newsDetails) ? (
-                      <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
+                      <div className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
                         <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                       </div>
                     ) : (
-                      <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
+                      <p className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2">
                         {lastFeaturedArticle.newsDetails}
                       </p>
                     )}
@@ -236,7 +236,7 @@ export default async function CountryNews({
                       <img src={article.newsPicture} alt="picture" width={190} height={140} className="w-full h-full md:h-[150px] object-fit" />
                     </div>
                     <div className="pt-4">
-                      <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">{article.newsHeading}</h2>
+                      <h2 className="text-[15px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">{article.newsHeading}</h2>
                     </div>
                   </div>
                 </Link>
@@ -251,7 +251,7 @@ export default async function CountryNews({
           {/* More from Country with pagination */}
           <div className="mt-10 border-t pt-6">
             <div className="flex items-center justify-between bg-amber-700 px-4 rounded-md pb-1 mb-4">
-              <h2 className="flex items-center font-extrabold text-sm md:text-lg border-l-8 border-primary pl-2">More in {activeCountry.name}</h2>
+              <h2 className="flex items-center font-extrabold text-[14px] border-l-8 border-primary pl-2">More in {activeCountry.name}</h2>
               <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
             </div>
 
@@ -264,7 +264,7 @@ export default async function CountryNews({
                         <img src={article.newsPicture} alt={article.newsPictureHeading} width={56} height={60} className="h-[60px] w-full object-fill rounded-xl" />
                       </div>
                       <div className="col-span-2">
-                        <h1 className="text-md font-bold">{article.newsHeading}</h1>
+                        <h1 className="text-sm font-bold line-clamp-2">{article.newsHeading}</h1>
                         <p className="text-xs text-muted-foreground text-right font-bold italic pr-2">{formatRelativeTime(article.createdAt)}</p>
                       </div>
                     </Card>

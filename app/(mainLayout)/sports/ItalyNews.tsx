@@ -126,11 +126,11 @@ export default async function ItalyNews() {
                   {lastFeaturedArticle.newsHeading}
                 </h2>
                 {lastFeaturedArticle.newsDetails && isJson(lastFeaturedArticle.newsDetails) ? (
-                  <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-3 pl-2 md:pl-0">
+                  <div className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-3 pl-2 md:pl-0">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                   </div>
                 ) : (
-                  <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-3 pl-2 md:pl-0">
+                  <p className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-3 pl-2 md:pl-0">
                     {lastFeaturedArticle.newsDetails || ""}
                   </p>
                 )}
@@ -170,7 +170,7 @@ export default async function ItalyNews() {
                     />
                   </div>
                   <div className="pt-4">
-                    <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
+                    <h2 className="text-[15px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
                       {article.newsHeading}
                     </h2>
                   </div>

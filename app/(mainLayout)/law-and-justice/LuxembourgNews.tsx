@@ -103,15 +103,15 @@ export default async function LuxembourgNews() {
               <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
                 <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0">
                   {lastFeaturedArticle.newsHeading}
-                  <span className="md:hidden sm:block">Details....</span>
+                  
                 </h2>
 
                 {isJson(lastFeaturedArticle.newsDetails) ? (
-                  <div className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
+                  <div className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                   </div>
                 ) : (
-                  <p className="text-sm md:text-lg text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
+                  <p className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     {lastFeaturedArticle.newsDetails}
                   </p>
                 )}
@@ -150,7 +150,7 @@ export default async function LuxembourgNews() {
                     />
                   </div>
                   <div className="pt-4">
-                    <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
+                    <h2 className="text-[15px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
                       {article.newsHeading}
                     </h2>
                   </div>
