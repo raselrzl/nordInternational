@@ -52,27 +52,27 @@ export default function Footer() {
             </h3>
             <p className="mb-1 text-sm text-muted-foreground">
               <a
-                href="mailto:editor@nordinternational.com"
+                href="mailto:editor@globaleye.press"
                 className="text-orange-600 hover:underline"
               >
-                editor@nordinternational.com
+                editor@globaleye.press
               </a>
               <br />
               <a
-                href="mailto:publisher@nordinternational.com"
+                href="mailto:publisher@globaleye.press"
                 className="text-orange-600 hover:underline"
               >
-                contact@nordinternational.com
+                contact@globaleye.press
               </a>
             </p>
 
             <div>
               <p>Smedjegatan 35, 60219, Norrköping, Sweden</p>
               <a
-                href="mailto:info@nordinternational.com"
+                href="mailto:info@globaleye.press"
                 className="text-primary hover:underline"
               >
-                info@nordinternational.com
+                info@globaleye.press
               </a>
             </div>
           </div>
@@ -93,10 +93,10 @@ export default function Footer() {
 
             <p> or Email us for advertisement</p>
             <a
-              href="mailto:ads@nordinternational.com"
+              href="mailto:ads@globaleye.press"
               className="text-primary hover:underline"
             >
-              ads@nordinternational.com
+              ads@globaleye.press
             </a>
             <Link href="/" className="flex items-center p-4">
               <div className="w-[160px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/k111.png')] dark:bg-[url('/kkkk.png')] bg-cover bg-center" />

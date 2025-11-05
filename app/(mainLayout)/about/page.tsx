@@ -21,7 +21,7 @@ export default async function About() {
 
       <p className="mb-4 leading-relaxed">
         We welcome readers’ feedback, suggestions, and criticisms. You can also send us a direct message through our{" "}
-        <a href="mailto:contact@nordinternational.com" className="text-orange-600 hover:underline">
+        <a href="mailto:contact@globaleye.press" className="text-orange-600 hover:underline">
           contact
         </a>{" "}
         page if you wish.

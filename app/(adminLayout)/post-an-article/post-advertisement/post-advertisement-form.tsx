@@ -323,7 +323,7 @@ export function CreateAdvertisementForm() {
 
                       <FormControl>
                         <Input
-                          placeholder="nordinternational.com"
+                          placeholder="globaleye.press"
                           {...field}
                           className="placeholder:text-sm"
                         />

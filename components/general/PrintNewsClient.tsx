@@ -140,7 +140,7 @@ export function PrintNewsDetailsClient({
               </span> */}
             </div>
             <a
-              href="https://nordinternational.com"
+              href="https://globaleye.press"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -150,7 +150,7 @@ export function PrintNewsDetailsClient({
                 paddingLeft:"9px"
               }}
             >
-              nordinternational.com
+              globaleye.press
             </a>
           </div>
 
@@ -284,7 +284,7 @@ export function PrintNewsDetailsClient({
           </section>
         )}
          <a
-              href="https://nordinternational.com"
+              href="https://globaleye.press"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -293,7 +293,7 @@ export function PrintNewsDetailsClient({
                 textDecoration: "underline",
               }}
             >
-             Source: nordinternational.com
+             Source: globaleye.press
             </a>
       </div>
     </>
