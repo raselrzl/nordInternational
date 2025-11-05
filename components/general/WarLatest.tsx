@@ -12,10 +12,9 @@ type Article = {
   createdAt: Date;
 };
 
-// ✅ Fetch 11 latest CRIME news
-async function getLatestCrimeNews(): Promise<Article[]> {
+async function getLatestWarNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsCategory: "CRIME" },
+    where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
     orderBy: { createdAt: "desc" },
     take: 11,
     select: {
@@ -31,15 +30,13 @@ async function getLatestCrimeNews(): Promise<Article[]> {
 }
 
 export default async function WarLatest() {
-  const articles = await getLatestCrimeNews();
+  const articles = await getLatestWarNews();
 
   if (articles.length === 0) return null;
 
-  // ✅ Middle one (latest) = featured
   const featured = articles[0];
   const others = articles.slice(1);
 
-  // ✅ Exactly 5 on left and 5 on right (if available)
   const leftArticles = others.slice(0, 5);
   const rightArticles = others.slice(5, 10);
 

@@ -20,11 +20,9 @@ import { Binodon, ScienceNews, ScienceNewsHeadPost } from "@/components/general/
 import { CrimeAndPopularTab } from "@/components/general/CrimeAndPopularTab";
 import LatestOpinions from "@/components/general/LatestOpinions";
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
-import Image from "next/image";
 import { aauth } from "../actions";
-import PublicSourceNews from "@/components/general/PublicSourceNewsLiveUpdate";
 import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
-import WarLatest from "./war/WarLatest";
+import WarLatest from "@/components/general/WarLatest";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
