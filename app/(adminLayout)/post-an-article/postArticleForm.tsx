@@ -148,7 +148,7 @@ export function CreateNewsArticleForm({
                         ) : (
                           <Textarea
                             placeholder="Example: On Tuesday morning in the Norrköping area..."
-                            className="min-h-[160px] md:min-h-[350px] placeholder:text-xs"
+                            className="min-h-[160px] md:min-h-[350px] placeholder:text-xs overflow-y-auto"
                             {...field}
                           />
                         )}
