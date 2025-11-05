@@ -71,7 +71,7 @@ export default async function AllWarNewsArticle({
   return (
     <>
       {articles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+        <div className="grid grid-cols-1 gap-6 px-2">
           {articles.map((article: Article, index) => (
             <WarnewsCard article={article} key={index} />
           ))}

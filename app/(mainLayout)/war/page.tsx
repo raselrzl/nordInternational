@@ -21,7 +21,7 @@ export default async function War({ searchParams }: SearchParamsProps) {
           <List className="h-5 w-5 mr-2" />
           WAR update
         </div>
-      <div className="grid grid-cols-1">
+      <div className="grid grid-cols-1 max-w-3xl mx-auto">
         
         <Suspense key={currentPage} fallback={<LoadingSpinner />}>
           <AllWarNewsArticle currentPage={currentPage} />
