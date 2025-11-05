@@ -47,7 +47,7 @@ export default async function WarLatest() {
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
         <h2 className="text-xl font-extrabold mb-4 flex items-center">
-          WAR Updates
+          WAR Update
         </h2>
         <Link href="/war" className="text-sm md:text-lg font-bold hover:underline">View All</Link>
       </div>
