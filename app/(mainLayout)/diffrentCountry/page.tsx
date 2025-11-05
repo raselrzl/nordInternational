@@ -12,6 +12,7 @@ import { PaginationComponent } from "@/components/general/PaginationComponent";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { formatRelativeTime } from "@/app/utils/formatRelativeTime";
+import { trackRoute } from "@/app/utils/routeTracker";
 
 // ✅ Article type matching Prisma selection
 type Article = {
@@ -156,6 +157,9 @@ export default async function CountryNews({
     flag: "/flags/default.png",
   };
 
+  await trackRoute(country);
+
+  console.log(country)
   return (
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
