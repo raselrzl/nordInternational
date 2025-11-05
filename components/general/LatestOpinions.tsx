@@ -6,7 +6,7 @@ import { ChevronRight, Newspaper } from "lucide-react";
 async function getLatestOpinions() {
   const articles = await prisma.newsArticle.findMany({
     where: { newsCategory: "OPINION" },
-    take: 3,
+    take: 4,
     orderBy: { createdAt: "desc" },
     select: {
       id: true,
@@ -45,9 +45,9 @@ export default async function LatestOpinions() {
           <Link
             key={item.id}
             href={`/newsDetails/${item.id}`}
-            className="block relative border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[120px] shadow-sm hover:shadow-md hover:border-primary/70 transition-all duration-300"
+            className="block relative border-l-4 border-primary pl-4 bg-accent-foreground/5 p-2 md:p-4 rounded-3xl min-h-[120px] shadow-sm hover:shadow-md hover:border-primary/70 transition-all duration-300"
           >
-            <p className="italic mb-10 text-justify">“{item.quotes[0].text}”</p>
+            <p className="italic mb-7 md:mb-10  text-[13px] text-justify">“{item.quotes[0].text}”</p>
             <div className="absolute bottom-3 right-4 flex items-center gap-3">
               {item.newsPicture && (
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-primary">
@@ -60,7 +60,7 @@ export default async function LatestOpinions() {
                   />
                 </div>
               )}
-              <p className="text-sm text-accent-foreground/80 font-medium">
+              <p className="text-xs text-accent-foreground/80 font-medium">
                 — {item.quotes[0].speakerInfo}
               </p>
             </div>
@@ -76,7 +76,7 @@ export default async function LatestOpinions() {
             href={`/newsDetails/${item.id}`}
             className="flex-shrink-0 w-80 snap-center relative border-l-4 border-primary pl-4 bg-accent-foreground/5 p-4 rounded-3xl min-h-[140px] shadow-sm hover:shadow-md hover:border-primary/70 transition-all duration-300"
           >
-            <p className="italic mb-10 text-justify text-gray-800">“{item.quotes[0].text}”</p>
+            <p className="italic mb-8 text-sm text-justify text-gray-800">“{item.quotes[0].text}”</p>
             <div className="absolute bottom-3 right-4 flex items-center gap-3">
               {item.newsPicture && (
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-primary">
@@ -89,7 +89,7 @@ export default async function LatestOpinions() {
                   />
                 </div>
               )}
-              <p className="text-sm text-accent-foreground/80 font-medium">
+              <p className="text-xs text-accent-foreground/80 font-medium">
                 — {item.quotes[0].speakerInfo}
               </p>
             </div>

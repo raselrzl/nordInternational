@@ -9,31 +9,31 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-4 mb-2 py-2 border-2 uppercase">
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
           >
             Global Eye
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
           >
             Privacy Plicy
           </Link>
           <Link
             href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
           >
             Terms
           </Link>
           <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
           >
             Comment Policy
           </Link>
           <Link
             href="/about/advertise"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
+            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
           >
             Advertisement
           </Link>
@@ -44,10 +44,10 @@ export default function Footer() {
 
         <div className="md:grid md:grid-cols-3 mt-4 pb-4">
           <div>
-            <h1 className="text-2xl font-bold mt-4 pb-4">
+            <h1 className="text-lg font-bold mt-4 pb-4">
               Publication and Communication
             </h1>
-            <h3 className="font-bold text-lg">
+            <h3 className="font-bold text-md">
               Editor & Publisher: Global Eye
             </h3>
            {/*  <p className="mb-1 text-sm text-muted-foreground">
@@ -66,7 +66,7 @@ export default function Footer() {
               </a>
             </p> */}
 
-            <div>
+            <div className="text-sm ">
               <p>Norrköping, Sweden</p>
               <a
                 href="mailto:contact@globaleye.press"
@@ -78,9 +78,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold mt-4">Advertisement</h1>
+            <h1 className="text-lg font-bold mt-4">Advertisement</h1>
 
-            <div className="max-w-2xl mx-auto px-4 py-4 text-foreground text-center">
+            <div className="max-w-2xl text-sm mx-auto px-4 py-4 text-foreground text-center">
               <p className="mb-4 inline">Fill up the </p>
               <a
                 href="/about/advertise#advertiseForm"
@@ -91,15 +91,15 @@ export default function Footer() {
               </a>
             </div>
 
-            <p> or Email us for advertisement</p>
+            <p className="text-sm"> or Email us for advertisement</p>
             <a
               href="mailto:contact@globaleye.press"
-              className="text-primary hover:underline"
+              className="text-primary text-sm hover:underline"
             >
               contact@globaleye.press
             </a>
             <Link href="/" className="flex items-center p-4">
-              <div className="w-[200px] h-[100px] md:w-[200px] md:h-[100px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')] bg-cover bg-center" />
+              <div className="w-[200px] h-[70px] md:w-[200px] md:h-[70px] bg-[url('/gw1.png')] dark:bg-[url('/gb1.png')]  bg-center" />
             </Link>
           </div>
           <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">

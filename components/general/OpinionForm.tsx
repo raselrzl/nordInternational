@@ -88,7 +88,7 @@ const router = useRouter();
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel className='text-xs'>Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your name" {...field} className="text-xs" />
                 </FormControl>
@@ -102,7 +102,7 @@ const router = useRouter();
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className='text-xs'>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your email" {...field} className="text-xs" />
                 </FormControl>
@@ -116,7 +116,7 @@ const router = useRouter();
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone Number</FormLabel>
+                <FormLabel className='text-xs'>Phone Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter phone number" {...field} className="text-xs" />
                 </FormControl>
@@ -130,7 +130,7 @@ const router = useRouter();
             name="opinion"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Complaint</FormLabel>
+                <FormLabel className='text-xs'>Complaint</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your complaint here..."

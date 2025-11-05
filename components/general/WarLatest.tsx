@@ -46,10 +46,10 @@ export default async function WarLatest() {
         <h2 className="text-xl font-extrabold mb-4 flex items-center">
           WAR and Crisis
         </h2>
-        <Link href="/war" className="text-sm md:text-lg font-bold hover:underline">View All</Link>
+        <Link href="/war" className="text-sm font-bold hover:underline">View All</Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* ✅ Left side - 5 small cards */}
         <div className="flex flex-col gap-4">
           {leftArticles.map((article) => (
@@ -63,7 +63,7 @@ export default async function WarLatest() {
                 alt={article.newsPictureHeading}
                 className="w-24 h-20 object-cover rounded-md"
               />
-              <p className="font-semibold text-md group-hover:underline line-clamp-3">
+              <p className="font-semibold text-sm group-hover:underline line-clamp-3">
                 {article.newsHeading}
               </p>
             </Link>
@@ -71,7 +71,7 @@ export default async function WarLatest() {
         </div>
 
         {/* ✅ Middle featured article */}
-        <div className="overflow-hidden md:border-l md:border-r md:px-2">
+        <div className="overflow-hidden md:border-l md:border-r md:px-4">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -81,7 +81,7 @@ export default async function WarLatest() {
           </Link>
           <div className="p-2">
             <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-lg md:text-xl font-bold hover:underline">
+              <h3 className="text-xl md:text-xl font-bold hover:underline">
                 {featured.newsHeading}
               </h3>
             </Link>

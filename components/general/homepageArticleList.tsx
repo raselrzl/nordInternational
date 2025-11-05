@@ -551,7 +551,7 @@ export async function ScienceNews() {
                 </div>
                 {/* Text: Half width */}
                 <div className="w-1/2 flex items-center">
-                  <h3 className="text-lg font-semibold">{item.newsHeading}</h3>
+                  <h3 className="text-sm font-semibold">{item.newsHeading}</h3>
                 </div>
               </div>
             </div>
@@ -693,7 +693,7 @@ export async function Binodon() {
                 </div>
 
                 <div className="pt-4">
-                  <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-2">
+                  <h2 className="text-[14px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-2">
                     {article.newsHeading}
                   </h2>
                 </div>
@@ -767,7 +767,7 @@ export async function SorboseshNews() {
                   <span className="text-lg font-bold text-primary">
                     {convertToBanglaNumber(index + 1)}.
                   </span>
-                  <h2 className="text-lg text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
                 </div>
@@ -841,7 +841,7 @@ export async function JonoprioNews() {
                   <span className="text-lg font-bold text-primary">
                     {convertToBanglaNumber(index + 1)}.
                   </span>
-                  <h2 className="text-lg text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
                 </div>

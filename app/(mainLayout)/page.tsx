@@ -137,7 +137,7 @@ export default async function Home() {
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
           <div className="flex flex-row gap-2 text-center items-center justify-center">
             <Clock />
-            <h1 className="text-xl font-bold pt-2 uppercase">USA Highlights</h1>
+            <h1 className="text-xl font-bold pt-2 ">USA Highlights</h1>
           </div>
 
           {latestUSANews.length > 0 ? (
@@ -152,7 +152,7 @@ export default async function Home() {
                     />
                   </div>
                   <div className="col-span-2">
-                    <h3 className="text-md font-semibold ml-2 line-clamp-3">
+                    <h3 className="text-sm md:text-md font-semibold ml-2 line-clamp-3">
                       {item.newsHeading}
                     </h3>
                   </div>
@@ -190,7 +190,7 @@ export default async function Home() {
             <>
               <Link href={`/newsDetails/${InternationalAll[0].id}`} className="block">
                 <div className="max-w-sm w-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-md border mt-2 p-2 items-center">
-                  <h2 className="text-lg font-semibold text-center">{InternationalAll[0].newsHeading}</h2>
+                  <h2 className="text-xl font-semibold text-center">{InternationalAll[0].newsHeading}</h2>
                   <img
                     src={InternationalAll[0].newsPicture}
                     alt={InternationalAll[0].newsHeading}
@@ -199,18 +199,18 @@ export default async function Home() {
                 </div>
               </Link>
 
-              <div className="bg-primary/55 dark:bg-gray-700 mt-6 rounded-xl border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
+              <div className="bg-primary/55 dark:bg-gray-700 mt-6 border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
                 <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
                   <Flame className="text-red-600 dark:text-amber-400 w-6 h-6" />
                   <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
                     Top News
                   </h1>
                 </div>
-                <div className="relative h-64 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
+                <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
                   <div className="space-y-3">
                     {InternationalAll.slice(1).map((article: Article) => (
                       <Link key={article.id} href={`/newsDetails/${article.id}`}>
-                        <div className="rounded-lg bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
+                        <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
                           <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
                             {article.newsHeading}
                           </h2>
@@ -283,7 +283,7 @@ export default async function Home() {
                         />
                       </div>
                       <div className="pt-4">
-                        <h2 className="text-[17px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
+                        <h2 className="text-[14px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
                           {article.newsHeading}
                         </h2>
                       </div>

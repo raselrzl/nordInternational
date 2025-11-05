@@ -23,7 +23,7 @@ const SocialLinks = () => {
         <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-green-600" />
       </a>
       <a
-        href="https://www.instagram.com"
+        href="https://www.instagram.com/globaleyepress"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"

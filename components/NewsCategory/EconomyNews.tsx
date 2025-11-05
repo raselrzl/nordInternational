@@ -55,7 +55,7 @@ export async function EconomyNews() {
                   <span className="text-lg font-bold text-primary">
                     {convertToBanglaNumber(index + 1)}.
                   </span>
-                  <h2 className="text-lg text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
                 </div>
