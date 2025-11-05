@@ -135,6 +135,7 @@ enum newsCategory {
   LAW_AND_JUSTICE
   ENVIRONMENT
   SCIENCE
+  WAR
 }
 
 model Advertisement {

@@ -24,6 +24,7 @@ import Image from "next/image";
 import { aauth } from "../actions";
 import PublicSourceNews from "@/components/general/PublicSourceNewsLiveUpdate";
 import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
+import WarLatest from "./war/WarLatest";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -305,7 +306,8 @@ export default async function Home() {
       </div>
 
       <div className="border-y-2 my-2 border-primary"></div>
-
+        <WarLatest />
+        <div className="border-y-2 my-2 border-primary"></div>
       {/* Videos Section */}
       <Videos />
 

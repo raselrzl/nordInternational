@@ -16,4 +16,6 @@ export const links = [
   { id: "15", href: "/law-and-justice", label: "Law & Justice" },
   { id: "16", href: "/environment", label: "Environment" },
   { id: "17", href: "/science", label: "Science" },
+  { id: "18", href: "/war", label: "War" },
+
 ];
