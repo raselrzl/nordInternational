@@ -9,31 +9,31 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-4 mb-2 py-2 border-2 uppercase">
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
             Global Eye
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
             Privacy Plicy
           </Link>
           <Link
             href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
             Terms
           </Link>
           <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
             Comment Policy
           </Link>
           <Link
             href="/about/advertise"
-            className="hover:underline font-semibold text-foreground/90 text-md md:text-lg px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
             Advertisement
           </Link>
