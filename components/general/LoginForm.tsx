@@ -24,7 +24,7 @@ export default async function LoginForm() {
         </Link>
         <CardHeader className="text-center ">
           <CardTitle className="text-xl">
-            <span className="text-red-800">Welcome to</span>Nord International
+            <span className="text-red-800">Welcome to</span>Global Eye
           </CardTitle>
           <CardDescription className="text-xs">
             Log in with Google or create an account.

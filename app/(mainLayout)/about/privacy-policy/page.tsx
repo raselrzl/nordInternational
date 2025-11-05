@@ -14,7 +14,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <p className="mb-4 text-xs md:text-sm">
-        <strong>Nord International</strong> highly values your privacy. This
+        <strong>Global Eye</strong> highly values your privacy. This
         policy explains how we collect, use, and store your information.
       </p>
 
@@ -56,7 +56,7 @@ export default async function PrivacyPolicyPage() {
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         Our website may contain links to third-party websites. Their privacy
-        policies are beyond Nord International's control.
+        policies are beyond Global Eye's control.
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
@@ -92,7 +92,7 @@ export default async function PrivacyPolicyPage() {
       </ul>
 
       <p className="text-xs md:text-sm italic">
-        Thank you for being with Nord International.
+        Thank you for being with Global Eye.
       </p>
     </div>
   );

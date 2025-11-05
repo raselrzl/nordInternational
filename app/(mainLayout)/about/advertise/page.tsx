@@ -20,7 +20,7 @@ export default async function AdvertisePage() {
       <div className="max-w-3xl mx-auto bg-background rounded-lg shadow-md text-foreground font-[Noto_Sans_Bengali] p-4">
         {/* Header */}
         <h2 className="text-xl md:text-2xl font-bold mb-4 text-orange-600">
-          Nord International
+          Global Eye
         </h2>
 
         <p className="mb-6 text-xs md:text-sm">

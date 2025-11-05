@@ -11,7 +11,7 @@ export default function Footer() {
             href="/about"
             className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2"
           >
-            Nord International
+            Global Eye
           </Link>
           <Link
             href="/about/privacy-policy"

@@ -97,7 +97,7 @@ export async function generateMetadata({
       url: `/newsDetails/${article.id}`,
       title,
       description,
-      siteName: "Nord International",
+      siteName: "Global Eye",
       images: [{ url: ogImage, alt: title }],
     },
   };

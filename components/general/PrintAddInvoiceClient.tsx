@@ -154,7 +154,7 @@ export default function Invoice({ ad }: { ad: Ad }) {
             <h4 style={{ fontWeight: 600, marginBottom: 6 }}>Bank Information</h4>
             <p><strong>Bank Name:</strong> Svenska Handelsbanken</p>
             <p><strong>Account Number:</strong> 987 654 321</p>
-            <p><strong>Account Name:</strong> Nord International</p>
+            <p><strong>Account Name:</strong> Global Eye</p>
             <p><strong>Branch:</strong> Stockholm City</p>
             <p><strong>SWIFT:</strong> HANDSESS</p>
           </div>

@@ -5,10 +5,10 @@ export default async function About() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-foreground text-justify">
       <h1 className="text-3xl font-bold mb-4 text-center ">
-        About Nord International
+        About Global Eye
       </h1>
       <p className="mb-4 leading-relaxed">
-        <strong>Nord International</strong> is an independent and neutral online news platform that delivers important daily news, analysis, opinions, and fact-based reports to its readers. Our goal is to provide truthful news coverage and contribute to building an informed society.
+        <strong>Global Eye</strong> is an independent and neutral online news platform that delivers important daily news, analysis, opinions, and fact-based reports to its readers. Our goal is to provide truthful news coverage and contribute to building an informed society.
       </p>
 
       <p className="mb-4 leading-relaxed">
@@ -16,7 +16,7 @@ export default async function About() {
       </p>
 
       <p className="mb-4 leading-relaxed">
-        Nord International has no place for false or deliberately misleading information. Our journalists and reporters place the highest priority on objectivity and neutrality.
+        Global Eye has no place for false or deliberately misleading information. Our journalists and reporters place the highest priority on objectivity and neutrality.
       </p>
 
       <p className="mb-4 leading-relaxed">
@@ -28,7 +28,7 @@ export default async function About() {
       </p>
 
       <p className="font-medium mt-6 text-center">
-        Stay aware, stay informed with Nord International.
+        Stay aware, stay informed with Global Eye.
       </p>
     </div>
   );

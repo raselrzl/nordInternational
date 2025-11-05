@@ -12,7 +12,7 @@ export default async function TermsPage() {
       </p>
 
       <p className="mb-4 text-base">
-        By accessing or using the Nord International website, you agree to comply with these terms and conditions. Please read them carefully.
+        By accessing or using the Global Eye website, you agree to comply with these terms and conditions. Please read them carefully.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">1. Use of Service</h2>
@@ -22,7 +22,7 @@ export default async function TermsPage() {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">2. Content Ownership</h2>
       <p className="mb-4 text-base">
-        All texts, images, videos, and other materials published on the website are the property of Nord International or licensed to it. Copying, publishing, or distributing content beyond personal use is prohibited.
+        All texts, images, videos, and other materials published on the website are the property of Global Eye or licensed to it. Copying, publishing, or distributing content beyond personal use is prohibited.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">3. User Conduct</h2>
@@ -39,12 +39,12 @@ export default async function TermsPage() {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">5. External Links</h2>
       <p className="mb-4 text-base">
-        Links to third-party sites on our website are not under Nord International’s control. We are not responsible for the content or security of those sites.
+        Links to third-party sites on our website are not under Global Eye’s control. We are not responsible for the content or security of those sites.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">6. Limitation of Liability</h2>
       <p className="mb-4 text-base">
-        We strive to keep all information accurate but Nord International is not liable for any errors, inaccuracies, or damages arising from the use of this website.
+        We strive to keep all information accurate but Global Eye is not liable for any errors, inaccuracies, or damages arising from the use of this website.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">7. Changes</h2>
@@ -61,7 +61,7 @@ export default async function TermsPage() {
       </ul>
 
       <p className="text-base italic">
-        Thank you for being a member of the Nord International family.
+        Thank you for being a member of the Global Eye family.
       </p>
     </div>
   );

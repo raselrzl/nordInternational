@@ -10,7 +10,7 @@ export default async function CommentPolicyPage() {
       </h1>
 
       <p className="mb-4 text-xs md:text-sm">
-        <strong>Nord International</strong> respects readers' opinions and
+        <strong>Global Eye</strong> respects readers' opinions and
         freedom of expression. However, to ensure a constructive and safe online
         environment, we follow some specific guidelines.
       </p>
@@ -46,7 +46,7 @@ export default async function CommentPolicyPage() {
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         All comments go through a moderation process.{" "}
-        <strong>Nord International</strong> reserves the right to delete or
+        <strong>Global Eye</strong> reserves the right to delete or
         reject inappropriate comments.
       </p>
 
@@ -55,7 +55,7 @@ export default async function CommentPolicyPage() {
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         Comments reflect the opinions of the readers themselves.{" "}
-        <strong>Nord International</strong> is not responsible for any comment
+        <strong>Global Eye</strong> is not responsible for any comment
         content.
       </p>
 

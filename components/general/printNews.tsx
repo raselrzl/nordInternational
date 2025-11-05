@@ -169,7 +169,7 @@ export default function PrintNews({
                     )}
                   </>
                 ) : (
-                  <p className="text-sm font-semibold">Nord International Correspondent</p>
+                  <p className="text-sm font-semibold">Global Eye Correspondent</p>
                 )}
               </div>
             </div>
