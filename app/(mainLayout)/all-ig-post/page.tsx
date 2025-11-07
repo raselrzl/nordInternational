@@ -103,7 +103,7 @@ export default function InstagramAllPostsClient() {
 
       {!hasMore && posts.length > 0 && (
         <p className="text-center mt-6 text-gray-500">
-          No more posts to show.
+          The End
         </p>
       )}
 
