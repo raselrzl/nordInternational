@@ -16,13 +16,18 @@ import { PremiumTwoAdvertise } from "@/components/allAdvertisement/PremiumTwo";
 import { PremiarOne } from "@/components/allAdvertisement/PremiarOne";
 import SocialLinks from "@/components/general/socialLink";
 import { Contact } from "@/components/general/Contact";
-import { Binodon, ScienceNews, ScienceNewsHeadPost } from "@/components/general/homepageArticleList";
+import {
+  Binodon,
+  ScienceNews,
+  ScienceNewsHeadPost,
+} from "@/components/general/homepageArticleList";
 import { CrimeAndPopularTab } from "@/components/general/CrimeAndPopularTab";
 import LatestOpinions from "@/components/general/LatestOpinions";
 import PopupOnViewServer from "@/components/PopupAd/PopupOnViewServer";
 import { aauth } from "../actions";
 import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
 import WarLatest from "@/components/general/WarLatest";
+import InstagramPosts from "@/components/instagram/InstagramPosts";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -53,86 +58,90 @@ async function getData(): Promise<{
   latestUSANews: Article[];
   InternationalAll: Article[];
 }> {
-  const [lastFeaturedArticle, latestUSANews, InternationalAll] = await Promise.all([
-    prisma.newsArticle.findMany({
-      where: { newsArticleStatus: "ACTIVE", isFeatured: true },
-      select: {
-        id: true,
-        createdAt: true,
-        isFeatured: true,
-        newsCategory: true,
-        newsDetails: true,
-        newsHeading: true,
-        newsPicture: true,
-        quotes: { select: { speakerInfo: true, text: true } },
-        newsResource: true,
-        newsPictureHeading: true,
-        newsPictureCredit: true,
-        newsLocation: true,
-        newsReporter: true,
-        newsArticleStatus: true,
-      },
-      orderBy: { createdAt: "desc" },
-      take: 10,
-    }),
-    prisma.newsArticle.findMany({
-      where: { newsLocation: "Usa" },
-      select: {
-        id: true,
-        createdAt: true,
-        isFeatured: true,
-        newsCategory: true,
-        newsDetails: true,
-        newsHeading: true,
-        newsPicture: true,
-        quotes: { select: { speakerInfo: true, text: true } },
-        newsResource: true,
-        newsPictureHeading: true,
-        newsPictureCredit: true,
-        newsLocation: true,
-        newsReporter: true,
-        newsArticleStatus: true,
-      },
-      orderBy: { createdAt: "desc" },
-      take: 7,
-    }),
-    prisma.newsArticle.findMany({
-      where: { newsCategory: "INTERNATIONAL" },
-      select: {
-        id: true,
-        createdAt: true,
-        isFeatured: true,
-        newsCategory: true,
-        newsDetails: true,
-        newsHeading: true,
-        newsPicture: true,
-        quotes: { select: { speakerInfo: true, text: true } },
-        newsResource: true,
-        newsPictureHeading: true,
-        newsPictureCredit: true,
-        newsLocation: true,
-        newsReporter: true,
-        newsArticleStatus: true,
-      },
-      orderBy: { createdAt: "desc" },
-      take: 10,
-    }),
-  ]);
+  const [lastFeaturedArticle, latestUSANews, InternationalAll] =
+    await Promise.all([
+      prisma.newsArticle.findMany({
+        where: { newsArticleStatus: "ACTIVE", isFeatured: true },
+        select: {
+          id: true,
+          createdAt: true,
+          isFeatured: true,
+          newsCategory: true,
+          newsDetails: true,
+          newsHeading: true,
+          newsPicture: true,
+          quotes: { select: { speakerInfo: true, text: true } },
+          newsResource: true,
+          newsPictureHeading: true,
+          newsPictureCredit: true,
+          newsLocation: true,
+          newsReporter: true,
+          newsArticleStatus: true,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+      }),
+      prisma.newsArticle.findMany({
+        where: { newsLocation: "Usa" },
+        select: {
+          id: true,
+          createdAt: true,
+          isFeatured: true,
+          newsCategory: true,
+          newsDetails: true,
+          newsHeading: true,
+          newsPicture: true,
+          quotes: { select: { speakerInfo: true, text: true } },
+          newsResource: true,
+          newsPictureHeading: true,
+          newsPictureCredit: true,
+          newsLocation: true,
+          newsReporter: true,
+          newsArticleStatus: true,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 7,
+      }),
+      prisma.newsArticle.findMany({
+        where: { newsCategory: "INTERNATIONAL" },
+        select: {
+          id: true,
+          createdAt: true,
+          isFeatured: true,
+          newsCategory: true,
+          newsDetails: true,
+          newsHeading: true,
+          newsPicture: true,
+          quotes: { select: { speakerInfo: true, text: true } },
+          newsResource: true,
+          newsPictureHeading: true,
+          newsPictureCredit: true,
+          newsLocation: true,
+          newsReporter: true,
+          newsArticleStatus: true,
+        },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+      }),
+    ]);
 
   return { lastFeaturedArticle, latestUSANews, InternationalAll };
 }
 
 // ---------------------- COMPONENT ----------------------
 export default async function Home() {
-  const { lastFeaturedArticle, latestUSANews, InternationalAll } = await getData();
+  const { lastFeaturedArticle, latestUSANews, InternationalAll } =
+    await getData();
   await trackRoute("Home");
   const session = await aauth();
 
   return (
     <>
-   <div className="bg-red-50 dark:bg-black mb-2"> <LiveUpdate /> </div>
+      <div className="bg-red-50 dark:bg-black mb-2">
+        {" "}
+        <LiveUpdate />{" "}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
-
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
           <div className="flex flex-row gap-2 text-center items-center justify-center">
@@ -174,7 +183,8 @@ export default async function Home() {
 
           <div className="mt-10 text-left flex-col hidden sm:block">
             <p className="text-sm font-semibold text-justify">
-              Follow our social media accounts for the latest updates and exclusive content.
+              Follow our social media accounts for the latest updates and
+              exclusive content.
             </p>
             <SocialLinks />
           </div>
@@ -188,9 +198,14 @@ export default async function Home() {
 
           {InternationalAll.length > 0 ? (
             <>
-              <Link href={`/newsDetails/${InternationalAll[0].id}`} className="block">
+              <Link
+                href={`/newsDetails/${InternationalAll[0].id}`}
+                className="block"
+              >
                 <div className="max-w-sm w-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-md border mt-2 p-2 items-center">
-                  <h2 className="text-xl font-semibold text-center">{InternationalAll[0].newsHeading}</h2>
+                  <h2 className="text-xl font-semibold text-center">
+                    {InternationalAll[0].newsHeading}
+                  </h2>
                   <img
                     src={InternationalAll[0].newsPicture}
                     alt={InternationalAll[0].newsHeading}
@@ -209,7 +224,10 @@ export default async function Home() {
                 <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
                   <div className="space-y-3">
                     {InternationalAll.slice(1).map((article: Article) => (
-                      <Link key={article.id} href={`/newsDetails/${article.id}`}>
+                      <Link
+                        key={article.id}
+                        href={`/newsDetails/${article.id}`}
+                      >
                         <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
                           <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
                             {article.newsHeading}
@@ -255,16 +273,14 @@ export default async function Home() {
                     </h2>
                     {isJson(lastFeaturedArticle[0].newsDetails) ? (
                       <div className="text-sm md:text-md text-accent-foreground/80 mb-8 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
-                          <JsonToHtml
-                            json={JSON.parse(
-                              lastFeaturedArticle[0].newsDetails
-                            )}
-                          />
-                        </div>
-                      ) : (
-                        <p className="text-sm md:text-md text-accent-foreground/80 mb-8 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
-                         {lastFeaturedArticle[0].newsDetails}
-                        </p>
+                        <JsonToHtml
+                          json={JSON.parse(lastFeaturedArticle[0].newsDetails)}
+                        />
+                      </div>
+                    ) : (
+                      <p className="text-sm md:text-md text-accent-foreground/80 mb-8 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
+                        {lastFeaturedArticle[0].newsDetails}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -304,11 +320,12 @@ export default async function Home() {
       </div>
 
       <div className="border-y-2 my-2 border-primary"></div>
-        <WarLatest />
-        <div className="border-y-2 my-2 border-primary"></div>
+      <WarLatest />
+      <div className="border-y-2 my-2 border-primary"></div>
       {/* Videos Section */}
-      <Videos />
+      {/*   <Videos /> */}
 
+      <InstagramPosts />
       {/* Tab Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">

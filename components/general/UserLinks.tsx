@@ -54,6 +54,12 @@ export function UserLinks() {
           Post a YouTube Video
         </Button>
       </Link>
+
+       <Link href="/post-an-article/post-an-instagram">
+        <Button variant="outline" className="flex items-center gap-2 mb-2">
+          Post an Instagram Link
+        </Button>
+      </Link>
       <Link href="/post-an-article/post-a-video/allvideos">
         <Button variant="outline" className="flex items-center gap-2 mb-2">
           Manage All Videos
