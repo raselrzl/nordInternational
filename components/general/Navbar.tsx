@@ -16,7 +16,7 @@ export default async function Navbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center pl-2">
-        <div className="w-[130px] h-[36px] md:w-[160px] md:h-[50px] bg-[url('/eyew.png')] dark:bg-[url('/eyewb.png')] bg-cover bg-center" />
+        <div className="w-[150px] h-[35px] md:w-[186px] md:h-[50px] bg-[url('/ge7.png')] dark:bg-[url('/ge6.png')] bg-cover bg-center" />
       </Link>
 
       <div className="hidden sm:block">
