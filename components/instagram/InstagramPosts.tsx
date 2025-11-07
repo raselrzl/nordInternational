@@ -21,7 +21,7 @@ export default async function InstagramPosts() {
   const posts = await getInstagramPosts();
 
   return (
-    <Card className="p-4 shadow-lg mb-20 mt-8 rounded-none">
+    <Card className="p-4 shadow-lg mb-2 mt-8 rounded-none">
       <CardHeader className="p-0 flex flex-row justify-between">
         <div className="flex flex-row items-center justify-center space-x-2">
           <Instagram size={24} className="text-primary" />
@@ -33,15 +33,15 @@ export default async function InstagramPosts() {
       </CardHeader>
 
       <div className="overflow-x-auto pb-10 overflow-y-hidden scrollbar-thin">
-        <div className="flex gap-4 px-2">
-          <div className="min-w-[300px] h-[300px] flex items-center justify-center">
+        <div className="flex gap-2 px-2">
+          <div className="min-w-[280px] h-[350px] flex items-center justify-center">
             <PremiarTwo />
           </div>
 
           {posts.map((post) => (
             <div
               key={post.id}
-              className="min-w-[300px] h-[300px] flex items-center justify-center"
+              className="min-w-[300px] h-[350px] flex items-center justify-center"
             >
               <InstagramPostPreview igLink={post.igLink} />
             </div>
