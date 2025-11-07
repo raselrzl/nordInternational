@@ -16,8 +16,17 @@ export default async function Navbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center pl-2">
-        <div className="w-[146px] h-[35px] md:w-[186px] md:h-[40px] bg-[url('/ge7.png')] dark:bg-[url('/ge6.png')] bg-cover bg-center" />
-      </Link>
+  <div 
+    className="
+      w-[146px] h-[35px] 
+      md:w-[186px] md:h-[40px] 
+      bg-[url('/globalw.png')] 
+      dark:bg-[url('/globalb.png')] 
+      bg-cover bg-center
+    " 
+  />
+</Link>
+
 
       <div className="hidden sm:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
