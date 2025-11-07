@@ -98,9 +98,15 @@ export default function Footer() {
             >
               contact@globaleye.press
             </a>
-            <Link href="/" className="flex items-center pl-2">
-        <div className="w-[130px] h-[36px] md:w-[160px] md:h-[50px] bg-[url('/eyew.png')] dark:bg-[url('/eyewb.png')] bg-cover bg-center" />
-      </Link>
+             <div 
+    className="
+      w-[120px] h-[30px] 
+      md:w-[140px] md:h-[40px] 
+      bg-[url('/geye.png')] 
+      dark:bg-[url('/geyeb.png')] 
+      bg-cover bg-center
+    " 
+  />
           </div>
           <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">
             <p className="text-sm">
