@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 
@@ -16,17 +16,16 @@ export default async function Navbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center pl-2">
-  <div 
-    className="
+        <div
+          className="
       w-[120px] h-[30px] 
       md:w-[140px] md:h-[40px] 
       bg-[url('/geye.png')] 
       dark:bg-[url('/geyeb.png')] 
       bg-cover bg-center
-    " 
-  />
-</Link>
-
+    "
+        />
+      </Link>
 
       <div className="hidden sm:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
@@ -38,7 +37,7 @@ export default async function Navbar() {
 
       <div className="hidden md:flex items-center gap-5">
         <ThemeToggle />
-       {/*  <DropDownMenuList /> */}
+        {/*  <DropDownMenuList /> */}
         <DropDownCountryList />
 
         <div>
@@ -69,7 +68,7 @@ export default async function Navbar() {
           <ThemeToggle />
         </div>
         {/* <DropDownMenuList /> */}
-         <DropDownCountryList />
+        <DropDownCountryList />
         {user?.user ? (
           <UserDropdown
             email={user.user.email as string}
