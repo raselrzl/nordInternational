@@ -68,6 +68,7 @@ type AdvertisementType = {
     | "GREECE" | "HUNGARY" | "IRELAND" | "ITALY" | "LATVIA" | "LITHUANIA" | "LUXEMBOURG" 
     | "MALTA" | "NETHERLANDS" | "POLAND" | "PORTUGAL" | "ROMANIA" | "SLOVAKIA" | "SLOVENIA" 
     | "SPAIN" | "SWEDEN" | "UK" | "SWITZERLAND" | "USA" | "AUSTRALIA" | "CANADA" | "NORWAY" 
+    | "CHAINA" | "RUSSIA" | "INDIA" | "AFRIKA" | "PAKISTAN" | "MIDDLEEAST" | "ASIA" | "SOUTHAMERICA"
     | null;
   createdAt: Date;
   updatedAt: Date;
