@@ -68,7 +68,7 @@ const countries = [
 
   { id: "CHAINA", name: "Chaina", flag: "/flags/chaina.jpg" },
   { id: "RUSSIA", name: "Russia", flag: "/flags/russia.jpeg" },
-  { id: "29", name: "Afika", flag: "/flags/afrika.png" },
+  { id: "AFRIKA", name: "Afika", flag: "/flags/afrika.png" },
   { id: "AFRIKA", name: "Asia", flag: "/flags/asia.jpg" },
   { id: "INDIA", name: "India", flag: "/flags/india.jpg" },
   { id: "MIDDLEEAST", name: "Middleeast", flag: "/flags/middleeast.webp" },
