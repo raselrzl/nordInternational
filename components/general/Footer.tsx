@@ -115,14 +115,14 @@ export default function Footer() {
             </p>
             <div className="flex flex-row gap-3">
               {" "}
-              <a
+           {/*    <a
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
                 <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-green-600" />
-              </a>
+              </a> */}
               <a
                 href="https://www.instagram.com/globaleyepress"
                 target="_blank"
@@ -131,14 +131,14 @@ export default function Footer() {
               >
                 <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
               </a>
-              <a
+           {/*    <a
                 href="https://www.youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
               >
                 <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
