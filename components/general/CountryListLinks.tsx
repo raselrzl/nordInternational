@@ -173,7 +173,7 @@ const euCountries = [
     flag: "/flags/bangladesh.jpg",
     link: "/diffrentCountry?country=Bangladesh",
   },
-   { name: "China", flag: "/flags/chaina.jpg", link: "/diffrentCountry?country=China" },
+   { name: "Chaina", flag: "/flags/chaina.jpg", link: "/diffrentCountry?country=Chaina" },
   { name: "Russia", flag: "/flags/russia.jpeg", link: "/diffrentCountry?country=Russia" },
   { name: "Africa", flag: "/flags/afrika.png", link: "/diffrentCountry?country=Africa" },
   { name: "Asia", flag: "/flags/asia.jpg", link: "/diffrentCountry?country=Asia" },
