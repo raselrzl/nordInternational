@@ -27,16 +27,14 @@ export default function InstagramPostPreview({
       href={igLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col items-center gap-2"
+      className="flex flex-col items-center"
     >
-      <div className="relative w-[300px] h-[350px] rounded-lg overflow-hidden bg-gray-200">
+      <div className="relative w-[270px] h-[350px] rounded-lg overflow-hidden bg-gray-200">
         <Image
           src={getThumbnail()}
           alt="Instagram post"
           fill
-          className="object-fill" // ✅ This ensures bg-cover behavior
-          sizes="(max-width: 768px) 100vw, 320px"
-          priority
+          className="object-cover"           priority
         />
       </div>
     </a>

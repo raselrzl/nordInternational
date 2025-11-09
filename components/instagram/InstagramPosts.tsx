@@ -33,7 +33,7 @@ export default async function InstagramPosts() {
       </CardHeader>
 
       <div className="overflow-x-auto pb-10 overflow-y-hidden scrollbar-thin">
-        <div className="flex gap-2 px-2">
+        <div className="flex">
           <div className="min-w-[280px] h-[350px] flex items-center justify-center">
             <PremiarTwo />
           </div>
@@ -41,7 +41,7 @@ export default async function InstagramPosts() {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="min-w-[300px] h-[350px] flex items-center justify-center"
+              className="min-w-[280px] h-[350px] flex items-center justify-center"
             >
               <InstagramPostPreview igLink={post.igLink} />
             </div>
