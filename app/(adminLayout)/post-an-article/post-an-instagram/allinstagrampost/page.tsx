@@ -25,7 +25,7 @@ import { redirect } from "next/navigation";
 import { PaginationComponent } from "@/components/general/PaginationComponent";
 import { requireRoleAccess } from "../../roleBaseAccess";
 
-// TypeScript type based on your Prisma schema
+// TypeScript type based on Prisma schema
 type InstagramType = {
   id: string;
   igLink: string;
@@ -46,13 +46,7 @@ async function getAllInstagramPosts(
       take: pageSize,
       skip,
       orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        igLink: true,
-        igStatus: true,
-        createdAt: true,
-        updatedAt: true,
-      },
+      select: { id: true, igLink: true, igStatus: true, createdAt: true, updatedAt: true },
     }),
     prisma.instagramPost.count(),
   ]);
@@ -60,14 +54,17 @@ async function getAllInstagramPosts(
   return { posts, totalCount, totalPages: Math.ceil(totalCount / pageSize) };
 }
 
-type SearchParamsProps = {
-  searchParams?: { page?: string };
+// ✅ Typing searchParams as Promise
+type Props = {
+  searchParams: Promise<{ page?: string }>;
 };
 
-export default async function AllInstagramPosts({ searchParams }: SearchParamsProps) {
-  const currentPage = Number(searchParams?.page) || 1;
+export default async function AllInstagramPosts({ searchParams }: Props) {
+  // ✅ Await searchParams before accessing properties
+  const params = await searchParams;
+  const currentPage = Number(params.page ?? 1);
 
-  // ✅ Role-based access control
+  // Role-based access
   await requireRoleAccess(["EDITOR", "SUPERADMIN"]);
   const userHasAccess = await requireSompandokOrSuperAdmin();
   if (!userHasAccess) return redirect("/restricted");
@@ -83,7 +80,7 @@ export default async function AllInstagramPosts({ searchParams }: SearchParamsPr
         </div>
       </h1>
 
-      {posts.length > 0 ? (
+      {posts.length ? (
         <>
           <Card className="rounded-md">
             <CardContent className="overflow-x-auto">
@@ -134,7 +131,6 @@ export default async function AllInstagramPosts({ searchParams }: SearchParamsPr
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/post-an-instagram/allinstagrampost/${post.id}/updatestatus`}
@@ -143,9 +139,7 @@ export default async function AllInstagramPosts({ searchParams }: SearchParamsPr
                                 Update Status
                               </Link>
                             </DropdownMenuItem>
-
                             <DropdownMenuSeparator />
-
                             <DropdownMenuItem asChild>
                               <Link
                                 href={`/post-an-article/post-an-instagram/allinstagrampost/${post.id}/delete`}
