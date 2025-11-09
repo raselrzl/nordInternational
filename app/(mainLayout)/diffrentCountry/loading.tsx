@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
-  { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+  
   { name: "Belgium", flag: "/flags/belgium.webp" },
   { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
   { name: "Croatia", flag: "/flags/croatia.webp" },
@@ -31,6 +31,7 @@ const euCountries = [
   { name: "Slovenia", flag: "/flags/slovenia.jpeg" },
   { name: "Spain", flag: "/flags/spain.svg" },
   { name: "Sweden", flag: "/flags/swedish.png" },
+  { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
 ];
 
 export default function Loading() {

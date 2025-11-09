@@ -28,7 +28,7 @@ import { createAnAdvertisement, getAdvertisementPackages } from "@/app/actions";
 import Image from "next/image";
 
 const countries = [
-  { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+ 
   { id: "UK", name: "UK", flag: "/flags/uk.png" },
   { id: "SWITZERLAND", name: "Switzerland", flag: "/flags/switzerland.jpg" },
   { id: "USA", name: "United States", flag: "/flags/usa.webp" },
@@ -65,6 +65,7 @@ const countries = [
   { id: "SPAIN", name: "Spain", flag: "/flags/spain.svg" },
   { id: "SWEDEN", name: "Sweden", flag: "/flags/swedish.png" },
   { id: "NORWAY", name: "Norway", flag: "/flags/norway.webp" },
+   { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
 ];
 
 export function CreateAdvertisementForm() {

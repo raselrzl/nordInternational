@@ -4,11 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const euCountries = [
-  {
-    name: "Bangladesh",
-    flag: "/flags/bangladesh.jpg",
-    link: "/diffrentCountry?country=Bangladesh",
-  },
+ 
 
   { name: "Uk", flag: "/flags/uk.png", link: "/diffrentCountry?country=Uk" },
   {
@@ -171,6 +167,11 @@ const euCountries = [
     name: "Norway",
     flag: "/flags/norway.webp",
     link: "/diffrentCountry?country=Norway",
+  },
+   {
+    name: "Bangladesh",
+    flag: "/flags/bangladesh.jpg",
+    link: "/diffrentCountry?country=Bangladesh",
   },
 ];
 

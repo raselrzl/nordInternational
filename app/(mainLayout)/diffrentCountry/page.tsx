@@ -46,7 +46,7 @@ type Article = {
 // ✅ List of EU countries with flags
 const euCountries = [
   { name: "Austria", flag: "/flags/Austria.png" },
-  { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+ 
   { name: "Belgium", flag: "/flags/belgium.webp" },
   { name: "Bulgaria", flag: "/flags/bulgaria.webp" },
   { name: "Croatia", flag: "/flags/croatia.webp" },
@@ -79,6 +79,7 @@ const euCountries = [
   { name: "Canada", flag: "/flags/canada.jpg" },
   { name: "Australia", flag: "/flags/australia.jpg" },
   { name: "Norway", flag: "/flags/norway.webp" },
+   { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
 ];
 
 // ✅ Map raw Prisma result to Article type

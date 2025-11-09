@@ -1,6 +1,6 @@
 export const districts = [
  { id: 1, name: "Austria", flag: "/flags/Austria.png" },
-  { id: 2, name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+  
   { id: 3, name: "Belgium", flag: "/flags/belgium.webp" },
   { id: 4, name: "Bulgaria", flag: "/flags/bulgaria.webp" },
   { id: 5, name: "Croatia", flag: "/flags/croatia.webp" },
@@ -33,4 +33,5 @@ export const districts = [
   { id: 32, name: "Canada", flag: "/flags/canada.jpg" },
   { id: 33, name: "Australia", flag: "/flags/australia.jpg" },
   { id: 34, name: "Norway", flag: "/flags/norway.webp" },
+  { id: 2, name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
 ];

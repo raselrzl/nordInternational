@@ -13,11 +13,7 @@ import {
 import { ChevronDown, Globe } from "lucide-react";
 
 const euCountries = [
-  {
-    name: "Bangladesh",
-    flag: "/flags/bangladesh.jpg",
-    link: "/diffrentCountry?country=Bangladesh",
-  },
+ 
   {
     name: "Austria",
     flag: "/flags/Austria.png",
@@ -155,6 +151,11 @@ const euCountries = [
     name: "Norway",
     flag: "/flags/norway.webp",
     link: "/diffrentCountry?country=Norway",
+  },
+   {
+    name: "Bangladesh",
+    flag: "/flags/bangladesh.jpg",
+    link: "/diffrentCountry?country=Bangladesh",
   },
 ];
 
