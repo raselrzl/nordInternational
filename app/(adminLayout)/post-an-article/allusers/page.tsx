@@ -38,9 +38,10 @@ type UserType = {
 async function getAllUsers(
   page: number = 1,
   pageSize: number = 10
-): Promise<{ users: UserType[]; totalCount: number; totalPages: number }> {
+): Promise<{ users: (UserType & { newsCount: number })[]; totalCount: number; totalPages: number }> {
   const skip = (page - 1) * pageSize;
 
+  // Get users
   const [users, totalCount] = await Promise.all([
     prisma.user.findMany({
       take: pageSize,
@@ -54,18 +55,30 @@ async function getAllUsers(
         onboardingCompleted: true,
         approvalStatus: true,
         createdAt: true,
-        updatedAt: true, // ✅ include updatedAt
+        updatedAt: true,
+        newsReporter: {
+          select: {
+            newsArticle: true, // Include all articles
+          },
+        },
       },
     }),
     prisma.user.count(),
   ]);
 
+  // Map users and count news articles
+  const usersWithNewsCount = users.map((user) => ({
+    ...user,
+    newsCount: user.newsReporter?.newsArticle.length ?? 0,
+  }));
+
   return {
-    users,
+    users: usersWithNewsCount,
     totalCount,
     totalPages: Math.ceil(totalCount / pageSize),
   };
 }
+
 
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
@@ -103,6 +116,7 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
                     <TableHead>Email</TableHead>
                     <TableHead>User Type</TableHead>
                     <TableHead>Onboarding</TableHead>
+                    <TableHead>News Articles</TableHead>
                     <TableHead>Joined</TableHead>
                     <TableHead>Approval Status</TableHead>
                     <TableHead>Action</TableHead>
@@ -131,6 +145,8 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
                           <XCircle className="text-red-500 w-4 h-4" />
                         )}
                       </TableCell>
+                      <TableCell>{user.newsCount}</TableCell>
+
                       <TableCell>
                         {new Date(user.createdAt).toLocaleDateString("en-US", {
                           year: "numeric",
