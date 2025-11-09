@@ -3,9 +3,7 @@ import AllCountryNewsArticleList from "./countryNewsArticleList";
 import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
 import BelgiumNews from "./BelgiumNews";
-import Image from "next/image";
 import { List } from "lucide-react";
-import { UltimateOne } from "@/components/allAdvertisement/UltimateOne";
 import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
 
 type SearchParamsProps = {

@@ -173,6 +173,15 @@ const euCountries = [
     flag: "/flags/bangladesh.jpg",
     link: "/diffrentCountry?country=Bangladesh",
   },
+   { name: "China", flag: "/flags/chaina.jpg", link: "/diffrentCountry?country=China" },
+  { name: "Russia", flag: "/flags/russia.jpeg", link: "/diffrentCountry?country=Russia" },
+  { name: "Africa", flag: "/flags/afrika.png", link: "/diffrentCountry?country=Africa" },
+  { name: "Asia", flag: "/flags/asia.jpg", link: "/diffrentCountry?country=Asia" },
+  { name: "India", flag: "/flags/india.jpg", link: "/diffrentCountry?country=India" },
+  { name: "Middleeast", flag: "/flags/middleeast.webp", link: "/diffrentCountry?country=Middleeast" },
+  { name: "Southamerica", flag: "/flags/southamerica.webp", link: "/diffrentCountry?country=Southamerica" },
+  { name: "Pakistan", flag: "/flags/pakistan.jpg", link: "/diffrentCountry?country=Pakistan" },
+
 ];
 
 export default function CountryListLinks() {

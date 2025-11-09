@@ -80,6 +80,17 @@ const euCountries = [
   { name: "Australia", flag: "/flags/australia.jpg" },
   { name: "Norway", flag: "/flags/norway.webp" },
    { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+
+
+    { name: "China", flag: "/flags/chaina.jpg" },
+  { name: "Russia", flag: "/flags/russia.jpeg" },
+  { name: "Africa", flag: "/flags/afrika.png" },
+  { name: "Asia", flag: "/flags/asia.jpg" },
+  { name: "India", flag: "/flags/india.jpg" },
+  { name: "Middleeast", flag: "/flags/middleeast.webp" },
+  { name: "Southamerica", flag: "/flags/southamerica.webp"},
+  { name: "Pakistan", flag: "/flags/pakistan.jpg" },
+
 ];
 
 // ✅ Map raw Prisma result to Article type

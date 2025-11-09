@@ -28,7 +28,6 @@ import { createAnAdvertisement, getAdvertisementPackages } from "@/app/actions";
 import Image from "next/image";
 
 const countries = [
- 
   { id: "UK", name: "UK", flag: "/flags/uk.png" },
   { id: "SWITZERLAND", name: "Switzerland", flag: "/flags/switzerland.jpg" },
   { id: "USA", name: "United States", flag: "/flags/usa.webp" },
@@ -65,7 +64,20 @@ const countries = [
   { id: "SPAIN", name: "Spain", flag: "/flags/spain.svg" },
   { id: "SWEDEN", name: "Sweden", flag: "/flags/swedish.png" },
   { id: "NORWAY", name: "Norway", flag: "/flags/norway.webp" },
-   { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+  { id: "BANGLADESH", name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
+
+  { id: "CHAINA", name: "Chaina", flag: "/flags/chaina.jpg" },
+  { id: "RUSSIA", name: "Russia", flag: "/flags/russia.jpeg" },
+  { id: "29", name: "Afika", flag: "/flags/afrika.png" },
+  { id: "AFRIKA", name: "Asia", flag: "/flags/asia.jpg" },
+  { id: "INDIA", name: "India", flag: "/flags/india.jpg" },
+  { id: "MIDDLEEAST", name: "Middleeast", flag: "/flags/middleeast.webp" },
+  {
+    id: "SOUTHAMERICA",
+    name: "Southamerica",
+    flag: "/flags/southamerica.webp",
+  },
+  { id: "PAKISTAN", name: "Pakistan", flag: "/flags/pakistan.jpg" },
 ];
 
 export function CreateAdvertisementForm() {

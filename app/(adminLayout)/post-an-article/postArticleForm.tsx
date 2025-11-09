@@ -207,18 +207,23 @@ export function CreateNewsArticleForm({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {districts.map((district) => (
-                            <SelectItem key={district.id} value={district.name}>
-                              <div className="flex items-center gap-2">
-                                <img
-                                  src={district.flag}
-                                  alt={district.name}
-                                  className="w-5 h-5 rounded-full object-cover"
-                                />
-                                <span>{district.name}</span>
-                              </div>
-                            </SelectItem>
-                          ))}
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
+                            {districts.map((district) => (
+                              <SelectItem
+                                key={district.id}
+                                value={district.name}
+                              >
+                                <div className="flex items-center gap-1 w-[110px] md:w-[120px] border p-1 text-xs hover-gray-50">
+                                  <img
+                                    src={district.flag}
+                                    alt={district.name}
+                                    className="w-4 h-4 rounded-full object-cover"
+                                  />
+                                  <span>{district.name}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </div>
                         </SelectContent>
                       </Select>
                       <FormMessage />
