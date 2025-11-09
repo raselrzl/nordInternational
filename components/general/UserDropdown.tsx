@@ -70,11 +70,12 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
     { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
     { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
     { href: "/post-an-article/post-an-instagram", icon: Settings2, label: "Post a Instagram Link" },
+    { href: "/post-an-article/post-an-instagram/allinstagrampost", icon: Settings2, label: "Manage all instagram post" },
     { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
     { href: "/post-an-article/allusers", icon: Users, label: "Users" },
   ];
 
-  // SUPERADMIN-only links
+  // SUPERADMIN-only links  post-an-article/post-an-instagram/allinstagrampost
   const linksSuperAdmin = [
     { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
     { href: "/post-an-article/post-advertisement/adanalysis", icon: TableProperties, label: "Economy" },
