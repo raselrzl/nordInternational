@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
         <CountryListLinks />
 
-        <p className="text-xs text-primary py-2 mt-2 bg-accent">
+        <p className="text-xs text-gray-400 bg-black mt-2 ">
           &copy; {new Date().getFullYear()} All rights reserved.
         </p>
       </div>
