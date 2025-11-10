@@ -195,7 +195,7 @@ export default async function AllUsersTable({ searchParams }: SearchParamsProps)
                             {canSeeSection3 && (
                               <DropdownMenuItem asChild>
                                 <Link
-                                  href={`/post-an-article/allusers/${user.id}/approvalstatus/createsompadok`}
+                                  href={`/post-an-article/allusers/${user.id}/approvalstatus/createeditor`}
                                 >
                                   <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                                   Update as Editor

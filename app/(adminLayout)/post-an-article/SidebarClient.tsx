@@ -49,8 +49,8 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
     { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
   ];
 
-  // SOMPADOK + SUPERADMIN (common links)
-  const linksSompadokSuperAdmin = [
+
+  const linksEditorSuperAdmin = [
     { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
     { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
     
@@ -84,7 +84,7 @@ export default function SidebarClient({ email, name, userType, approvalStatus, m
   }
 
   if (isEditor || isSuperAdmin) {
-    allVisibleLinks.push(...linksSompadokSuperAdmin);
+    allVisibleLinks.push(...linksEditorSuperAdmin);
   }
 
   if (isSuperAdmin) {

@@ -58,8 +58,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
     { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
   ];
 
-  // Links for SOMPADOK and SUPERADMIN
-  const linksSompadokSuperAdmin = [
+  const linksEditorSuperAdmin = [
     { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
     { href: "/post-an-article/public-source-news", icon: FlameIcon, label: "Post A live Update" },
     { href: "/post-an-article/public-source-news/all-public-source-news", icon: FlameIcon, label: "Manage All Live Update" },
@@ -90,7 +89,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
   }
 
   if (isEditor || isSuperAdmin) {
-    allLinks.push(...linksSompadokSuperAdmin);
+    allLinks.push(...linksEditorSuperAdmin);
   }
 
   if (isSuperAdmin) {
