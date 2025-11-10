@@ -82,9 +82,9 @@ const euCountries = [
    { name: "Bangladesh", flag: "/flags/bangladesh.jpg" },
 
 
-    { name: "China", flag: "/flags/chaina.jpg" },
+    { name: "Chaina", flag: "/flags/chaina.jpg" },
   { name: "Russia", flag: "/flags/russia.jpeg" },
-  { name: "Africa", flag: "/flags/afrika.png" },
+  { name: "Afrika", flag: "/flags/afrika.png" },
   { name: "Asia", flag: "/flags/asia.jpg" },
   { name: "India", flag: "/flags/india.jpg" },
   { name: "Middleeast", flag: "/flags/middleeast.webp" },

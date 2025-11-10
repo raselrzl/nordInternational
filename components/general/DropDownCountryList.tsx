@@ -158,9 +158,9 @@ const euCountries = [
   },
 
   {
-    name: "China",
+    name: "Chaina",
     flag: "/flags/chaina.jpg",
-    link: "/diffrentCountry?country=China",
+    link: "/diffrentCountry?country=Chaina",
   },
   {
     name: "Russia",
@@ -168,9 +168,9 @@ const euCountries = [
     link: "/diffrentCountry?country=Russia",
   },
   {
-    name: "Africa",
+    name: "Afrika",
     flag: "/flags/afrika.png",
-    link: "/diffrentCountry?country=Africa",
+    link: "/diffrentCountry?country=Afrika",
   },
   {
     name: "Asia",
