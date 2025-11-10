@@ -69,13 +69,13 @@ const countries = [
   { id: "CHAINA", name: "Chaina", flag: "/flags/chaina.jpg" },
   { id: "RUSSIA", name: "Russia", flag: "/flags/russia.jpeg" },
   { id: "AFRIKA", name: "Afika", flag: "/flags/afrika.png" },
-  { id: "AFRIKA", name: "Asia", flag: "/flags/asia.jpg" },
+  { id: "ASIA", name: "Asia", flag: "/flags/asia.jpg" },
   { id: "INDIA", name: "India", flag: "/flags/india.jpg" },
   { id: "MIDDLEEAST", name: "Middleeast", flag: "/flags/middleeast.webp" },
   {
     id: "SOUTHAMERICA",
     name: "Southamerica",
-    flag: "/flags/southamerica.webp",
+    flag: "/flags/southamerica.jpg",
   },
   { id: "PAKISTAN", name: "Pakistan", flag: "/flags/pakistan.jpg" },
 ];

@@ -41,6 +41,6 @@ export const districts = [
   { id: 38, name: "Asia", flag: "/flags/asia.jpg" },
   { id: 39, name: "India", flag: "/flags/india.jpg" },
   { id: 40, name: "Middleeast", flag: "/flags/middleeast.webp" },
-  { id: 41, name: "Southamerica", flag: "/flags/southamerica.webp" },
+  { id: 41, name: "Southamerica", flag: "/flags/southamerica.jpg" },
   { id: 42, name: "Pakistan", flag: "/flags/pakistan.jpg" },
 ];

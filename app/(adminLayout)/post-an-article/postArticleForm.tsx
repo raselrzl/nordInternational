@@ -213,7 +213,7 @@ export function CreateNewsArticleForm({
                                 key={district.id}
                                 value={district.name}
                               >
-                                <div className="flex items-center gap-1 w-[110px] md:w-[120px] border p-1 text-xs hover-gray-50">
+                                <div className="flex items-center gap-1 text-xs hover-gray-50 cursor-pointer">
                                   <img
                                     src={district.flag}
                                     alt={district.name}

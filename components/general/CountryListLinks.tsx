@@ -203,7 +203,7 @@ const euCountries = [
   },
   {
     name: "Southamerica",
-    flag: "/flags/southamerica.webp",
+    flag: "/flags/southamerica.jpg",
     link: "/diffrentCountry?country=Southamerica",
   },
   {

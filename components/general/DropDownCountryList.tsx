@@ -13,7 +13,6 @@ import {
 import { ChevronDown, Globe } from "lucide-react";
 
 const euCountries = [
- 
   {
     name: "Austria",
     flag: "/flags/Austria.png",
@@ -150,24 +149,54 @@ const euCountries = [
   {
     name: "Norway",
     flag: "/flags/norway.webp",
-    link: "/diffrentCountry?country=Norway", 
+    link: "/diffrentCountry?country=Norway",
   },
-   {
+  {
     name: "Bangladesh",
     flag: "/flags/bangladesh.jpg",
     link: "/diffrentCountry?country=Bangladesh",
   },
 
-
-  { name: "China", flag: "/flags/chaina.jpg", link: "/diffrentCountry?country=China" },
-  { name: "Russia", flag: "/flags/russia.jpeg", link: "/diffrentCountry?country=Russia" },
-  { name: "Africa", flag: "/flags/afrika.png", link: "/diffrentCountry?country=Africa" },
-  { name: "Asia", flag: "/flags/asia.jpg", link: "/diffrentCountry?country=Asia" },
-  { name: "India", flag: "/flags/india.jpg", link: "/diffrentCountry?country=India" },
-  { name: "Middleeast", flag: "/flags/middleeast.webp", link: "/diffrentCountry?country=Middleeast" },
-  { name: "Southamerica", flag: "/flags/southamerica.webp", link: "/diffrentCountry?country=Southamerica" },
-  { name: "Pakistan", flag: "/flags/pakistan.jpg", link: "/diffrentCountry?country=Pakistan" },
-
+  {
+    name: "China",
+    flag: "/flags/chaina.jpg",
+    link: "/diffrentCountry?country=China",
+  },
+  {
+    name: "Russia",
+    flag: "/flags/russia.jpeg",
+    link: "/diffrentCountry?country=Russia",
+  },
+  {
+    name: "Africa",
+    flag: "/flags/afrika.png",
+    link: "/diffrentCountry?country=Africa",
+  },
+  {
+    name: "Asia",
+    flag: "/flags/asia.jpg",
+    link: "/diffrentCountry?country=Asia",
+  },
+  {
+    name: "India",
+    flag: "/flags/india.jpg",
+    link: "/diffrentCountry?country=India",
+  },
+  {
+    name: "Middleeast",
+    flag: "/flags/middleeast.webp",
+    link: "/diffrentCountry?country=Middleeast",
+  },
+  {
+    name: "Southamerica",
+    flag: "/flags/southamerica.jpg",
+    link: "/diffrentCountry?country=Southamerica",
+  },
+  {
+    name: "Pakistan",
+    flag: "/flags/pakistan.jpg",
+    link: "/diffrentCountry?country=Pakistan",
+  },
 ];
 
 export default function DropDownCountryList() {
@@ -182,13 +211,17 @@ export default function DropDownCountryList() {
 
       <DropdownMenuContent
         align="end"
-        className="w-56 max-h-[400px] overflow-y-auto"
+        className=" max-h-[400px] overflow-y-auto p-2"
       >
-        {euCountries.map((country, index) => (
-          <div key={country.name}>
-            <DropdownMenuItem asChild className="cursor-pointer">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          {euCountries.map((country) => (
+            <DropdownMenuItem
+              asChild
+              key={country.name}
+              className="cursor-pointer"
+            >
               <Link href={country.link}>
-                <div className="flex items-center gap-2 pl-3">
+                <div className="flex items-center gap-2 pl-1">
                   <img
                     src={country.flag}
                     alt={`${country.name} flag`}
@@ -196,13 +229,12 @@ export default function DropDownCountryList() {
                     height={18}
                     className="rounded-sm"
                   />
-                  <span className="font-semibold">{country.name}</span>
+                  <span className="font-semibold text-sm">{country.name}</span>
                 </div>
               </Link>
             </DropdownMenuItem>
-            {index < euCountries.length - 1 && <DropdownMenuSeparator />}
-          </div>
-        ))}
+          ))}
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

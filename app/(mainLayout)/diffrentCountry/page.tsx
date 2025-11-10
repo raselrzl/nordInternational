@@ -88,7 +88,7 @@ const euCountries = [
   { name: "Asia", flag: "/flags/asia.jpg" },
   { name: "India", flag: "/flags/india.jpg" },
   { name: "Middleeast", flag: "/flags/middleeast.webp" },
-  { name: "Southamerica", flag: "/flags/southamerica.webp"},
+  { name: "Southamerica", flag: "/flags/southamerica.jpg"},
   { name: "Pakistan", flag: "/flags/pakistan.jpg" },
 
 ];
