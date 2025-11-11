@@ -10,7 +10,6 @@ type NewsItem = {
   createdAt: Date;
 };
 
-// Fetch latest 4 news
 async function getLatestNews(): Promise<NewsItem[]> {
   return prisma.publicSourceNews.findMany({
     orderBy: { createdAt: "desc" },
@@ -18,11 +17,6 @@ async function getLatestNews(): Promise<NewsItem[]> {
   });
 }
 
-// Dot sizes
-const outerSizes = [16, 16, 16, 16];
-const innerSizes = [8, 8, 8, 8];
-
-// Helper to format “time ago”
 function formatTimeAgo(date: Date): string {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
@@ -43,56 +37,36 @@ export default async function LiveUpdate() {
   const news = await getLatestNews();
 
   return (
-    <div className="mt-4 px-6 py-3">
-      <h1 className="text-sm uppercase font-bold mb-2 text-red-800">Live updates</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative">
-        {news.map((item, index) => {
-          const created = new Date(item.createdAt);
-          const isLast = index === news.length - 1;
+    <div className="mt-4 px-6 py-1 max-w-3xl">
+      <h1 className="text-sm uppercase font-bold mb-4 text-red-800">Live updates</h1>
 
-          return (
-            <div key={item.id} className="flex items-start gap-2 relative">
-              {/* Dot + connecting line */}
-              <div className="flex flex-col items-center relative">
-                {/* Dot */}
-                <div
-                  className="rounded-full bg-yellow-500 flex items-center justify-center z-10 flex-shrink-0"
-                  style={{
-                    width: outerSizes[index],
-                    height: outerSizes[index],
-                  }}
-                >
-                  <div
-                    className="bg-primary rounded-full animate-ping"
-                    style={{
-                      width: innerSizes[index],
-                      height: innerSizes[index],
-                    }}
-                  ></div>
+      <div className="relative">
+        {/* Vertical line */}
+        <div className="absolute top-0 bottom-0 left-5 w-[2px] bg-black"></div>
+
+        <div className="flex flex-col">
+          {news.map((item) => (
+            <div key={item.id} className="flex items-start relative">
+              {/* Dot aligned with date */}
+              <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
+                <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                  <div className="bg-primary rounded-full animate-ping w-2 h-2"></div>
                 </div>
-
-                {/* Connecting line to next dot */}
-                {!isLast && (
-                  <div
-                    className="w-[2px] bg-black"
-                    style={{ flexGrow: 1, minHeight: "16px", marginTop: "4px" }}
-                  ></div>
-                )}
               </div>
 
-              {/* News heading with “time ago” */}
-              <div className="flex-1 flex flex-col">
+              {/* News content */}
+              <div className="flex-1">
                 <span className="text-xs text-gray-500 italic">
-                  {formatTimeAgo(created)}
+                  {formatTimeAgo(new Date(item.createdAt))}
                 </span>
-                <span className="font-medium text-sm">{item.headings}</span>
+                <div className="font-medium text-sm">{item.headings}</div>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
 
-      <div className="flex justify-end mt-4">
+      <div className="flex justify-end mt-1">
         <Link href="/breakingnews" className="text-sm text-primary hover:underline">
           More →
         </Link>
