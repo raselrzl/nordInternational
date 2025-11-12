@@ -46,7 +46,9 @@ export default async function WarLatest() {
         <h2 className="text-xl font-extrabold mb-4 flex items-center">
           WAR and Crisis
         </h2>
-        <Link href="/war" className="text-sm font-bold hover:underline">View All</Link>
+        <Link href="/war" className="text-sm font-bold hover:underline">
+          View All
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
