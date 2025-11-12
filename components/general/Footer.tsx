@@ -66,8 +66,8 @@ export default function Footer() {
               </a>
             </p> */}
 
-            <div className="text-sm ">
-              <p>Norrköping, Sweden</p>
+            <div className="text-sm">
+              <p>EU</p>
               <a
                 href="mailto:contact@globaleye.press"
                 className="text-primary hover:underline"
