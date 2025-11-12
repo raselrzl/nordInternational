@@ -39,7 +39,7 @@ export async function PremiarOne() {
               <img
                 src={ad.advertiseBanner}
                 alt={ad.companyName}
-                className="w-full h-[270px] rounded-xl px-6 md:pt-0"
+                className="w-full h-[270px] rounded-xl px-1 md:pt-0"
               />
                   <span className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-0.5 rounded">
                 Ad.

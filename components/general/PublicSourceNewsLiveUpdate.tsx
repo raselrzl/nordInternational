@@ -37,7 +37,7 @@ export default async function LiveUpdate() {
   const news = await getLatestNews();
 
   return (
-    <div className="mt-4 px-6 py-1 max-w-3xl">
+    <div className="mt-4 px-6 py-1">
       <h1 className="text-sm uppercase font-bold mb-4 text-red-800">Live updates</h1>
 
       <div className="relative">
@@ -67,8 +67,8 @@ export default async function LiveUpdate() {
       </div>
 
       <div className="flex justify-end mt-1">
-        <Link href="/breakingnews" className="text-sm text-primary hover:underline">
-          More →
+        <Link href="/breakingnews" className="text-sm font-semibold text-black hover:underline">
+          View All
         </Link>
       </div>
     </div>
