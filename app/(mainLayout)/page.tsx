@@ -164,7 +164,7 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
-          <div className="flex flex-row gap-2 text-center items-center justify-center">
+          <div className="flex flex-row gap-2 items-center justify-center">
             <Clock />
             <h1 className="text-xl font-bold pt-2 ">USA Highlights</h1>
           </div>
