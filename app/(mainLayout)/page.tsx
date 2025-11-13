@@ -28,6 +28,7 @@ import { aauth } from "../actions";
 import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
 import WarLatest from "@/components/general/WarLatest";
 import InstagramPosts from "@/components/instagram/InstagramPosts";
+import Image from "next/image";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -150,9 +151,9 @@ export default async function Home() {
               NOTICE:
             </strong>{" "}
             We feature local, corporate, product, and social media
-            advertisements, fully independent and not funded by any
-            organization or indivisual. Our readers span across the globe. For
-            partnership or advertising inquiries, reach out at{" "}
+            advertisements, fully independent and not funded by any organization
+            or indivisual. Our readers span across the globe. For partnership or
+            advertising inquiries, reach out at{" "}
             <span className="font-semibold underline hover:text-yellow-700 dark:hover:text-yellow-400 cursor-pointer">
               contact@globaleye.press
             </span>
@@ -355,7 +356,20 @@ export default async function Home() {
             <Suspense fallback={<Loader2 className="animate-spin" />}>
               <PremiarOne />
             </Suspense>
+            <h1 className="mt-8 text-center text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-white to-black bg-clip-text text-transparent tracking-wide">
+  Best Memories
+</h1>
+
+
+            <Image
+              src="/jewish.png"
+              alt="Jewish entering Paletiose after world war 2"
+              height={300}
+              width={400}
+              className="mx-2 border"
+            />
           </div>
+
           <div className="py-4">
             <LatestOpinions />
           </div>

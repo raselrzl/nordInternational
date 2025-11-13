@@ -764,9 +764,9 @@ export async function SorboseshNews() {
         {sorbosesh && sorbosesh.length > 0 ? (
           sorbosesh.slice(0, 10).map((item, index) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
-              <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
-                <div className="p-1 flex gap-2 items-start">
-                  <span className="text-lg font-bold text-primary">
+              <div className="max-w-sm text-start rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
+                <div className="p-1 flex gap-2 items-start justify-center">
+                  <span className="text-lg text-start font-bold text-primary">
                     {convertToBanglaNumber(index + 1)}.
                   </span>
                   <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
