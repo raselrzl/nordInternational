@@ -20,8 +20,8 @@ export default async function Navbar() {
           className="
       w-[130px] h-[40px] 
       md:w-[180px] md:h-[50px] 
-      bg-[url('/globaleyewhitebg1.png')] 
-      dark:bg-[url('/globaleyeblackbg.png')] 
+      bg-[url('/gewhite.png')] 
+      dark:bg-[url('/geblack.png')] 
       bg-cover bg-center
     "
         />
