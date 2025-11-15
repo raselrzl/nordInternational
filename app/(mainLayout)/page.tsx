@@ -367,7 +367,7 @@ export default async function Home() {
       {/* Videos Section */}
       {/*   <Videos /> */}
       <ChainaLatest />
-      <InstagramPosts />
+     
 
       <AsiaLatest />
       <div className="border-y-2 my-2 border-primary"></div>
@@ -399,6 +399,12 @@ export default async function Home() {
           </div>
         </div>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-4">
+        <IndiaLatest />
+        <AfrikaLatest />
+        <AustraliaLatest />
+        <SouthamericaLatest />
+      </div>
 
       {/* Science Section */}
       <div className="border-y-4 my-2 py-6 border-primary">
@@ -413,7 +419,7 @@ export default async function Home() {
         </div>
       </div>
       <MiddleeastLatest />
-
+ <InstagramPosts />
       {/* Binodon Section */}
       <div className="mb-4">
         <div className="grid grid-cols-1 md:grid-cols-3">
@@ -427,12 +433,9 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4">
-        <IndiaLatest />
-        <AfrikaLatest />
-        <AustraliaLatest />
-        <SouthamericaLatest />
-      </div>
+      
+
+      
     </>
   );
 }
