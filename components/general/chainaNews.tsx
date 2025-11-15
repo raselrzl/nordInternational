@@ -61,7 +61,7 @@ export default async function ChainaLatest() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="overflow-hidden md:border-r">
+        <div className="overflow-hidden">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -77,7 +77,7 @@ export default async function ChainaLatest() {
             </Link>
 
             {/* ✅ JSON parse condition (from your example) */}
-            {isJson(featured.newsDetails) ? (
+       {/*      {isJson(featured.newsDetails) ? (
               <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 <JsonToHtml json={JSON.parse(featured.newsDetails)} />
               </div>
@@ -85,7 +85,7 @@ export default async function ChainaLatest() {
               <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 {featured.newsDetails}
               </p>
-            )}
+            )} */}
           </div>
         </div>
         {/* ✅ Left side - 5 small cards */}

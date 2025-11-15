@@ -73,7 +73,7 @@ export default async function WarLatest() {
         </div>
 
         {/* ✅ Middle featured article */}
-        <div className="overflow-hidden md:border-l md:border-r md:px-4">
+        <div className="overflow-hidden border">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}

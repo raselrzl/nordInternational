@@ -15,7 +15,7 @@ type Article = {
 
 async function getLatestAsiaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsLocation:"Asia" },
+    where: { newsArticleStatus: "ACTIVE", newsLocation: "Asia" },
     orderBy: { createdAt: "desc" },
     take: 11,
     select: {
@@ -42,25 +42,25 @@ export default async function AsiaLatest() {
   return (
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
-          <Link
-              key="Asia"
-              href="/diffrentCountry?country=Asia"
-              className="flex items-center justify-center gap-2 p-1 transition-all 
+        <Link
+          key="Asia"
+          href="/diffrentCountry?country=Asia"
+          className="flex items-center justify-center gap-2 p-1 transition-all 
                      hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
-            >
-              <img
-                src="/flags/asia.jpg"
-                alt="ASIA flag"
-                width={30}
-                height={40}
-                className="rounded-sm border"
-              />
-              <span className="text-md font-bold uppercase">ASIA</span>
-            </Link>
+        >
+          <img
+            src="/flags/asia.jpg"
+            alt="ASIA flag"
+            width={30}
+            height={40}
+            className="rounded-sm border"
+          />
+          <span className="text-md font-bold uppercase">ASIA</span>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="overflow-hidden md:border-r">
+        <div className="overflow-hidden">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -76,15 +76,15 @@ export default async function AsiaLatest() {
             </Link>
 
             {/* ✅ JSON parse condition (from your example) */}
-            {isJson(featured.newsDetails) ? (
-              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
+           {/*  {isJson(featured.newsDetails) ? (
+              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-10">
                 <JsonToHtml json={JSON.parse(featured.newsDetails)} />
               </div>
             ) : (
-              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
+              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-10">
                 {featured.newsDetails}
               </p>
-            )}
+            )} */}
           </div>
         </div>
         {/* ✅ Left side - 5 small cards */}
@@ -109,7 +109,7 @@ export default async function AsiaLatest() {
 
         {/* ✅ Right side - 5 small cards */}
         <div className="flex flex-col gap-4">
-        <CrimeAndPopularTab />
+          <CrimeAndPopularTab />
         </div>
       </div>
     </section>
