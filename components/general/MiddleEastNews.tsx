@@ -12,9 +12,9 @@ type Article = {
   createdAt: Date;
 };
 
-async function getLatestWarNews(): Promise<Article[]> {
+async function getLatestMiddleeastNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
+    where: { newsArticleStatus: "ACTIVE", newsLocation:"Middleeast"},
     orderBy: { createdAt: "desc" },
     take: 11,
     select: {
@@ -29,8 +29,8 @@ async function getLatestWarNews(): Promise<Article[]> {
   return articles;
 }
 
-export default async function WarLatest() {
-  const articles = await getLatestWarNews();
+export default async function MiddleeastLatest() {
+  const articles = await getLatestMiddleeastNews();
 
   if (articles.length === 0) return null;
 
@@ -43,18 +43,34 @@ export default async function WarLatest() {
   return (
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">
-          WAR and Crisis
-        </h2>
-        <Link href="/war" className="text-sm font-bold hover:underline">
-          View All
-        </Link>
+        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">Middle east</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
         {/* ✅ Left side - 5 small cards */}
         <div className="flex flex-col gap-4">
           {leftArticles.map((article) => (
+            <Link
+              href={`/newsDetails/${article.id}`}
+              key={article.id}
+              className="flex items-center gap-3 group border-b border-gray-950/10"
+            >
+              <img
+                src={article.newsPicture}
+                alt={article.newsPictureHeading}
+                className="w-24 h-20 object-cover rounded-xl"
+              />
+              <p className="font-semibold text-sm group-hover:underline line-clamp-3">
+                {article.newsHeading}
+              </p>
+            </Link>
+          ))}
+        </div>
+
+        {/* ✅ Right side - 5 small cards */}
+        <div className="flex flex-col gap-4">
+          {rightArticles.map((article) => (
             <Link
               href={`/newsDetails/${article.id}`}
               key={article.id}
@@ -65,15 +81,14 @@ export default async function WarLatest() {
                 alt={article.newsPictureHeading}
                 className="w-24 h-20 object-cover rounded-md"
               />
-              <p className="font-semibold text-md group-hover:underline line-clamp-3">
+              <p className="font-semibold text-md group-hover:underline line-clamp-2">
                 {article.newsHeading}
               </p>
             </Link>
           ))}
         </div>
 
-        {/* ✅ Middle featured article */}
-        <div className="overflow-hidden md:border-l md:border-r md:px-4">
+          <div className="overflow-hidden md:border-r">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -99,26 +114,6 @@ export default async function WarLatest() {
               </p>
             )}
           </div>
-        </div>
-
-        {/* ✅ Right side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {rightArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex items-center gap-3 group border-t border-gray-950/10"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-md"
-              />
-              <p className="font-semibold text-md group-hover:underline line-clamp-2">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
         </div>
       </div>
     </section>

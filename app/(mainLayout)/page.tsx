@@ -29,6 +29,12 @@ import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
 import WarLatest from "@/components/general/WarLatest";
 import InstagramPosts from "@/components/instagram/InstagramPosts";
 import Image from "next/image";
+import PoliticalLatest from "@/components/general/politicsNews";
+import NationalLatest from "@/components/general/chainaNews";
+import InternationalLatest from "@/components/general/asiaNews";
+import ChainaLatest from "@/components/general/chainaNews";
+import AsiaLatest from "@/components/general/asiaNews";
+import MiddleeastLatest from "@/components/general/middleEastNews";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -344,22 +350,24 @@ export default async function Home() {
       <div className="border-y-2 my-2 border-primary"></div>
       {/* Videos Section */}
       {/*   <Videos /> */}
-
+      <ChainaLatest />
       <InstagramPosts />
+      
+      <AsiaLatest />
+      <div className="border-y-2 my-2 border-primary"></div>
       {/* Tab Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="mx-4 md:mx-0 py-4">
-            <CrimeAndPopularTab />
+            <PoliticalLatest />
           </div>
           <div className="py-4">
             <Suspense fallback={<Loader2 className="animate-spin" />}>
               <PremiarOne />
             </Suspense>
             <h1 className="mt-8 text-center text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-orange-500 via-white to-black bg-clip-text text-transparent tracking-wide">
-  Best Memories
-</h1>
-
+              Best Memories
+            </h1>
 
             <Image
               src="/jewish.png"
@@ -388,6 +396,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
+      <MiddleeastLatest />
 
       {/* Binodon Section */}
       <div className="mb-4">
