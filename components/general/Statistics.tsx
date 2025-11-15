@@ -1,6 +1,7 @@
 // app/server/statistics.tsx (This can be a server component)
 import { prisma } from "@/app/utils/db";
 import { notFound } from "next/navigation";
+import NewUserTracker from "./NewUserTracker";
 
 // Utility function to fetch counts for various models
 // Utility function to fetch counts for various models, including draft advertisements
@@ -45,7 +46,6 @@ async function getStatistics() {
   }
 }
 
-
 // Server Component that will display the statistics
 const Statistics = async () => {
   const stats = await getStatistics();
@@ -61,83 +61,96 @@ const Statistics = async () => {
         {/* Total Users Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold ">Users</h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalUsers}</p>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalUsers}
+          </p>
         </div>
 
         {/* Total News Reporters Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold ">
-            News Reporters
-          </h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalNewsReporters}</p>
+          <h2 className="text-md font-semibold ">News Reporters</h2>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalNewsReporters}
+          </p>
         </div>
 
         {/* Total Advertisements Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold">
-             Advertisements
-          </h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalAdvertisements}</p>
+          <h2 className="text-md font-semibold">Advertisements</h2>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalAdvertisements}
+          </p>
         </div>
 
         {/* Total News Articles Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold">
-             News Articles
-          </h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalNewsArticles}</p>
+          <h2 className="text-md font-semibold">News Articles</h2>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalNewsArticles}
+          </p>
         </div>
 
         {/* Total Opinions Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold"> Opinions</h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalOpinions}</p>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalOpinions}
+          </p>
         </div>
 
         {/* Total Videos Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold">Total Videos</h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalVideos}</p>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalVideos}
+          </p>
         </div>
 
         {/* Total Advertise Requests Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold ">
-             Advertise Requests
-          </h2>
+          <h2 className="text-md font-semibold ">Advertise Requests</h2>
           <p className="text-3xl font-bold mt-4 text-primary">
             {stats.totalAdvertiseRequests}
           </p>
         </div>
         {/* Total Draft Advertisements Card */}
-<div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-  <h2 className="text-md font-semibold">Draft Advertisements</h2>
-  <p className="text-3xl font-bold mt-4 text-primary">{stats.totalDraftAdvertisements}</p>
-</div>
-
+        <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
+          <h2 className="text-md font-semibold">Draft Advertisements</h2>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalDraftAdvertisements}
+          </p>
+        </div>
 
         {/* Total Sompandoks Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold ">
-             Editor
-          </h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalSompandoks}</p>
+          <h2 className="text-md font-semibold ">Editor</h2>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalSompandoks}
+          </p>
         </div>
 
         {/* Total Drafts Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold">Total Drafts</h2>
-          <p className="text-3xl font-bold mt-4 text-primary">{stats.totalDrafts}</p>
+          <p className="text-3xl font-bold mt-4 text-primary">
+            {stats.totalDrafts}
+          </p>
         </div>
 
         {/* Total Registered Users Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold ">
-             Registered Users
-          </h2>
+          <h2 className="text-md font-semibold ">Registered Users</h2>
           <p className="text-3xl font-bold mt-4 text-primary">
             {stats.totalRegisteredUsers}
           </p>
+        </div>
+
+        {/* Total Registered Users Card */}
+        <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
+          <h2 className="text-md font-semibold ">Total Unique User</h2>
+          <div className="text-3xl font-bold mt-4 text-primary">
+            <NewUserTracker />
+          </div>
         </div>
       </div>
     </div>
