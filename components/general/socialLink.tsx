@@ -13,7 +13,7 @@ import React from "react";
 
 const SocialLinks = () => {
   return (
-    <div className="flex items-center gap-4  justify-center mt-6">
+    <div className="flex items-center gap-4  justify-center mt-2">
       <a
         href="https://web.facebook.com/globaleye.press/"
         target="_blank"

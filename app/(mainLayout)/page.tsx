@@ -108,7 +108,7 @@ async function getData(): Promise<{
           newsArticleStatus: true,
         },
         orderBy: { createdAt: "desc" },
-        take: 7,
+        take: 8,
       }),
       prisma.newsArticle.findMany({
         where: { newsCategory: "INTERNATIONAL" },
@@ -170,7 +170,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
-        <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
+        <div className="order-3 md:order-1 md:col-span-1 px-2 border-1">
           <div className="flex flex-row gap-2 ">
             <Link
               key="Usa"
@@ -223,7 +223,7 @@ export default async function Home() {
             <ProOneAdvertise />
           </Suspense>
 
-          <div className="mt-10 text-left flex-col hidden sm:block">
+          <div className="mt-2 text-left flex-col hidden sm:block">
             <p className="text-sm font-semibold text-justify">
               Follow our social media accounts for the latest updates and
               exclusive content.
