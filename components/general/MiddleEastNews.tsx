@@ -100,7 +100,7 @@ export default async function MiddleeastLatest() {
           ))}
         </div>
 
-          <div className="overflow-hidden md:border-r">
+          <div className="overflow-hidden border">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
