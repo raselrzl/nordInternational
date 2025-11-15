@@ -32,6 +32,10 @@ import ChainaLatest from "@/components/general/chainaNews";
 import AsiaLatest from "@/components/general/asiaNews";
 import RussiaLatest from "@/components/general/RussiaNews";
 import MiddleeastLatest from "@/components/general/MiddleEastNews";
+import IndiaLatest from "@/components/general/India";
+import AfrikaLatest from "@/components/general/Afrika";
+import AustraliaLatest from "@/components/general/Australia";
+import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -421,6 +425,13 @@ export default async function Home() {
             <Contact />
           </div>
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4">
+        <IndiaLatest />
+        <AfrikaLatest />
+        <AustraliaLatest />
+        <SouthamericaLatest />
       </div>
     </>
   );
