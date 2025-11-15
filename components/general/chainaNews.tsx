@@ -43,7 +43,21 @@ export default async function ChainaLatest() {
   return (
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">Chaina</h2>
+            <Link
+              key="Chaina"
+              href="/diffrentCountry?country=Chaina"
+              className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+            >
+              <img
+                src="/flags/chaina.jpg"
+                alt="Chaina flag"
+                width={30}
+                height={40}
+                className="rounded-sm border"
+              />
+              <span className="text-md font-bold uppercase">Chaina</span>
+            </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

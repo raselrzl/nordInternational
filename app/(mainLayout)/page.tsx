@@ -2,10 +2,9 @@ import React, { Suspense } from "react";
 import { prisma } from "../utils/db";
 import { EmptyState } from "@/components/general/EmptyState";
 import Link from "next/link";
-import { Clock, Flame, Loader2 } from "lucide-react";
+import { Flame, Loader2 } from "lucide-react";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { isJson } from "../utils/isJson";
-import Videos from "@/components/general/Videos";
 import { trackRoute } from "../utils/routeTracker";
 
 // Advertisement & Sections
@@ -29,12 +28,10 @@ import LiveUpdate from "@/components/general/PublicSourceNewsLiveUpdate";
 import WarLatest from "@/components/general/WarLatest";
 import InstagramPosts from "@/components/instagram/InstagramPosts";
 import Image from "next/image";
-import PoliticalLatest from "@/components/general/politicsNews";
-import NationalLatest from "@/components/general/chainaNews";
-import InternationalLatest from "@/components/general/asiaNews";
 import ChainaLatest from "@/components/general/chainaNews";
 import AsiaLatest from "@/components/general/asiaNews";
-import MiddleeastLatest from "@/components/general/middleEastNews";
+import RussiaLatest from "@/components/general/RussiaNews";
+import MiddleeastLatest from "@/components/general/MiddleEastNews";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -170,9 +167,24 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 p-2 border-1">
-          <div className="flex flex-row gap-2 items-center justify-center">
-            <Clock />
-            <h1 className="text-xl font-bold pt-2 ">USA Highlights</h1>
+          <div className="flex flex-row gap-2 ">
+            <Link
+              key="Usa"
+              href="/diffrentCountry?country=Usa"
+              className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+            >
+              <img
+                src="/flags/usa.webp"
+                alt="USA flag"
+                width={30}
+                height={40}
+                className="rounded-sm border"
+              />
+              <span className="text-md font-bold uppercase">
+                USA Highlights
+              </span>
+            </Link>
           </div>
 
           {latestUSANews.length > 0 ? (
@@ -352,14 +364,14 @@ export default async function Home() {
       {/*   <Videos /> */}
       <ChainaLatest />
       <InstagramPosts />
-      
+
       <AsiaLatest />
       <div className="border-y-2 my-2 border-primary"></div>
       {/* Tab Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="mx-4 md:mx-0 py-4">
-            <PoliticalLatest />
+            <RussiaLatest />
           </div>
           <div className="py-4">
             <Suspense fallback={<Loader2 className="animate-spin" />}>

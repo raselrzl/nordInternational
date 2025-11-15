@@ -28,7 +28,6 @@ async function getLatestMiddleeastNews(): Promise<Article[]> {
   });
   return articles;
 }
-
 export default async function MiddleeastLatest() {
   const articles = await getLatestMiddleeastNews();
 
@@ -43,8 +42,21 @@ export default async function MiddleeastLatest() {
   return (
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">Middle east</h2>
-      </div>
+       <Link
+          key="Middleeast"
+          href="/diffrentCountry?country=Middleeast"
+          className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+        >
+          <img
+            src="/flags/middleeast.webp"
+            alt="Middleeast flag"
+            width={30}
+            height={40}
+            className="rounded-sm border"
+          />
+          <span className="text-md font-bold uppercase">Middleeast</span>
+        </Link>  </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       

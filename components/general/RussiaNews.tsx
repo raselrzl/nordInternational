@@ -13,9 +13,9 @@ type Article = {
   createdAt: Date;
 };
 
-async function getLatestPoliticalNews(): Promise<Article[]> {
+async function getRussiaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsLocation:"Russia" },
+    where: { newsArticleStatus: "ACTIVE", newsLocation: "Russia" },
     orderBy: { createdAt: "desc" },
     take: 5,
     select: {
@@ -30,15 +30,27 @@ async function getLatestPoliticalNews(): Promise<Article[]> {
   return articles;
 }
 
-export default async function PoliticalLatest() {
-  const articles = await getLatestPoliticalNews();
+export default async function RussiaLatest() {
+  const articles = await getRussiaNews();
 
   return (
     <section className="px-2">
       <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">
-          Russia
-        </h2>
+        <Link
+          key="Russia"
+          href="/diffrentCountry?country=Russia"
+          className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+        >
+          <img
+            src="/flags/russia.jpeg"
+            alt="Russia flag"
+            width={30}
+            height={40}
+            className="rounded-sm border"
+          />
+          <span className="text-md font-bold uppercase">Russia</span>
+        </Link>
       </div>
 
       <div className="flex flex-col gap-4">

@@ -42,7 +42,21 @@ export default async function AsiaLatest() {
   return (
     <section className="px-2 md:px-0 my-10">
       <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">Asia</h2>
+          <Link
+              key="Asia"
+              href="/diffrentCountry?country=Asia"
+              className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+            >
+              <img
+                src="/flags/asia.jpg"
+                alt="ASIA flag"
+                width={30}
+                height={40}
+                className="rounded-sm border"
+              />
+              <span className="text-md font-bold uppercase">ASIA</span>
+            </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
