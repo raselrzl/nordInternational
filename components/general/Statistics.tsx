@@ -147,7 +147,7 @@ const Statistics = async () => {
 
         {/* Total Registered Users Card */}
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
-          <h2 className="text-md font-semibold ">Total Unique User</h2>
+          <h2 className="text-md font-semibold ">Total Unique Visitor</h2>
           <div className="text-3xl font-bold mt-4 text-primary">
             <NewUserTracker />
           </div>
