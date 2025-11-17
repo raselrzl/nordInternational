@@ -100,13 +100,15 @@ export default function Footer() {
             </a>
              <div 
     className="
-      w-[120px] h-[30px] 
-      md:w-[140px] md:h-[40px] 
-      bg-[url('/geye.png')] 
-      dark:bg-[url('/geyeb.png')] 
+      w-[130px] h-[40px] 
+      md:w-[160px] md:h-[50px] 
+      bg-[url('/logo/logo1.png')] 
+      dark:bg-[url('/logo/logo1.png')] 
       bg-cover bg-center
     " 
   />
+
+  
           </div>
           <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">
             <p className="text-sm">

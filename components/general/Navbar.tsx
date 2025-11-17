@@ -19,9 +19,9 @@ export default async function Navbar() {
         <div
           className="
       w-[130px] h-[40px] 
-      md:w-[180px] md:h-[50px] 
-      bg-[url('/gy121.png')] 
-      dark:bg-[url('/gy1212.png')] 
+      md:w-[160px] md:h-[50px] 
+      bg-[url('/logo/logo1.png')] 
+      dark:bg-[url('/logo/logo1.png')] 
       bg-cover bg-center
     "
         />
