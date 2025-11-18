@@ -2,6 +2,7 @@ import { prisma } from "@/app/utils/db";
 import Link from "next/link";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
+import { BesicTwoAdvertise } from "../allAdvertisement/BesicTwo";
 
 type Article = {
   id: string;
@@ -87,9 +88,10 @@ export default async function WarLatest() {
                 {featured.newsHeading}
               </h3>
             </Link>
+            <BesicTwoAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
-            {isJson(featured.newsDetails) ? (
+       {/*      {isJson(featured.newsDetails) ? (
               <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 <JsonToHtml json={JSON.parse(featured.newsDetails)} />
               </div>
@@ -97,7 +99,7 @@ export default async function WarLatest() {
               <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 {featured.newsDetails}
               </p>
-            )}
+            )} */}
           </div>
         </div>
 
@@ -109,14 +111,15 @@ export default async function WarLatest() {
               key={article.id}
               className="flex items-center gap-3 group border-t border-gray-950/10"
             >
-              <img
+            
+              <p className="font-semibold text-md group-hover:underline line-clamp-2">
+                {article.newsHeading}
+              </p>
+                <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
                 className="w-24 h-20 object-cover rounded-md"
               />
-              <p className="font-semibold text-md group-hover:underline line-clamp-2">
-                {article.newsHeading}
-              </p>
             </Link>
           ))}
         </div>

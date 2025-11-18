@@ -3,6 +3,8 @@ import Link from "next/link";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { CrimeAndPopularTab } from "./CrimeAndPopularTab";
+import { PremiarTwo } from "../allAdvertisement/PremierTwo";
+import { BesicOneAdvertise } from "../allAdvertisement/BesicOne";
 
 type Article = {
   id: string;
@@ -74,6 +76,7 @@ export default async function AsiaLatest() {
                 {featured.newsHeading}
               </h3>
             </Link>
+            <BesicOneAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
            {/*  {isJson(featured.newsDetails) ? (

@@ -2,6 +2,7 @@ import { prisma } from "@/app/utils/db";
 import Link from "next/link";
 import { isJson } from "@/app/utils/isJson";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
+import { BesicOneAdvertise } from "../allAdvertisement/BesicOne";
 
 type Article = {
   id: string;
@@ -69,12 +70,14 @@ export default async function ChainaLatest() {
               className="w-full h-64 object-cover"
             />
           </Link>
-          <div className="p-2">
+          <div className="p-2 border">
             <Link href={`/newsDetails/${featured.id}`}>
               <h3 className="text-xl md:text-xl font-bold hover:underline">
                 {featured.newsHeading}
               </h3>
             </Link>
+
+            <BesicOneAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
        {/*      {isJson(featured.newsDetails) ? (
