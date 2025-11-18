@@ -41,7 +41,7 @@ export default function DropDownMenuList() {
         <DropdownMenuContent align="end" className="w-70">
           <DropdownMenuLabel>
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-[100px] h-[40px] bg-[url('/n333.png')] bg-cover bg-center" />
+              <div className="w-[100px] h-[40px] bg-[url('/logo/logo1.png')] bg-cover bg-center" />
             </Link>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
