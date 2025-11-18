@@ -371,7 +371,7 @@ export default async function Home() {
 
       <AsiaLatest />
       <div className="border-y-2 my-2 border-primary"></div>
-      {/* Tab Section */}
+      {/* Russia Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="mx-4 md:mx-0 py-4">
