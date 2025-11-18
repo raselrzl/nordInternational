@@ -59,7 +59,7 @@ export default function Advertiser() {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 my-10 pb-8 border-1">
       <div className="flex justify-center mb-2">
-        <img src="/ge3.png" alt="logo image" width={300} height={100} />
+        <img src="/logo/logo1.png" alt="logo image" width={300} height={100} />
       </div>
       <h1 className="text-center mb-4 font-bold text-xl">We’re delighted to have you with us!</h1>
 

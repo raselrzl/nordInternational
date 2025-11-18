@@ -16,7 +16,7 @@ export default function UserTypeSelection({
       {" "}
       {/* Add padding for mobile view */}
       <div className="flex items-center justify-center gap-2 mb-2">
-        <img src="/ge3.png" alt="logo image" width={300} height={50} />
+        <img src="/logo/logo1.png" alt="logo image" width={300} height={50} />
       </div>
       <div className="text-center space-y-2">
         <h2 className="text-xl font-bold">Welcome, let's get started!</h2>

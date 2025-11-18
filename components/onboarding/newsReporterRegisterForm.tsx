@@ -60,7 +60,7 @@ export default function NewsReporterRegisterForm() {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 my-14 pb-8 border-1">
       <div className="flex justify-center mb-6">
-        <img src="/ge3.png" alt="logo image" width={300} height={100} />
+        <img src="/logo/logo1.png" alt="logo image" width={300} height={100} />
       </div>
 
       <Form {...form}>
