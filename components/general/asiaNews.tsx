@@ -60,7 +60,7 @@ export default async function AsiaLatest() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="overflow-hidden">
+        <div className="overflow-hidden shadow-lg">
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -93,7 +93,7 @@ export default async function AsiaLatest() {
             <Link
               href={`/newsDetails/${article.id}`}
               key={article.id}
-              className="flex items-center gap-3 group border-b border-gray-950/10"
+              className="flex items-center gap-3 group shadow-lg"
             >
               <img
                 src={article.newsPicture}

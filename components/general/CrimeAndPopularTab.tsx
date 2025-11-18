@@ -15,34 +15,34 @@ import { EconomyNews } from "../NewsCategory/EconomyNews"
 export function CrimeAndPopularTab() {
   return (
     <div className="">
-    <Tabs defaultValue="crime" className="w-full">
+    <Tabs defaultValue="crime" className="w-full border boder-gray-950/10 shadow-lg">
       <TabsList className="grid w-full grid-cols-3 bg-amber-800">
         <TabsTrigger className=" font-bold" value="crime">CRIME</TabsTrigger>
         <TabsTrigger className=" font-bold" value="politics">POLITICS</TabsTrigger>
         <TabsTrigger className=" font-bold" value="economy">ECONOMY</TabsTrigger>
       </TabsList>
       <TabsContent value="crime" className="">
-        <Card className="rounded-xs">
+ 
           <CardContent className="space-y-1 px-1">
             <SorboseshNews />
           </CardContent>
-        </Card>
+
       </TabsContent>
       <TabsContent value="politics">
-        <Card>
+
           <CardContent className="space-y-1 px-1">
             <JonoprioNews />
           </CardContent>
-        </Card>
+
       </TabsContent>
 
 
        <TabsContent value="economy">
-        <Card>
+
           <CardContent className="space-y-1 px-1">
             <EconomyNews />
           </CardContent>
-        </Card>
+
       </TabsContent>
     </Tabs></div>
   )
