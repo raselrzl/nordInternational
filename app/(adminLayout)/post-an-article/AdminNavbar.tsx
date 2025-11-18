@@ -12,8 +12,7 @@ export default async function AdminNavbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center">
-        <div className="w-[200px] h-[50px] sm:w-[180px] sm:h-[60px] md:w-[160px] md:h-[80px] bg-[url('/logo/logo1.png')] dark:bg-[url('/logo/logo1.png')] bg-cover bg-center" />
-      </Link>
+      Global EYE   </Link>
 
     
 
