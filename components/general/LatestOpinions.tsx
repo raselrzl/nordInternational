@@ -40,7 +40,7 @@ export default async function LatestOpinions() {
       </div>
 
       {/* Desktop Grid */}
-      <div className="hidden md:grid grid-cols-1 gap-2 px-2">
+      <div className="hidden md:grid grid-cols-1 gap-2 px-2 md:px-0">
         {opinions.map((item) => (
           <Link
             key={item.id}
