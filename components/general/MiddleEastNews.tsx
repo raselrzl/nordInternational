@@ -17,7 +17,7 @@ async function getLatestMiddleeastNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation:"Middleeast"},
     orderBy: { createdAt: "desc" },
-    take: 11,
+    take: 13,
     select: {
       id: true,
       newsHeading: true,
@@ -37,8 +37,8 @@ export default async function MiddleeastLatest() {
   const featured = articles[0];
   const others = articles.slice(1);
 
-  const leftArticles = others.slice(0, 5);
-  const rightArticles = others.slice(5, 10);
+  const leftArticles = others.slice(0, 6);
+  const rightArticles = others.slice(6, 12);
 
   return (
     <section className="px-2 md:px-0 my-10">

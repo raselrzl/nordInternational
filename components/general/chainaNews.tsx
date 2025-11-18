@@ -97,7 +97,7 @@ export default async function ChainaLatest() {
             <Link
               href={`/newsDetails/${article.id}`}
               key={article.id}
-              className="flex items-center gap-3 group border-b border-gray-950/10"
+              className="flex items-center gap-3 group border-t border-gray-950/10"
             >
               <img
                 src={article.newsPicture}

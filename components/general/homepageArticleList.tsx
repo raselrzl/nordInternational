@@ -163,7 +163,7 @@ export async function getScienceNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 6,
+    take: 7,
   });
 }
 
