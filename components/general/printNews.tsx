@@ -34,8 +34,8 @@ export default function PrintNews({
   id,
 }: PrintNewsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
-
   const [articleUrl, setArticleUrl] = useState("");
+  const [isFullImage, setIsFullImage] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -76,8 +76,8 @@ export default function PrintNews({
 
   return (
     <>
+      {/* Share Buttons */}
       <div className="flex justify-end flex-wrap space-x-1 pr-4 mt-6 md:mt-2">
-        {/* Removed the Download button here */}
         <PrintNewsDetailsClient
           newsHeading={newsHeading ?? ""}
           newsPicture={newsPicture ?? null}
@@ -86,58 +86,54 @@ export default function PrintNews({
           createdAt={createdAt}
           quotes={quotes}
         />
+
         <Button
           onClick={handleShareWhatsApp}
-          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-green-600 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer bg-green-600 shadow border rounded-xl"
           variant="outline"
         >
           <img
             src="/whatsapp.svg"
             alt="WhatsApp"
-            width={40}
-            height={40}
             className="object-cover w-full h-full"
           />
         </Button>
 
         <Button
           onClick={handleShareFacebook}
-          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-950 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer bg-blue-950 shadow border rounded-xl"
           variant="outline"
         >
           <img
             src="/fb.webp"
             alt="Facebook"
-            width={45}
-            height={45}
             className="object-cover w-full h-full"
           />
         </Button>
 
         <Button
           onClick={handleShareMessenger}
-          className="w-10 h-10 p-0 overflow-hidden cursor-pointer bg-blue-800 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer bg-blue-800 shadow border rounded-xl"
           variant="outline"
         >
           <img
             src="/messanger.svg"
             alt="Messenger"
-            width={40}
-            height={40}
             className="object-cover w-full h-full"
           />
         </Button>
 
         <Button
           onClick={handleCopyLink}
-          className="p-0 cursor-pointer w-10 h-10 bg-black shadow border rounded-xl text-white"
+          className="w-10 h-10 p-0 cursor-pointer bg-black text-white shadow border rounded-xl"
           variant="outline"
         >
           <Copy className="h-12 w-12" />
         </Button>
       </div>
 
-      <div className="mb-10 ">
+      {/* MAIN CONTENT */}
+      <div className="mb-10">
         <div
           id="printable-content"
           ref={contentRef}
@@ -146,40 +142,69 @@ export default function PrintNews({
           <h1 className="text-2xl font-bold my-4 p-2">
             {newsHeading}
           </h1>
-          {newsPicture && (
-            <div className="relative w-full md:px-6 h-[300px] md:h-[400px] ">
-              {/* Image Layer (underneath) */}
-              <img
-                src={newsPicture}
-                alt="Description"
-                className="absolute inset-0 w-full h-full object-fit z-0"
-              />
 
-              {/* Text Layer (bottom with background) */}
-              <div className="absolute bottom-0 left-0 w-full z-10 bg-black/60 text-white px-4 py-2 text-center">
-                {newsPictureHeading || newsPictureCredit ? (
-                  <>
-                    {newsPictureHeading && (
-                      <p className="text-sm font-semibold">
-                        {newsPictureHeading}
-                      </p>
-                    )}
-                    {newsPictureCredit && (
-                      <p className="text-xs">{newsPictureCredit}</p>
-                    )}
-                  </>
-                ) : (
-                  <p className="text-sm font-semibold">Global Eye Correspondent</p>
-                )}
+          {/* Image Section */}
+          {newsPicture && (
+            <>
+              <div
+                className="relative w-full md:px-6 h-[280px] md:h-[550px] cursor-pointer"
+                onClick={() => setIsFullImage(true)}
+              >
+                <img
+                  src={newsPicture}
+                  alt="Description"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white px-4 py-2 text-center z-10">
+                  {newsPictureHeading || newsPictureCredit ? (
+                    <>
+                      {newsPictureHeading && (
+                        <p className="text-sm font-semibold">
+                          {newsPictureHeading}
+                        </p>
+                      )}
+                      {newsPictureCredit && (
+                        <p className="text-xs">{newsPictureCredit}</p>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-sm font-semibold">
+                      Global Eye Correspondent
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
+
+              {/* Fullscreen Image Viewer */}
+              {isFullImage && (
+                <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setIsFullImage(false)}
+                    className="absolute top-4 right-4 text-white p-2 bg-black/50 rounded-full hover:bg-black/70"
+                  >
+                    ✕
+                  </button>
+
+                  {/* Fullscreen Image */}
+                  <img
+                    src={newsPicture}
+                    alt="Fullscreen Image"
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              )}
+            </>
           )}
 
+          {/* NEWS DETAILS */}
           <div className="whitespace-pre-line text-md mg:text-lg dark:bg-black mt-10">
             <div className="flex flex-row px-1">
               <MapPin />
               <p className="text-xl font-bold">{newsLocation}</p>
             </div>
+
             <div className="px-2 mt-4">
               <NewsDetailsDisplay newsDetails={newsDetails} />
             </div>
