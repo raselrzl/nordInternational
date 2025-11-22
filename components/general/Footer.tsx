@@ -100,10 +100,10 @@ export default function Footer() {
             </a>
              <div 
     className="
-      w-[130px] h-[40px] 
-      md:w-[160px] md:h-[50px] 
-      bg-[url('/logo/logo1.png')] 
-      dark:bg-[url('/logo/logo1.png')] 
+      w-[150px] h-[40px] 
+      md:w-[160px] md:h-[40px] 
+      bg-[url('/logo/logo.png')] 
+      dark:bg-[url('/logo/logo.png')] 
       bg-cover bg-center
     " 
   />
