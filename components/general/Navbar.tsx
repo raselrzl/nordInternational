@@ -17,7 +17,7 @@ export default async function Navbar() {
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center pl-2">
         <div
-          className="m-1
+          className="m-1/2
       w-[90px] h-[50px] 
       md:w-[160px] md:h-[70px] 
       bg-[url('/gl1.png')] 
