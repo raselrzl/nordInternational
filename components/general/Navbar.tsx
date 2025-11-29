@@ -18,10 +18,10 @@ export default async function Navbar() {
       <Link href="/" className="flex items-center pl-2">
         <div
           className="
-      w-[140px] h-[40px] 
-      md:w-[170px] md:h-[50px] 
-      bg-[url('/logo/logo.png')] 
-      dark:bg-[url('/logo/logo.png')] 
+      w-[80px] h-[40px] 
+      md:w-[160px] md:h-[70px] 
+      bg-[url('/gl1.png')] 
+      dark:bg-[url('/gl1.png')] 
       bg-cover bg-center
     "
         />
