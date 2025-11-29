@@ -19,7 +19,7 @@ export default async function Navbar() {
         <div
           className="m-1/2
       w-[90px] h-[50px] 
-      md:w-[160px] md:h-[70px] 
+      md:w-[135px] md:h-[60px] 
       bg-[url('/gl1.png')] 
       dark:bg-[url('/gl1.png')] 
       bg-cover bg-center
