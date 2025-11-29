@@ -50,7 +50,7 @@ export default function Footer() {
             <h3 className="font-bold text-md">
               Editor & Publisher: Global Eye
             </h3>
-           {/*  <p className="mb-1 text-sm text-muted-foreground">
+            {/*  <p className="mb-1 text-sm text-muted-foreground">
               <a
                 href="mailto:contact@globaleye.press"
                 className="text-orange-600 hover:underline"
@@ -98,49 +98,86 @@ export default function Footer() {
             >
               contact@globaleye.press
             </a>
-             <div 
-    className="
+            <div
+              className="
       w-[150px] h-[40px] 
       md:w-[160px] md:h-[40px] 
       bg-[url('/logo/logo.png')] 
       dark:bg-[url('/logo/logo.png')] 
       bg-cover bg-center
-    " 
-  />
-
-  
+    "
+            />
           </div>
-          <div className="flex flex-col items-center  justify-center gap-4 mt-6 md:mt-0">
+          <div className="flex flex-col items-center  justify-center gap-2 mt-6 md:mt-0">
             <p className="text-sm">
               Follow our social media accounts for the latest updates and
               exclusive content.
             </p>
-            <div className="flex flex-row gap-3">
-              {" "}
+
+            <div className="flex items-center">
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/instagram.png"
+                    alt="Instagram"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+
+              {/* Facebook */}
               <a
                 href="https://web.facebook.com/globaleye.press/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
-                <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-green-600" />
+                <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/facebook.png"
+                    alt="Facebook"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
               </a>
+
+              {/* YouTube */}
               <a
-                href="https://www.instagram.com/globaleyepress"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
-              </a>
-           {/*    <a
-                href="https://www.youtube.com"
+                href="https://www.youtube.com/@globaleyepressofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
               >
-                <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
-              </a> */}
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/youtube.png"
+                    alt="YouTube"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+
+              {/* TikTok */}
+              <a
+                href="https://www.tiktok.com/@globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/tiktokk.png"
+                    alt="TikTok"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
             </div>
           </div>
         </div>

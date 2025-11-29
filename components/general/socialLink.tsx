@@ -13,32 +13,72 @@ import React from "react";
 
 const SocialLinks = () => {
   return (
-    <div className="flex items-center gap-4  justify-center mt-2">
-      <a
-        href="https://web.facebook.com/globaleye.press/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Facebook"
-      >
-        <Facebook className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-green-600" />
-      </a>
-      <a
-        href="https://www.instagram.com/globaleyepress"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram"
-      >
-        <Instagram className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-pink-500" />
-      </a>
-     {/*  <a
-        href="https://www.youtube.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube"
-      >
-        <Youtube className="w-10 h-10 bg-primary p-1 rounded-xl text-accent hover:text-red-600" />
-      </a> */}
-    </div>
+    
+            <div className="flex items-center justify-center mt-4">
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/instagram.png"
+                    alt="Instagram"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+
+              {/* Facebook */}
+              <a
+                href="https://web.facebook.com/globaleye.press/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/facebook.png"
+                    alt="Facebook"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+
+              {/* YouTube */}
+              <a
+                href="https://www.youtube.com/@globaleyepressofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/youtube.png"
+                    alt="YouTube"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+
+              {/* TikTok */}
+              <a
+                href="https://www.tiktok.com/@globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/tiktokk.png"
+                    alt="TikTok"
+                    className="w-full h-full object-cover scale-[1.02]"
+                  />
+                </div>
+              </a>
+            </div>
   );
 };
 
