@@ -4,7 +4,7 @@ import { auth } from "@/app/utils/auth";
 import { ThemeToggle } from "@/components/general/ThemeToggle";
 import { UserDropdown } from "@/components/general/UserDropdown";
 import { buttonVariants } from "@/components/ui/button";
-import { User2 } from "lucide-react";
+import { HomeIcon, User2 } from "lucide-react";
 
 export default async function AdminNavbar() {
   const user = await auth();
@@ -12,7 +12,9 @@ export default async function AdminNavbar() {
   return (
     <nav className="flex items-center justify-between pr-2 py-2">
       <Link href="/" className="flex items-center">
-      Global EYE   </Link>
+        <HomeIcon className="ml-2"/>
+      </Link>
+
 
     
 

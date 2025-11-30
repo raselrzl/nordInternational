@@ -20,6 +20,7 @@ import {
 import { MoreHorizontal, XCircle } from "lucide-react";
 import Link from "next/link";
 import { EmptyState } from "@/components/general/EmptyState";
+import { PaginationComponent } from "@/components/general/PaginationComponent";
 
 type NewsType = {
   id: string;
@@ -30,21 +31,41 @@ type NewsType = {
   updatedAt: Date;
 };
 
-async function getAllNews(): Promise<NewsType[]> {
-  return prisma.publicSourceNews.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+async function getAllNews(page: number = 1, pageSize: number = 10) {
+  const skip = (page - 1) * pageSize;
+
+  const [news, totalCount] = await Promise.all([
+    prisma.publicSourceNews.findMany({
+      take: pageSize,
+      skip,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.publicSourceNews.count(),
+  ]);
+
+  return {
+    news,
+    totalCount,
+    totalPages: Math.ceil(totalCount / pageSize),
+  };
 }
 
-export default async function PublicNewsPage() {
-  const news = await getAllNews();
+type SearchParamsProps = {
+  searchParams: Promise<{ page?: string }>;
+};
+
+export default async function PublicNewsPage({ searchParams }: SearchParamsProps) {
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
+
+  const { news, totalCount, totalPages } = await getAllNews(currentPage);
 
   return (
     <>
       <div className="flex items-center justify-between mb-8 bg-accent-foreground/5 p-2">
         <h1 className="text-xl font-bold">Manage Public News</h1>
         <div className="text-sm bg-primary text-white px-3 py-1 rounded-md">
-          Total: {news.length}
+          Total: {totalCount}
         </div>
       </div>
 
@@ -64,11 +85,8 @@ export default async function PublicNewsPage() {
                 </TableHeader>
 
                 <TableBody>
-                  {news.map((n, idx) => (
-                    <TableRow
-                      key={n.id}
-                      className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                    >
+                  {news.map((n) => (
+                    <TableRow key={n.id}>
                       <TableCell className="py-2 px-3">{n.headings}</TableCell>
                       <TableCell className="py-2 px-3">{n.sourceIdName}</TableCell>
                       <TableCell className="py-2 px-3">{n.link}</TableCell>
@@ -76,7 +94,6 @@ export default async function PublicNewsPage() {
                         {n.createdAt.toLocaleString()}
                       </TableCell>
 
-                      {/* Actions */}
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -84,6 +101,7 @@ export default async function PublicNewsPage() {
                               <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>
+
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
                             <DropdownMenuSeparator />
@@ -105,6 +123,9 @@ export default async function PublicNewsPage() {
               </Table>
             </CardContent>
           </Card>
+
+          {/* Pagination */}
+          <PaginationComponent totalPages={totalPages} currentPage={currentPage} />
         </div>
       ) : (
         <EmptyState

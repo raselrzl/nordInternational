@@ -1,10 +1,12 @@
 import {
   BarChart,
   BookPlus,
+  CameraIcon,
   ChartColumnBig,
   ChevronDown,
   FileQuestion,
   FlameIcon,
+  ImageIcon,
   Layers2,
   LogOut,
   Megaphone,
@@ -13,9 +15,12 @@ import {
   Package,
   PoundSterling,
   Settings2,
+  Table,
   TableProperties,
   Users,
+  VideoIcon,
 } from "lucide-react";
+
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -48,38 +53,52 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
   const isSuperAdmin = userType === "SUPERADMIN";
 
   // Common links for everyone
-  const linksCommon = [
-    { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
-  ];
+ const linksCommon = [
+  { href: "/alluseropinion", icon: MessagesSquare, label: "Complaints" },
+];
+
 
   // Links for NEWSREPORTER approved
-  const linksNewsReporter = [
-    { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
-    { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
-  ];
+const linksNewsReporter = [
+  { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
+  { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
+];
 
-  const linksEditorSuperAdmin = [
-    { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
-    { href: "/post-an-article/public-source-news", icon: FlameIcon, label: "Post A live Update" },
-    { href: "/post-an-article/public-source-news/all-public-source-news", icon: FlameIcon, label: "Manage All Live Update" },
-    { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
-    { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
-    { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
-    { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
-    { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
-    { href: "/post-an-article/post-a-video", icon: Settings2, label: "Post a YouTube Video" },
-    { href: "/post-an-article/post-an-instagram", icon: Settings2, label: "Post a Instagram Link" },
-    { href: "/post-an-article/post-an-instagram/allinstagrampost", icon: Settings2, label: "Manage all instagram post" },
-    { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
-    { href: "/post-an-article/allusers", icon: Users, label: "Users" },
-  ];
+
+const linksEditorSuperAdmin = [
+  { href: "/post-an-article", icon: BookPlus, label: "Write News Article" },
+  { href: "/post-an-article/my-article", icon: Newspaper, label: "My Published Articles" },
+
+  { href: "/post-an-article/public-source-news", icon: FlameIcon, label: "Post A Live Update" },
+  { href: "/post-an-article/public-source-news/all-public-source-news", icon: Table, label: "Manage All Live Update" },
+
+  { href: "/post-an-article/poll", icon: FileQuestion, label: "Write Poll Question" },
+
+  { href: "/post-an-article/alluseropinion/opiniontable", icon: Settings2, label: "Manage All Complaints" },
+
+  { href: "/post-an-article/alaarticles", icon: Layers2, label: "Manage All Articles" },
+
+  { href: "/post-an-article/post-advertisement", icon: Megaphone, label: "Post Advertisement" },
+  { href: "/post-an-article/post-advertisement/alladvertise", icon: PoundSterling, label: "Manage Advertisements" },
+  { href: "/post-an-article/advertise/allcontactinfo", icon: MessagesSquare, label: "All Advertisement Requests" },
+
+  { href: "/post-an-article/post-a-video", icon: VideoIcon, label: "Post a YouTube Video" },
+  { href: "/post-an-article/post-an-instagram", icon: CameraIcon, label: "Post Instagram Link" },
+  { href: "/post-an-article/post-an-instagram/allinstagrampost", icon: ImageIcon, label: "Manage All Instagram Posts" },
+
+  { href: "/post-an-article/post-a-video/allvideos", icon: BarChart, label: "Manage All Videos" },
+
+  { href: "/post-an-article/allusers", icon: Users, label: "Users" },
+];
+
 
   // SUPERADMIN-only links  post-an-article/post-an-instagram/allinstagrampost
-  const linksSuperAdmin = [
-    { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
-    { href: "/post-an-article/post-advertisement/adanalysis", icon: TableProperties, label: "Economy" },
-    { href: "/post-an-article/routeTrack", icon: ChartColumnBig, label: "Statistics" },
-  ];
+const linksSuperAdmin = [
+  { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
+  { href: "/post-an-article/post-advertisement/adanalysis", icon: ChartColumnBig, label: "Economy" },
+  { href: "/post-an-article/routeTrack", icon: BarChart, label: "Dashboard" },
+];
+
 
   // Compose final links
   let allLinks = [...linksCommon];

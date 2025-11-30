@@ -61,7 +61,7 @@ export default function PublicSourceNewsForm() {
   }
 
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-xl p-8">
+    <div className="max-w-lg mx-auto mt-10 shadow-lg rounded-xl p-8">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Headline */}
