@@ -27,7 +27,7 @@ import { formatRelativeTime } from "@/app/utils/formatRelativeTime";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import html2canvas from "html2canvas-pro";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, PrinterIcon } from "lucide-react";
 import { isJson } from "@/app/utils/isJson";
 import { richTextToPlainText } from "@/app/utils/richTextToPlainText";
 
@@ -76,14 +76,18 @@ export function PrintNewsDetailsClient({
       {" "}
       <Button
         onClick={handleDownload}
-        className="overflow-hidden w-10 h-10 bg-black shadow border rounded-xl text- cursor-pointer"
+        className="overflow-hidden h-11 w-16 shadow-none border-none cursor-pointer hover:bg-none"
         variant="outline"
         disabled={isLoading}
       >
         {isLoading ? (
           <Loader2 className="animate-spin w-5 h-5 text-primary" />
         ) : (
-          <Download className="h-14 w-14 text-white hover:text-black" />
+          <img
+            src="/printtt.png"
+            alt="WhatsApp"
+            className="object-cover w-full h-full"
+          />
         )}
       </Button>
       <div

@@ -77,7 +77,7 @@ export default function PrintNews({
   return (
     <>
       {/* Share Buttons */}
-      <div className="flex justify-end flex-wrap space-x-1 pr-4 mt-6 md:mt-2">
+      <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-6 md:mt-2">
         <PrintNewsDetailsClient
           newsHeading={newsHeading ?? ""}
           newsPicture={newsPicture ?? null}
@@ -89,7 +89,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-10 h-10 p-0 cursor-pointer bg-green-600 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -101,7 +101,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareFacebook}
-          className="w-10 h-10 p-0 cursor-pointer bg-blue-950 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -113,7 +113,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareMessenger}
-          className="w-10 h-10 p-0 cursor-pointer bg-blue-800 shadow border rounded-xl"
+          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -125,10 +125,14 @@ export default function PrintNews({
 
         <Button
           onClick={handleCopyLink}
-          className="w-10 h-10 p-0 cursor-pointer bg-black text-white shadow border rounded-xl"
+          className="w-9 h-9 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
-          <Copy className="h-12 w-12" />
+          <img
+            src="/copylink.png"
+            alt="copyimage"
+            className="object-cover w-full h-full"
+          />
         </Button>
       </div>
 
