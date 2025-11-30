@@ -36,6 +36,7 @@ import IndiaLatest from "@/components/general/India";
 import AfrikaLatest from "@/components/general/Afrika";
 import AustraliaLatest from "@/components/general/Australia";
 import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
+import Videos from "@/components/general/Videos";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -364,8 +365,7 @@ export default async function Home() {
       <div className="border-y-2 my-2 border-primary"></div>
       <WarLatest />
       <div className="border-y-2 my-2 border-primary"></div>
-      {/* Videos Section */}
-      {/*   <Videos /> */}
+     
       <ChainaLatest />
       <div className="border-y-2 my-2 border-primary"></div>
 
@@ -406,8 +406,7 @@ export default async function Home() {
         <AustraliaLatest />
         <SouthamericaLatest />
       </div>
-
-      {/* Science Section */}
+        <Videos />
       <div className="border-y-4 my-2 py-6 border-primary">
         <div className="grid grid-cols-3 border-primary my-4">
           <div className="col-span-3 md:col-span-1 p-2 mt-2 flex flex-col justify-between w-full max-w-sm mx-auto md:mx-0">
