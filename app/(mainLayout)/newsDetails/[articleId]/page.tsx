@@ -92,7 +92,8 @@ export async function generateMetadata({
     alternates: { canonical: `/newsDetails/${article.id}` },
     openGraph: {
       type: "article",
-      url: `/newsDetails/${article.id}`,
+/*        url: `/newsDetails/${article.id}`, */
+      url: "",
       title,
       description,
       siteName: "Global Eye",
@@ -159,7 +160,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
           newsDetails={data.newsDetails}
           newsResource={data.newsResource}
           newsPicture={data.newsPicture}
-          newsLocation={data.newsLocation}
+          newsLocation={data.newsLocation} 
           newsPictureHeading={data.newsPictureHeading}
           newsPictureCredit={data.newsPictureCredit}
           newsHeading={data.newsHeading}

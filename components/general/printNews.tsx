@@ -23,7 +23,7 @@ interface PrintNewsProps {
 
 export default function PrintNews({
   newsPicture,
-  newsPictureHeading,
+  newsPictureHeading, 
   newsPictureCredit,
   newsLocation,
   newsDetails,
