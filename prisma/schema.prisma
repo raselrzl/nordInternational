@@ -100,6 +100,8 @@ model newsArticle {
   newsArticleStatus newsArticleStatus @default(DRAFT)
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
+
+  viewCount         Int?              @default(12)
 }
 
 enum newsArticleStatus {

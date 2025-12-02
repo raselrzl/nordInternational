@@ -1002,3 +1002,18 @@ export async function getTotalNewUsers() {
   const count = await prisma.newUserVisit.count();
   return { count };
 }
+
+
+export async function incrementArticleView(articleId: string) {
+  try {
+    await prisma.newsArticle.update({
+      where: { id: articleId },
+      data: { viewCount: { increment: 1 } },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error incrementing view count:", error);
+    return { success: false };
+  }
+}
