@@ -849,6 +849,7 @@ const publicSourceNewsSchema = z.object({
   headings: z.string().min(3, "Headline is required"),
   sourceIdName: z.string().min(2, "Source ID name is required"),
   link: z.enum(["FACEBOOK", "INSTAGRAM", "TWITTER"]),
+  newsPicture: z.string(),
 });
 
 
@@ -856,12 +857,14 @@ export async function createPublicSourceNews(data: {
   headings: string;
   sourceIdName: string;
   link: "FACEBOOK" | "INSTAGRAM" | "TWITTER";
+  newsPicture: string;
 }) {
   await prisma.publicSourceNews.create({
     data: {
       headings: data.headings,
       sourceIdName: data.sourceIdName,
       link: data.link,
+      newsPicture: data.newsPicture,
     },
   });
 

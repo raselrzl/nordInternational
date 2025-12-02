@@ -420,6 +420,8 @@ model PublicSourceNews {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  newsPicture        String? 
 }
 
 enum Link {
