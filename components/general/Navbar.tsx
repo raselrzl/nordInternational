@@ -9,6 +9,7 @@ import { Loader2, User2 } from "lucide-react";
 import { Suspense } from "react";
 import { DeluxeOneAdvertise } from "../allAdvertisement/DeluxeOne";
 import DropDownCountryList from "./DropDownCountryList";
+import DropDownMenuList from "./dropDownMenuList";
 
 export default async function Navbar() {
   const user = await auth();
@@ -33,11 +34,9 @@ export default async function Navbar() {
         </Suspense>
       </div>
 
-      {/*  desktop navigation */}
-
-      <div className="hidden md:flex items-center gap-5">
+      <div className="hidden md:flex items-center gap-4">
         <ThemeToggle />
-        {/*  <DropDownMenuList /> */}
+        <DropDownMenuList />
         <DropDownCountryList />
 
         <div>
@@ -63,11 +62,10 @@ export default async function Navbar() {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden flex items-center gap-2">
-        <div className="size-sm">
-          <ThemeToggle />
-        </div>
-        {/* <DropDownMenuList /> */}
+      <div className="md:hidden flex items-center gap-1">
+        <ThemeToggle />
+
+        <DropDownMenuList />
         <DropDownCountryList />
         {user?.user ? (
           <UserDropdown

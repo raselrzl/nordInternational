@@ -2,6 +2,7 @@ import {
   Activity,
   BrainCircuit,
   Coins,
+  Component,
   Film,
   Gavel,
   Globe,
@@ -34,137 +35,204 @@ export default function DropDownMenuList() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="mr-2">
-            <Menu className="h-6 w-6" />
+          <Button variant="outline" size="sm" className="">
+            <Component className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-70">
-          <DropdownMenuLabel>
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-[100px] h-[40px] bg-[url('/logo/logo1.png')] bg-cover bg-center" />
+        <DropdownMenuContent
+          align="center"
+          className="p-4 w-auto min-w-[350px] md:min-w-[500px]"
+        >
+          {/* GRID MENU */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mx-auto">
+            <Link href="/latest" className="flex flex-col items-center gap-1">
+              <Search size={20} className="opacity-60" />
+              <span className="text-sm">Latest</span>
             </Link>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
 
-          <DropdownMenuItem asChild>
-            <Link href="/latest">
-              <Search size={16} className="opacity-60" />
-              <span>Latest</span>
+            <Link href="/national" className="flex flex-col items-center gap-1">
+              <Landmark size={20} className="opacity-60" />
+              <span className="text-sm">National</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
 
-          <DropdownMenuItem asChild>
-            <Link href="/national">
-              <Landmark size={16} className="opacity-60" />
-              <span>National</span>
+            <Link href="/politics" className="flex flex-col items-center gap-1">
+              <Megaphone size={20} className="opacity-60" />
+              <span className="text-sm">Politics</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/politics">
-              <Megaphone size={16} className="opacity-60" />
-              <span>Politics</span>
+
+            <Link
+              href="/countrywide"
+              className="flex flex-col items-center gap-1"
+            >
+              <TentTree size={20} className="opacity-60" />
+              <span className="text-sm">Country</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/countrywide">
-              <TentTree size={16} className="opacity-60" />
-              <span>Country</span>
+
+            <Link
+              href="/international"
+              className="flex flex-col items-center gap-1"
+            >
+              <Globe size={20} className="opacity-60" />
+              <span className="text-sm">International</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/international">
-              <Globe size={16} className="opacity-60" />
-              <span>International</span>
+
+            <Link href="/sports" className="flex flex-col items-center gap-1">
+              <Activity size={20} className="opacity-60" />
+              <span className="text-sm">Sports</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/sports">
-              <Activity size={16} className="opacity-60" />
-              <span>Sports</span>
+
+            <Link
+              href="/education"
+              className="flex flex-col items-center gap-1"
+            >
+              <School size={20} className="opacity-60" />
+              <span className="text-sm">Education</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/education">
-              <School size={16} className="opacity-60" />
-              <span>Education</span>
+
+            <Link href="/health" className="flex flex-col items-center gap-1">
+              <HeartPulse size={20} className="opacity-60" />
+              <span className="text-sm">Health</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/health">
-              <HeartPulse size={16} className="opacity-60" />
-              <span>Health</span>
+
+            <Link href="/opinion" className="flex flex-col items-center gap-1">
+              <BrainCircuit size={20} className="opacity-60" />
+              <span className="text-sm">Opinion</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/opinion">
-              <BrainCircuit size={16} className="opacity-60" />
-              <span>Opinion</span>
+
+            <Link href="/religion" className="flex flex-col items-center gap-1">
+              <Star size={20} className="opacity-60" />
+              <span className="text-sm">Religion</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/religion">
-              <Star size={16} className="opacity-60" />
-              <span>Religion</span>
+
+            <Link href="/crime" className="flex flex-col items-center gap-1">
+              <ShieldAlert size={20} className="opacity-60" />
+              <span className="text-sm">Crime</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/crime">
-              <ShieldAlert size={16} className="opacity-60" />
-              <span>Crime</span>
+
+            <Link
+              href="/technology"
+              className="flex flex-col items-center gap-1"
+            >
+              <Rocket size={20} className="opacity-60" />
+              <span className="text-sm">Technology</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/technology">
-              <Rocket size={16} className="opacity-60" />
-              <span>Technology</span>
+
+            <Link
+              href="/entertainment"
+              className="flex flex-col items-center gap-1"
+            >
+              <Film size={20} className="opacity-60" />
+              <span className="text-sm">Entertainment</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/entertainment">
-              <Film size={16} className="opacity-60" />
-              <span>Entertainment</span>
+
+            <Link href="/economy" className="flex flex-col items-center gap-1">
+              <Coins size={20} className="opacity-60" />
+              <span className="text-sm">Economy</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/economy">
-              <Coins size={16} className="opacity-60" />
-              <span>Economy</span>
+
+            <Link
+              href="/law-and-justice"
+              className="flex flex-col items-center gap-1"
+            >
+              <Gavel size={20} className="opacity-60" />
+              <span className="text-sm">Law & Justice</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/law-and-justice">
-              <Gavel size={16} className="opacity-60" />
-              <span>Law & Justice</span>
+
+            <Link
+              href="/environment"
+              className="flex flex-col items-center gap-1"
+            >
+              <Leaf size={20} className="opacity-60" />
+              <span className="text-sm">Environment</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/environment">
-              <Leaf size={16} className="opacity-60" />
-              <span>Environment</span>
+
+            <Link href="/science" className="flex flex-col items-center gap-1">
+              <Microscope size={20} className="opacity-60" />
+              <span className="text-sm">Science</span>
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/science">
-              <Microscope size={16} className="opacity-60" />
-              <span>Science</span>
-            </Link>
-          </DropdownMenuItem>
+          </div>
+
+          {/* ---- COMPACT CONTACT + SOCIAL ---- */}
+          <div className="mt-5 border-t pt-3 text-center">
+            {/* Advertising Link */}
+            {/* Advertising Link */}
+            <p className="text-sm text-gray-600 font-semibold block">
+              For advertisement fill up the{" "}
+              <Link
+                href="/about/advertise#advertiseForm"
+                className="text-primary underline"
+              >
+                Form
+              </Link>{" "}
+              or{" "}
+              <Link
+                href="mailto:contact@globaleye.press"
+                className="text-primary underline"
+              >
+                Email
+              </Link>
+            </p>
+
+            {/* Email */}
+            <a
+              href="mailto:contact@globaleye.press"
+              className="text-xs text-gray-600 dark:text-gray-300 hover:underline block mt-1"
+            >
+              contact@globaleye.press
+            </a>
+
+            {/* Social Icons */}
+            <p className="mt-2">Follow us on</p>
+            <div className="flex items-center justify-center gap-2 mt-1">
+              <a
+                href="https://www.instagram.com/globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/instagram.png"
+                  alt="Instagram"
+                  className="w-7 h-7 rounded-full"
+                />
+              </a>
+
+              <a
+                href="https://web.facebook.com/globaleye.press/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/facebook.png"
+                  alt="Facebook"
+                  className="w-8 h-8 rounded-full"
+                />
+              </a>
+
+              <a
+                href="https://www.youtube.com/@globaleyepressofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/youtube.png"
+                  alt="YouTube"
+                  className="w-7 h-7 rounded-full"
+                />
+              </a>
+
+              <a
+                href="https://www.tiktok.com/@globaleye.press"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/tiktokk.png"
+                  alt="TikTok"
+                  className="w-7 h-7 rounded-full"
+                />
+              </a>
+            </div>
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
