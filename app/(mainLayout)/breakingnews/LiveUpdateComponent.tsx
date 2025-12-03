@@ -68,19 +68,46 @@ export default async function LiveUpdateComponent({
   const { news, totalPages } = await getPaginatedNews(currentPage, pageSize);
 
   return (
-    <div className="px-6 py-3 bg-red-50 dark:bg-black rounded-md mx-auto max-w-7xl">
-      <h1 className="text-sm uppercase font-bold mb-4 text-red-800">
+    <div className=" py-3 rounded-md mx-auto max-w-7xl">
+      <h1 className="uppercase font-bold mb-4 bg-red-800 text-white  text-xl text-center py-2 max-w-3xl">
         🚨 Breaking News
       </h1>
 
-      <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute top-0 bottom-0 left-5 w-[2px] bg-black"></div>
+      {/* ========== FIRST NEWS FEATURE ========== */}
+      {news.length > 0 && (
+        <div className="relative mb-14 flex flex-col items-center">
+          {news[0].newsPicture && (
+            <div className="relative w-full max-w-[720px]">
+              <img
+                src={news[0].newsPicture!}
+                className="w-full h-[300px] md:h-[340px] object-cover rounded-2xl"
+                alt=""
+              />
 
+              {/* Overlay text box */}
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
+                <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
+                  <span className="text-xs text-gray-500 italic block text-left">
+                    {formatTimeAgo(new Date(news[0].createdAt))}
+                  </span>
+                  <div className="font-bold text-lg text-red-600 leading-tight mt-1">
+                    {news[0].headings}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+       
+        </div>
+      )}
+
+      {/* ========== REST OF THE NEWS (KEEP EXACT CURRENT DESIGN) ========== */}
+      <div className="relative max-w-2xl mx-auto">
+        <div className="absolute top-0 bottom-0 left-5 w-[2px] bg-black"></div>
         <div className="flex flex-col">
-          {news.map((item) => (
+          {news.slice(1).map((item) => (
             <div key={item.id} className="flex items-start relative mb-3">
-              {/* Dot */}
               <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
                 <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
                   <div className="bg-primary rounded-full animate-ping w-2 h-2"></div>
@@ -88,27 +115,19 @@ export default async function LiveUpdateComponent({
               </div>
 
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 md:gap-4">
-                {/* TEXT */}
                 <div className="flex-1">
                   <span className="text-xs text-gray-500 italic">
                     {formatTimeAgo(new Date(item.createdAt))}
                   </span>
-
-                  <div className="font-medium text-sm mt-1">
-                    {item.headings}
-                  </div>
-                </div>
-
-                {/* IMAGE */}
-                {item.newsPicture && (
+                  <div className="font-medium text-sm mt-1">{item.headings}</div>
+                     {item.newsPicture && (
                   <div className="md:w-50 md:flex-shrink-0">
-                    {item.newsPicture && (
-                      <div className="md:w-50 md:flex-shrink-0">
-                        <NewsImageModal src={item.newsPicture} />
-                      </div>
-                    )}
+                    <NewsImageModal src={item.newsPicture} />
                   </div>
                 )}
+                </div>
+
+             
               </div>
             </div>
           ))}
