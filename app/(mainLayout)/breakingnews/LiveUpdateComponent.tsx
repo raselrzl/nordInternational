@@ -69,13 +69,13 @@ export default async function LiveUpdateComponent({
 
   return (
     <div className=" py-3 rounded-md mx-auto max-w-7xl">
-      <h1 className="uppercase font-bold mb-4 text-red-800  text-xl text-center py-2">
+      <h1 className="uppercase font-bold mb-4 text-white text-xl md:ml-50 py-2 bg-primary">
         🚨 Breaking News
       </h1>
 
       {/* ========== FIRST NEWS FEATURE ========== */}
       {news.length > 0 && (
-        <div className="relative mb-14 flex flex-col items-center">
+        <div className="relative mb-14 flex flex-col items-center px-2">
           {news[0].newsPicture && (
             <div className="relative w-full max-w-[720px]">
               <img
