@@ -69,7 +69,7 @@ export default async function LiveUpdateComponent({
 
   return (
     <div className=" py-3 rounded-md mx-auto max-w-7xl">
-      <h1 className="uppercase font-bold mb-4 bg-red-800 text-white  text-xl text-center py-2 max-w-3xl">
+      <h1 className="uppercase font-bold mb-4 text-red-800  text-xl text-center py-2">
         🚨 Breaking News
       </h1>
 
@@ -87,9 +87,14 @@ export default async function LiveUpdateComponent({
               {/* Overlay text box */}
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
                 <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
-                  <span className="text-xs text-gray-500 italic block text-left">
+                 <div className="flex">
+ <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                    <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                  </div>{" "}
+                  <span className="text-xs text-gray-500 italic block text-left pt-1.5">
                     {formatTimeAgo(new Date(news[0].createdAt))}
                   </span>
+                  </div>
                   <div className="font-bold text-lg text-red-600 leading-tight mt-1">
                     {news[0].headings}
                   </div>
@@ -97,8 +102,6 @@ export default async function LiveUpdateComponent({
               </div>
             </div>
           )}
-
-       
         </div>
       )}
 
@@ -119,15 +122,15 @@ export default async function LiveUpdateComponent({
                   <span className="text-xs text-gray-500 italic">
                     {formatTimeAgo(new Date(item.createdAt))}
                   </span>
-                  <div className="font-medium text-sm mt-1">{item.headings}</div>
-                     {item.newsPicture && (
-                  <div className="md:w-50 md:flex-shrink-0">
-                    <NewsImageModal src={item.newsPicture} />
+                  <div className="font-medium text-sm mt-1">
+                    {item.headings}
                   </div>
-                )}
+                  {item.newsPicture && (
+                    <div className="md:w-50 md:flex-shrink-0">
+                      <NewsImageModal src={item.newsPicture} />
+                    </div>
+                  )}
                 </div>
-
-             
               </div>
             </div>
           ))}
