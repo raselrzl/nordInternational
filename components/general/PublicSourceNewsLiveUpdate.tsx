@@ -1,5 +1,6 @@
 import { prisma } from "@/app/utils/db";
 import NewsImageModal from "@/components/general/NewsImageModal";
+import Link from "next/link";
 
 type NewsItem = {
   id: string;
@@ -48,14 +49,14 @@ export default async function LiveUpdateComponent() {
   const news = await getLatestFourNews();
 
   return (
-    <div className="py-3 rounded-md mx-auto max-w-7xl">
-      <h1 className="uppercase font-bold mb-4 text-white text-xl ml-2 md:ml-15 py-2 bg-primary">
+    <div className="py-3 rounded-md mx-auto max-w-[720px]">
+      <h1 className="uppercase font-bold mb-4 text-white text-xl py-2 bg-primary max-w-[720px] ml-2 md:mx-0">
         🚨 Breaking News
       </h1>
 
       {/* ========== FEATURED FIRST NEWS ========== */}
       {news.length > 0 && (
-        <div className="relative mb-14 flex flex-col items-center px-2">
+        <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
           {news[0].newsPicture && (
             <div className="relative w-full max-w-[720px]">
               <img
@@ -119,7 +120,14 @@ export default async function LiveUpdateComponent() {
             </div>
           ))}
         </div>
+       
       </div>
+       <div className="text-right mt-4 pr-2">
+  <Link href="/breakingnews" className="text-primary font-semibold underline">
+    View All
+  </Link>
+</div>
+
     </div>
   );
 }
