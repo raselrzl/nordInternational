@@ -107,10 +107,8 @@ export default async function LiveUpdateComponent() {
                   {formatTimeAgo(new Date(item.createdAt))}
                 </span>
 
-                <div className="font-medium text-sm mt-1">
-                  {item.headings}
-                </div>
-{/* 
+                <div className="font-medium text-sm mt-1">{item.headings}</div>
+                {/* 
                 {item.newsPicture && (
                   <div className="md:w-50 md:flex-shrink-0 mt-2">
                     <NewsImageModal src={item.newsPicture} />
@@ -120,14 +118,15 @@ export default async function LiveUpdateComponent() {
             </div>
           ))}
         </div>
-       
       </div>
-       <div className="text-right mt-4 pr-2">
-  <Link href="/breakingnews" className="text-primary font-semibold underline">
-    View All
-  </Link>
-</div>
-
+      <div className="text-right mt-4 pr-2">
+        <Link
+          href="/breakingnews"
+          className="text-primary font-semibold underline"
+        >
+          View All
+        </Link>
+      </div>
     </div>
   );
 }
