@@ -151,7 +151,7 @@ export default async function LiveUpdateComponent({
                   )}
 
                   {item.newsDetails && (
-                    <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">
+                    <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm border p-2">
                       {item.newsDetails}
                     </p>
                   )}
