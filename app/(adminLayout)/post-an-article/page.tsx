@@ -32,7 +32,7 @@ export default async function PostAnArticle() {
   return (
     <div className="max-w-7xl mx-auto">
       <h1 className="text-xl font-bold bg-accent-foreground/5 p-2">
-        Fill in everything available in the news.
+        Fill in everything available in this news.
       </h1>
 
       <div className="py-10">
