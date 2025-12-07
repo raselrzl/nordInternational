@@ -9,6 +9,7 @@ type NewsItem = {
   link: string;
   createdAt: Date;
   newsPicture: string | null;
+  newsDetails: string | null;
 };
 
 async function getPaginatedNews(
@@ -29,6 +30,7 @@ async function getPaginatedNews(
         link: true,
         createdAt: true,
         newsPicture: true,
+        newsDetails: true,
       },
     }),
     prisma.publicSourceNews.count(),
@@ -74,58 +76,53 @@ export default async function LiveUpdateComponent({
       </h1>
 
       {/* ========== FIRST NEWS FEATURE ========== */}
-          {/* ========== FEATURED FIRST NEWS ========== */}
-{news.length > 0 && (
-  <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
+      {/* ========== FEATURED FIRST NEWS ========== */}
+      {news.length > 0 && (
+        <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
+          {news[0].newsPicture ? (
+            /* ---- IF IMAGE EXISTS ---- */
+            <div className="relative w-full max-w-[720px]">
+              <img
+                src={news[0].newsPicture}
+                className="w-full h-[300px] md:h-[360px] object-cover"
+                alt=""
+              />
 
-    {news[0].newsPicture ? (
-      /* ---- IF IMAGE EXISTS ---- */
-      <div className="relative w-full max-w-[720px]">
-        <img
-          src={news[0].newsPicture}
-          className="w-full h-[300px] md:h-[360px] object-cover"
-          alt=""
-        />
+              {/* Overlay box */}
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
+                <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
+                  <div className="flex items-start gap-2">
+                    <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                      <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                    </div>
+                    <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+                      {formatTimeAgo(new Date(news[0].createdAt))}
+                    </span>
+                  </div>
 
-        {/* Overlay box */}
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
-          <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
-            <div className="flex items-start gap-2">
-              <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                  <div className="font-bold text-lg text-primary leading-tight mt-1">
+                    {news[0].headings}
+                  </div>
+                </div>
               </div>
-              <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
-                {formatTimeAgo(new Date(news[0].createdAt))}
-              </span>
             </div>
-
-            <div className="font-bold text-lg text-primary leading-tight mt-1">
-              {news[0].headings}
+          ) : (
+            /* ---- IF NO IMAGE → SHOW ONLY THE TEXT BOX ---- */
+            <div className="w-full max-w-[720px] mt-4">
+              <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
+                <div className="flex items-start gap-2">
+                  <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                    <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                  </div>
+                  <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+                    {formatTimeAgo(new Date(news[0].createdAt))}
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      </div>
-    ) : (
-      /* ---- IF NO IMAGE → SHOW ONLY THE TEXT BOX ---- */
-      <div className="w-full max-w-[720px] mt-4">
-        <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
-          <div className="flex items-start gap-2">
-            <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
-              <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
-            </div>
-            <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
-              {formatTimeAgo(new Date(news[0].createdAt))}
-            </span>
-          </div>
-
-          <div className="font-bold text-lg text-primary leading-tight mt-1">
-            {news[0].headings}
-          </div>
-        </div>
-      </div>
-    )}
-  </div>
-)}
+      )}
 
       {/* ========== REST OF THE NEWS (KEEP EXACT CURRENT DESIGN) ========== */}
       <div className="relative max-w-2xl mx-auto">
@@ -151,6 +148,12 @@ export default async function LiveUpdateComponent({
                     <div className="md:w-50 md:flex-shrink-0">
                       <NewsImageModal src={item.newsPicture} />
                     </div>
+                  )}
+
+                  {item.newsDetails && (
+                    <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">
+                      {item.newsDetails}
+                    </p>
                   )}
                 </div>
               </div>

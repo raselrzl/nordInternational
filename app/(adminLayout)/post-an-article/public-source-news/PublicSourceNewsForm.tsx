@@ -31,6 +31,7 @@ const publicSourceNewsSchema = z.object({
   sourceIdName: z.string().min(2, "Source ID name is required"),
   link: z.enum(["FACEBOOK", "INSTAGRAM", "TWITTER"]),
   newsPicture: z.string(),
+  newsDetails: z.string(),
 });
 
 type FormData = z.infer<typeof publicSourceNewsSchema>;
@@ -44,7 +45,8 @@ export default function PublicSourceNewsForm() {
       headings: "",
       sourceIdName: "",
       link: "INSTAGRAM",
-      newsPicture:"",
+      newsPicture: "",
+      newsDetails: "",
     },
   });
 
@@ -54,7 +56,6 @@ export default function PublicSourceNewsForm() {
       await createPublicSourceNews(data);
       toast.success("✅ Public Source News added!");
       form.reset();
-
     } catch (err: any) {
       toast.error(err.message || "❌ Failed to create news");
     } finally {
@@ -81,48 +82,66 @@ export default function PublicSourceNewsForm() {
             )}
           />
 
-            <FormField
-                control={form.control}
-                name="newsPicture"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      {field.value ? (
-                        <div className="relative w-fit">
-                          <img
-                            src={field.value}
-                            alt="News"
-                            className="w-32 h-32 object-cover rounded"
-                          />
-                          <Button
-                            type="button"
-                            variant="destructive"
-                            size="icon"
-                            className="absolute -top-2 -right-2"
-                            onClick={() => field.onChange("")}
-                          >
-                            <XIcon className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      ) : (
-                        <UploadDropzone
-                          endpoint="imageUploader"
-                          onClientUploadComplete={(res) => {
-                            field.onChange(res[0].url);
-                            toast.success("Image uploaded!");
-                          }}
-                          onUploadError={(error) => {
-                            console.error(error);
-                            toast.error("Upload failed");
-                          }}
-                          className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-primary"
-                        />
-                      )}
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <FormField
+  control={form.control}
+  name="newsDetails"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Details</FormLabel>
+      <FormControl>
+        <textarea
+          placeholder="Enter Details..."
+          {...field}
+          className="w-full border border-input rounded-md p-2 min-h-[120px] resize-y"
+        />
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+
+          <FormField
+            control={form.control}
+            name="newsPicture"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  {field.value ? (
+                    <div className="relative w-fit">
+                      <img
+                        src={field.value}
+                        alt="News"
+                        className="w-32 h-32 object-cover rounded"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="icon"
+                        className="absolute -top-2 -right-2"
+                        onClick={() => field.onChange("")}
+                      >
+                        <XIcon className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <UploadDropzone
+                      endpoint="imageUploader"
+                      onClientUploadComplete={(res) => {
+                        field.onChange(res[0].url);
+                        toast.success("Image uploaded!");
+                      }}
+                      onUploadError={(error) => {
+                        console.error(error);
+                        toast.error("Upload failed");
+                      }}
+                      className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-primary"
+                    />
+                  )}
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           {/* Source ID */}
           <FormField
@@ -135,7 +154,7 @@ export default function PublicSourceNewsForm() {
                   <Input placeholder="@news_source" {...field} />
                 </FormControl>
                 <FormMessage />
-              </FormItem> 
+              </FormItem>
             )}
           />
 
@@ -146,7 +165,10 @@ export default function PublicSourceNewsForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Platform</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select platform" />

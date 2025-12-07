@@ -858,6 +858,7 @@ export async function createPublicSourceNews(data: {
   sourceIdName: string;
   link: "FACEBOOK" | "INSTAGRAM" | "TWITTER";
   newsPicture: string;
+  newsDetails: string;
 }) {
   await prisma.publicSourceNews.create({
     data: {
@@ -865,6 +866,7 @@ export async function createPublicSourceNews(data: {
       sourceIdName: data.sourceIdName,
       link: data.link,
       newsPicture: data.newsPicture,
+      newsDetails:data.newsDetails,
     },
   });
 

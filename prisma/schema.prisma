@@ -423,7 +423,8 @@ model PublicSourceNews {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  newsPicture        String? 
+  newsPicture        String?
+  newsDetails        String?
 }
 
 enum Link {
