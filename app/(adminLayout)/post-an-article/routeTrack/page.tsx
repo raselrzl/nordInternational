@@ -5,6 +5,7 @@ import Statistics from "@/components/general/Statistics";
 import { UserLinks } from "@/components/general/UserLinks";
 import { notFound } from "next/navigation";
 import { requireRoleAccess } from "../roleBaseAccess";
+import UserAnalyticsTable from "@/components/general/VisitorsAnalyticsTable";
 
 async function getRouteHits() {
   try {
@@ -32,18 +33,23 @@ const Dashboard = async () => {
     notFound();
   }
 
-  const totalHits = routeHits.reduce((acc: number, route) => acc + route.hits, 0);
+  const totalHits = routeHits.reduce(
+    (acc: number, route) => acc + route.hits,
+    0
+  );
 
   const rewuireUserToAccessPage = await requireRoleAccess(["SUPERADMIN"]);
 
   return (
     <>
-      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">Statistics</h1>
+      <h1 className="text-xl font-bold bg-accent-foreground/5 p-2 mb-8">
+        Statistics
+      </h1>
 
       <p className="text-xl font-medium text-center text-orange-400 mb-6">
-            Total Route Hits by all users: {totalHits}
-          </p>
-          <ChartComponent routeHits={routeHits} />
+        Total Route Hits by all users: {totalHits}
+      </p>
+      <ChartComponent routeHits={routeHits} />
       <div className="flex justify-center flex-col md:flex-row p-4 shadow-lg">
         <div className="w-full max-w-[600px] rounded-lg p-6">
           {/* Table displaying route hit counts */}
@@ -79,6 +85,7 @@ const Dashboard = async () => {
           <Statistics />
         </div>
       </div>
+      <UserAnalyticsTable />
     </>
   );
 };

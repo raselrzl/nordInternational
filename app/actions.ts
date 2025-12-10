@@ -1057,6 +1057,60 @@ export async function getTotalNewUsers() {
   return { count };
 }
 
+export async function getUserAnalytics() {
+  const users = await prisma.newUserVisit.findMany();
+
+  // group by country + city
+  const grouped: Record<
+    string,
+    {
+      country: string;
+      city: string;
+      userCount: number;
+      totalVisits: number;
+      totalReadTime: number;
+      totalSessionTime: number;
+      sampleUsers: {
+        id: number;
+        userId: string;
+        language: string | null;
+        ip: string | null;
+      }[];
+    }
+  > = {};
+
+  for (const u of users) {
+    const key = `${u.country ?? "Unknown"}-${u.city ?? "Unknown"}`;
+
+    if (!grouped[key]) {
+      grouped[key] = {
+        country: u.country ?? "Unknown",
+        city: u.city ?? "Unknown",
+        userCount: 0,
+        totalVisits: 0,
+        totalReadTime: 0,
+        totalSessionTime: 0,
+        sampleUsers: [],
+      };
+    }
+
+    grouped[key].userCount += 1;
+    grouped[key].totalVisits += u.visits ?? 0;
+    grouped[key].totalReadTime += u.totalReadTime ?? 0;
+    grouped[key].totalSessionTime += u.sessionTime ?? 0;
+
+    grouped[key].sampleUsers.push({
+      id: u.id,
+      userId: u.userId.substring(0, 6),
+      language: u.language ?? null,
+      ip: u.ipAddress ?? null,
+    });
+  }
+
+  return Object.values(grouped);
+}
+
+
 
 
 export async function incrementArticleView(articleId: string) {
