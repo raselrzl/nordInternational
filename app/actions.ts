@@ -973,19 +973,49 @@ export async function updateInstagramStatus(
 }
 
 
+import { headers } from "next/headers";
 
-export async function registerNewUser(
-  userId: string,
-  browserInfo: {
-    userAgent: string;
-    language?: string;
-    platform?: string;
-    screen?: string;
+type BrowserInfo = {
+  userAgent: string;
+  language?: string;
+  platform?: string;
+  screen?: string;
+  readTime?: number;
+  sessionTime?: number;
+};
+
+// Correct Geo Type
+type GeoResponse = {
+  ip?: string;
+  city?: string;
+  region?: string;
+  country_name?: string;
+};
+
+export async function registerNewUser(userId: string, browserInfo: BrowserInfo) {
+  const hdrs = await headers(); // FIXED
+  const rawIp =
+    hdrs.get("x-forwarded-for")?.split(",")[0] ||
+    hdrs.get("x-real-ip") ||
+    "0.0.0.0";
+
+  // ---- GEO LOOKUP ----
+  let geo: GeoResponse = {};
+  try {
+    const res = await fetch(`https://ipapi.co/${rawIp}/json/`, {
+      cache: "no-store",
+    });
+    geo = (await res.json()) as GeoResponse;
+  } catch (error) {
+    console.log("Geo lookup failed");
   }
-) {
-  // Only create if userId does not exist
-  const existing = await prisma.newUserVisit.findUnique({ where: { userId } });
+
+  const existing = await prisma.newUserVisit.findUnique({
+    where: { userId },
+  });
+
   if (!existing) {
+    // CREATE new user
     await prisma.newUserVisit.create({
       data: {
         userId,
@@ -993,6 +1023,27 @@ export async function registerNewUser(
         language: browserInfo.language,
         platform: browserInfo.platform,
         screen: browserInfo.screen,
+
+        ipAddress: rawIp,
+        country: geo.country_name ?? null,
+        region: geo.region ?? null,
+        city: geo.city ?? null,
+
+        visits: 1,
+        lastVisit: new Date(),
+        totalReadTime: browserInfo.readTime ?? 0,
+        sessionTime: browserInfo.sessionTime ?? 0,
+      },
+    });
+  } else {
+    // UPDATE existing returning user
+    await prisma.newUserVisit.update({
+      where: { userId },
+      data: {
+        visits: (existing.visits ?? 1) + 1,
+        lastVisit: new Date(),
+        totalReadTime: (existing.totalReadTime ?? 0) + (browserInfo.readTime ?? 0),
+        sessionTime: browserInfo.sessionTime ?? 0,
       },
     });
   }
@@ -1000,10 +1051,12 @@ export async function registerNewUser(
   return { success: true };
 }
 
+// Return total unique users
 export async function getTotalNewUsers() {
   const count = await prisma.newUserVisit.count();
   return { count };
 }
+
 
 
 export async function incrementArticleView(articleId: string) {

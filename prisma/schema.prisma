@@ -455,5 +455,15 @@ model NewUserVisit {
   language  String?
   platform  String?
   screen    String?
-  createdAt DateTime @default(now())
+  
+  ipAddress     String?
+  country       String?
+  region        String?
+  city          String?
+  visits        Int?     @default(1)   // how many times user came
+  lastVisit     DateTime?              // last session time
+  totalReadTime Int?     @default(0)   // total seconds reading pages
+  sessionTime   Int?     @default(0)   // last session duration in seconds
+
+  createdAt     DateTime @default(now())
 }
