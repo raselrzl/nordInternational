@@ -1,6 +1,6 @@
 "use client";
 
-import { getTotalNewUsers, registerNewUser } from "@/app/actions";
+import { getTotalNewUsers, registerNewUser  } from "@/app/actions";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
