@@ -202,7 +202,6 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
 }
  */
 
-
 import React from "react";
 import { prisma } from "@/app/utils/db";
 import { EmptyState } from "@/components/general/EmptyState";
@@ -219,6 +218,7 @@ import type { Metadata } from "next";
 import { StandardTwo } from "@/components/allAdvertisement/StandardTwo";
 import { EnterPrizeTwo } from "@/components/allAdvertisement/EnterprizeTwo";
 import { incrementArticleView } from "@/app/actions";
+import NewUserTracker from "@/components/general/NewUserTracker";
 
 // ------------------ HELPERS ------------------
 
@@ -258,7 +258,9 @@ function toExcerpt(htmlOrText: string | null, max = 240) {
 type PageParams = Promise<{ articleId: string }>;
 type PageProps = { params: PageParams };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { articleId } = await params;
   const article = await getNewsArticle(articleId);
 
@@ -294,7 +296,6 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
 
   // Track route
   await trackRoute("NewsDetailsPage");
-
   // Increment view count
   await incrementArticleView(articleId);
 
@@ -346,7 +347,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
             <p className="font-bold">{formattedCreatedAt}</p>
           </div>
         </div>
-
+        <NewUserTracker />
         {/* News Content using PrintNews */}
         <PrintNews
           id={data.id}
