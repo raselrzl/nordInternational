@@ -146,7 +146,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="bg-red-50 dark:bg-black mb-2 grid grid-cols-3 items-center px-2">
+      <div className="mb-2 grid grid-cols-3 items-center px-2">
         {/* Live Updates */}
         <div className="col-span-3 md:col-span-2">
           <LiveUpdate />
@@ -172,7 +172,7 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 px-2 border-1">
-          <div className="flex flex-row gap-2 ">
+          <div className="flex justify-between text-sm w-full mt-1 bg-black text-orange-600">
             <Link
               key="Usa"
               href="/diffrentCountry?country=Usa"
@@ -362,15 +362,26 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="border-y-2 my-2 border-primary"></div>
+      {/* <div className="border-b-1 my-1 shadow border-gray-950/10"></div> */}
       <WarLatest />
-      <div className="border-y-2 my-2 border-primary"></div>
+     {/*  <div className="border-y-2 my-2 border-primary"></div> */}
 
       <ChainaLatest />
-      <div className="border-y-2 my-2 border-primary"></div>
-
+      {/* <div className="border-y-2 my-2 border-primary"></div> */}
+ {/* Binodon Section */}
+      <div className="mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="col-span-3 md:col-span-2">
+            <PopupOnViewServer />
+            <Binodon />
+          </div>
+          <div className="col-span-3 md:col-span-1 md:mt-12">
+            <Contact />
+          </div>
+        </div>
+      </div>
       <AsiaLatest />
-      <div className="border-y-2 my-2 border-primary"></div>
+     {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Russia Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -399,15 +410,15 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="border-y-2 my-2 border-primary"></div>
       <div className="grid grid-cols-1 md:grid-cols-4">
         <IndiaLatest />
         <AfrikaLatest />
         <AustraliaLatest />
         <SouthamericaLatest />
       </div>
-      <Videos />
-      <div className="border-y-4 my-2 py-6 border-primary">
+       <InstagramPosts />
+      {/* <Videos /> */}
+      <div className="my-20">
         <div className="grid grid-cols-3 border-primary my-4">
           <div className="col-span-3 md:col-span-1 p-2 mt-2 flex flex-col justify-between w-full max-w-sm mx-auto md:mx-0">
             <ScienceNewsHeadPost />
@@ -419,19 +430,8 @@ export default async function Home() {
         </div>
       </div>
       <MiddleeastLatest />
-      <InstagramPosts />
-      {/* Binodon Section */}
-      <div className="mb-4">
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="col-span-3 md:col-span-2">
-            <PopupOnViewServer />
-            <Binodon />
-          </div>
-          <div className="col-span-3 md:col-span-1 md:mt-12">
-            <Contact />
-          </div>
-        </div>
-      </div>
+     
+     
     </>
   );
 }

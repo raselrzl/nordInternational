@@ -43,12 +43,17 @@ export default async function WarLatest() {
 
   return (
     <section className="px-2 md:px-0 my-10">
-      <div className="flex justify-between">
-        <h2 className="text-xl font-extrabold mb-4 flex items-center uppercase">
-          WAR and Crisis
+      <div className="flex items-center justify-between bg-black px-4 py-2 border-l-4 border-orange-600">
+        <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase text-orange-500 tracking-wide">
+          <span className="animate-pulse">●</span>
+          War & Crisis
         </h2>
-        <Link href="/war" className="text-sm font-bold hover:underline">
-          View All
+
+        <Link
+          href="/war"
+          className="text-xs md:text-sm font-semibold text-white/80 hover:text-orange-500 transition"
+        >
+          View All →
         </Link>
       </div>
 
@@ -91,7 +96,7 @@ export default async function WarLatest() {
             <BesicTwoAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
-       {/*      {isJson(featured.newsDetails) ? (
+            {/*      {isJson(featured.newsDetails) ? (
               <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 <JsonToHtml json={JSON.parse(featured.newsDetails)} />
               </div>
@@ -111,11 +116,10 @@ export default async function WarLatest() {
               key={article.id}
               className="flex items-center gap-3 group border-t border-gray-950/10"
             >
-            
               <p className="font-semibold text-md group-hover:underline line-clamp-2">
                 {article.newsHeading}
               </p>
-                <img
+              <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
                 className="w-24 h-20 object-cover rounded-md"

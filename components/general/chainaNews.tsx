@@ -15,9 +15,9 @@ type Article = {
 
 async function getLatestChainaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsLocation:"Chaina"},
+    where: { newsArticleStatus: "ACTIVE", newsLocation: "Chaina" },
     orderBy: { createdAt: "desc" },
-    take: 11,
+    take: 13,
     select: {
       id: true,
       newsHeading: true,
@@ -38,27 +38,27 @@ export default async function ChainaLatest() {
   const featured = articles[0];
   const others = articles.slice(1);
 
-  const leftArticles = others.slice(0, 5);
-  const rightArticles = others.slice(5, 10);
+  const leftArticles = others.slice(0, 6);
+  const rightArticles = others.slice(6, 12);
 
   return (
-    <section className="px-2 md:px-0 my-10">
-      <div className="flex justify-between">
-            <Link
-              key="Chaina"
-              href="/diffrentCountry?country=Chaina"
-              className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
-            >
-              <img
-                src="/flags/chaina.jpg"
-                alt="Chaina flag"
-                width={30}
-                height={40}
-                className="rounded-sm border"
-              />
-              <span className="text-md font-bold uppercase">Chaina</span>
-            </Link>
+    <section className="px-2 md:px-0 my-10 md:my-24 ">
+      <div className="flex justify-between text-xl w-[160px] bg-black text-orange-600">
+        <Link
+          key="Chaina"
+          href="/diffrentCountry?country=Chaina"
+          className="flex items-center justify-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs border-l-4 border-orange-600"
+        >
+          <img
+            src="/flags/chaina.jpg"
+            alt="Chaina flag"
+            width={30}
+            height={40}
+            className="rounded-sm border"
+          />
+          <span className="text-md font-bold uppercase">Chaina</span>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -80,7 +80,7 @@ export default async function ChainaLatest() {
             <BesicOneAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
-       {/*      {isJson(featured.newsDetails) ? (
+            {/*      {isJson(featured.newsDetails) ? (
               <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
                 <JsonToHtml json={JSON.parse(featured.newsDetails)} />
               </div>

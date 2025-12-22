@@ -1,8 +1,9 @@
+"use client";
+
 import {
   Activity,
   BrainCircuit,
   Coins,
-  Component,
   Film,
   Gavel,
   Globe,
@@ -10,7 +11,7 @@ import {
   Landmark,
   Leaf,
   Megaphone,
-  Menu,
+  MenuIcon,
   Microscope,
   Rocket,
   School,
@@ -19,222 +20,119 @@ import {
   Star,
   TentTree,
 } from "lucide-react";
-import { Button } from "../ui/button";
+
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import Link from "next/link";
 
 export default function DropDownMenuList() {
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="">
-            <Component className="h-6 w-6" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="center"
-          className="p-4 w-auto min-w-[350px] md:min-w-[500px]"
-        >
-          {/* GRID MENU */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mx-auto">
-            <Link href="/latest" className="flex flex-col items-center gap-1">
-              <Search size={20} className="opacity-60" />
-              <span className="text-sm">Latest</span>
-            </Link>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <MenuIcon className="h-6 w-6 cursor-pointer" />
+      </DropdownMenuTrigger>
 
-            <Link href="/national" className="flex flex-col items-center gap-1">
-              <Landmark size={20} className="opacity-60" />
-              <span className="text-sm">National</span>
-            </Link>
+      <DropdownMenuContent
+        align="center"
+        className="p-4 min-w-[350px] md:min-w-[500px]"
+      >
+        {/* GRID MENU */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mx-auto">
+          <MenuItem href="/latest" icon={Search} label="Latest" />
+          <MenuItem href="/national" icon={Landmark} label="National" />
+          <MenuItem href="/politics" icon={Megaphone} label="Politics" />
+          <MenuItem href="/countrywide" icon={TentTree} label="Country" />
+          <MenuItem href="/international" icon={Globe} label="International" />
+          <MenuItem href="/sports" icon={Activity} label="Sports" />
+          <MenuItem href="/education" icon={School} label="Education" />
+          <MenuItem href="/health" icon={HeartPulse} label="Health" />
+          <MenuItem href="/opinion" icon={BrainCircuit} label="Opinion" />
+          <MenuItem href="/religion" icon={Star} label="Religion" />
+          <MenuItem href="/crime" icon={ShieldAlert} label="Crime" />
+          <MenuItem href="/technology" icon={Rocket} label="Technology" />
+          <MenuItem href="/entertainment" icon={Film} label="Entertainment" />
+          <MenuItem href="/economy" icon={Coins} label="Economy" />
+          <MenuItem href="/law-and-justice" icon={Gavel} label="Law & Justice" />
+          <MenuItem href="/environment" icon={Leaf} label="Environment" />
+          <MenuItem href="/science" icon={Microscope} label="Science" />
+        </div>
 
-            <Link href="/politics" className="flex flex-col items-center gap-1">
-              <Megaphone size={20} className="opacity-60" />
-              <span className="text-sm">Politics</span>
-            </Link>
-
+        {/* FOOTER */}
+        <div className="mt-5 border-t pt-3 text-center">
+          <p className="text-sm text-gray-600 font-semibold">
+            For advertisement fill up the{" "}
             <Link
-              href="/countrywide"
-              className="flex flex-col items-center gap-1"
+              href="/about/advertise#advertiseForm"
+              className="text-primary underline"
             >
-              <TentTree size={20} className="opacity-60" />
-              <span className="text-sm">Country</span>
-            </Link>
-
+              Form
+            </Link>{" "}
+            or{" "}
             <Link
-              href="/international"
-              className="flex flex-col items-center gap-1"
-            >
-              <Globe size={20} className="opacity-60" />
-              <span className="text-sm">International</span>
-            </Link>
-
-            <Link href="/sports" className="flex flex-col items-center gap-1">
-              <Activity size={20} className="opacity-60" />
-              <span className="text-sm">Sports</span>
-            </Link>
-
-            <Link
-              href="/education"
-              className="flex flex-col items-center gap-1"
-            >
-              <School size={20} className="opacity-60" />
-              <span className="text-sm">Education</span>
-            </Link>
-
-            <Link href="/health" className="flex flex-col items-center gap-1">
-              <HeartPulse size={20} className="opacity-60" />
-              <span className="text-sm">Health</span>
-            </Link>
-
-            <Link href="/opinion" className="flex flex-col items-center gap-1">
-              <BrainCircuit size={20} className="opacity-60" />
-              <span className="text-sm">Opinion</span>
-            </Link>
-
-            <Link href="/religion" className="flex flex-col items-center gap-1">
-              <Star size={20} className="opacity-60" />
-              <span className="text-sm">Religion</span>
-            </Link>
-
-            <Link href="/crime" className="flex flex-col items-center gap-1">
-              <ShieldAlert size={20} className="opacity-60" />
-              <span className="text-sm">Crime</span>
-            </Link>
-
-            <Link
-              href="/technology"
-              className="flex flex-col items-center gap-1"
-            >
-              <Rocket size={20} className="opacity-60" />
-              <span className="text-sm">Technology</span>
-            </Link>
-
-            <Link
-              href="/entertainment"
-              className="flex flex-col items-center gap-1"
-            >
-              <Film size={20} className="opacity-60" />
-              <span className="text-sm">Entertainment</span>
-            </Link>
-
-            <Link href="/economy" className="flex flex-col items-center gap-1">
-              <Coins size={20} className="opacity-60" />
-              <span className="text-sm">Economy</span>
-            </Link>
-
-            <Link
-              href="/law-and-justice"
-              className="flex flex-col items-center gap-1"
-            >
-              <Gavel size={20} className="opacity-60" />
-              <span className="text-sm">Law & Justice</span>
-            </Link>
-
-            <Link
-              href="/environment"
-              className="flex flex-col items-center gap-1"
-            >
-              <Leaf size={20} className="opacity-60" />
-              <span className="text-sm">Environment</span>
-            </Link>
-
-            <Link href="/science" className="flex flex-col items-center gap-1">
-              <Microscope size={20} className="opacity-60" />
-              <span className="text-sm">Science</span>
-            </Link>
-          </div>
-
-          {/* ---- COMPACT CONTACT + SOCIAL ---- */}
-          <div className="mt-5 border-t pt-3 text-center">
-            {/* Advertising Link */}
-            {/* Advertising Link */}
-            <p className="text-sm text-gray-600 font-semibold block">
-              For advertisement fill up the{" "}
-              <Link
-                href="/about/advertise#advertiseForm"
-                className="text-primary underline"
-              >
-                Form
-              </Link>{" "}
-              or{" "}
-              <Link
-                href="mailto:contact@globaleye.press"
-                className="text-primary underline"
-              >
-                Email
-              </Link>
-            </p>
-
-            {/* Email */}
-            <a
               href="mailto:contact@globaleye.press"
-              className="text-xs text-gray-600 dark:text-gray-300 hover:underline block mt-1"
+              className="text-primary underline"
             >
-              contact@globaleye.press
-            </a>
+              Email
+            </Link>
+          </p>
 
-            {/* Social Icons */}
-            <p className="mt-2">Follow us on</p>
-            <div className="flex items-center justify-center gap-2 mt-1">
-              <a
-                href="https://www.instagram.com/globaleye.press"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/instagram.png"
-                  alt="Instagram"
-                  className="w-7 h-7 rounded-full"
-                />
-              </a>
+          <a
+            href="mailto:contact@globaleye.press"
+            className="text-xs text-gray-600 dark:text-gray-300 hover:underline block mt-1"
+          >
+            contact@globaleye.press
+          </a>
 
-              <a
-                href="https://web.facebook.com/globaleye.press/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/facebook.png"
-                  alt="Facebook"
-                  className="w-8 h-8 rounded-full"
-                />
-              </a>
-
-              <a
-                href="https://www.youtube.com/@globaleyepressofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/youtube.png"
-                  alt="YouTube"
-                  className="w-7 h-7 rounded-full"
-                />
-              </a>
-
-              <a
-                href="https://www.tiktok.com/@globaleye.press"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/tiktokk.png"
-                  alt="TikTok"
-                  className="w-7 h-7 rounded-full"
-                />
-              </a>
-            </div>
+          <p className="mt-2">Follow us on</p>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            <SocialIcon href="https://www.instagram.com/globaleye.press" img="/instagram.png" alt="Instagram" />
+            <SocialIcon href="https://web.facebook.com/globaleye.press/" img="/facebook.png" alt="Facebook" />
+            <SocialIcon href="https://www.youtube.com/@globaleyepressofficial" img="/youtube.png" alt="YouTube" />
+            <SocialIcon href="https://www.tiktok.com/@globaleye.press" img="/tiktokk.png" alt="TikTok" />
           </div>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+/* ----------------- SMALL REUSABLE COMPONENTS ----------------- */
+
+function MenuItem({
+  href,
+  icon: Icon,
+  label,
+}: {
+  href: string;
+  icon: any;
+  label: string;
+}) {
+  return (
+    <DropdownMenuItem asChild>
+      <Link href={href} className="flex flex-col items-center gap-1">
+        <Icon size={20} className="opacity-60" />
+        <span className="text-sm">{label}</span>
+      </Link>
+    </DropdownMenuItem>
+  );
+}
+
+function SocialIcon({
+  href,
+  img,
+  alt,
+}: {
+  href: string;
+  img: string;
+  alt: string;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      <img src={img} alt={alt} className="w-7 h-7 rounded-full" />
+    </a>
   );
 }

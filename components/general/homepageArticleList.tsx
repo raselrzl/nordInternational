@@ -576,7 +576,7 @@ export async function ScienceNewsHeadPost() {
 
   return (
     <>
-      <div className="flex flex-row items-center space-x-2">
+      <div className="flex flex-row items-center space-x-2 bg-black  text-white">
         <img
           src="/clock.gif"
           alt="YouTube GIF"
@@ -584,7 +584,7 @@ export async function ScienceNewsHeadPost() {
           height={50}
           className="object-contain"
         />
-        <p className="font-bold text-2xl">Science and Research</p>
+        <p className="font-bold text-2xl border-l-4 border-orange-600 pl-2">Science and Research</p>
       </div>
       {scienceheadpost && scienceheadpost.length > 0 ? (
         scienceheadpost.map((item) => (

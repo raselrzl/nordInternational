@@ -89,13 +89,13 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
+          className="w-12 h-12 p-0 cursor-pointer border-none shadow-none "
           variant="outline"
         >
           <img
             src="/whatsapp.svg"
             alt="WhatsApp"
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full pb-1"
           />
         </Button>
 
@@ -113,19 +113,19 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareMessenger}
-          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
+          className="w-12 h-12 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
             src="/messanger.svg"
             alt="Messenger"
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full mb-1"
           />
         </Button>
 
         <Button
           onClick={handleCopyLink}
-          className="w-9 h-9 p-0 cursor-pointer border-none shadow-none"
+          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -206,7 +206,7 @@ export default function PrintNews({
           <div className="whitespace-pre-line text-md mg:text-lg dark:bg-black mt-10">
             <div className="flex flex-row px-1">
               <MapPin />
-              <p className="text-xl font-bold">{newsLocation}</p>
+              <p className="text-xl font-bold uppercase">{newsLocation}</p>
             </div>
 
             <div className="px-2 mt-4">

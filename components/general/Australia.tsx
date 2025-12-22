@@ -34,7 +34,7 @@ export default async function AustraliaLatest() {
 
   return (
     <section className="px-2">
-      <div className="flex justify-between">
+      <div className="flex justify-between text-xl w-[160px] bg-black text-orange-600">
         <Link
           href="/diffrentCountry?country=Australia"
           className="flex items-center justify-center gap-2 p-1 transition-all 

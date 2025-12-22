@@ -1,6 +1,5 @@
 "use server";
 import Link from "next/link";
-import { buttonVariants } from "../ui/button";
 
 import { ThemeToggle } from "./ThemeToggle";
 import { auth } from "@/app/utils/auth";
@@ -15,14 +14,14 @@ export default async function Navbar() {
   const user = await auth();
 
   return (
-    <nav className="flex items-center justify-between pr-2 py-2">
-      <Link href="/" className="flex items-center pl-2">
+    <nav className="flex items-center justify-between pr-2 py-2 max-w-7xl">
+      <Link href="/" className="flex items-center">
         <div
           className="m-1/2
       w-[90px] h-[50px] 
       md:w-[135px] md:h-[60px] 
-      bg-[url('/gl1.png')] 
-      dark:bg-[url('/gl1.png')] 
+      bg-[url('/logo/gepb.png')] 
+      dark:bg-[url('/logo/gepw.png')] 
       bg-cover bg-center
     "
         />
@@ -35,10 +34,9 @@ export default async function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <ThemeToggle />
-        <DropDownMenuList />
         <DropDownCountryList />
-
+        <DropDownMenuList />
+        <ThemeToggle />
         <div>
           {" "}
           {user?.user ? (
@@ -50,12 +48,9 @@ export default async function Navbar() {
           ) : (
             <Link
               href="/login"
-              className={`${buttonVariants({
-                variant: "outline",
-                size: "sm",
-              })}`}
+              className="px-3 py-2 shadow shadow-black bg-black text-white text-md rounded-2xl"
             >
-              <User2 />
+              Login
             </Link>
           )}
         </div>
@@ -63,10 +58,9 @@ export default async function Navbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
-        <ThemeToggle />
-
-        <DropDownMenuList />
         <DropDownCountryList />
+        <ThemeToggle />
+        <div className="mr-2"><DropDownMenuList /></div>
         {user?.user ? (
           <UserDropdown
             email={user.user.email as string}
@@ -76,9 +70,9 @@ export default async function Navbar() {
         ) : (
           <Link
             href="/login"
-            className={`${buttonVariants({ variant: "outline", size: "sm" })}`}
+            className="px-2 py-1 shadow shadow-black bg-black text-white text-sm rounded-2xl"
           >
-            <User2 />
+            Login
           </Link>
         )}
       </div>

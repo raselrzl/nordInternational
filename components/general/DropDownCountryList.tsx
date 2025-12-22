@@ -203,8 +203,8 @@ export default function DropDownCountryList() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="">
-          <Globe /> <p className="font-bold text-md">Eye</p>
+        <Button variant="outline" size="sm" className="border-none shadow-none">
+          <p className="font-bold text-md uppercase">world</p>
           <ChevronDown className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
@@ -221,12 +221,12 @@ export default function DropDownCountryList() {
               className="cursor-pointer"
             >
               <Link href={country.link}>
-                <div className="flex items-center gap-2 pl-1">
+                <div className="flex items-center gap-1">
                   <img
                     src={country.flag}
                     alt={`${country.name} flag`}
-                    width={26}
-                    height={18}
+                    width={16}
+                    height={12}
                     className="rounded-sm"
                   />
                   <span className="font-semibold text-sm">{country.name}</span>

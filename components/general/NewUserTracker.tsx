@@ -58,5 +58,5 @@ export default function NewUserTracker() {
     trackUser();
   }, []);
 
-  return <div></div>;
+  return <div>{totalUsers}</div>;
 }

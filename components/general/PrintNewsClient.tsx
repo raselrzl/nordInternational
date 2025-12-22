@@ -74,7 +74,7 @@ export function PrintNewsDetailsClient({
   return (
     <>
       {" "}
-      <Button
+     {/*  <Button
         onClick={handleDownload}
         className="overflow-hidden h-11 w-16 shadow-none border-none cursor-pointer hover:bg-none"
         variant="outline"
@@ -89,7 +89,7 @@ export function PrintNewsDetailsClient({
             className="object-cover w-full h-full"
           />
         )}
-      </Button>
+      </Button> */}
       <div
         ref={contentRef}
         style={{

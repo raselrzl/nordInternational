@@ -28,7 +28,10 @@ export default async function LatestOpinions() {
 
   // Include articles that have at least one quote
   const opinions = allArticles
-    .filter((item) => item.quotes && item.quotes.length > 0 && item.quotes.some(q => q.text))
+    .filter(
+      (item) =>
+        item.quotes && item.quotes.length > 0 && item.quotes.some((q) => q.text)
+    )
     .slice(0, 4); // Take first 4 valid articles
 
   if (!opinions || opinions.length === 0) return null;
@@ -36,7 +39,7 @@ export default async function LatestOpinions() {
   return (
     <section className="md:rounded-xs dark:bg-gray-600">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-2 px-4 md:rounded-xl py-1">
+      <div className="flex justify-between text-xl w-full bg-black text-orange-600">
         <h1 className="font-bold py-1 flex">
           <Newspaper className="mr-4" /> OPINIONS
         </h1>
@@ -46,7 +49,10 @@ export default async function LatestOpinions() {
       {/* Desktop Grid */}
       <div className="hidden md:grid grid-cols-1 gap-2 px-2 md:px-0">
         {opinions.map((item) => {
-          const firstQuote = item.quotes.find(q => q.text) || { text: "No quote available", speakerInfo: "Unknown" };
+          const firstQuote = item.quotes.find((q) => q.text) || {
+            text: "No quote available",
+            speakerInfo: "Unknown",
+          };
           return (
             <Link
               key={item.id}
@@ -80,7 +86,10 @@ export default async function LatestOpinions() {
       {/* Mobile Horizontal Scroll */}
       <div className="md:hidden flex gap-4 px-4 overflow-x-auto snap-x snap-mandatory">
         {opinions.map((item) => {
-          const firstQuote = item.quotes.find(q => q.text) || { text: "No quote available", speakerInfo: "Unknown" };
+          const firstQuote = item.quotes.find((q) => q.text) || {
+            text: "No quote available",
+            speakerInfo: "Unknown",
+          };
           return (
             <Link
               key={item.id}

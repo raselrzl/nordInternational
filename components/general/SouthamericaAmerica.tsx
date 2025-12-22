@@ -34,7 +34,7 @@ export default async function SouthamericaLatest() {
 
   return (
     <section className="px-2">
-      <div className="flex justify-between">
+      <div className="flex justify-between text-xl w-[220px] bg-black text-orange-600">
         <Link
           key="Russia"
           href="/diffrentCountry?country=Southamerica"

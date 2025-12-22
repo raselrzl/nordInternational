@@ -182,5 +182,3 @@ a {
   animation: ticker var(--ticker-speed, 20s) linear infinite;
   white-space: nowrap;
 }
-
-

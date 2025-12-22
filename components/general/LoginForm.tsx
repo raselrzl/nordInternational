@@ -20,11 +20,11 @@ export default async function LoginForm() {
     <div className=" flex flex-col gap-6">
       <Card className="rounded-xs">
         <Link href="/" className="flex items-center gap-2 self-center">
-          <img src="/ge3.png" height={60} width={150} alt="logo image" />
+          <img src="/logo/gepb.png" height={60} width={150} alt="logo image" />
         </Link>
         <CardHeader className="text-center ">
-          <CardTitle className="text-xl">
-            <span className="text-red-800">Welcome to</span>Global Eye
+          <CardTitle className="text-4xl font-extrabold">
+            <span className="text-red-800 uppercase ">Welcome</span>
           </CardTitle>
           <CardDescription className="text-xs">
             Log in with Google or create an account.
