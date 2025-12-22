@@ -28,7 +28,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <NewsTicker />
       </div>
       <div className="mt-33 md:mt-41">
-        {/*  <NavMenu /> */} Asia EU Afrika Middle-East Nort-South-America
+        {/*  <NavMenu /> */}.
       </div>
       {children}
       <Poll />
