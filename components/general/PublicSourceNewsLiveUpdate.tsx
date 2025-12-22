@@ -78,7 +78,7 @@ export default async function LiveUpdateComponent() {
                     </span>
                   </div>
 
-                  <div className="font-bold text-lg text-red-600 leading-tight mt-1">
+                  <div className="font-bold text-lg text-red-700 leading-tight mt-1">
                     {news[0].headings}
                   </div>
                 </div>
