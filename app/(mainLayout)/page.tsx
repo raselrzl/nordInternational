@@ -364,11 +364,11 @@ export default async function Home() {
 
       {/* <div className="border-b-1 my-1 shadow border-gray-950/10"></div> */}
       <WarLatest />
-     {/*  <div className="border-y-2 my-2 border-primary"></div> */}
+      {/*  <div className="border-y-2 my-2 border-primary"></div> */}
 
       <ChainaLatest />
       {/* <div className="border-y-2 my-2 border-primary"></div> */}
- {/* Binodon Section */}
+      {/* Binodon Section */}
       <div className="mb-4">
         <div className="grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-3 md:col-span-2">
@@ -381,7 +381,7 @@ export default async function Home() {
         </div>
       </div>
       <AsiaLatest />
-     {/*  <div className="border-y-2 my-2 border-primary"></div> */}
+      {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Russia Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
@@ -416,7 +416,7 @@ export default async function Home() {
         <AustraliaLatest />
         <SouthamericaLatest />
       </div>
-       <InstagramPosts />
+      <InstagramPosts />
       {/* <Videos /> */}
       <div className="my-20">
         <div className="grid grid-cols-3 border-primary my-4">
@@ -430,8 +430,6 @@ export default async function Home() {
         </div>
       </div>
       <MiddleeastLatest />
-     
-     
     </>
   );
 }
