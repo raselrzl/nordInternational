@@ -71,7 +71,7 @@ export default async function LiveUpdateComponent({
 
   return (
     <div className=" py-3 rounded-md mx-auto max-w-7xl">
-      <h1 className="uppercase font-bold mb-4 text-white text-xl ml-2 md:ml-70 py-2 bg-primary">
+      <h1 className="uppercase font-bold mb-4 text-white text-xl ml-2 md:ml-70 py-2 bg-red-700">
         🚨 Breaking News
       </h1>
 
@@ -92,7 +92,7 @@ export default async function LiveUpdateComponent({
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
                 <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
                   <div className="flex items-start gap-2">
-                    <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                    <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
                       <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
                     </div>
                     <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
@@ -100,7 +100,7 @@ export default async function LiveUpdateComponent({
                     </span>
                   </div>
 
-                  <div className="font-bold text-lg text-primary leading-tight mt-1">
+                  <div className="font-bold text-lg text-red-700 leading-tight mt-1">
                     {news[0].headings}
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export default async function LiveUpdateComponent({
             <div className="w-full max-w-[720px] mt-4">
               <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
                 <div className="flex items-start gap-2">
-                  <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                  <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
                     <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
                   </div>
                   <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
@@ -131,7 +131,7 @@ export default async function LiveUpdateComponent({
           {news.slice(1).map((item) => (
             <div key={item.id} className="flex items-start relative mb-3">
               <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
-                <div className="rounded-full bg-yellow-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
                   <div className="bg-primary rounded-full animate-ping w-2 h-2"></div>
                 </div>
               </div>
