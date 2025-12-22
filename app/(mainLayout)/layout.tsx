@@ -27,10 +27,10 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 
         <NewsTicker />
       </div>
-      <div className="mt-33 md:mt-41">
-        {/*  <NavMenu /> */}.
-      </div>
-      {children}
+      <div className="mt-35 md:mt-43">
+        {/*  <NavMenu /> */}</div>
+     
+      {children} 
       <Poll />
       <Footer />
       <VisitorTracker />
