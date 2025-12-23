@@ -1,119 +1,61 @@
-import { Facebook, Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
 import CountryListLinks from "./CountryListLinks";
 
 export default function Footer() {
   return (
-    <footer className="mt-10 w-full flex justify-center">
-      <div className=" w-full max-w-7xl text-center">
-        <div className="flex flex-wrap justify-center gap-4 mb-2 py-2 border-2 uppercase">
+    <footer className="mt-10 w-full">
+      <div className="w-full max-w-7xl mx-auto px-4">
+        {/* Logo */}
+        <div className="flex justify-start">
+          <div
+            className="
+              w-[80px] h-[26px]
+              bg-[url('/logo/gepb.png')]
+              dark:bg-[url('/logo/gepw.png')]
+              bg-cover bg-center
+            "
+          />
+        </div>
+
+        {/* Footer links */}
+        <div className="flex flex-wrap gap-1 mb-2 py-2 text-xs pl-2">
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
+            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
           >
             Editorial Policy
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
+            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
           >
-            Privacy Plicy
+            Privacy Policy
           </Link>
           <Link
             href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
+            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
           >
             Terms & Conditions
           </Link>
           <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
+            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
           >
             Comment Policy
           </Link>
           <Link
             href="/about/advertise"
-            className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
+            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
           >
             Advertisement
           </Link>
-          {/*  <Link href="/about/contact" className="hover:underline font-semibold text-foreground/90 text-md md:text-xl px-2">
-            Contact
-          </Link> */}
         </div>
+ {/* Social section */}
+        <div className="mt-6 pb-4 ml-4">
+          <div className="flex flex-col items-start gap-2">
+            <p className="text-sm uppercase font-bold">Follow Us</p>
 
-        <div className="md:grid md:grid-cols-3 mt-4 pb-4">
-          <div>
-            <h1 className="text-lg font-bold mt-4 pb-4">
-              Publication and Communication
-            </h1>
-            <h3 className="font-bold text-md uppercase">
-             Global EYE PRESS
-            </h3>
-            {/*  <p className="mb-1 text-sm text-muted-foreground">
-              <a
-                href="mailto:contact@globaleye.press"
-                className="text-orange-600 hover:underline"
-              >
-                contact@globaleye.press
-              </a>
-              <br />
-              <a
-                href="mailto:publisher@globaleye.press"
-                className="text-orange-600 hover:underline"
-              >
-                contact@globaleye.press
-              </a>
-            </p> */}
-
-          {/*   <div className="text-sm">
-              <a
-                href="mailto:contact@globaleye.press"
-                className="text-primary hover:underline"
-              >
-                contact@globaleye.press
-              </a>
-            </div> */}
-          </div>
-
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-lg font-bold mt-4">Advertisement</h1>
-
-            <div className="max-w-2xl text-sm mx-auto px-4 py-4 text-foreground text-center">
-              <p className="mb-4 inline">Fill up the </p>
-              <a
-                href="/about/advertise#advertiseForm"
-                aria-label="Form"
-                className="text-primary hover:underline"
-              >
-                Form
-              </a>
-            </div>
-
-            <p className="text-sm"> or Email us for advertisement</p>
-            <a
-              href="mailto:contact@globaleye.press"
-              className="text-primary text-sm hover:underline"
-            >
-              contact@globaleye.press
-            </a>
-            <div
-              className="
-      w-[150px] h-[60px] 
-      md:w-[160px] md:h-[60px] 
-      bg-[url('/logo/gepb.png')] 
-      dark:bg-[url('/logo/gepw.png')] 
-      bg-cover bg-center
-    "
-            />
-          </div>
-          <div className="flex flex-col items-center  justify-center gap-2 mt-6 md:mt-0">
-            <p className="text-sm">
-              Follow our social media accounts for the latest updates and
-              exclusive content.
-            </p>
-
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               {/* Instagram */}
               <a
                 href="https://www.instagram.com/gepnews"
@@ -121,11 +63,11 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/instagram.png"
                     alt="Instagram"
-                    className="w-full h-full object-cover scale-[1.02]"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </a>
@@ -137,11 +79,11 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
-                <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/facebook.png"
                     alt="Facebook"
-                    className="w-full h-full object-cover scale-[1.02]"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </a>
@@ -153,11 +95,11 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="YouTube"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/youtube.png"
                     alt="YouTube"
-                    className="w-full h-full object-cover scale-[1.02]"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </a>
@@ -169,21 +111,26 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="TikTok"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/tiktokk.png"
                     alt="TikTok"
-                    className="w-full h-full object-cover scale-[1.02]"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </a>
             </div>
           </div>
         </div>
+        {/* Country links */}
         <CountryListLinks />
 
-        <p className="text-xs text-gray-400 bg-black mt-2 ">
-          &copy; {new Date().getFullYear()} All rights reserved.
+       
+
+        {/* Copyright */}
+        <p className="text-xs mt-6 text-left">
+          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved. A Souveral Network Independent media
+          organization operating from Portugal.
         </p>
       </div>
     </footer>

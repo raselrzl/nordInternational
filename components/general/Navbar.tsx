@@ -14,7 +14,7 @@ export default async function Navbar() {
   const user = await auth();
 
   return (
-    <nav className="flex items-center justify-between pr-2 py-2 max-w-7xl">
+    <nav className="flex items-center justify-between pr-2 max-w-7xl  border-l-4 border-black">
       <Link href="/" className="flex items-center">
         <div
           className="m-1/2

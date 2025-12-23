@@ -35,26 +35,17 @@ export async function getEconomyNews() {
 export async function EconomyNews() {
   const economy = await getEconomyNews();
 
-  const convertToBanglaNumber = (number: number): string => {
-    const banglaDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    return number
-      .toString()
-      .split("")
-      .map((digit) => banglaDigits[parseInt(digit)])
-      .join("");
-  };
-
   return (
     <>
       <div className="min-h-[450px] overflow-y-auto">
         {economy && economy.length > 0 ? (
-          economy.slice(0, 10).map((item, index) => (
+          economy.slice(0, 10).map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
               <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
-                <div className="p-1 flex gap-2 items-start">
-                  <span className="text-lg font-bold text-primary">
-                    {convertToBanglaNumber(index + 1)}.
-                  </span>
+                <div className="p-1 flex gap-3 items-start">
+                  {/* Big circle dot */}
+                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+
                   <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
@@ -74,3 +65,4 @@ export async function EconomyNews() {
     </>
   );
 }
+

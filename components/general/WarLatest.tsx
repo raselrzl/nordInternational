@@ -43,15 +43,15 @@ export default async function WarLatest() {
 
   return (
     <section className="px-2 md:px-0 my-10">
-      <div className="flex items-center justify-between bg-black px-4 py-2 border-l-4 border-orange-600">
-        <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase text-orange-500 tracking-wide">
-          <span className="animate-pulse">●</span>
+      <div className="flex items-center justify-between px-4 md:px-0 my-10 md:my-16">
+        <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase border-l-8 pl-2 border-primary">
+          
           War & Crisis
         </h2>
 
         <Link
           href="/war"
-          className="text-xs md:text-sm font-semibold text-white/80 hover:text-orange-500 transition"
+          className="text-xs font-semibold"
         >
           View All →
         </Link>

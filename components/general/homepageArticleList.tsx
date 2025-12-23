@@ -138,7 +138,11 @@ export async function getLatestNews() {
 
 export async function getScienceNews() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "SCIENCE" },
+      where: {
+      newsCategory: {
+        in: ["SCIENCE", "TECHNOLOGY"],
+      },
+    },
     select: {
       id: true,
       createdAt: true,
@@ -169,7 +173,11 @@ export async function getScienceNews() {
 
 export async function getScienceNewsHead() {
   return await prisma.newsArticle.findMany({
-    where: { newsCategory: "SCIENCE" },
+     where: {
+      newsCategory: {
+        in: ["SCIENCE", "TECHNOLOGY"],
+      },
+    },
     select: {
       id: true,
       createdAt: true,
@@ -576,7 +584,7 @@ export async function ScienceNewsHeadPost() {
 
   return (
     <>
-      <div className="flex flex-row items-center space-x-2 bg-black  text-white">
+      <div className="flex flex-row items-center space-x-2 ">
         <img
           src="/clock.gif"
           alt="YouTube GIF"
@@ -584,7 +592,7 @@ export async function ScienceNewsHeadPost() {
           height={50}
           className="object-contain"
         />
-        <p className="font-bold text-2xl border-l-4 border-orange-600 pl-2">Science and Research</p>
+        <p className="font-bold text-2xl uppercase">Science and Tech</p>
       </div>
       {scienceheadpost && scienceheadpost.length > 0 ? (
         scienceheadpost.map((item) => (
@@ -660,14 +668,7 @@ export async function Binodon() {
     <>
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center space-x-2">
-          <img
-            src="/binodon.gif"
-            alt="YouTube GIF"
-            width={50} // adjust as needed
-            height={50}
-            className="object-contain"
-          />
-          <p className="font-bold text-2xl">Entertainment</p>
+          <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">Entertainment</p>
         </div>
         <div className="md:block hidden">
           <img
@@ -749,26 +750,17 @@ export async function getSorboseshNews() {
 export async function SorboseshNews() {
   const sorbosesh = await getSorboseshNews();
 
-  const convertToBanglaNumber = (number: number): string => {
-    const banglaDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    return number
-      .toString()
-      .split("")
-      .map((digit) => banglaDigits[parseInt(digit)])
-      .join("");
-  };
-
   return (
     <>
       <div className="min-h-[450px] overflow-y-auto">
         {sorbosesh && sorbosesh.length > 0 ? (
-          sorbosesh.slice(0, 10).map((item, index) => (
+          sorbosesh.slice(0, 10).map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
               <div className="max-w-sm text-start rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
-                <div className="p-1 flex gap-2 items-start justify-center">
-                  <span className="text-lg text-start font-bold text-primary">
-                    {convertToBanglaNumber(index + 1)}.
-                  </span>
+                <div className="p-1 flex gap-3 items-start">
+                  {/* Big circle dot */}
+                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+
                   <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
@@ -788,6 +780,7 @@ export async function SorboseshNews() {
     </>
   );
 }
+
 
 // getsorboseshnews
 export async function getJonoprioNews() {
@@ -823,26 +816,17 @@ export async function getJonoprioNews() {
 export async function JonoprioNews() {
   const sorbosesh = await getJonoprioNews();
 
-  const convertToBanglaNumber = (number: number): string => {
-    const banglaDigits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    return number
-      .toString()
-      .split("")
-      .map((digit) => banglaDigits[parseInt(digit)])
-      .join("");
-  };
-
   return (
     <>
       <div className="min-h-[450px] overflow-y-auto">
         {sorbosesh && sorbosesh.length > 0 ? (
-          sorbosesh.slice(0, 10).map((item, index) => (
+          sorbosesh.slice(0, 10).map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
               <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
-                <div className="p-1 flex gap-2 items-start">
-                  <span className="text-lg font-bold text-primary">
-                    {convertToBanglaNumber(index + 1)}.
-                  </span>
+                <div className="p-1 flex gap-3 items-start">
+                  {/* Big circle dot */}
+                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+
                   <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
                     {item.newsHeading}
                   </h2>
@@ -862,3 +846,4 @@ export async function JonoprioNews() {
     </>
   );
 }
+

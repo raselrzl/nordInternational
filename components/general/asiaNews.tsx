@@ -43,12 +43,12 @@ export default async function AsiaLatest() {
   const leftArticles = others.slice(0, 6);
   return (
     <section className="px-2 md:px-0 my-10">
-      <div className="flex justify-between text-xl w-[160px] bg-black text-orange-600">
+      <div className="flex justify-between text-xl w-[160px] md:my-16 my-8">
         <Link
           key="Asia"
           href="/diffrentCountry?country=Asia"
           className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs border-l-4 border-orange-600"
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
         >
           <img
             src="/flags/asia.jpg"

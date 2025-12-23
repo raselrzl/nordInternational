@@ -22,7 +22,7 @@ const SocialLinks = () => {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/instagram.png"
                     alt="Instagram"
@@ -38,7 +38,7 @@ const SocialLinks = () => {
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
-                <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/facebook.png"
                     alt="Facebook"
@@ -54,7 +54,7 @@ const SocialLinks = () => {
                 rel="noopener noreferrer"
                 aria-label="YouTube"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/youtube.png"
                     alt="YouTube"
@@ -70,7 +70,7 @@ const SocialLinks = () => {
                 rel="noopener noreferrer"
                 aria-label="TikTok"
               >
-                <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
                   <img
                     src="/tiktokk.png"
                     alt="TikTok"

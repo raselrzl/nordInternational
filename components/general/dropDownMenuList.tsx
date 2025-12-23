@@ -41,7 +41,7 @@ export default function DropDownMenuList() {
         className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2"
       >
         {/* NAV ITEMS GRID */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
           {menuItems.map((item) => (
             <MenuItem
               key={item}

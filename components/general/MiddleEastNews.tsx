@@ -42,12 +42,12 @@ export default async function MiddleeastLatest() {
 
   return (
     <section className="px-2 md:px-0 my-10">
-      <div className="flex justify-between text-xl w-[220px] bg-black text-orange-600">
+      <div className="flex justify-between text-xl w-[220px] my-10: md:my-16">
        <Link
           key="Middleeast"
           href="/diffrentCountry?country=Middleeast"
            className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs border-l-4 border-orange-600"
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
         >
           <img
             src="/flags/middleeast.webp"

@@ -171,8 +171,8 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
-        <div className="order-3 md:order-1 md:col-span-1 px-2 border-1">
-          <div className="flex justify-between text-sm w-full mt-1 bg-black text-orange-600">
+        <div className="order-3 md:order-1 md:col-span-1 px-2 border">
+          <div className="flex justify-between text-md w-full mt-1">
             <Link
               key="Usa"
               href="/diffrentCountry?country=Usa"
@@ -225,11 +225,7 @@ export default async function Home() {
           </Suspense>
 
           <div className="mt-2 text-left flex-col hidden sm:block">
-            <p className="text-sm font-semibold text-justify">
-              Follow our social media accounts for the latest updates and
-              exclusive content.
-            </p>
-            <SocialLinks />
+              <SocialLinks />
           </div>
         </div>
 
@@ -375,7 +371,7 @@ export default async function Home() {
             <PopupOnViewServer />
             <Binodon />
           </div>
-          <div className="col-span-3 md:col-span-1 md:mt-12">
+          <div className="col-span-3 md:col-span-1 md:mt-11.5">
             <Contact />
           </div>
         </div>
