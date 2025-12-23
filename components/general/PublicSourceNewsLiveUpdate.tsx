@@ -141,7 +141,7 @@ export default async function LiveUpdateComponent() {
       <div className="text-right mt-4 pr-2">
         <Link
           href="/breakingnews"
-          className="text-primary font-semibold underline"
+          className="text-xs font-semibold underline"
         >
           View All
         </Link>

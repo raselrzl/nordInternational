@@ -52,7 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoBengali.variable} ${tiroBangla.variable} antialiased`}
+        className={` ${tiroBangla.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
