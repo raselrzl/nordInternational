@@ -66,10 +66,10 @@ export default function DropDownMenuList() {
 
           <p className="mb-2">Follow us:</p>
           <div className="flex justify-center gap-3">
-            <SocialIcon href="https://www.instagram.com/globaleye.press" img="/instagram.png" alt="Instagram" />
-            <SocialIcon href="https://web.facebook.com/globaleye.press/" img="/facebook.png" alt="Facebook" />
+            <SocialIcon href="https://www.instagram.com/gepnews" img="/instagram.png" alt="Instagram" />
+            <SocialIcon href="https://web.facebook.com/gepnews" img="/facebook.png" alt="Facebook" />
             <SocialIcon href="https://www.youtube.com/@globaleyepressofficial" img="/youtube.png" alt="YouTube" />
-            <SocialIcon href="https://www.tiktok.com/@globaleye.press" img="/tiktokk.png" alt="TikTok" />
+            <SocialIcon href="https://www.tiktok.com/@gepnews" img="/tiktokk.png" alt="TikTok" />
           </div>
         </div>
       </DropdownMenuContent>
@@ -84,7 +84,7 @@ function MenuItem({ href, label }: { href: string; label: string }) {
     <DropdownMenuItem asChild>
       <Link
         href={href}
-        className="block rounded-lg cursor-pointer px-1 border-xs shadow-xs shadow-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-bold uppercase text-black dark:text-gray-100 text-center"
+        className="block rounded-lg cursor-pointer  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-bold uppercase text-black dark:text-gray-100 text-center"
       >
         {label}
       </Link>
