@@ -21,7 +21,7 @@ export default async function Editor() {
         • About GlobalEye Press
       </h2>
       <p className="mb-4 text-sm">
-        GlobalEye Press News is an independent, digital-first news organization operated
+        GlobalEye Press is an independent, digital-first news organization operated
         from Portugal.
       </p>
       <p className="mb-4 text-sm">
@@ -31,7 +31,7 @@ export default async function Editor() {
         respons Presibly.
       </p>
       <p className="mb-4 text-sm">
-        Global EYEs News is founder-led and editorially independent. We are not
+        GlobalEye Press is founder-led and editorially independent. We are not
         affiliated with, endorsed by, or officially recognized by any government,
         political entity, or European Union institution.
       </p>
