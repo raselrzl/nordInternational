@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import AboutFooter from "./AboutFooter";
+import { MenuIcon } from "lucide-react";
 
 const links = [
   { name: "About", href: "/about" },
@@ -34,7 +35,7 @@ export default function AboutLayout({
           onClick={() => setOpen(!open)}
           className="text-sm font-semibold px-3 py-1"
         >
-          Menu
+          <MenuIcon />
         </button>
 
         {/* Mobile Dropdown Overlay */}
