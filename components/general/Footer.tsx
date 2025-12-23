@@ -11,7 +11,7 @@ export default function Footer() {
             href="/about"
             className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
-            Global Eye
+            Editorial Policy
           </Link>
           <Link
             href="/about/privacy-policy"
@@ -23,7 +23,7 @@ export default function Footer() {
             href="/about/terms"
             className="hover:underline font-semibold text-foreground/90 text-sm md:text-md px-2"
           >
-            Terms
+            Terms & Conditions
           </Link>
           <Link
             href="/about/comment-policy"
@@ -47,8 +47,8 @@ export default function Footer() {
             <h1 className="text-lg font-bold mt-4 pb-4">
               Publication and Communication
             </h1>
-            <h3 className="font-bold text-md">
-              Editor & Publisher: Global Eye
+            <h3 className="font-bold text-md uppercase">
+             Global EYE PRESS
             </h3>
             {/*  <p className="mb-1 text-sm text-muted-foreground">
               <a
@@ -66,15 +66,14 @@ export default function Footer() {
               </a>
             </p> */}
 
-            <div className="text-sm">
-              <p>EU</p>
+          {/*   <div className="text-sm">
               <a
                 href="mailto:contact@globaleye.press"
                 className="text-primary hover:underline"
               >
                 contact@globaleye.press
               </a>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex flex-col items-center justify-center">

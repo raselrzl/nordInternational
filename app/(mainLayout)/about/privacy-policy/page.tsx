@@ -4,95 +4,135 @@ import React from "react";
 export default async function PrivacyPolicyPage() {
   await trackRoute("PrivacyPolicy");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground shadow">
-      <h1 className="text-xl md:text-2xl font-bold mb-6 text-center uppercase">
+    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground leading-relaxed shadow bg-background">
+      <h1 className="text-xl md:text-2xl font-bold mb-2 text-center uppercase">
         Privacy Policy
       </h1>
 
-      <p className="mb-4 text-xs md:text-sm">
-        <strong>Last Updated:</strong> {new Date().toLocaleDateString("en-US")}
+      <p className="text-center text-sm mb-6">
+        <strong>GlobalEye Press</strong>
       </p>
 
-      <p className="mb-4 text-xs md:text-sm">
-        <strong>Global Eye</strong> highly values your privacy. This
-        policy explains how we collect, use, and store your information.
+      <p className="text-xs md:text-sm mb-8 text-center">
+        <strong>Last updated:</strong> 2025 <br />
+        <strong>Operating from:</strong> Portugal
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        1. Information Collection
+        1. Introduction
       </h2>
+      <p className="mb-4 text-xs md:text-sm">
+        Souveral News respects your privacy and is committed to protecting
+        personal data in accordance with the General Data Protection Regulation
+        (GDPR) and applicable Portuguese law.
+      </p>
+      <p className="mb-4 text-xs md:text-sm">
+        This Privacy Policy explains how personal data is collected, used, and
+        protected when you visit our website or use our services.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        2. Data We May Collect
+      </h2>
+      <p className="mb-2 text-xs md:text-sm">
+        Depending on how you interact with our website, we may collect:
+      </p>
       <ul className="list-disc ml-6 mb-4 text-xs md:text-sm">
-        <li>Name, email, phone number (if you provide them)</li>
-        <li>Your browsing data, such as the pages you visit</li>
-        <li>Device information via cookies and other tracking technologies</li>
+        <li>Contact information (e.g. name, email) if you contact us</li>
+        <li>Technical data (IP address, browser type, device information)</li>
+        <li>Usage data (pages visited, interaction data)</li>
+        <li>Cookie and analytics data</li>
+      </ul>
+      <p className="mb-4 text-xs md:text-sm">
+        We do not knowingly collect sensitive personal data.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        3. Purpose of Data Processing
+      </h2>
+      <p className="mb-2 text-xs md:text-sm">
+        Personal data is processed for the following purposes:
+      </p>
+      <ul className="list-disc ml-6 mb-4 text-xs md:text-sm">
+        <li>Website operation and security</li>
+        <li>Responding to inquiries</li>
+        <li>Improving content and user experience</li>
+        <li>Legal and regulatory compliance</li>
       </ul>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        2. Use of Information
+        4. Legal Basis
       </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        We use your information to provide better service, communicate with you,
-        improve content, and analyze our operations.
+      <p className="mb-2 text-xs md:text-sm">
+        Data is processed based on:
       </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        3. Information Security
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        We implement various technical and administrative measures to protect
-        your data. However, 100% security on the internet cannot be guaranteed.
-      </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        4. Information Sharing
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        We do not sell your data to third parties. In some cases, limited data
-        may be shared with service providers or for legal purposes.
-      </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        5. External Links
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        Our website may contain links to third-party websites. Their privacy
-        policies are beyond Global Eye's control.
-      </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        6. User Rights
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        You may view, modify, or delete your personal information by contacting
-        us.
-      </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        7. Policy Changes
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
-        We may update this privacy policy as needed. All changes will be posted
-        on this page.
-      </p>
-
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">8. Contact</h2>
-      <p className="mb-4 text-xs md:text-sm">
-        For any questions regarding privacy, please contact us:
-      </p>
-      <ul className="list-none mb-6 text-xs md:text-sm">
-        <li>
-          <strong>Email:</strong>{" "}
-          <a
-            href="mailto:contact@globaleye.press"
-            className="text-primary hover:underline"
-          >
-            contact@globaleye.press
-          </a>
-        </li>
+      <ul className="list-disc ml-6 mb-4 text-xs md:text-sm">
+        <li>User consent (where applicable)</li>
+        <li>Legitimate interest (website functionality and security)</li>
+        <li>Legal obligations under EU law</li>
       </ul>
 
-      <p className="text-xs md:text-sm italic">
-        Thank you for being with Global Eye.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        5. Cookies
+      </h2>
+      <p className="mb-4 text-xs md:text-sm">
+        We may use essential and analytical cookies to improve website
+        performance. Where required, cookie consent mechanisms are provided.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        6. Data Sharing
+      </h2>
+      <p className="mb-4 text-xs md:text-sm">
+        We do not sell personal data. Data may be shared only with trusted service
+        providers (e.g. hosting, analytics) where necessary and under appropriate
+        safeguards.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        7. Data Retention
+      </h2>
+      <p className="mb-4 text-xs md:text-sm">
+        Personal data is retained only for as long as necessary to fulfill its
+        purpose or comply with legal obligations.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        8. Your Rights (GDPR)
+      </h2>
+      <p className="mb-2 text-xs md:text-sm">
+        You have the right to:
+      </p>
+      <ul className="list-disc ml-6 mb-4 text-xs md:text-sm">
+        <li>Access your data</li>
+        <li>Correct inaccurate data</li>
+        <li>Request deletion</li>
+        <li>Restrict or object to processing</li>
+        <li>Withdraw consent where applicable</li>
+      </ul>
+      <p className="mb-4 text-xs md:text-sm">
+        Requests can be made via our contact details listed on the website.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        9. Data Security
+      </h2>
+      <p className="mb-4 text-xs md:text-sm">
+        Appropriate technical and organizational measures are used to protect
+        personal data against unauthorized access, loss, or misuse.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        10. Changes
+      </h2>
+      <p className="mb-6 text-xs md:text-sm">
+        This policy may be updated periodically. Updates will be published on
+        this page.
+      </p>
+
+      <p className="text-xs md:text-sm text-center font-medium">
+        © 2025 GlobalEye Press <br />
+        A Souveral Group Company
       </p>
     </div>
   );

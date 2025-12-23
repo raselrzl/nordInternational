@@ -4,64 +4,97 @@ import React from "react";
 export default async function TermsPage() {
   await trackRoute("Terms");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground">
-      <h1 className="text-3xl font-bold mb-6 text-center">Terms and Conditions</h1>
+    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground leading-relaxed">
+      <h1 className="text-2xl md:text-3xl font-bold mb-2 text-center uppercase">
+        Terms & Conditions
+      </h1>
 
-      <p className="mb-4 text-base">
-        <strong>Last Updated:</strong> {new Date().toLocaleDateString("en-US")}
+      <p className="text-center text-sm mb-6">
+        <strong>GlobalEye Press</strong>
       </p>
 
-      <p className="mb-4 text-base">
-        By accessing or using the Global Eye website, you agree to comply with these terms and conditions. Please read them carefully.
+      <p className="text-center text-xs md:text-sm mb-8">
+        <strong>Last updated:</strong> 2025 <br />
+        <strong>Jurisdiction:</strong> Portugal
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">1. Use of Service</h2>
-      <p className="mb-4 text-base">
-        You may use this website only for personal and non-commercial purposes. Any illegal activity using the website is strictly prohibited.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        1. Use of Website
+      </h2>
+      <p className="mb-4 text-sm">
+        By accessing this website, you agree to these Terms & Conditions. If you
+        do not agree, please do not use the site.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">2. Content Ownership</h2>
-      <p className="mb-4 text-base">
-        All texts, images, videos, and other materials published on the website are the property of Global Eye or licensed to it. Copying, publishing, or distributing content beyond personal use is prohibited.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        2. Content
+      </h2>
+      <p className="mb-4 text-sm">
+        All content is provided for informational purposes only.
+      </p>
+      <p className="mb-4 text-sm">
+        While we strive for accuracy, Souveral News does not guarantee
+        completeness or timeliness of information and shall not be held liable
+        for decisions made based on published content.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">3. User Conduct</h2>
-      <ul className="list-disc ml-6 mb-4 text-base">
-        <li>Please refrain from posting offensive, defamatory, or hateful comments.</li>
-        <li>Spreading false information or rumors is forbidden.</li>
-        <li>Violation of others' privacy is not allowed.</li>
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        3. Intellectual Property
+      </h2>
+      <p className="mb-4 text-sm">
+        All original content, branding, and materials belong to Souveral News
+        unless otherwise stated.
+      </p>
+      <p className="mb-4 text-sm">
+        Content may not be reproduced, distributed, or reused without
+        permission, except where legally permitted.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        4. External Links
+      </h2>
+      <p className="mb-4 text-sm">
+        Our website may contain links to third-party websites. We are not
+        responsible for external content, policies, or practices.
+      </p>
+
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        5. User Conduct
+      </h2>
+      <p className="mb-2 text-sm">Users agree not to:</p>
+      <ul className="list-disc ml-6 mb-4 text-sm">
+        <li>Misuse content</li>
+        <li>Attempt unauthorized access</li>
+        <li>Disrupt website operations</li>
+        <li>Use the site for unlawful purposes</li>
       </ul>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">4. Comment Policy</h2>
-      <p className="mb-4 text-base">
-        Readers are welcome to comment. However, we reserve the right to remove obscene, fabricated, or violent comments.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        6. Limitation of Liability
+      </h2>
+      <p className="mb-4 text-sm">
+        To the extent permitted by law, Souveral News shall not be liable for
+        indirect or consequential damages arising from website use.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">5. External Links</h2>
-      <p className="mb-4 text-base">
-        Links to third-party sites on our website are not under Global Eye’s control. We are not responsible for the content or security of those sites.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        7. Changes
+      </h2>
+      <p className="mb-4 text-sm">
+        These Terms may be updated without prior notice. Continued use
+        constitutes acceptance of updated terms.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">6. Limitation of Liability</h2>
-      <p className="mb-4 text-base">
-        We strive to keep all information accurate but Global Eye is not liable for any errors, inaccuracies, or damages arising from the use of this website.
+      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
+        8. Governing Law
+      </h2>
+      <p className="mb-8 text-sm">
+        These Terms are governed by the laws of Portugal, without prejudice to
+        applicable EU consumer protections.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">7. Changes</h2>
-      <p className="mb-4 text-base">
-        These terms may be updated at any time. Any changes will be posted on this page.
-      </p>
-
-      <h2 className="text-xl font-semibold mt-6 mb-2">8. Contact</h2>
-      <p className="mb-4 text-base">
-        For questions or feedback regarding these terms, please contact us:
-      </p>
-      <ul className="list-none mb-6 text-base">
-        <li><strong>Email:</strong> <a href="mailto:contact@globaleye.press" className="text-primary hover:underline">contact@globaleye.press</a></li>
-      </ul>
-
-      <p className="text-base italic">
-        Thank you for being a member of the Global Eye family.
+      <p className="text-center text-sm font-medium">
+        © 2025 GlobalEye Press
       </p>
     </div>
   );
