@@ -203,7 +203,7 @@ export default function PrintNews({
           )}
 
           {/* NEWS DETAILS */}
-          <div className="whitespace-pre-line text-sm md:text-lg dark:bg-black mt-10">
+          <div className="whitespace-pre-line text-md md:text-lg dark:bg-black mt-10">
             <div className="flex flex-row px-1">
               <MapPin />
               <p className="text-xl font-bold uppercase">{newsLocation}</p>
