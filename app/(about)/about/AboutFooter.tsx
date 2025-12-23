@@ -1,3 +1,4 @@
+import SocialLinks from "@/components/general/socialLink";
 import Link from "next/link";
 
 export default function AboutFooter() {
@@ -31,7 +32,9 @@ export default function AboutFooter() {
             Advertise
           </Link>
         </div>
+        <SocialLinks />
       </div>
+      
       <div className="flex items-center justify-center mb-6">
         <img
           src="/logo/sr.png"
