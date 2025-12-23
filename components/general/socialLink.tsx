@@ -17,7 +17,7 @@ const SocialLinks = () => {
             <div className="flex items-center justify-center mt-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/globaleye.press"
+                href="https://www.instagram.com/gepnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -65,7 +65,7 @@ const SocialLinks = () => {
 
               {/* TikTok */}
               <a
-                href="https://www.tiktok.com/@globaleye.press"
+                href="https://www.tiktok.com/@gepnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
