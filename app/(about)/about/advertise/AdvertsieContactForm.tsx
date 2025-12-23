@@ -51,7 +51,7 @@ export default function AdvertiseForm() {
   };
 
   return (
-    <div id="advertiseForm" className="max-w-2xl mx-auto px-4 py-16 text-gray-200">
+    <div id="advertiseForm" className="max-w-2xl mx-auto px-1 py-16 text-gray-200">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-200">
         Advertising Inquiry
       </h1>
@@ -71,6 +71,7 @@ export default function AdvertiseForm() {
                     <FormLabel className="text-gray-300">Your Name</FormLabel>
                     <FormControl>
                       <Input
+                      required
                         placeholder="Enter your name..."
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
@@ -89,6 +90,7 @@ export default function AdvertiseForm() {
                     <FormControl>
                       <Input
                         type="email"
+                        required
                         placeholder="example@email.com"
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
@@ -106,6 +108,7 @@ export default function AdvertiseForm() {
                     <FormLabel className="text-gray-300">Company Name</FormLabel>
                     <FormControl>
                       <Input
+                      required
                         placeholder="Enter your company name..."
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
@@ -124,6 +127,7 @@ export default function AdvertiseForm() {
                     <FormControl>
                       <Input
                         placeholder="https://example.com"
+                        required
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
                       />
@@ -142,6 +146,7 @@ export default function AdvertiseForm() {
                       <Input
                         type="tel"
                         placeholder="Enter phone number..."
+                        required
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
                       />
@@ -159,6 +164,7 @@ export default function AdvertiseForm() {
                     <FormControl>
                       <Textarea
                         rows={5}
+                        required
                         placeholder="Write your message..."
                         {...field}
                         className="bg-[#2a2a2a] text-gray-200 border-gray-600 focus:border-orange-500 focus:ring-orange-500"
