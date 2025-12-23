@@ -62,7 +62,7 @@ export default async function LiveUpdateComponent() {
             <div className="relative w-full max-w-[720px]">
               <img
                 src={news[0].newsPicture}
-                className="w-full h-[300px] md:h-[360px] object-cover"
+                className="w-full h-[300px] md:h-[360px] object-cover border-t-8 border-red-500"
                 alt=""
               />
 
@@ -78,7 +78,7 @@ export default async function LiveUpdateComponent() {
                     </span>
                   </div>
 
-                  <div className="font-bold text-lg text-red-700 leading-tight mt-1">
+                  <div className="font-bold text-lg text-red-500 leading-tight mt-1">
                     {news[0].headings}
                   </div>
                 </div>
