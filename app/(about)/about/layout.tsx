@@ -27,7 +27,7 @@ export default function AboutLayout({
       {/* ===== Mobile Navbar ===== */}
       <div className="md:hidden fixed top-0 left-0 w-full border-b border-gray-700 bg-[#202020] z-50 px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo/sr.png" alt="Logo" className="h-10" />
+          <img src="/logo/gepw.png" alt="Logo" className="h-10" />
         </Link>
 
         <button
@@ -39,7 +39,7 @@ export default function AboutLayout({
 
         {/* Mobile Dropdown Overlay */}
         {open && (
-          <div className="absolute top-full left-0 w-full bg-[#202020] shadow-md z-50 px-4 py-3 space-y-2">
+          <div className="absolute top-full left-0 w-full bg-[#202020] shadow-md z-50 px-4 py-3 space-y-2 border-b">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -52,6 +52,9 @@ export default function AboutLayout({
                 {link.name}
               </Link>
             ))}
+             <Link href="/" className="flex items-center gap-2">
+          <img src="/logo/sr.png" alt="Logo" className="h-10" />
+        </Link>
           </div>
         )}
       </div>
@@ -62,7 +65,7 @@ export default function AboutLayout({
           {/* Sidebar */}
           <aside className="w-64 border-r border-gray-700 p-4 flex-shrink-0 flex flex-col bg-[#202020]">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <img src="/logo/sr.png" alt="Logo" className="h-20 w-auto" />
+              <img src="/logo/gepw.png" alt="Logo" className="h-16 w-auto" />
             </Link>
 
             <nav className="space-y-2">
