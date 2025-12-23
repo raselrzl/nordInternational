@@ -89,7 +89,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-12 h-12 p-0 cursor-pointer border-none shadow-none "
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none "
           variant="outline"
         >
           <img
@@ -101,7 +101,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareFacebook}
-          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
+          className="w-7 h-7 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -113,7 +113,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareMessenger}
-          className="w-12 h-12 p-0 cursor-pointer border-none shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -125,7 +125,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleCopyLink}
-          className="w-10 h-10 p-0 cursor-pointer border-none shadow-none"
+          className="w-7 h-7 p-0 cursor-pointer border-none shadow-none"
           variant="outline"
         >
           <img
@@ -143,7 +143,7 @@ export default function PrintNews({
           ref={contentRef}
           className="w-full rounded-xs shadow mt-6"
         >
-          <h1 className="text-2xl font-bold my-4 p-2">
+          <h1 className="text-lg md:xl font-bold my-4 p-2">
             {newsHeading}
           </h1>
 
@@ -174,7 +174,7 @@ export default function PrintNews({
                     </>
                   ) : (
                     <p className="text-sm font-semibold">
-                      Global Eye Correspondent
+                      GEP
                     </p>
                   )}
                 </div>
@@ -203,7 +203,7 @@ export default function PrintNews({
           )}
 
           {/* NEWS DETAILS */}
-          <div className="whitespace-pre-line text-md mg:text-lg dark:bg-black mt-10">
+          <div className="whitespace-pre-line text-sm md:text-lg dark:bg-black mt-10">
             <div className="flex flex-row px-1">
               <MapPin />
               <p className="text-xl font-bold uppercase">{newsLocation}</p>

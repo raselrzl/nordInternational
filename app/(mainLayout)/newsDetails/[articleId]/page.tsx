@@ -338,9 +338,9 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       <div className="col-span-5 md:col-span-3 px-3">
         {/* Article Meta Info */}
         <div className="flex flex-col font-bold mb-1 text-xl">
-          <div className="flex flex-row pl-2 items-center">
-            <User2 className="size-5 mr-1 mb-1" />
-            <p>GEP EDITOR</p>
+          <div className="flex font-bold flex-row pl-2 items-center">
+            <User2 className="size-5 mr-1 mb-1 font-bold" />
+            <p >GEP Eitor</p>
             <NewUserTracker />
           </div>
           <div className="flex flex-row pl-2 items-center">

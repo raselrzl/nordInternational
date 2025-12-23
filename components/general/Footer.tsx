@@ -128,7 +128,7 @@ export default function Footer() {
        
 
         {/* Copyright */}
-        <p className="text-xs mt-6 text-left">
+        <p className="text-xs mt-6 text-center">
           Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved. A Souveral Network Independent media
           organization operating from Portugal.
         </p>
