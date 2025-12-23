@@ -33,7 +33,7 @@ export default async function TermsPage() {
         All content is provided for informational purposes only.
       </p>
       <p className="mb-4 text-sm">
-        While we strive for accuracy, Souveral News does not guarantee
+        While we strive for accuracy, GlobalEye Press does not guarantee
         completeness or timeliness of information and shall not be held liable
         for decisions made based on published content.
       </p>
@@ -42,7 +42,7 @@ export default async function TermsPage() {
         • Intellectual Property
       </h2>
       <p className="mb-4 text-sm">
-        All original content, branding, and materials belong to Souveral News
+        All original content, branding, and materials belong to GlobalEye Press
         unless otherwise stated.
       </p>
       <p className="mb-4 text-sm">
@@ -73,7 +73,7 @@ export default async function TermsPage() {
         • Limitation of Liability
       </h2>
       <p className="mb-4 text-sm">
-        To the extent permitted by law, Souveral News shall not be liable for
+        To the extent permitted by law, GlobalEye Press shall not be liable for
         indirect or consequential damages arising from website use.
       </p>
 

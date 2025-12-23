@@ -10,7 +10,7 @@ export default async function CommentPolicyPage() {
       </h1>
 
       <p className="mb-4 text-xs md:text-sm">
-        <strong>Global Eye</strong> respects readers' opinions and freedom of expression. 
+        <strong>GlobalEye</strong> respects readers' opinions and freedom of expression. 
         However, to ensure a constructive and safe online environment, we follow some specific guidelines.
       </p>
 
@@ -31,11 +31,11 @@ export default async function CommentPolicyPage() {
           },
           {
             title: "Comment Review and Moderation",
-            text: "All comments go through a moderation process. Global Eye reserves the right to delete or reject inappropriate comments."
+            text: "All comments go through a moderation process. GlobalEye reserves the right to delete or reject inappropriate comments."
           },
           {
             title: "Responsibility",
-            text: "Comments reflect the opinions of the readers themselves. Global Eye is not responsible for any comment content."
+            text: "Comments reflect the opinions of the readers themselves. GlobalEye is not responsible for any comment content."
           },
           {
             title: "Changes",

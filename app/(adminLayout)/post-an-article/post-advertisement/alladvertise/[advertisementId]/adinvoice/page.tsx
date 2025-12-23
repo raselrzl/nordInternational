@@ -210,7 +210,7 @@ export default async function AdvertiseDetailsPage({
           <h2 className="font-semibold mb-2">Payment Information</h2>
           <p><strong>Bank Name:</strong> Svenska Handelsbanken</p>
           <p><strong>Account Number:</strong> 987 654 321</p>
-          <p><strong>Account Name:</strong> Global Eye</p>
+          <p><strong>Account Name:</strong> GlobalEye</p>
           <p><strong>Branch:</strong> Stockholm City</p>
           <p><strong>SWIFT Code:</strong> HANDSESS</p>
 
@@ -236,7 +236,7 @@ export default async function AdvertiseDetailsPage({
             This invoice is an automatically generated digital document and does not require a signature.
           </p>
           <p>
-            The advertisement will be published on Global Eye according to the scheduled time.
+            The advertisement will be published on GlobalEye according to the scheduled time.
           </p>
         </div>
       </div>

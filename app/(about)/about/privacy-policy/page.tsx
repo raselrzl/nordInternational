@@ -19,7 +19,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
         <p className="mb-4 text-xs md:text-sm">
-        Souveral News respects your privacy and is committed to protecting
+        GlobalEye Press respects your privacy and is committed to protecting
         personal data in accordance with the General Data Protection Regulation
         (GDPR) and applicable Portuguese law.
       </p>

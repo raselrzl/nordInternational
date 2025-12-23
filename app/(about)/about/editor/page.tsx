@@ -18,20 +18,20 @@ export default async function Editor() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        • About Souveral News
+        • About GlobalEye Press
       </h2>
       <p className="mb-4 text-sm">
-        Souveral News is an independent, digital-first news organization operated
+        GlobalEye Press News is an independent, digital-first news organization operated
         from Portugal.
       </p>
       <p className="mb-4 text-sm">
         We are committed to verified reporting, clear analysis, and responsible
         journalism. Our work is grounded in facts, context, and accountability,
         with the aim of helping audiences understand events accurately and
-        responsibly.
+        respons Presibly.
       </p>
       <p className="mb-4 text-sm">
-        Souveral News is founder-led and editorially independent. We are not
+        Global EYEs News is founder-led and editorially independent. We are not
         affiliated with, endorsed by, or officially recognized by any government,
         political entity, or European Union institution.
       </p>
@@ -92,7 +92,7 @@ export default async function Editor() {
         • Corrections & Right to Rectification
       </h2>
       <p className="mb-4 text-sm">
-        In line with Portuguese and European journalistic practice, Souveral News
+        In line with Portuguese and European journalistic practice, GlobalEye Press
         respects the right to correction and rectification.
       </p>
       <ul className="list-disc ml-6 mb-4 text-sm">
@@ -112,7 +112,7 @@ export default async function Editor() {
         Media Freedom & Independence
       </p>
       <p className="mb-4 text-sm">
-        Souveral News voluntarily aligns its editorial practices with generally
+        GlobalEye Press voluntarily aligns its editorial practices with generally
         accepted European principles of media freedom and editorial independence.
       </p>
       <p className="mb-4 text-sm">
@@ -125,7 +125,7 @@ export default async function Editor() {
         EU Digital Services Act (DSA)
       </p>
       <p className="mb-4 text-sm">
-        Souveral News operates in awareness of the principles established under
+        GlobalEye Press operates in awareness of the principles established under
         the EU Digital Services Act.
       </p>
       <ul className="list-disc ml-6 mb-4 text-sm">
@@ -147,7 +147,7 @@ export default async function Editor() {
 
       <p className="font-medium mb-1 text-sm">GDPR & Data Protection</p>
       <p className="mb-4 text-sm">
-        Souveral News processes personal data in accordance with the General Data
+        GlobalEye Press processes personal data in accordance with the General Data
         Protection Regulation (GDPR) and applicable Portuguese law.
       </p>
       <ul className="list-disc ml-6 mb-4 text-sm">
