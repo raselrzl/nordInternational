@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   Geist,
   Geist_Mono,
+  Inter,
   Noto_Sans_Bengali,
   Tiro_Bangla,
 } from "next/font/google";
@@ -14,15 +15,17 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const notoBengali = Noto_Sans_Bengali({
-  weight: ["400", "700"],
-  subsets: ["bengali"],
-  variable: "--font-noto-bengali",
 });
 
 const tiroBangla = Tiro_Bangla({
@@ -44,15 +47,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" suppressHydrationWarning>
-      <head>
+    <html lang="en" suppressHydrationWarning>
+{/*       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Tiro+Bangla&display=swap"
           rel="stylesheet"
         />
-      </head>
+      </head> */}
       <body
-        className={` ${tiroBangla.variable} antialiased`}
+        className={` ${inter.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
