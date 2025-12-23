@@ -18,34 +18,40 @@ export default function Footer() {
         </div>
 
         {/* Footer links */}
-        <div className="flex flex-wrap gap-1 mb-2 py-2 text-xs pl-2">
+        <div className="flex flex-wrap gap-1 mb-2 py-2 text-sm pl-2">
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+          >
+            About
+          </Link>
+          <Link
+            href="/about/editor"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
           >
             Editorial Policy
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
           >
             Privacy Policy
           </Link>
           <Link
             href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
           >
             Terms & Conditions
           </Link>
           <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
           >
             Comment Policy
           </Link>
           <Link
             href="/about/advertise"
-            className="hover:underline font-semibold text-foreground/90 text-xs md:text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
           >
             Advertisement
           </Link>

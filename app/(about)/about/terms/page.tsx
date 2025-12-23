@@ -4,7 +4,7 @@ import React from "react";
 export default async function TermsPage() {
   await trackRoute("Terms");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground leading-relaxed">
+    <div className="max-w-4xl mx-auto px-4 py-10 text-gray-200 leading-relaxed bg-[#202020]">
       <h1 className="text-2xl md:text-3xl font-bold mb-2 text-center uppercase">
         Terms & Conditions
       </h1>
@@ -19,7 +19,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        1. Use of Website
+        • Use of Website
       </h2>
       <p className="mb-4 text-sm">
         By accessing this website, you agree to these Terms & Conditions. If you
@@ -27,7 +27,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        2. Content
+        • Content
       </h2>
       <p className="mb-4 text-sm">
         All content is provided for informational purposes only.
@@ -39,7 +39,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        3. Intellectual Property
+        • Intellectual Property
       </h2>
       <p className="mb-4 text-sm">
         All original content, branding, and materials belong to Souveral News
@@ -51,7 +51,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        4. External Links
+        • External Links
       </h2>
       <p className="mb-4 text-sm">
         Our website may contain links to third-party websites. We are not
@@ -59,7 +59,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        5. User Conduct
+        • User Conduct
       </h2>
       <p className="mb-2 text-sm">Users agree not to:</p>
       <ul className="list-disc ml-6 mb-4 text-sm">
@@ -70,7 +70,7 @@ export default async function TermsPage() {
       </ul>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        6. Limitation of Liability
+        • Limitation of Liability
       </h2>
       <p className="mb-4 text-sm">
         To the extent permitted by law, Souveral News shall not be liable for
@@ -78,7 +78,7 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        7. Changes
+        • Changes
       </h2>
       <p className="mb-4 text-sm">
         These Terms may be updated without prior notice. Continued use
@@ -86,15 +86,11 @@ export default async function TermsPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        8. Governing Law
+        • Governing Law
       </h2>
       <p className="mb-8 text-sm">
         These Terms are governed by the laws of Portugal, without prejudice to
         applicable EU consumer protections.
-      </p>
-
-      <p className="text-center text-sm font-medium">
-        © 2025 GlobalEye Press
       </p>
     </div>
   );

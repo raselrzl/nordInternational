@@ -4,7 +4,7 @@ import React from "react";
 export default async function PrivacyPolicyPage() {
   await trackRoute("PrivacyPolicy");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground leading-relaxed shadow bg-background">
+    <div className="max-w-4xl mx-auto px-4 py-10 text-gray-200 leading-relaxed shadow bg-[#202020]">
       <h1 className="text-xl md:text-2xl font-bold mb-2 text-center uppercase">
         Privacy Policy
       </h1>
@@ -18,10 +18,7 @@ export default async function PrivacyPolicyPage() {
         <strong>Operating from:</strong> Portugal
       </p>
 
-      <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        1. Introduction
-      </h2>
-      <p className="mb-4 text-xs md:text-sm">
+        <p className="mb-4 text-xs md:text-sm">
         Souveral News respects your privacy and is committed to protecting
         personal data in accordance with the General Data Protection Regulation
         (GDPR) and applicable Portuguese law.
@@ -32,7 +29,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        2. Data We May Collect
+        • Data We May Collect
       </h2>
       <p className="mb-2 text-xs md:text-sm">
         Depending on how you interact with our website, we may collect:
@@ -48,7 +45,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        3. Purpose of Data Processing
+        • Purpose of Data Processing
       </h2>
       <p className="mb-2 text-xs md:text-sm">
         Personal data is processed for the following purposes:
@@ -61,7 +58,7 @@ export default async function PrivacyPolicyPage() {
       </ul>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        4. Legal Basis
+        • Legal Basis
       </h2>
       <p className="mb-2 text-xs md:text-sm">
         Data is processed based on:
@@ -73,7 +70,7 @@ export default async function PrivacyPolicyPage() {
       </ul>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        5. Cookies
+        • Cookies
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         We may use essential and analytical cookies to improve website
@@ -81,7 +78,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        6. Data Sharing
+        • Data Sharing
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         We do not sell personal data. Data may be shared only with trusted service
@@ -90,7 +87,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        7. Data Retention
+        • Data Retention
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         Personal data is retained only for as long as necessary to fulfill its
@@ -98,7 +95,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        8. Your Rights (GDPR)
+        • Your Rights (GDPR)
       </h2>
       <p className="mb-2 text-xs md:text-sm">
         You have the right to:
@@ -115,7 +112,7 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        9. Data Security
+        • Data Security
       </h2>
       <p className="mb-4 text-xs md:text-sm">
         Appropriate technical and organizational measures are used to protect
@@ -123,16 +120,11 @@ export default async function PrivacyPolicyPage() {
       </p>
 
       <h2 className="text-lg md:text-xl font-semibold mt-6 mb-2">
-        10. Changes
+        • Changes
       </h2>
       <p className="mb-6 text-xs md:text-sm">
         This policy may be updated periodically. Updates will be published on
         this page.
-      </p>
-
-      <p className="text-xs md:text-sm text-center font-medium">
-        © 2025 GlobalEye Press <br />
-        A Souveral Group Company
       </p>
     </div>
   );

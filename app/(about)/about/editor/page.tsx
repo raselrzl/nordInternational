@@ -1,9 +1,9 @@
 import { trackRoute } from "@/app/utils/routeTracker";
 
-export default async function About() {
-  await trackRoute("about");
+export default async function Editor() {
+  await trackRoute("Editor");
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 text-foreground leading-relaxed bg-gray-100 dark:bg-black">
+    <div className="max-w-4xl mx-auto px-4 py-10 text-gray-200 leading-relaxed bg-[#202020]">
       <h1 className="text-xl md:text-2xl font-bold mb-2 text-center uppercase">
         Editorial Policy & Regulatory Compliance
       </h1>
@@ -18,7 +18,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        1. About Souveral News
+        • About Souveral News
       </h2>
       <p className="mb-4 text-sm">
         Souveral News is an independent, digital-first news organization operated
@@ -37,7 +37,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        2. Editorial Mission
+        • Editorial Mission
       </h2>
       <p className="mb-4 text-sm">
         Our mission is to inform, explain, and earn trust.
@@ -54,7 +54,7 @@ export default async function About() {
       </ul>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        3. Editorial Standards
+        • Editorial Standards
       </h2>
 
       <p className="font-medium mb-1 text-sm">Accuracy & Verification</p>
@@ -89,7 +89,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        4. Corrections & Right to Rectification
+        • Corrections & Right to Rectification
       </h2>
       <p className="mb-4 text-sm">
         In line with Portuguese and European journalistic practice, Souveral News
@@ -105,7 +105,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        5. Regulatory Alignment (Portugal / EU)
+        • Regulatory Alignment (Portugal / EU)
       </h2>
 
       <p className="font-medium mb-1 text-sm">
@@ -163,7 +163,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        6. Conflicts of Interest
+        • Conflicts of Interest
       </h2>
       <p className="mb-4 text-sm">
         Internal measures are maintained to identify and manage potential
@@ -172,7 +172,7 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        7. Public Responsibility
+        • Public Responsibility
       </h2>
       <p className="mb-4 text-sm">
         We recognize the societal impact of information. Our reporting seeks to
@@ -181,19 +181,13 @@ export default async function About() {
       </p>
 
       <h2 className="text-lg font-semibold mt-6 mb-2">
-        8. Disclaimer
+        • Disclaimer
       </h2>
       <p className="mb-6 text-sm">
         Statements regarding regulatory alignment or compliance reflect internal
         policies and operational commitments and do not imply official
         authorization, certification, or approval by any regulatory or
         governmental authority.
-      </p>
-
-      <p className="text-center text-sm font-medium">
-        © 2025 GlobalEye Press <br />
-        A Souveral Group Company <br />
-        Operating from Portugal
       </p>
     </div>
   );
