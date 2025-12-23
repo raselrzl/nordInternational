@@ -2,6 +2,7 @@
 import { prisma } from "@/app/utils/db";
 import { notFound } from "next/navigation";
 import NewUserTracker from "./NewUserTracker";
+import UniqueVisitorCountView from "./UniqVisitorCount";
 
 // Utility function to fetch counts for various models
 // Utility function to fetch counts for various models, including draft advertisements
@@ -149,7 +150,7 @@ const Statistics = async () => {
         <div className="p-2 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h2 className="text-md font-semibold ">Total Unique Visitor</h2>
           <div className="text-3xl font-bold mt-4 text-primary">
-            <NewUserTracker />
+            <UniqueVisitorCountView />
           </div>
         </div>
       </div>

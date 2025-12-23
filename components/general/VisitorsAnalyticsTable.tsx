@@ -33,10 +33,10 @@ export default function UserAnalyticsTable() {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">User Analytics</h2>
+      <h2 className="text-xl font-bold mb-4 text-center uppercase">User Analytics</h2>
       <table className="min-w-full border border-gray-300">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-primary">
             <th className="border px-2 py-1">Country</th>
             <th className="border px-2 py-1">City</th>
             <th className="border px-2 py-1">User Count</th>
@@ -67,7 +67,7 @@ export default function UserAnalyticsTable() {
       <div className="flex justify-between mt-4">
         <button
           disabled={page === 1}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="px-3 py-1 bg-primary rounded-xs disabled:opacity-50"
           onClick={() => setPage((p) => p - 1)}
         >
           Previous
@@ -77,7 +77,7 @@ export default function UserAnalyticsTable() {
         </span>
         <button
           disabled={page === totalPages}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="px-3 py-1 bg-primary rounded-xs disabled:opacity-50"
           onClick={() => setPage((p) => p + 1)}
         >
           Next

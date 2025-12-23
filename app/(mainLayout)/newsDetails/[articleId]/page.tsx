@@ -341,13 +341,13 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
           <div className="flex flex-row pl-2 items-center">
             <User2 className="size-5 mr-1 mb-1" />
             <p>GEP EDITOR</p>
+            <NewUserTracker />
           </div>
           <div className="flex flex-row pl-2 items-center">
             <Clock className="size-5 mr-1 mb-1" />
             <p className="font-bold">{formattedCreatedAt}</p>
           </div>
         </div>
-        {/* <NewUserTracker /> */}
         {/* News Content using PrintNews */}
         <PrintNews
           id={data.id}
@@ -361,7 +361,6 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
           createdAt={data.createdAt}
           quotes={data.quotes ?? []}
         />
-
 
         {/* View Counter */}
         <p className="text-sm text-gray-600 mb-3">
