@@ -22,7 +22,7 @@ export default async function About() {
       </p>
 
       <p className="mb-6 text-sm">
-        GlobalEye Press, a Souveral Network company, serves readers seeking
+        GlobalEye Press, A Souveral Network company, serves readers seeking
         clarity over noise in today’s information landscape.
       </p>
 
