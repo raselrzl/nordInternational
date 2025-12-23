@@ -23,9 +23,9 @@ export default function AboutLayout({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-[#202020] text-gray-200">
+    <div className="min-h-screen bg-[#202020] text-gray-200">
       {/* ===== Mobile Navbar ===== */}
-      <div className="md:hidden relative border-b px-4 py-3 flex items-center justify-between bg-[#202020] z-50">
+      <div className="md:hidden fixed top-0 left-0 w-full border-b border-gray-700 bg-[#202020] z-50 px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <img src="/logo/sr.png" alt="Logo" className="h-10" />
         </Link>
@@ -56,35 +56,46 @@ export default function AboutLayout({
         )}
       </div>
 
-      {/* ===== Desktop Sidebar ===== */}
-      <aside className="hidden md:flex md:w-64 border-r border-gray-700 min-h-screen p-4 flex-col bg-[#202020]">
-        <Link href="/" className="flex items-center gap-2 mb-6">
-          <img src="/logo/sr.png" alt="Logo" className="h-20 w-auto" />
-        </Link>
+      {/* ===== Desktop Layout ===== */}
+      <div className="hidden md:flex justify-center mt-0 md:mt-0">
+        <div className="flex w-full max-w-7xl">
+          {/* Sidebar */}
+          <aside className="w-64 border-r border-gray-700 p-4 flex-shrink-0 flex flex-col bg-[#202020]">
+            <Link href="/" className="flex items-center gap-2 mb-6">
+              <img src="/logo/sr.png" alt="Logo" className="h-20 w-auto" />
+            </Link>
 
-        <nav className="space-y-2">
-          {links.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block px-3 py-2 text-sm font-medium transition-colors
-                  ${active ? "bg-primary text-white" : "hover:bg-gray-700 text-gray-200"}
-                `}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
-      </aside>
+            <nav className="space-y-2">
+              {links.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`block px-3 py-2 text-sm font-medium transition-colors
+                      ${active ? "bg-primary text-white" : "hover:bg-gray-700 text-gray-200"}
+                    `}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+          </aside>
 
-      {/* ===== Page Content ===== */}
-      <main className="flex-1 p-4 md:p-8">
+          {/* Scrollable Content */}
+          <main className="flex-1 p-8 overflow-y-auto max-h-screen">
+            {children}
+            <AboutFooter />
+          </main>
+        </div>
+      </div>
+
+      {/* ===== Mobile Content Spacing ===== */}
+      <div className="md:hidden pt-16">
         {children}
         <AboutFooter />
-      </main>
+      </div>
     </div>
   );
 }

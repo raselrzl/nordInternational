@@ -5,9 +5,15 @@ export default function AboutFooter() {
     <footer className="w-full bg-[#202020] text-gray-300">
       <div className="max-w-7xl mx-auto px-4 py-10">
         {/* Logo */}
-
+        <div className="flex mb-2">
+          <img
+            src="/logo/gepw.png"
+            alt="Souveral Network"
+            className="h-8 w-auto"
+          />
+        </div>
         {/* Links */}
-        <div className="flex flex-wrap gap-4 text-sm mb-6">
+        <div className="flex flex-wrap gap-4 text-sm mb-6 pl-3">
           {" "}
           <Link href="/about" className="hover:text-white">
             About
