@@ -362,6 +362,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
           quotes={data.quotes ?? []}
         />
 
+
         {/* View Counter */}
         <p className="text-sm text-gray-600 mb-3">
           👁‍🗨 Views: {data.viewCount ?? 0}

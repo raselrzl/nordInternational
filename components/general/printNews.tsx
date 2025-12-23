@@ -214,6 +214,7 @@ export default function PrintNews({
             </div>
           </div>
         </div>
+        <div className="w-[120px] border-b-6 border-primary my-4"></div>
       </div>
     </>
   );

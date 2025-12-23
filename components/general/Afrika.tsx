@@ -38,7 +38,7 @@ export default async function AfrikaLatest() {
         <Link
           href="/diffrentCountry?country=Afrika"
           className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs border-l-4 border-orange-600"
         >
           <img
             src="/flags/afrika.png"
