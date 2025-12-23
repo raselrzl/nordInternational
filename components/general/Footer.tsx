@@ -116,7 +116,7 @@ export default function Footer() {
             <div className="flex items-center">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/globaleye.press"
+                href="https://www.instagram.com/gepnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -132,7 +132,7 @@ export default function Footer() {
 
               {/* Facebook */}
               <a
-                href="https://web.facebook.com/globaleye.press/"
+                href="https://web.facebook.com/gepnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -164,7 +164,7 @@ export default function Footer() {
 
               {/* TikTok */}
               <a
-                href="https://www.tiktok.com/@globaleye.press"
+                href="https://www.tiktok.com/@gepnews"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"

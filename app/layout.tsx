@@ -33,9 +33,9 @@ const tiroBangla = Tiro_Bangla({
 
 export const metadata: Metadata = {
   title:
-    "Global Eye | Crime Reports | Unbiased & Fact-Based Journalism",
+    "Global Eye Press |News | Crime Reports | Unbiased & Fact-Based Journalism",
   description:
-    "Global Eye's crime section brings you accurate and up-to-date information on recent crimes, investigations, and law enforcement actions across the country. We dive deep into each incident to uncover the truth and work to raise awareness through responsible journalism.",
+    "Global Eye Press crime section brings you accurate and up-to-date information on recent crimes, investigations, and law enforcement actions across the country. We dive deep into each incident to uncover the truth and work to raise awareness through responsible journalism.",
 };
 
 export default function RootLayout({
