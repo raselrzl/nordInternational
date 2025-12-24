@@ -16,25 +16,26 @@ type Props = {
 export default function ContinentDropdownRow({ data }: Props) {
   const [open, setOpen] = useState<string | null>(null);
   const [showBottom, setShowBottom] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Separate refs for normal and fixed rows
+  const normalRef = useRef<HTMLDivElement>(null);
+  const fixedRef = useRef<HTMLDivElement>(null);
 
   // Click outside handler
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !normalRef.current?.contains(event.target as Node) &&
+        !fixedRef.current?.contains(event.target as Node)
       ) {
         setOpen(null);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Scroll listener to show at bottom
+  // Scroll listener to show fixed bottom row
   useEffect(() => {
     function handleScroll() {
       setShowBottom(window.scrollY > 100);
@@ -46,14 +47,11 @@ export default function ContinentDropdownRow({ data }: Props) {
 
   const continentKeys = Object.keys(data);
 
-  const RowContent = (
+  // Reusable row content
+  const renderRowContent = () => (
     <div className="flex md:gap-2 items-center justify-between md:justify-end">
       {continentKeys.map((continent, idx) => {
-        // Determine dropdown position
-        const dropdownClass =
-          idx < 2
-            ? "left-0" // first two → open to right
-            : "right-0"; // last two → open to left
+        const dropdownClass = idx < 2 ? "left-0" : "right-0";
 
         return (
           <div key={continent} className="relative">
@@ -83,8 +81,9 @@ export default function ContinentDropdownRow({ data }: Props) {
                   <Link
                     key={item.country}
                     href={`/diffrentCountry?country=${item.country}`}
-                    onClick={() => setOpen(null)}
                     className="block px-4 py-2 text-sm hover:bg-black"
+                    // Use setTimeout to allow navigation before closing dropdown
+                    onClick={() => setTimeout(() => setOpen(null), 0)}
                   >
                     {item.country}{" "}
                     <span className="text-[8px] text-gray-400">
@@ -102,18 +101,21 @@ export default function ContinentDropdownRow({ data }: Props) {
 
   return (
     <>
-      {/* Normal position */}
+      {/* Normal row */}
       <div
-        ref={containerRef}
+        ref={normalRef}
         className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 py-1 border-black"
       >
-        {RowContent}
+        {renderRowContent()}
       </div>
 
-      {/* Fixed at bottom on scroll */}
+      {/* Fixed bottom row */}
       {showBottom && (
-        <div className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 bg-orange-600 border-r-20 border-black">
-          {RowContent}
+        <div
+          ref={fixedRef}
+          className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 bg-orange-600 border-r-20 border-black"
+        >
+          {renderRowContent()}
         </div>
       )}
     </>
