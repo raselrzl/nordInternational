@@ -18,45 +18,51 @@ export default function Footer() {
         </div>
 
         {/* Footer links */}
-        <div className="flex flex-wrap gap-1 mb-2 py-2 text-sm pl-2">
+        <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-2">
           <Link
-            href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+            href="/about/terms"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
           >
-            About
+            Terms & Conditions
           </Link>
           <Link
             href="/about/editor"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
           >
             Editorial Policy
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
           >
             Privacy Policy
           </Link>
           <Link
-            href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
-          >
-            Terms & Conditions
-          </Link>
-          <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
           >
             Comment Policy
           </Link>
           <Link
-            href="/about/advertise"
-            className="hover:underline font-semibold text-foreground/90 text-sm px-2"
+            href="/about/advertise/standards-integrity"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
           >
-            Advertisement
+            Advertise With Us
+          </Link>
+          <Link
+            href="/about/advertise/standards-integrity"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
+          >
+            Standards & Integrity
+          </Link>
+          <Link
+            href="/about"
+            className="hover:underline font-semibold text-foreground/90 text-sm"
+          >
+            About
           </Link>
         </div>
- {/* Social section */}
+        {/* Social section */}
         <div className="mt-6 pb-4 ml-4">
           <div className="flex flex-col items-start gap-2">
             <p className="text-sm uppercase font-bold">Follow Us</p>
@@ -131,12 +137,11 @@ export default function Footer() {
         {/* Country links */}
         <CountryListLinks />
 
-       
-
         {/* Copyright */}
         <p className="text-xs mt-6 text-center">
-          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved. A Souveral Network Independent media
-          organization operating from Portugal.
+          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved.
+          A Souveral Network Independent media organization operating from
+          Portugal.
         </p>
       </div>
     </footer>
