@@ -226,7 +226,7 @@ export default async function Home() {
           </Suspense>
 
           <div className="mt-2 text-left flex-col hidden sm:block">
-              <SocialLinks />
+            <SocialLinks />
           </div>
         </div>
 

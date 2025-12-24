@@ -209,7 +209,7 @@ import {
   ShirShoNewsHeadings,
   RecentNews,
 } from "@/components/general/homepageArticleList";
-import { Clock, User2 } from "lucide-react";
+import { Clock, MapPin, User2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
 import { trackRoute } from "@/app/utils/routeTracker";
@@ -338,9 +338,11 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       <div className="col-span-5 md:col-span-3 px-3">
         {/* Article Meta Info */}
         <div className="flex flex-col font-bold mb-1 text-xl">
-          <div className="flex font-bold flex-row pl-2 items-center">
-            <User2 className="size-5 mr-1 mb-1 font-bold" />
-            <p>GEP Eitor</p>
+          <div className="flex font-bold flex-row items-center">
+            <div className="flex flex-row px-1">
+              <MapPin />
+              <p className="text-xl font-bold uppercase">{data.newsLocation}</p>
+            </div>
             <NewUserTracker />
           </div>
           <div className="flex flex-row pl-2 items-center">

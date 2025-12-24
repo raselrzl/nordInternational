@@ -1,5 +1,12 @@
 "use client";
-import { SquarePlay, LocateIcon, LinkIcon, Copy, MapPin } from "lucide-react";
+import {
+  SquarePlay,
+  LocateIcon,
+  LinkIcon,
+  Copy,
+  MapPin,
+  User2,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -7,6 +14,7 @@ import { toast } from "sonner";
 import { NewsDetailsDisplay } from "../richTextEditor/NewsDetailsDisplay";
 import { PrintNewsDetailsClient } from "@/components/general/PrintNewsClient";
 import { quote } from "@prisma/client";
+import NewUserTracker from "./NewUserTracker";
 
 interface PrintNewsProps {
   newsPicture: string | null;
@@ -24,7 +32,7 @@ interface PrintNewsProps {
 
 export default function PrintNews({
   newsPicture,
-  newsPictureHeading, 
+  newsPictureHeading,
   newsPictureCredit,
   newsLocation,
   newsDetails,
@@ -145,9 +153,7 @@ export default function PrintNews({
           ref={contentRef}
           className="w-full rounded-xs shadow mt-6"
         >
-          <h1 className="text-lg md:xl font-bold my-4 p-2">
-            {newsHeading}
-          </h1>
+          <h1 className="text-lg md:xl font-bold my-4 p-2">{newsHeading}</h1>
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image Section */}
@@ -176,9 +182,7 @@ export default function PrintNews({
                       )}
                     </>
                   ) : (
-                    <p className="text-sm font-semibold">
-                      GEP
-                    </p>
+                    <p className="text-sm font-semibold">GEP</p>
                   )}
                 </div>
               </div>
@@ -207,9 +211,10 @@ export default function PrintNews({
 
           {/* NEWS DETAILS */}
           <div className="whitespace-pre-line text-md md:text-lg dark:bg-black mt-10">
-            <div className="flex flex-row px-1">
-              <MapPin />
-              <p className="text-xl font-bold uppercase">{newsLocation}</p>
+            <div className="flex font-bold flex-row pl-2 items-center">
+              <User2 className="size-5 mr-1 mb-1 font-bold" />
+              <p> Eitor: GEP</p>
+              <NewUserTracker />
             </div>
 
             <div className="px-2 mt-4">
