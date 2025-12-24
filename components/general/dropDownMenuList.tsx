@@ -161,7 +161,7 @@ function MenuItem({ href, label }: { href: string; label: string }) {
     <DropdownMenuItem asChild>
       <Link
         href={href}
-        className="block rounded-lg cursor-pointer  hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-black dark:text-gray-100 text-left"
+        className="block rounded-lg cursor-pointer  hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors font-semibold text-black dark:text-gray-100 text-left"
       >
         {label}
       </Link>
