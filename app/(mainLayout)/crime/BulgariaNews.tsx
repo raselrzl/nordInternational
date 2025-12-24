@@ -129,7 +129,7 @@ export default async function BulgariaNews() {
                   {lastFeaturedArticle.newsHeading}
                   
                 </h2>
-                {isJson(lastFeaturedArticle.newsDetails) ? (
+               {/*  {isJson(lastFeaturedArticle.newsDetails) ? (
                   <div className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     <JsonToHtml json={JSON.parse(lastFeaturedArticle.newsDetails)} />
                   </div>
@@ -137,7 +137,7 @@ export default async function BulgariaNews() {
                   <p className="text-[14px] text-accent-foreground/80 mb-2 md:mt-2 line-clamp-1 md:line-clamp-3 pl-2 md:p">
                     {lastFeaturedArticle.newsDetails}
                   </p>
-                )}
+                )} */}
               </div>
             </div>
           </Link>
