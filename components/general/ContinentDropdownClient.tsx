@@ -110,14 +110,14 @@ export default function ContinentDropdownRow({ data }: Props) {
       </div>
 
       {/* Fixed bottom row */}
-      {showBottom && (
+  {/*     {showBottom && (
         <div
           ref={fixedRef}
-          className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 bg-orange-600 border-r-20 border-black"
+          className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 border-r-20 border-primary"
         >
           {renderRowContent()}
         </div>
-      )}
+      )} */}
     </>
   );
 }

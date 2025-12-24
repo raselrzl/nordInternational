@@ -43,6 +43,7 @@ export default function Footer() {
           >
             Comment Policy
           </Link>
+
           <Link
             href="/about/advertise/standards-integrity"
             className="hover:underline text-foreground/90 text-sm"
@@ -54,7 +55,7 @@ export default function Footer() {
             className="hover:underline text-foreground/90 text-sm"
           >
             Standards & Integrity
-          </Link>
+          </Link> 
           <Link
             href="/about"
             className="hover:underline text-foreground/90 text-sm"
