@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
 
         {/* Footer links */}
-        <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-2">
+        <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-4">
           <Link
             href="/about/terms"
             className="hover:underline font-semibold text-foreground/90 text-sm"
@@ -65,7 +65,7 @@ export default function Footer() {
         {/* Social section */}
         <div className="mt-6 pb-4 ml-4">
           <div className="flex flex-col items-start gap-2">
-            <p className="text-sm uppercase font-bold">Follow Us</p>
+            <p className="text-sm uppercase font-bold">Follow GEP</p>
 
             <div className="flex items-center gap-2">
               {/* Instagram */}
