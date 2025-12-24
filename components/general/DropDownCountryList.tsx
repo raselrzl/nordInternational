@@ -93,7 +93,7 @@ const euCountries = [
   {
     name: "Netherlands",
     flag: "/flags/netherlands.webp",
-    link: "/science#NetherlandsNews",
+    link: "/diffrentCountry?country=Netherlands",
   },
   {
     name: "Poland",

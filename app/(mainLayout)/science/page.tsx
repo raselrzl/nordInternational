@@ -2,11 +2,9 @@ import { trackRoute } from "@/app/utils/routeTracker";
 import AllScienceArticles from "./AllScienceArticles";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { Suspense } from "react";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
-import Image from "next/image";
-import NatherlandsNews from "./NetherlandsNews";
 import { List } from "lucide-react";
 import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
+import TechnologyNews from "./TechnonogyNews";
 type SearchParamsProps = {
   searchParams: Promise<{
     page?: string;
@@ -34,19 +32,20 @@ export default async function Science({ searchParams }: SearchParamsProps) {
             </Suspense>
           </div>
         </div>
-        <div id="NetherlandsNews" className="col-span-3 md:col-span-2">
+        <div id="Technology" className="col-span-3 md:col-span-2">
           <div>
-            <div className="flex items-center gap-2 pl-2 mb-2">
-              <img
+            <div className="flex items-center gap-2 mb-2">
+              {/* <img
                 src="/flags/netherlands.webp"
                 alt="Natherlands flag"
                 width={28}
                 height={18}
                 className="rounded-sm"
-              />
-              <h1 className="font-extrabold">Natherlands Latest</h1>
+              /> */}
+              
+              <h1 className="font-extrabold text-xl border-l-10 border-orange-600 pl-2 uppercase">Technology</h1>
             </div>
-            <NatherlandsNews />
+            <TechnologyNews />
           </div>{" "}
           <div className="px-2">
             {" "}

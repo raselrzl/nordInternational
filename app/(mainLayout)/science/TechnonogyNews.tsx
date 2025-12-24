@@ -34,7 +34,7 @@ export async function getAllArticles(): Promise<Article[]> {
   return prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
-      newsLocation: "Netherlands",
+      newsCategory: "TECHNOLOGY",
     },
     select: {
       id: true,
@@ -64,13 +64,12 @@ export async function getAllArticles(): Promise<Article[]> {
   });
 }
 
-// Get last featured article from Netherlands
 export async function getLastFeaturedArticle(): Promise<Article | null> {
   return prisma.newsArticle.findFirst({
     where: {
       newsArticleStatus: "ACTIVE",
       isFeatured: true,
-      newsLocation: "Netherlands",
+      newsCategory: "TECHNOLOGY",
     },
     select: {
       id: true,
@@ -100,13 +99,13 @@ export async function getLastFeaturedArticle(): Promise<Article | null> {
 }
 
 // ---------------------- COMPONENT ----------------------
-export default async function NetherlandsNews() {
+export default async function TechnologyNews() {
   const allArticles = await getAllArticles();
   const lastFeaturedArticle = await getLastFeaturedArticle();
 
   return (
     <>
-      {/* Featured Netherlands article */}
+      {/* Featured Technology article */}
       {lastFeaturedArticle ? (
         <div className="mb-6 max-h-[320px] md:border-1 md:p-2">
           <Link href={`/newsDetails/${lastFeaturedArticle.id}`} className="mb-10">
@@ -153,7 +152,7 @@ export default async function NetherlandsNews() {
         <UltimateOne />
       </div>
 
-      {/* All Netherlands articles */}
+      {/* All Technology articles */}
       {allArticles.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
           {allArticles
