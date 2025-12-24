@@ -7,12 +7,15 @@ import AboutFooter from "./AboutFooter";
 import { MenuIcon } from "lucide-react";
 
 const links = [
-  { name: "About", href: "/about" },
-  { name: "Advertise", href: "/about/advertise" },
-  { name: "Editorial Policy", href: "/about/editor" },
-  { name: "Comment Policy", href: "/about/comment-policy" },
-  { name: "Privacy Policy", href: "/about/privacy-policy" },
   { name: "Terms & Conditions", href: "/about/terms" },
+  { name: "Editorial Policy", href: "/about/editor" },
+  { name: "Privacy Policy", href: "/about/privacy-policy" },
+  { name: "Comment Policy", href: "/about/comment-policy" },  
+  { name: "Advertise With Us", href: "/about/advertise" },  {
+    name: "Standards & Integrity",
+    href: "/about/advertise/standards-integrity",
+  },
+  { name: "About", href: "/about" },
 ];
 
 export default function AboutLayout({
@@ -53,9 +56,9 @@ export default function AboutLayout({
                 {link.name}
               </Link>
             ))}
-             <Link href="/" className="flex items-center gap-2">
-          <img src="/logo/sr.png" alt="Logo" className="h-10" />
-        </Link>
+            <Link href="/" className="flex items-center gap-2">
+              <img src="/logo/sr.png" alt="Logo" className="h-10" />
+            </Link>
           </div>
         )}
       </div>
@@ -77,7 +80,11 @@ export default function AboutLayout({
                     key={link.href}
                     href={link.href}
                     className={`block px-3 py-2 text-sm font-medium transition-colors
-                      ${active ? "bg-primary text-white" : "hover:bg-gray-700 text-gray-200"}
+                      ${
+                        active
+                          ? "bg-primary text-white"
+                          : "hover:bg-gray-700 text-gray-200"
+                      }
                     `}
                   >
                     {link.name}

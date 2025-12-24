@@ -14,27 +14,45 @@ export default function AboutFooter() {
           />
         </div>
         {/* Links */}
-        <div className="flex flex-wrap gap-4 text-sm mb-6 pl-3">
-          {" "}
-          <Link href="/about" className="hover:text-white">
-            About
-          </Link>
-          <Link href="/about/editor" className="hover:text-white">
-            Editorial Policy
-          </Link>
-          <Link href="/about/privacy-policy" className="hover:text-white">
-            Privacy Policy
-          </Link>
-          <Link href="/about/terms" className="hover:text-white">
+        <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-4">
+          <Link href="/about/terms" className="hover:underline text-sm">
             Terms & Conditions
           </Link>
-          <Link href="/about/advertise" className="hover:text-white">
-            Advertise
+          <Link href="/about/editor" className="hover:underline text-sm">
+            Editorial Policy
+          </Link>
+          <Link
+            href="/about/privacy-policy"
+            className="hover:underline text-sm"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/about/comment-policy"
+            className="hover:underline text-sm"
+          >
+            Comment Policy
+          </Link>
+
+          <Link
+            href="/about/advertise/standards-integrity"
+            className="hover:underline text-sm"
+          >
+            Advertise With Us
+          </Link>
+          <Link
+            href="/about/advertise/standards-integrity"
+            className="hover:underline text-sm"
+          >
+            Standards & Integrity
+          </Link>
+          <Link href="/about" className="hover:underline text-sm">
+            About
           </Link>
         </div>
         <SocialLinks />
       </div>
-      
+
       <div className="flex items-center justify-center mb-6">
         <img
           src="/logo/sr.png"
