@@ -73,9 +73,9 @@ export default function DropDownMenuList() {
 
       <DropdownMenuContent
         align="end"
-        className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2"
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white text-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2"
       >
-        <h3 className="text-sm md:text-lg font-semibold uppercase tracking-wide my-3 border-b items-center">
+        <h3 className="text-sm pl-2 py-0.5 md:text-lg font-semibold uppercase tracking-wide bg-black my-3 border-b items-center">
           Highlights Of
         </h3>
 
