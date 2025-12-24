@@ -14,6 +14,7 @@ type Article = {
   newsCategory: string;
   newsDetails: string;
   newsHeading: string;
+  newsSubHeading?: string;
   newsPicture: string;
   quotes: {
     speakerInfo: string;

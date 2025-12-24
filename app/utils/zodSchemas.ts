@@ -37,7 +37,7 @@ const quoteSchema = z.object({
 
 export const newsArticleSchema = z.object({
   newsHeading: z.string().min(6, "News headline is required"),
-
+  newsSubHeading: z.string().optional(),
   newsResource: z.string(),
   newsLocation: z.string().optional(),
   newsCategory: z.enum([

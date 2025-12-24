@@ -63,6 +63,7 @@ export function CreateNewsArticleForm({
     resolver: zodResolver(newsArticleSchema),
     defaultValues: {
       newsHeading: "",
+      newsSubHeading:"",
       newsResource: "online",
       newsLocation: "",
       newsCategory: "LATEST",
@@ -116,6 +117,24 @@ export function CreateNewsArticleForm({
                     <FormControl>
                       <Textarea
                         placeholder="Example: Life disrupted in the capital due to storm and rain"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="newsSubHeading"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Sub Headings</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Sub headings min 40 words"
                         {...field}
                         className="placeholder:text-xs"
                       />

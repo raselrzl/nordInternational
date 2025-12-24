@@ -16,6 +16,7 @@ interface PrintNewsProps {
   newsDetails: string | "...";
   newsResource: string | null;
   newsHeading: string | null;
+  newsSubHeading: string | null;
   id: string | null;
   createdAt: Date;
   quotes?: quote[];
@@ -28,6 +29,7 @@ export default function PrintNews({
   newsLocation,
   newsDetails,
   newsResource,
+  newsSubHeading,
   newsHeading,
   createdAt,
   quotes = [],
@@ -146,6 +148,7 @@ export default function PrintNews({
           <h1 className="text-lg md:xl font-bold my-4 p-2">
             {newsHeading}
           </h1>
+          <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image Section */}
           {newsPicture && (

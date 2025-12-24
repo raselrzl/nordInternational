@@ -146,6 +146,7 @@ export async function createAnArticle(data: z.infer<typeof newsArticleSchema>) {
   const newsArticle = await prisma.newsArticle.create({
     data: {
       newsHeading: validateData.newsHeading,
+      newsSubHeading:validateData.newsSubHeading,
       newsDetails: validateData.newsDetails,
       newsResource: validateData.newsResource,
       newsLocation: dbCountry ? NewsCountry[dbCountry] : undefined,

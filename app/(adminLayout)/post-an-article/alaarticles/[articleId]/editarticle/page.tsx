@@ -12,6 +12,7 @@ async function getData (articleId:string){
         select: {
           id: true,
           newsHeading: true,
+          newsSubHeading: true,
           newsDetails: true,
           newsResource: true,
           newsLocation: true,

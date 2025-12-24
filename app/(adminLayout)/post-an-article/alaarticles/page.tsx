@@ -26,6 +26,7 @@ import { requireRoleAccess } from "../roleBaseAccess";
 type Article = {
   id: string;
   newsHeading: string;
+  newsSubHeading?: string | null;
   newsResource: string;
   newsLocation?: string | null;
   newsCategory: string;
@@ -64,6 +65,7 @@ async function getAllnewsArticles(
         newsCategory: true,
         newsDetails: true,
         newsHeading: true,
+        newsSubHeading: true,
         newsPicture: true,
         quotes: { select: { speakerInfo: true, text: true } },
         newsResource: true,

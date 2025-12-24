@@ -29,6 +29,7 @@ import { requireRoleAccess } from "../roleBaseAccess";
 type MyArticleType = {
   id: string;
   newsHeading: string;
+  newsSubHeading?: string;
   newsResource: string;
   newsLocation?: string | null;
   newsCategory: string;
