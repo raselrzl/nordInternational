@@ -69,7 +69,7 @@ export default function ContinentDropdownRow({ data }: Props) {
                     className="block px-4 py-2 text-sm hover:bg-gray-800"
                   >
                     {item.country}{" "}
-                    <span className="text-xs text-gray-400">
+                    <span className="text-[8px] text-gray-400">
                       ({item.totalNews})
                     </span>
                   </Link>
