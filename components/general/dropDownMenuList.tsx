@@ -12,7 +12,6 @@ import { MenuIcon, ChevronDown } from "lucide-react";
 
 export default function DropDownMenuList() {
   /*  const menuItems = [
-    "Latest",
     "National",
     "Politics",
     "Country",
@@ -42,7 +41,7 @@ export default function DropDownMenuList() {
     { label: "Technology & Innovation", slug: "technology" },
     { label: "Entertainment & Culture", slug: "entertainment" },
     { label: "Economy & Markets", slug: "economy" },
-    { label: "Law & Justice", slug: "law-justice" },
+    { label: "Law & Justice", slug: "law-and-justice" },
     { label: "Environment & Climate", slug: "environment" },
   ];
 
@@ -56,7 +55,7 @@ export default function DropDownMenuList() {
     const checkScroll = () => {
       setShowArrow(
         el.scrollHeight > el.clientHeight &&
-        el.scrollTop + el.clientHeight < el.scrollHeight
+          el.scrollTop + el.clientHeight < el.scrollHeight
       );
     };
 
@@ -78,11 +77,18 @@ export default function DropDownMenuList() {
         <h3 className="text-sm pl-2 py-0.5 md:text-lg font-semibold uppercase tracking-wide bg-black my-3 border-b items-center">
           Highlights Of
         </h3>
-
+        <DropdownMenuItem asChild className="p-0 pl-2">
+          <Link
+            href="/war"
+            className="block rounded-lg cursor-pointer border-l-8 p-0 border-orange-600  hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors font-semibold text-black dark:text-gray-100 text-left"
+          >
+            War Updates
+          </Link>
+        </DropdownMenuItem>
         {/* NAV ITEMS GRID */}
         <div
           ref={scrollRef}
-          className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-1 mt-4 max-h-[400px] overflow-x-auto"
+          className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-1 mt-2  max-h-[400px] overflow-x-auto"
         >
           {/* {menuItems.map((item) => (
             <MenuItem
