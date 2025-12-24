@@ -15,6 +15,7 @@ type Props = {
 
 export default function ContinentDropdownRow({ data }: Props) {
   const [open, setOpen] = useState<string | null>(null);
+  const [showBottom, setShowBottom] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Click outside handler
@@ -33,52 +34,74 @@ export default function ContinentDropdownRow({ data }: Props) {
     };
   }, []);
 
-  return (
-    <div ref={containerRef} className="max-w-7xl mx-auto text-sm md:text-sm px-2 border-r-8 border-black">
-      {/* Row of Continents */}
-      <div className="flex gap-2 items-center justify-between md:justify-end">
-        {Object.keys(data).map((continent) => (
-          <div key={continent} className="relative">
-            {/* Continent label with chevron */}
-            <div
-              className="flex items-center cursor-pointer hover:text-primary select-none"
-              onClick={() => setOpen(open === continent ? null : continent)}
-            >
-              <span className="font-semibold">{continent}</span>
-              <ChevronDown
-                className={`w-2 h-2 transition-transform duration-200 ${
-                  open === continent ? "rotate-180" : ""
-                }`}
-              />
-            </div>
+  // Scroll listener to show at bottom
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 100) setShowBottom(true);
+      else setShowBottom(false);
+    }
 
-            {/* Dropdown of countries */}
-            {open === continent && (
-              <div className="absolute top-full left-0 mt-2 w-36 bg-white text-black shadow-lg z-50">
-                {data[continent].length === 0 && (
-                  <p className="px-4 py-2 text-sm text-gray-400">
-                    No news available
-                  </p>
-                )}
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-                {data[continent].map((item) => (
-                  <Link
-                    key={item.country}
-                    href={`/diffrentCountry?country=${item.country}`}
-                    onClick={() => setOpen(null)}
-                    className="block px-4 py-2 text-sm hover:bg-gray-800"
-                  >
-                    {item.country}{" "}
-                    <span className="text-[8px] text-gray-400">
-                      ({item.totalNews})
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            )}
+  const RowContent = (
+    <div className="flex md:gap-2 items-center justify-between md:justify-end">
+      {Object.keys(data).map((continent) => (
+        <div key={continent} className="relative">
+          <div
+            className="flex items-center cursor-pointer hover:text-primary select-none"
+            onClick={() => setOpen(open === continent ? null : continent)}
+          >
+            <span className="font-semibold">{continent}</span>
+            <ChevronDown
+              className={`w-2 h-2 transition-transform duration-200 ${
+                open === continent ? "rotate-180" : ""
+              }`}
+            />
           </div>
-        ))}
-      </div>
+
+          {open === continent && (
+            <div className="absolute top-full left-0 mt-2 w-32 bg-white text-black shadow-lg z-50">
+              {data[continent].length === 0 && (
+                <p className="px-4 py-2 text-sm text-gray-400">
+                  No news available
+                </p>
+              )}
+
+              {data[continent].map((item) => (
+                <Link
+                  key={item.country}
+                  href={`/diffrentCountry?country=${item.country}`}
+                  onClick={() => setOpen(null)}
+                  className="block px-4 py-2 text-sm hover:bg-gray-800"
+                >
+                  {item.country}{" "}
+                  <span className="text-[8px] text-gray-400">
+                    ({item.totalNews})
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
+  );
+
+  return (
+    <>
+      {/* Normal position */}
+      <div ref={containerRef} className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 py-1 border-black">
+        {RowContent}
+      </div>
+
+      {/* Fixed at bottom on scroll */}
+      {showBottom && (
+        <div className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 bg-orange-600 border-r-20 border-black">
+          {RowContent}
+        </div>
+      )}
+    </>
   );
 }
