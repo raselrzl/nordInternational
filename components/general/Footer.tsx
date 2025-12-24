@@ -21,43 +21,43 @@ export default function Footer() {
         <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-4">
           <Link
             href="/about/terms"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Terms & Conditions
           </Link>
           <Link
             href="/about/editor"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Editorial Policy
           </Link>
           <Link
             href="/about/privacy-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Privacy Policy
           </Link>
           <Link
             href="/about/comment-policy"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Comment Policy
           </Link>
           <Link
             href="/about/advertise/standards-integrity"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Advertise With Us
           </Link>
           <Link
             href="/about/advertise/standards-integrity"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             Standards & Integrity
           </Link>
           <Link
             href="/about"
-            className="hover:underline font-semibold text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm"
           >
             About
           </Link>
