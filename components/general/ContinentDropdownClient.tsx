@@ -34,7 +34,7 @@ export default function ContinentDropdownRow({ data }: Props) {
   }, []);
 
   return (
-    <div ref={containerRef} className="max-w-7xl mx-auto text-sm md:text-sm px-2">
+    <div ref={containerRef} className="max-w-7xl mx-auto text-sm md:text-sm px-2 border-r-8 border-black">
       {/* Row of Continents */}
       <div className="flex gap-2 items-center justify-between md:justify-end">
         {Object.keys(data).map((continent) => (
