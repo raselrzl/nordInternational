@@ -50,7 +50,7 @@ export default async function LiveUpdateComponent() {
 
   return (
     <div className="py-3 rounded-md mx-auto max-w-[720px]">
-      <h1 className="uppercase font-bold text-xl py-2 max-w-[720px] mx-2 md:mx-0">
+      <h1 className="uppercase font-bold text-xl py-2 max-w-[720px] mx-2 md:mx-0 text-[#C1121F]">
         🚨 Breaking News
       </h1>
 
@@ -62,7 +62,7 @@ export default async function LiveUpdateComponent() {
             <div className="relative w-full max-w-[720px]">
               <img
                 src={news[0].newsPicture}
-                className="w-full h-[300px] md:h-[360px] object-cover border-t-8 border-red-500"
+                className="w-full h-[300px] md:h-[360px] object-cover border-t-8 border-[#C1121F]"
                 alt=""
               />
 
@@ -78,7 +78,7 @@ export default async function LiveUpdateComponent() {
                     </span>
                   </div>
 
-                  <div className="font-bold text-lg text-red-500 leading-tight mt-1">
+                  <div className="font-bold text-lg text-[#C1121F] leading-tight mt-1">
                     {news[0].headings}
                   </div>
                 </div>

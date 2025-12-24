@@ -10,6 +10,7 @@ import Footer from "@/components/general/Footer";
 import VisitorTracker from "@/components/general/VisitorTracker";
 import ScrollToTopButton from "@/components/general/ScrollToTopButton";
 import NewUserTracker from "@/components/general/NewUserTracker";
+import ContinentDropdown from "@/components/general/ContinentDropdown";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -29,7 +30,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <NewsTicker />
       </div>
       <NewUserTracker />
-      <div className="mt-35 md:mt-43">
+      <div className="mt-31 md:mt-39"><ContinentDropdown />
         {/*  <NavMenu /> */}</div>
      
       {children} 
