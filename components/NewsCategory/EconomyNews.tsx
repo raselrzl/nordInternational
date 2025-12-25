@@ -29,7 +29,7 @@ export async function getEconomyNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 10,
+    take: 7,
   });
 }
 export async function EconomyNews() {
@@ -44,9 +44,9 @@ export async function EconomyNews() {
               <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
                 <div className="p-1 flex gap-3 items-start">
                   {/* Big circle dot */}
-                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+                  <span className="mt-2 w-3 h-3 rounded-full bg-black dark:bg-white flex-shrink-0"></span>
 
-                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-2">
                     {item.newsHeading}
                   </h2>
                 </div>

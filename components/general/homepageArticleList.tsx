@@ -585,14 +585,18 @@ export async function ScienceNewsHeadPost() {
   return (
     <>
       <div className="flex flex-row items-center space-x-2 ">
-        <img
+     {/*    <img
           src="/clock.gif"
           alt="YouTube GIF"
           width={50} // adjust as needed
           height={50}
           className="object-contain"
-        />
-        <p className="font-bold text-2xl uppercase">Science and Tech</p>
+        /> */}
+         <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase border-l-8 pl-2 border-primary">
+          
+          Science and Tech
+        </h2>
+        {/* <p className="font-bold text-2xl uppercase"></p> */}
       </div>
       {scienceheadpost && scienceheadpost.length > 0 ? (
         scienceheadpost.map((item) => (
@@ -717,7 +721,7 @@ export async function Binodon() {
 }
 
 // getsorboseshnews
-export async function getSorboseshNews() {
+export async function getCrimeNews() {
   return await prisma.newsArticle.findMany({
     where: { newsCategory: "CRIME" },
     select: {
@@ -744,24 +748,24 @@ export async function getSorboseshNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 10,
+    take: 7,
   });
 }
-export async function SorboseshNews() {
-  const sorbosesh = await getSorboseshNews();
+export async function Latest() {
+  const crime = await getCrimeNews();
 
   return (
     <>
       <div className="min-h-[450px] overflow-y-auto">
-        {sorbosesh && sorbosesh.length > 0 ? (
-          sorbosesh.slice(0, 10).map((item) => (
+        {crime && crime.length > 0 ? (
+          crime.slice(0, 10).map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
               <div className="max-w-sm text-start rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
                 <div className="p-1 flex gap-3 items-start">
                   {/* Big circle dot */}
-                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+                  <span className="mt-2 w-3 h-3 rounded-full bg-black dark:bg-white flex-shrink-0"></span>
 
-                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-2">
                     {item.newsHeading}
                   </h2>
                 </div>
@@ -783,7 +787,7 @@ export async function SorboseshNews() {
 
 
 // getsorboseshnews
-export async function getJonoprioNews() {
+export async function getLatestPoliticsNews() {
   return await prisma.newsArticle.findMany({
     where: { newsCategory: "POLITICS" },
     select: {
@@ -810,24 +814,24 @@ export async function getJonoprioNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 10,
+    take: 7,
   });
 }
-export async function JonoprioNews() {
-  const sorbosesh = await getJonoprioNews();
+export async function PoliticsNews() {
+  const politics = await getLatestPoliticsNews();
 
   return (
     <>
       <div className="min-h-[450px] overflow-y-auto">
-        {sorbosesh && sorbosesh.length > 0 ? (
-          sorbosesh.slice(0, 10).map((item) => (
+        {politics && politics.length > 0 ? (
+          politics.slice(0, 10).map((item) => (
             <Link key={item.id} href={`/newsDetails/${item.id}`}>
               <div className="max-w-sm rounded-lg overflow-hidden shadow-md border m-2 px-2 py-1 hover:bg-accent-foreground/5 transition-opacity">
                 <div className="p-1 flex gap-3 items-start">
                   {/* Big circle dot */}
-                  <span className="mt-2 w-3 h-3 rounded-full bg-primary flex-shrink-0"></span>
+                  <span className="mt-2 w-3 h-3 rounded-full bg-black dark:bg-white flex-shrink-0"></span>
 
-                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-1">
+                  <h2 className="text-md text-accent-foreground font-semibold line-clamp-2">
                     {item.newsHeading}
                   </h2>
                 </div>
