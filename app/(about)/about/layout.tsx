@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -10,6 +9,7 @@ const links = [
   { name: "Terms & Conditions", href: "/about/terms" },
   { name: "Editorial Policy", href: "/about/editor" },
   { name: "Privacy Policy", href: "/about/privacy-policy" },
+  { name: "Cookie Policy", href: "/about/cookie-policy" },
   { name: "Comment Policy", href: "/about/comment-policy" },  
   { name: "Advertise With Us", href: "/about/advertise" },  {
     name: "Standards & Integrity",

@@ -38,6 +38,12 @@ export default function Footer() {
             Privacy Policy
           </Link>
           <Link
+            href="/about/cookie-policy"
+            className="hover:underline text-foreground/90 text-sm"
+          >
+            Cookie Policy
+          </Link>
+          <Link
             href="/about/comment-policy"
             className="hover:underline text-foreground/90 text-sm"
           >

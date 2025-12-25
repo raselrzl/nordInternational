@@ -27,6 +27,9 @@ export default function AboutFooter() {
           >
             Privacy Policy
           </Link>
+          <Link href="/about/cookie-policy" className="hover:underline text-sm">
+            Cookie Policy
+          </Link>
           <Link
             href="/about/comment-policy"
             className="hover:underline text-sm"
