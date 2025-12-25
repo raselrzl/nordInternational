@@ -467,4 +467,7 @@ model NewUserVisit {
   sessionTime   Int?     @default(0)   // last session duration in seconds
 
   createdAt     DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
 }

@@ -148,6 +148,7 @@ export async function UserDropdown({ email, name, image }: iAppProps) {
 
   // SUPERADMIN-only links  post-an-article/post-an-instagram/allinstagrampost
   const linksSuperAdmin = [
+    { href: "/post-an-article/dailyvisitors", icon: Users, label: "Daily Visitors" },
     {
       href: "/post-an-article/post-advertisement/advertisementPackage",
       icon: Package,

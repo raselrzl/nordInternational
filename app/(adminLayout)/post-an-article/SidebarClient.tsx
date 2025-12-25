@@ -85,6 +85,7 @@ const linksEditorSuperAdmin = [
 
   // SUPERADMIN only
 const linksSuperAdmin = [
+  { href: "/post-an-article/dailyvisitors", icon: Users, label: "Daily Visitors" },
   { href: "/post-an-article/post-advertisement/advertisementPackage", icon: Package, label: "Add Advertisement Package" },
   { href: "/post-an-article/post-advertisement/adanalysis", icon: ChartColumnBig, label: "Economy" },
   { href: "/post-an-article/routeTrack", icon: BarChart, label: "Dashboard" },
