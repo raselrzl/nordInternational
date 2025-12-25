@@ -1,6 +1,7 @@
 import { trackRoute } from "@/app/utils/routeTracker";
 import AdvertiseForm from "./AdvertsieContactForm";
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 export default async function AdvertisePage() {
   await trackRoute("Advertise");
@@ -50,6 +51,13 @@ export default async function AdvertisePage() {
         <h4 className="text-sm font-semibold text-gray-200 mb-4">
           Or submit an inquiry using the form below
         </h4>
+
+       <div className="flex items center"> <p className="">Check our</p> <Link
+            href="/about/advertise/standards-integrity"
+            className="hover:underline text-md pl-2 text-primary"
+          >
+            Standards & Integrity
+          </Link></div>
 
         <AdvertiseForm />
       </div>

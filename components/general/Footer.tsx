@@ -51,7 +51,7 @@ export default function Footer() {
           </Link>
 
           <Link
-            href="/about/advertise/standards-integrity"
+            href="/about/advertise"
             className="hover:underline text-foreground/90 text-sm"
           >
             Advertise With Us
@@ -61,12 +61,12 @@ export default function Footer() {
             className="hover:underline text-foreground/90 text-sm"
           >
             Standards & Integrity
-          </Link> 
+          </Link>
           <Link
             href="/about"
             className="hover:underline text-foreground/90 text-sm"
           >
-            About
+            About US
           </Link>
         </div>
         {/* Social section */}

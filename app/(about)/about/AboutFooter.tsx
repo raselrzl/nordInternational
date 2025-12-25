@@ -38,7 +38,7 @@ export default function AboutFooter() {
           </Link>
 
           <Link
-            href="/about/advertise/standards-integrity"
+            href="/about/advertise"
             className="hover:underline text-sm"
           >
             Advertise With Us
