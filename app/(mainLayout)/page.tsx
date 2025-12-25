@@ -205,7 +205,7 @@ export default async function Home() {
                     />
                   </div>
                   <div className="col-span-2">
-                    <h3 className="text-sm md:text-md font-semibold ml-2 line-clamp-3">
+                    <h3 className="text-sm font-semibold ml-2 line-clamp-3">
                       {item.newsHeading}
                     </h3>
                   </div>

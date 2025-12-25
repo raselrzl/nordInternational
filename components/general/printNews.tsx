@@ -153,7 +153,7 @@ export default function PrintNews({
           ref={contentRef}
           className="w-full rounded-xs shadow mt-6"
         >
-          <h1 className="text-lg md:xl font-bold my-4 p-2">{newsHeading}</h1>
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 p-2">{newsHeading}</h1>
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image Section */}
@@ -212,7 +212,7 @@ export default function PrintNews({
           {/* NEWS DETAILS */}
           <div className="whitespace-pre-line text-md md:text-lg dark:bg-black mt-10">
             <div className="flex font-bold flex-row pl-2 items-center">
-              <User2 className="size-5 mr-1 mb-1 font-bold" />
+              <User2 className="size-5 md:size-8 mr-1 font-bold border-1 rounded-full p-1" />
               <p> Eitor: GEP</p>
               <NewUserTracker />
             </div>
