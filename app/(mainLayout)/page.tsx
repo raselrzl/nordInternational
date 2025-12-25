@@ -154,7 +154,7 @@ export default async function Home() {
         </div>
 
         {/* Desktop-only Advertisement Banner */}
-        <div className=" md:flex items-center col-span-3 md:col-span-1 justify-center gap-2 rounded-md border border-yellow-400 bg-gradient-to-r from-yellow-50 via-white to-yellow-50 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 p-2 shadow-sm">
+      {/*   <div className=" md:flex items-center col-span-3 md:col-span-1 justify-center gap-2 rounded-md border border-yellow-400 bg-gradient-to-r from-yellow-50 via-white to-yellow-50 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 p-2 shadow-sm">
           <p className="text-xs md:text-sm text-gray-800 dark:text-gray-200 text-center leading-snug">
             <strong className="text-yellow-700 dark:text-yellow-400">
               NOTICE:
@@ -167,7 +167,7 @@ export default async function Home() {
               contact@globaleye.press
             </span>
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
