@@ -70,7 +70,7 @@ export default async function LiveUpdateComponent() {
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 w-[85%]">
                 <div className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-4 border text-center">
                   <div className="flex items-start gap-2">
-                    <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                    <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
                       <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
                     </div>
                     <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
@@ -89,7 +89,7 @@ export default async function LiveUpdateComponent() {
             <div className="w-full max-w-[720px] mt-4">
               <div className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-4 border text-center">
                 <div className="flex items-start gap-2">
-                  <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                  <div className="rounded-full bg-[#A1241D]  w-4 h-4 flex items-center justify-center mt-[3.5px]">
                     <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
                   </div>
                   <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
@@ -115,8 +115,8 @@ export default async function LiveUpdateComponent() {
             <div key={item.id} className="flex items-start relative mb-3">
               {/* Dot */}
               <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
-                <div className="rounded-full bg-red-500 w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                  <div className="bg-yellow-500 rounded-full animate-ping w-2 h-2"></div>
+                <div className="rounded-full bg-[#A1241D]  w-3 h-3 flex items-center justify-center mt-[3.5px]">
+                 {/*  <div className="bg-yellow-500 rounded-full animate-ping w-2 h-2"></div> */}
                 </div>
               </div>
 

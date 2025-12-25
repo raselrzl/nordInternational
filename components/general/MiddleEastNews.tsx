@@ -72,9 +72,9 @@ export default async function MiddleeastLatest() {
               <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-xl"
+                className="w-24 h-20 object-cover"
               />
-              <p className="font-semibold text-sm group-hover:underline line-clamp-3">
+              <p className="font-semibold text-md group-hover:underline line-clamp-3">
                 {article.newsHeading}
               </p>
             </Link>
