@@ -78,9 +78,9 @@ export default async function LiveUpdateComponent() {
                     </span>
                   </div>
 
-                  <div className="font-bold text-lg text-[#A1241D] leading-tight mt-1">
+                  <Link href="/breakingnews" className="font-bold text-lg text-[#A1241D] leading-tight mt-1">
                     {news[0].headings}
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -97,9 +97,9 @@ export default async function LiveUpdateComponent() {
                   </span>
                 </div>
 
-                <div className="font-bold text-lg text-primary leading-tight mt-1">
+                <Link href="/breakingnews" className="font-bold text-lg text-primary leading-tight mt-1">
                   {news[0].headings}
-                </div>
+                </Link>
               </div>
             </div>
           )}

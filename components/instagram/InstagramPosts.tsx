@@ -24,8 +24,7 @@ export default async function InstagramPosts() {
     <Card className="p-4 shadow-lg mb-2 mt-8 rounded-none">
       <CardHeader className="p-0 flex flex-row justify-between">
         <div className="flex flex-row items-center justify-center space-x-2">
-          <Instagram size={24} className="text-primary" />
-          <p className="font-bold text-xl mt-1">INSTAGRAM</p>
+          <p className="font-bold text-xl mt-1 border-l-8 border-primary pl-2">INSTAGRAM</p>
         </div>
         <div className="flex flex-row items-center justify-center hover:underline text-xs font-bold">
           <Link href="/all-ig-post">View all</Link>
