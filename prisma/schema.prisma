@@ -102,7 +102,7 @@ model newsArticle {
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 
-  viewCount         Int?              @default(12)
+  viewCount         Int?              @default(212)
 }
 
 enum newsArticleStatus {
