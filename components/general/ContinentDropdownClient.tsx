@@ -86,9 +86,9 @@ export default function ContinentDropdownRow({ data }: Props) {
                     onClick={() => setTimeout(() => setOpen(null), 0)}
                   >
                     {item.country}{" "}
-                    <span className="text-[8px] text-gray-400">
+                    {/* <span className="text-[8px] text-gray-400">
                       ({item.totalNews})
-                    </span>
+                    </span> */}
                   </Link>
                 ))}
               </div>
