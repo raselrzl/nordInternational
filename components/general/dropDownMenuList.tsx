@@ -140,7 +140,7 @@ export default function DropDownMenuList() {
             />
             <SocialIcon
               href="https://web.facebook.com/gepnews"
-              img="/fb.webp"
+              img="/facebook.png"
               alt="Facebook"
             />
             <SocialIcon
