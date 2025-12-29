@@ -72,7 +72,7 @@ export default async function LiveUpdateComponent({
   return (
     <div className=" py-3 rounded-md mx-auto max-w-7xl">
       <h1 className="uppercase font-bold text-white text-xl ml-2 md:ml-70 py-2 bg-[#A1241D] ">
-        🚨 Breaking News
+        🚨 Breaking
       </h1>
 
       {/* ========== FIRST NEWS FEATURE ========== */}

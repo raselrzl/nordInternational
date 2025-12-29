@@ -18,14 +18,15 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <div className="fixed top-0 left-0 right-0 z-50 bg-background shadow-md max-w-7xl mx-auto">
         <Navbar />
         <ContinentDropdown />
-        <div className="flex justify-between items-center border-y border-x-4 border-black">
-          <NewsTicker />
-          <Link
+        <div className="flex justify-between items-center border-y border-x-4 border-black text-gray-200 bg-black">
+           <Link
             href="/"
-            className="font-extrabold border-r-4 border-black hover:text-primary/75 px-1 "
+            className="font-extrabold border-r-4 border-l-4 border-l-primary border-black hover:text-primary/75 px-1 "
           >
             ON
           </Link>
+          <NewsTicker />
+         
         </div>
       </div>
       <NewUserTracker />

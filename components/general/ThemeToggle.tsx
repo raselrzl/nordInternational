@@ -19,7 +19,7 @@ export function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="border-none shadow-none">
-          <span className=" uppercase font-bold">VIEW</span>
+          <span className=" uppercase font-bold">mode</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

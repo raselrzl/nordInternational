@@ -51,7 +51,7 @@ export default async function LiveUpdateComponent() {
   return (
     <div className="py-3 rounded-md mx-auto max-w-[720px]">
       <h1 className="uppercase font-bold text-xl py-2 max-w-[720px] mx-2 md:mx-0 text-[#A1241D]">
-        🚨 Breaking News
+        🚨 Breaking
       </h1>
 
       {/* ========== FEATURED FIRST NEWS ========== */}
