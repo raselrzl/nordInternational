@@ -210,7 +210,7 @@ export default function DropDownCountryList() {
 
       <DropdownMenuContent
         align="end"
-        className="max-h-[400px] overflow-y-auto p-2"
+        className="max-h-[400px] overflow-y-auto p-2 border border-primary"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
           {euCountries.map((country) => (
