@@ -151,9 +151,12 @@ export default function PrintNews({
         <div
           id="printable-content"
           ref={contentRef}
-          className="w-full rounded-xs shadow mt-6"
+          className="w-full rounded-xs shadow border mt-6"
         >
-          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 p-2">{newsHeading}</h1>
+          <div className="h-2 w-20 bg-primary ml-2"></div>
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
+            {newsHeading}
+          </h1>
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image Section */}
