@@ -49,7 +49,7 @@ export default function ContinentDropdownRow({ data }: Props) {
 
   // Reusable row content
   const renderRowContent = () => (
-    <div className="flex gap-1.5 md:gap-3 items-center md:justify-end uppercase text-xs">
+    <div className="flex gap-1.5 md:gap-3 items-center md:justify-end uppercase text-[11px] md:text-sm pr-1">
       {continentKeys.map((continent, idx) => {
         const dropdownClass = idx < 2 ? "left-0" : "right-0";
 
