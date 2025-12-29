@@ -19,24 +19,19 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <Navbar />
         <ContinentDropdown />
         <div className="flex justify-between items-center border-y border-x-4 border-black">
-          
-           <NewsTicker />
-           <Link
+          <NewsTicker />
+          <Link
             href="/"
             className="font-extrabold border-r-4 border-black hover:text-primary/75 px-1 "
           >
             ON
           </Link>
-           
         </div>
-
-       
       </div>
       <NewUserTracker />
-      <div className="mt-22 md:mt-29">
-        {/*  <NavMenu /> */}</div>
-     
-      {children} 
+      <div className="mt-22 md:mt-29">{/*  <NavMenu /> */}</div>
+
+      {children}
       <Poll />
       <Footer />
       <VisitorTracker />

@@ -37,7 +37,7 @@ export default async function Navbar() {
         <ThemeToggle />
         <DropDownCountryList />
         <DropDownMenuList />
-        
+
         <div>
           {" "}
           {user?.user ? (
@@ -49,9 +49,9 @@ export default async function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-3 py-2 shadow shadow-black bg-black text-white text-md rounded-2xl"
+              className="px-3 py-1 pt-1.5 uppercase bg-black text-white text-md rounded-2xl flex items-center justify-center"
             >
-              Login
+              Sign in
             </Link>
           )}
         </div>
@@ -59,10 +59,11 @@ export default async function Navbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
-        
         <ThemeToggle />
         <DropDownCountryList />
-        <div className="mr-2"><DropDownMenuList /></div>
+        <div className="mr-2">
+          <DropDownMenuList />
+        </div>
         {user?.user ? (
           <UserDropdown
             email={user.user.email as string}
@@ -70,12 +71,12 @@ export default async function Navbar() {
             image={user.user.image as string}
           />
         ) : (
-          <Link
-            href="/login"
-            className="px-2 py-1 shadow shadow-black bg-black text-white text-sm rounded-2xl"
-          >
-            Login
-          </Link>
+         <Link
+              href="/login"
+              className="px-2 py-1 pt-1.5 uppercase bg-black text-white text-xs rounded-2xl flex items-center justify-center"
+            >
+              Sign in
+            </Link>
         )}
       </div>
     </nav>
