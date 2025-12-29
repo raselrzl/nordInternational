@@ -204,7 +204,7 @@ export default function DropDownCountryList() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className="flex text-sm items-center border-none shadow-none px-0">
-          <p className="font-bold text-md uppercase">world</p>
+          <p className="font-bold text-sm uppercase">world</p>
           <ChevronDown className="h-4 w-4" />
         </button>
       </DropdownMenuTrigger>
