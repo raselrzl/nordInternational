@@ -67,12 +67,12 @@ export default function DropDownMenuList() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <MenuIcon className="h-6 w-6 cursor-pointer text-gray-800 dark:text-gray-100" />
+        <MenuIcon className="h-4 w-4 mb-0.5 ml-2 cursor-pointer text-gray-800 dark:text-gray-100" />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="end"
-        className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white text-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-2"
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl bg-white text-white dark:bg-gray-900 rounded-xs shadow-xl border border-primary dark:border-gray-700 p-2"
       >
         <h3 className="text-sm pl-2 py-0.5 md:text-lg font-semibold uppercase tracking-wide bg-black my-3 border-b items-center">
           Highlights Of

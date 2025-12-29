@@ -203,15 +203,14 @@ export default function DropDownCountryList() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex text-sm items-center border-none shadow-none px-0">
-          <p className="font-bold text-sm uppercase">world</p>
-          <ChevronDown className="h-4 w-4" />
+        <button className="flex text-sm font-bold cursor-pointer hover:text-primary uppercase items-center border-none shadow-none px-0">
+          world
         </button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="end"
-        className=" max-h-[400px] overflow-y-auto p-2"
+        className="max-h-[400px] overflow-y-auto p-2"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
           {euCountries.map((country) => (

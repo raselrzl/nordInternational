@@ -18,9 +18,9 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="border-none shadow-none">
+        <button className="border-none text-sm shadow-none cursor-pointer hover:text-primary mr-2">
           <span className=" uppercase font-bold">mode</span>
-        </Button>
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="border-primary">
         <DropdownMenuItem onClick={() => setTheme("light")}>
