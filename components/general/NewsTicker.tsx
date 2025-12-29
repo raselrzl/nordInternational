@@ -19,7 +19,7 @@ export default async function NewsTicker() {
     : [{ id: "fallback", newsHeading: fallbackMessage }];
 
   return (
-    <div className="overflow-hidden bg-primary/10 font-bold py-1 border-t border-gray-900/10">
+    <div className="overflow-hidden text-sm">
       <div
         className="flex gap-10 whitespace-nowrap [will-change:transform] animate-ticker"
         style={{ ["--ticker-speed" as any]: "120s" }}

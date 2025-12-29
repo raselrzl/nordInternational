@@ -34,9 +34,10 @@ export default async function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
+        <ThemeToggle />
         <DropDownCountryList />
         <DropDownMenuList />
-        <ThemeToggle />
+        
         <div>
           {" "}
           {user?.user ? (
@@ -58,8 +59,9 @@ export default async function Navbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
-        <DropDownCountryList />
+        
         <ThemeToggle />
+        <DropDownCountryList />
         <div className="mr-2"><DropDownMenuList /></div>
         {user?.user ? (
           <UserDropdown

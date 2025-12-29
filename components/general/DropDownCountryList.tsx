@@ -204,7 +204,7 @@ export default function DropDownCountryList() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="border-none shadow-none">
-          <p className="font-bold text-md">Eyes On</p>
+          <p className="font-bold text-md uppercase">Eyes On</p>
           <ChevronDown className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>

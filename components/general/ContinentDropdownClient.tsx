@@ -49,7 +49,7 @@ export default function ContinentDropdownRow({ data }: Props) {
 
   // Reusable row content
   const renderRowContent = () => (
-    <div className="flex md:gap-2 items-center justify-between md:justify-end">
+    <div className="flex gap-2 items-center md:justify-end">
       {continentKeys.map((continent, idx) => {
         const dropdownClass = idx < 2 ? "left-0" : "right-0";
 
@@ -104,13 +104,13 @@ export default function ContinentDropdownRow({ data }: Props) {
       {/* Normal row */}
       <div
         ref={normalRef}
-        className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 py-1 border-black"
+        className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 border-l-4 pl-2 py-1 border-black"
       >
         {renderRowContent()}
       </div>
 
       {/* Fixed bottom row */}
-  {/*     {showBottom && (
+      {/*     {showBottom && (
         <div
           ref={fixedRef}
           className="text-xs md:text-sm max-w-7xl mx-auto fixed top-31 md:top-39 left-0 right-0 z-50 px-2 py-1 md:py-2 border-r-20 border-primary"
