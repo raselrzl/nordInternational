@@ -22,7 +22,7 @@ export function ThemeToggle() {
           <span className=" uppercase font-bold">mode</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="border-primary">
         <DropdownMenuItem onClick={() => setTheme("light")}>
           Light
         </DropdownMenuItem>

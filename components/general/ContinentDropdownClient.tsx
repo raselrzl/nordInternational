@@ -49,7 +49,7 @@ export default function ContinentDropdownRow({ data }: Props) {
 
   // Reusable row content
   const renderRowContent = () => (
-    <div className="flex gap-2 items-center md:justify-end">
+    <div className="flex gap-2 items-center md:justify-end uppercase">
       {continentKeys.map((continent, idx) => {
         const dropdownClass = idx < 2 ? "left-0" : "right-0";
 
@@ -60,16 +60,16 @@ export default function ContinentDropdownRow({ data }: Props) {
               onClick={() => setOpen(open === continent ? null : continent)}
             >
               <span className="font-semibold">{continent}</span>
-              <ChevronDown
+              {/* <ChevronDown
                 className={`w-2 h-2 transition-transform duration-200 ${
                   open === continent ? "rotate-180" : ""
                 }`}
-              />
+              /> */}
             </div>
 
             {open === continent && (
               <div
-                className={`absolute top-full mt-2 w-max min-w-[8rem] bg-white text-black shadow-lg z-50 ${dropdownClass}`}
+                className={`absolute top-full mt-2 w-max min-w-[8rem] bg-gray-100 border-primary border text-black shadow-lg z-50 ${dropdownClass}`}
               >
                 {data[continent].length === 0 && (
                   <p className="px-4 py-2 text-sm text-gray-400">
