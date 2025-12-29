@@ -82,7 +82,7 @@ export default function DropDownMenuList() {
             href="/war"
             className="block rounded-lg cursor-pointer border-l-8 p-0 border-orange-600  hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors font-semibold text-black dark:text-gray-100 text-left"
           >
-            War Updates
+            War & Crisis
           </Link>
         </DropdownMenuItem>
         {/* NAV ITEMS GRID */}

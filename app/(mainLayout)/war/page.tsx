@@ -18,7 +18,7 @@ export default async function War({ searchParams }: SearchParamsProps) {
   return (
     <div className="mt-10">
         <div className="font-extrabold pl-2 mb-4 text-xl flex items-center uppercase border-l-10 border-orange-600">
-           WAR updates
+          War & Crisis
         </div>
       <div className="grid grid-cols-1 max-w-3xl mx-auto">
         
