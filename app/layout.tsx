@@ -15,13 +15,11 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
-
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -48,23 +46,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-{/*       <head>
+      {/*       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Tiro+Bangla&display=swap"
           rel="stylesheet"
         />
       </head> */}
-      <body
-        className={` ${inter.variable} antialiased`}
-      >
+      <body className={` ${inter.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="max-w-7xl mx-auto">{children}</div>
           <NewUserTracker />
+          <div className="max-w-7xl mx-auto">{children}</div>
         </ThemeProvider>
       </body>
     </html>
