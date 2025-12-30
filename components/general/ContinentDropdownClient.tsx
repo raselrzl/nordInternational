@@ -104,7 +104,7 @@ export default function ContinentDropdownRow({ data }: Props) {
       {/* Normal row */}
       <div
         ref={normalRef}
-        className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 border-l-4 pl-2 py-1 border-black"
+        className="max-w-7xl mx-auto text-xs md:text-sm border-r-8 border-l-4 pl-2 py-1 border-primary"
       >
         {renderRowContent()}
       </div>
