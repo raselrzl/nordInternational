@@ -52,7 +52,7 @@ export default async function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-3 py-0.5 pt-1 shdow text-black shadow shadow-black dark:text-white text-md rounded-xs flex items-center justify-center"
+              className="px-3 py-0.5 pt-1 shdow text-black shadow shadow-black dark:text-white text-md rounded-full flex items-center justify-center"
             >
               Sign In
             </Link>
@@ -74,7 +74,7 @@ export default async function Navbar() {
         ) : (
           <Link
             href="/login"
-            className="px-2 py-0.5 pt-0.5 shadow shadow-black y-50 dark:text-white text-black text-xs rounded-xs flex items-center justify-center mr-4"
+            className="px-2 py-0.5 pt-0.5 shadow shadow-black y-50 dark:text-white text-black text-xs rounded-full flex items-center justify-center mr-4"
           >
             Sign In
           </Link>
