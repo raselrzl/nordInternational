@@ -143,7 +143,7 @@ export default async function LiveUpdateComponent() {
           href="/breakingnews"
           className="text-xs font-semibold underline"
         >
-          View All
+          More ➠
         </Link>
       </div>
     </div>

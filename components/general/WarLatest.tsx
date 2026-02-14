@@ -17,7 +17,7 @@ async function getLatestWarNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
     orderBy: { createdAt: "desc" },
-    take: 13,
+    take: 9,
     select: {
       id: true,
       newsHeading: true,
@@ -38,8 +38,8 @@ export default async function WarLatest() {
   const featured = articles[0];
   const others = articles.slice(1);
 
-  const leftArticles = others.slice(0, 6);
-  const rightArticles = others.slice(6, 12);
+  const leftArticles = others.slice(0, 4);
+  const rightArticles = others.slice(4, 8);
 
   return (
     <section className="px-2 md:px-0 my-10">
@@ -53,7 +53,7 @@ export default async function WarLatest() {
           href="/war"
           className="text-xs font-semibold"
         >
-          View All →
+        More ➠
         </Link>
       </div>
 
@@ -69,9 +69,9 @@ export default async function WarLatest() {
               <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-md"
+                className="w-24 h-20 md:h-32 md:w-32 object-cover rounded-md"
               />
-              <p className="font-semibold text-md group-hover:underline line-clamp-3">
+              <p className="text-md group-hover:underline line-clamp-4">
                 {article.newsHeading}
               </p>
             </Link>
@@ -80,19 +80,20 @@ export default async function WarLatest() {
 
         {/* ✅ Middle featured article */}
         <div className="overflow-hidden border">
+           <Link href={`/newsDetails/${featured.id}`}>
+              <h3 className="text-xl md:text-xl font-bold hover:underline text-center  mb-10 pt-3">
+                {featured.newsHeading}
+              </h3>
+            </Link>
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
               alt={featured.newsPictureHeading}
-              className="w-full h-64 object-cover"
+              className="w-full h-80 object-cover"
             />
           </Link>
           <div className="p-2">
-            <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-xl md:text-xl font-bold hover:underline">
-                {featured.newsHeading}
-              </h3>
-            </Link>
+           
             <BesicTwoAdvertise />
 
             {/* ✅ JSON parse condition (from your example) */}
@@ -116,13 +117,13 @@ export default async function WarLatest() {
               key={article.id}
               className="flex items-center gap-3 group border-t border-gray-950/10"
             >
-              <p className="font-semibold text-md group-hover:underline line-clamp-2">
+              <p className="text-md group-hover:underline line-clamp-2">
                 {article.newsHeading}
               </p>
               <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-md"
+                className="w-24 h-20 object-cover rounded-md md:h-32 md:w-32"
               />
             </Link>
           ))}

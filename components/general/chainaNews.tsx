@@ -38,8 +38,8 @@ export default async function ChainaLatest() {
   const featured = articles[0];
   const others = articles.slice(1);
 
-  const leftArticles = others.slice(0, 6);
-  const rightArticles = others.slice(6, 12);
+  const leftArticles = others.slice(0, 3);
+  const rightArticles = others.slice(3, 6);
 
   return (
     <section className="px-2 md:px-0 my-10 md:my-24 ">
@@ -67,7 +67,7 @@ export default async function ChainaLatest() {
             <img
               src={featured.newsPicture}
               alt={featured.newsPictureHeading}
-              className="w-full h-64 object-cover"
+              className="w-full h-64 md:h-80 object-cover"
             />
           </Link>
           <div className="p-2 border">
@@ -102,7 +102,7 @@ export default async function ChainaLatest() {
               <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-xl"
+                className="w-24 h-20  object-cover rounded-xl"
               />
               <p className="font-semibold text-sm group-hover:underline line-clamp-3">
                 {article.newsHeading}
