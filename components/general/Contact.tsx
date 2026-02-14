@@ -16,7 +16,7 @@ export function Contact() {
       <TabsContent value="ovijug">
         <Card className="min-h-[400px] rounded-none">
           <CardHeader>
-            <OpinionForm />
+            
           </CardHeader>
         </Card>
       </TabsContent>

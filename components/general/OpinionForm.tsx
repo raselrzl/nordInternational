@@ -78,17 +78,15 @@ const router = useRouter();
   }
 
   return (
-    <div className="w-full mx-auto pb-4.5">
-      <h2 className="text-md font-bold mb-6 text-center uppercase border-l-4 border-primary pl-2">Write Your Complaint</h2>
+    <div className="w-full mx-auto">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 shadow p-8 ml-6">
           {/* Name */}
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-xs'>Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your name" {...field} className="text-xs" />
                 </FormControl>
@@ -102,7 +100,6 @@ const router = useRouter();
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-xs'>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter your email" {...field} className="text-xs" />
                 </FormControl>
@@ -116,7 +113,6 @@ const router = useRouter();
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-xs'>Phone Number</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter phone number" {...field} className="text-xs" />
                 </FormControl>
@@ -130,7 +126,6 @@ const router = useRouter();
             name="opinion"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-xs'>Complaint</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your complaint here..."

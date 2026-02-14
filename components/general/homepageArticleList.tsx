@@ -66,7 +66,7 @@ export async function getBinodonNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 6,
+    take: 2,
   });
 }
 
@@ -138,7 +138,7 @@ export async function getLatestNews() {
 
 export async function getScienceNews() {
   return await prisma.newsArticle.findMany({
-      where: {
+    where: {
       newsCategory: {
         in: ["SCIENCE", "TECHNOLOGY"],
       },
@@ -173,7 +173,7 @@ export async function getScienceNews() {
 
 export async function getScienceNewsHead() {
   return await prisma.newsArticle.findMany({
-     where: {
+    where: {
       newsCategory: {
         in: ["SCIENCE", "TECHNOLOGY"],
       },
@@ -585,15 +585,14 @@ export async function ScienceNewsHeadPost() {
   return (
     <>
       <div className="flex flex-row items-center space-x-2 ">
-     {/*    <img
+        {/*    <img
           src="/clock.gif"
           alt="YouTube GIF"
           width={50} // adjust as needed
           height={50}
           className="object-contain"
         /> */}
-         <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase border-l-8 pl-2 border-primary">
-          
+        <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase border-l-8 pl-2 border-primary">
           Science and Tech
         </h2>
         {/* <p className="font-bold text-2xl uppercase"></p> */}
@@ -670,39 +669,30 @@ export async function Binodon() {
   const Binodon = await getBinodonNews();
   return (
     <>
-      <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-row items-center space-x-2">
-          <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">Entertainment</p>
-        </div>
-        <div className="md:block hidden">
-          <img
-            src="/arrow.gif"
-            alt="YouTube GIF"
-            width={50} // adjust as needed
-            height={50}
-            className="object-contain "
-          />
-        </div>
-      </div>
       {Binodon && Object.keys(Binodon).length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-6 px-2 border-y-1 md:border-1 my-10">
+        <div className="grid md:grid-cols-2 gap-6 px-2 my-10">
           {Binodon.map((article) => (
             <Link href={`/newsDetails/${article.id}`} key={article.id}>
-              <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">
-                <div className="w-auto h-[110px] md:h-[150px] border-1 rounded-xl overflow-hidden">
+              <div className="max-w-md w-full">
+                {/* Image Container */}
+                <div className="relative w-auto h-70 md:h-85 border rounded-xl overflow-hidden">
                   <img
                     src={article.newsPicture}
                     alt="picture"
-                    width={190}
-                    height={140}
-                    className="w-full h-full md:h-[150px] object-fit"
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-cover"
                   />
-                </div>
 
-                <div className="pt-4">
-                  <h2 className="text-[14px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-2">
-                    {article.newsHeading}
-                  </h2>
+                  {/* Gradient Overlay (bottom dark) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                  {/* Text on Image */}
+                  <div className="absolute bottom-0 p-3">
+                    <h2 className="text-white text-sm md:text-lg font-semibold leading-[1.4] line-clamp-2">
+                      {article.newsHeading}
+                    </h2>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -785,7 +775,6 @@ export async function Latest() {
   );
 }
 
-
 // getsorboseshnews
 export async function getLatestPoliticsNews() {
   return await prisma.newsArticle.findMany({
@@ -850,4 +839,3 @@ export async function PoliticsNews() {
     </>
   );
 }
-

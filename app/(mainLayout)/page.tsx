@@ -39,6 +39,7 @@ import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
 import Videos from "@/components/general/Videos";
 import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
+import { OpinionForm } from "@/components/general/OpinionForm";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -133,7 +134,7 @@ async function getData(): Promise<{
           newsArticleStatus: true,
         },
         orderBy: { createdAt: "desc" },
-        take: 5,
+        take: 3,
       }),
     ]);
 
@@ -174,7 +175,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
-        <div className="order-3 md:order-1 md:col-span-1 px-2 border">
+        <div className="order-3 md:order-1 md:col-span-1 px-2 sm:px-0">
           <div className="flex justify-between text-md w-full mt-1">
             <Link
               key="Usa"
@@ -207,7 +208,7 @@ export default async function Home() {
                     />
                   </div>
                   <div className="col-span-2">
-                    <h3 className="text-sm md:text-md ml-2 line-clamp-4">
+                    <h3 className="text-sm md:text-md ml-2">
                       {item.newsHeading}
                     </h3>
                   </div>
@@ -261,13 +262,13 @@ export default async function Home() {
                 </div>
                 <div className="relative overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
                   <div className="space-y-3">
-                    {InternationalAll.slice(1).map((article: Article) => (
+                    {InternationalAll.map((article: Article) => (
                       <Link
                         key={article.id}
                         href={`/newsDetails/${article.id}`}
                       >
                         <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
-                          <h2 className="text-base font-semibold line-clamp-1 text-gray-800 dark:text-gray-100">
+                          <h2 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                             {article.newsHeading}
                           </h2>
                         </div>
@@ -295,31 +296,20 @@ export default async function Home() {
         <div className="order-1 md:order-3 md:col-span-3">
           {lastFeaturedArticle.length > 0 ? (
             <>
-              {/* Featured Article */}
               <Link href={`/newsDetails/${lastFeaturedArticle[0].id}`}>
-                <div className="mb-6 max-h-[250px] md:max-h-[290px] md:border-1 md:p-2 grid grid-cols-5 px-2">
-                  <div className="w-full max-h-[240px] md:max-h-[270px] border md:rounded-xl overflow-hidden col-span-5 md:col-span-3">
+                <div className="mb-6 rounded-lg grid grid-cols-1 gap-3">
+                  {/* Heading first */}
+                  <h2 className="text-xl md:text-3xl font-extrabold text-center md:line-clamp-3 px-3 md:px-8">
+                    {lastFeaturedArticle[0].newsHeading}
+                  </h2>
+
+                  {/* Big Image */}
+                  <div className="w-full h-[220px] md:h-[380px] overflow-hidden rounded-md">
                     <img
                       src={lastFeaturedArticle[0].newsPicture}
                       alt={lastFeaturedArticle[0].newsHeading}
-                      className="w-full h-full object-fill"
+                      className="w-full h-full object-cover"
                     />
-                  </div>
-                  <div className="pl-1 md:pl-4 col-span-5 md:col-span-2">
-                    <h2 className="text-lg md:text-2xl font-semibold mt-2 pl-2 md:pl-0 line-clamp-2 md:line-clamp-5">
-                      {lastFeaturedArticle[0].newsHeading}
-                    </h2>
-                    {isJson(lastFeaturedArticle[0].newsDetails) ? (
-                      <div className="text-sm md:text-md text-accent-foreground/80 mb-8 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
-                        <JsonToHtml
-                          json={JSON.parse(lastFeaturedArticle[0].newsDetails)}
-                        />
-                      </div>
-                    ) : (
-                      <p className="text-sm md:text-md text-accent-foreground/80 mb-8 md:mt-2 line-clamp-1 md:line-clamp-5 pl-2 md:pl-1">
-                        {lastFeaturedArticle[0].newsDetails}
-                      </p>
-                    )}
                   </div>
                 </div>
               </Link>
@@ -366,18 +356,21 @@ export default async function Home() {
       {/* <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Binodon Section */}
       <div className="mb-4">
+           <div className="flex flex-row items-center space-x-2">
+          <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">Entertainment</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-3 md:col-span-2">
             <PopupOnViewServer />
             <Binodon />
           </div>
-          <div className="col-span-3 md:col-span-1 md:mt-11.5">
-            <Contact />
+          <div className="col-span-3 md:col-span-1 md:mt-10">
+            <OpinionForm />
           </div>
         </div>
       </div>
       <AsiaLatest />
-      
+
       {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Russia Section */}
       <div className="my-8">
