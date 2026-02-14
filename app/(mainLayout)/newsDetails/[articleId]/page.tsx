@@ -174,15 +174,15 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
   return (
     <div className="grid grid-cols-5 gap-4 my-20 pt-10">
       {/* Left Sidebar */}
-   {/*    <div className="col-span-5 md:col-span-1">
+      <div className="col-span-5 md:col-span-1">
         <BesicTwoAdvertise />
         <div className="hidden md:block mt-10">
           <ShirShoNewsHeadings />
         </div>
-      </div> */}
+      </div>
 
       {/* Main Content */}
-      <div className="col-span-5 md:col-span-3.5 px-3">
+      <div className="col-span-5 md:col-span-3 px-3">
         {/* Article Meta Info */}
         <div className="flex flex-col font-bold mb-1 text-xl">
           <div className="flex font-bold flex-row items-center">
@@ -241,7 +241,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
       </div>
 
       {/* Right Sidebar */}
-      <div className="col-span-5 md:col-span-1.5">
+      <div className="col-span-5 md:col-span-1">
         <div className="flex flex-col items-center rounded-2xl mx-auto">
           <div className="mt-16">
             <RecentNews />
