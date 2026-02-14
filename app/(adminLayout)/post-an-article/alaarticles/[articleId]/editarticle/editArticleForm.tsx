@@ -43,7 +43,7 @@ interface iAppProps {
     newsHeading: string;
     newsSubHeading: string;
     newsPicture: string;
-    newsReporterPublicName: string;
+    newsReporterPublicName?: string;
     quotes: {
       speakerInfo: string;
       text: string;
@@ -67,7 +67,7 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
     defaultValues: {
       newsHeading: article.newsHeading,
       newsSubHeading: article.newsSubHeading,
-      newsReporterPublicName: article.newsReporterPublicName,
+      newsReporterPublicName: article.newsReporterPublicName ?? "",
       newsResource: article.newsResource,
       newsLocation: article.newsLocation ?? "",
       newsCategory: article.newsCategory as newsCategory,

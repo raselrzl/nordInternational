@@ -4,46 +4,48 @@ import { EditNewsArticleForm } from "./editArticleForm";
 import { requireNewsReporter } from "@/app/utils/requireUser";
 import { requireRoleAccess } from "../../../roleBaseAccess";
 
-async function getData (articleId:string){
-    const data = await prisma.newsArticle.findUnique({
-        where: {
-          id: articleId,
-        },
+async function getData(articleId: string) {
+  const data = await prisma.newsArticle.findUnique({
+    where: {
+      id: articleId,
+    },
+    select: {
+      id: true,
+      newsHeading: true,
+      newsSubHeading: true,
+      newsDetails: true,
+      newsResource: true,
+      newsLocation: true,
+      newsCategory: true,
+      newsPicture: true,
+      newsPictureHeading: true,
+      newsPictureCredit: true,
+      newsReporterPublicName: true,
+      isFeatured: true,
+      duration: true,
+      newsArticleStatus: true,
+      quotes: {
         select: {
           id: true,
-          newsHeading: true,
-          newsSubHeading: true,
-          newsDetails: true,
-          newsResource: true,
-          newsLocation: true,
-          newsCategory: true,
-          newsPicture: true,
-          newsPictureHeading: true,
-          newsPictureCredit: true,
-          isFeatured: true,
-          duration: true,
-          newsArticleStatus: true,
-          quotes: {
-            select: {
-              id: true,
-              text: true,
-              speakerInfo: true,
-            },
-          },
+          text: true,
+          speakerInfo: true,
         },
-      });
-      if (!data){
-        return notFound();
-      }
-    
-      return data;
-    }
+      },
+    },
+  });
+  if (!data) {
+    return notFound();
+  }
+
+  return data;
+}
 
 interface iAppProps {
   article: {
     id: string;
     isFeatured: boolean;
     newsCategory: string;
+    newsReporterPublicName?: string;
     newsDetails: string;
     newsHeading: string;
     newsPicture: string;
@@ -72,18 +74,32 @@ interface iAppProps {
   };
 }
 
-type Params= Promise<{ articleId: string }>
+type Params = Promise<{ articleId: string }>;
 
-export default async function EditNewsArticleFormPage({params}:{ params:Params }) {
-    const approvednewsreporter=await requireNewsReporter()
-    const user = await requireRoleAccess(["EDITOR", "SUPERADMIN", "NEWSREPORTER"]);
-    const {articleId}=await params
-    const data =await getData(articleId)
-
+export default async function EditNewsArticleFormPage({
+  params,
+}: {
+  params: Params;
+}) {
+  const approvednewsreporter = await requireNewsReporter();
+  const user = await requireRoleAccess([
+    "EDITOR",
+    "SUPERADMIN",
+    "NEWSREPORTER",
+  ]);
+  const { articleId } = await params;
+  const data = await getData(articleId);
 
   return (
-   <>
-           <EditNewsArticleForm article={data} userType={user.userType ?? null}/>
-   </>
+    <>
+      <EditNewsArticleForm
+        article={{
+          ...data,
+          newsSubHeading: data.newsSubHeading ?? "",
+          newsReporterPublicName: data.newsReporterPublicName ?? "",
+        }}
+        userType={user.userType ?? null}
+      />
+    </>
   );
 }
