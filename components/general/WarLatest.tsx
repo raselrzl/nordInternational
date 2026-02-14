@@ -45,15 +45,11 @@ export default async function WarLatest() {
     <section className="px-2 md:px-0 my-10">
       <div className="flex items-center justify-between px-4 md:px-0 my-10 md:my-16">
         <h2 className="flex items-center gap-2 text-lg md:text-xl font-extrabold uppercase border-l-8 pl-2 border-primary">
-          
           War & Crisis
         </h2>
 
-        <Link
-          href="/war"
-          className="text-xs font-semibold"
-        >
-        More ➠
+        <Link href="/war" className="text-[6px] font-semibold">
+          MORE ➠
         </Link>
       </div>
 
@@ -80,11 +76,11 @@ export default async function WarLatest() {
 
         {/* ✅ Middle featured article */}
         <div className="overflow-hidden border">
-           <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-xl md:text-xl font-bold hover:underline text-center  mb-10 pt-3">
-                {featured.newsHeading}
-              </h3>
-            </Link>
+          <Link href={`/newsDetails/${featured.id}`}>
+            <h3 className="text-xl md:text-xl font-bold hover:underline text-center  mb-10 pt-3">
+              {featured.newsHeading}
+            </h3>
+          </Link>
           <Link href={`/newsDetails/${featured.id}`}>
             <img
               src={featured.newsPicture}
@@ -114,7 +110,6 @@ export default async function WarLatest() {
           ))}
         </div>
       </div>
-       
     </section>
   );
 }

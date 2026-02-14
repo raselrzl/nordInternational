@@ -1,7 +1,5 @@
 import { prisma } from "@/app/utils/db";
 import Link from "next/link";
-import { isJson } from "@/app/utils/isJson";
-import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { BesicOneAdvertise } from "../allAdvertisement/BesicOne";
 
 type Article = {
@@ -17,7 +15,7 @@ async function getLatestMiddleeastNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation:"Middleeast"},
     orderBy: { createdAt: "desc" },
-    take: 13,
+    take: 5,
     select: {
       id: true,
       newsHeading: true,
@@ -31,105 +29,79 @@ async function getLatestMiddleeastNews(): Promise<Article[]> {
 }
 export default async function MiddleeastLatest() {
   const articles = await getLatestMiddleeastNews();
-
   if (articles.length === 0) return null;
 
   const featured = articles[0];
-  const others = articles.slice(1);
-
-  const leftArticles = others.slice(0, 6);
-  const rightArticles = others.slice(6, 12);
+  const others = articles.slice(1); // 5 articles
 
   return (
     <section className="px-2 md:px-0 my-10">
-      <div className="flex justify-between text-xl w-[220px] my-10: md:my-16">
-       <Link
-          key="Middleeast"
+      {/* Section Header */}
+      <div className="flex items-center gap-2 my-6 md:my-10">
+        <Link
           href="/diffrentCountry?country=Middleeast"
-           className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+          className="flex items-center gap-2 hover:opacity-80"
         >
           <img
             src="/flags/middleeast.webp"
-            alt="Middleeast flag"
-            width={30}
-            height={40}
-            className="rounded-sm border"
+            alt="Middleeast"
+            className="w-7 h-5 object-cover border rounded-sm"
           />
-          <span className="text-md font-bold uppercase">Middleeast</span>
-        </Link>  </div>
+          <span className="text-lg font-bold uppercase">Middleeast</span>
+        </Link>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      
-        {/* ✅ Left side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {leftArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex items-center gap-3 group shadow-lg"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover"
-              />
-              <p className="font-semibold text-md group-hover:underline line-clamp-3">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
-        </div>
-
-        {/* ✅ Right side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {rightArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex items-center gap-3 group shadow-lg border-gray-950/10"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-md"
-              />
-              <p className="font-semibold text-md group-hover:underline line-clamp-2">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
-        </div>
-
-          <div className="overflow-hidden shadow-lg">
+      {/* Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* 🔥 Featured (Big) */}
+        <div className="md:col-span-2 relative group">
           <Link href={`/newsDetails/${featured.id}`}>
-            <img
-              src={featured.newsPicture}
-              alt={featured.newsPictureHeading}
-              className="w-full h-64 object-cover"
-            />
-          </Link>
-          <div className="p-2">
-            <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-xl md:text-xl font-bold hover:underline">
-                {featured.newsHeading}
-              </h3>
-            </Link>
-            <BesicOneAdvertise />
+            <div className="relative h-72 md:h-[420px] overflow-hidden">
+              <img
+                src={featured.newsPicture}
+                alt={featured.newsPictureHeading}
+                className="w-full h-full object-cover"
+              />
 
-            {/* ✅ JSON parse condition (from your example) */}
-       {/*      {isJson(featured.newsDetails) ? (
-              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                <JsonToHtml json={JSON.parse(featured.newsDetails)} />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+              {/* Text */}
+              <div className="absolute bottom-0 p-4">
+                <h2 className="text-white text-xl md:text-3xl font-bold leading-tight group-hover:underline">
+                  {featured.newsHeading}
+                </h2>
               </div>
-            ) : (
-              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                {featured.newsDetails}
-              </p>
-            )} */}
-          </div>
+            </div>
+          </Link>
         </div>
+
+        {/* 📰 Other 5 news */}
+        <div className="flex flex-col gap-4">
+          {others.map((article) => (
+            <Link
+              href={`/newsDetails/${article.id}`}
+              key={article.id}
+              className="flex gap-3 group"
+            >
+              <img
+                src={article.newsPicture}
+                alt={article.newsPictureHeading}
+                className="w-26 h-23 object-cover flex-shrink-0"
+              />
+              <p className="text-sm md:text-base leading-snug group-hover:underline">
+                {article.newsHeading}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <BesicOneAdvertise />
       </div>
     </section>
   );
 }
+

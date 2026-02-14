@@ -79,25 +79,33 @@ export default async function AsiaLatest() {
             <BesicOneAdvertise />
           </div>
         </div>
-        {/* ✅ Left side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {leftArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex flex-col items-center gap-3 group shadow-lg"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-80 h-60 object-cover rounded-xl"
-              />
-              <p className="font-semibold text-sm group-hover:underline line-clamp-3 px-10 py-4 text-center">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
-        </div>
+      <div className="flex flex-col gap-4">
+  {leftArticles.map((article) => (
+    <Link
+      href={`/newsDetails/${article.id}`}
+      key={article.id}
+      className="relative group rounded-xl overflow-hidden w-full"
+    >
+      {/* Image */}
+      <img
+        src={article.newsPicture}
+        alt={article.newsPictureHeading}
+        className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+
+      {/* Top Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
+
+      {/* Heading */}
+      <div className="absolute top-0 left-0 p-3">
+        <p className="text-white font-semibold text-sm md:text-base leading-tight line-clamp-3">
+          {article.newsHeading}
+        </p>
+      </div>
+    </Link>
+  ))}
+</div>
+
 
         {/* ✅ Right side - 5 small cards */}
         <div className="flex flex-col gap-4">

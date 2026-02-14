@@ -176,45 +176,67 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pb-10">
         {/* ---------------------- Left Column: USA Highlights ---------------------- */}
         <div className="order-3 md:order-1 md:col-span-1 px-2 sm:px-0">
-          <div className="flex justify-between text-md w-full mt-1">
+          {/* Header */}
+          <div className="flex items-center gap-2 mb-3 border-b pb-2">
+            <img
+              src="/flags/usa.webp"
+              alt="USA flag"
+              width={26}
+              height={18}
+              className="rounded-sm border"
+            />
             <Link
-              key="Usa"
               href="/diffrentCountry?country=Usa"
-              className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+              className="text-sm font-extrabold uppercase hover:underline"
             >
-              <img
-                src="/flags/usa.webp"
-                alt="USA flag"
-                width={30}
-                height={40}
-                className="rounded-sm border"
-              />
-              <span className="text-md font-bold uppercase">
-                USA Highlights
-              </span>
+              USA Highlights
             </Link>
           </div>
 
           {latestUSANews.length > 0 ? (
-            latestUSANews.map((item: Article) => (
-              <Link key={item.id} href={`/newsDetails/${item.id}`}>
-                <div className="grid grid-cols-3 border-b py-2">
-                  <div className="col-span-1">
+            <>
+              {/* ---------- Featured (Top Story) ---------- */}
+              <Link
+                href={`/newsDetails/${latestUSANews[0].id}`}
+                className="block mb-4"
+              >
+                <div className="relative rounded-lg overflow-hidden group">
+                  <img
+                    src={latestUSANews[0].newsPicture}
+                    alt={latestUSANews[0].newsHeading}
+                    className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+
+                  {/* Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                  <h3 className="absolute bottom-0 text-white text-sm font-bold p-3 line-clamp-3">
+                    {latestUSANews[0].newsHeading}
+                  </h3>
+                </div>
+              </Link>
+
+              {/* ---------- Rest List ---------- */}
+              <div className="flex flex-col divide-y">
+                {latestUSANews.slice(1, 6).map((item: Article) => (
+                  <Link
+                    key={item.id}
+                    href={`/newsDetails/${item.id}`}
+                    className="flex gap-2 py-3 group"
+                  >
                     <img
                       src={item.newsPicture}
                       alt={item.newsHeading}
-                      className="w-32 h-16 object-cover border"
+                      className="w-20 h-18 object-cover rounded-md flex-shrink-0"
                     />
-                  </div>
-                  <div className="col-span-2">
-                    <h3 className="text-sm md:text-md ml-2">
+
+                    <p className="text-sm leading-snug group-hover:underline">
                       {item.newsHeading}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            ))
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </>
           ) : (
             <EmptyState
               title="Oops! Nothing to show yet."
@@ -224,9 +246,12 @@ export default async function Home() {
             />
           )}
 
-          <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-            <ProOneAdvertise />
-          </Suspense>
+          {/* Ad */}
+          <div className="mt-6">
+            <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+              <ProOneAdvertise />
+            </Suspense>
+          </div>
         </div>
 
         {/* ---------------------- Middle Column ---------------------- */}
@@ -253,30 +278,35 @@ export default async function Home() {
                 </div>
               </Link>
 
-              <div className="bg-primary/55 dark:bg-gray-700 mt-6 border border-primary/55 dark:border-gray-600 shadow-md mx-2 md:mx-0">
-                <div className="flex items-center justify-center py-3 gap-2 border-b border-primary/55 dark:border-gray-600">
-                  <Flame className="text-red-600 dark:text-amber-400 w-6 h-6" />
-                  <h1 className="font-bold text-lg md:text-xl uppercase text-gray-900 dark:text-gray-100 tracking-wide">
-                    Top News
-                  </h1>
-                </div>
-                <div className="relative overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
-                  <div className="space-y-3">
-                    {InternationalAll.map((article: Article) => (
-                      <Link
-                        key={article.id}
-                        href={`/newsDetails/${article.id}`}
-                      >
-                        <div className="bg-amber-50 dark:bg-gray-800 hover:bg-amber-200 dark:hover:bg-gray-700 border border-primary/55 dark:border-gray-600 transition-all shadow-sm hover:shadow-md p-3">
-                          <h2 className="text-base font-semibold text-gray-800 dark:text-gray-100">
-                            {article.newsHeading}
-                          </h2>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <div className="bg-white dark:bg-gray-900 mt-6 border border-gray-200 dark:border-gray-700 shadow-sm mx-2 md:mx-0 rounded-md">
+  
+  {/* Header */}
+  <div className="flex items-center justify-center py-3 gap-2 border-b border-gray-200 dark:border-gray-700">
+    <Flame className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+    <h1 className="font-bold text-lg md:text-xl uppercase tracking-wide text-gray-900 dark:text-gray-100">
+      Top News
+    </h1>
+  </div>
+
+  {/* List */}
+  <div className="relative overflow-y-auto px-4 py-3 max-h-[420px]">
+    <div className="space-y-3">
+      {InternationalAll.map((article: Article) => (
+        <Link
+          key={article.id}
+          href={`/newsDetails/${article.id}`}
+        >
+          <div className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all shadow-sm hover:shadow-md p-3 rounded-sm">
+            <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 ">
+              {article.newsHeading}
+            </h2>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
+
             </>
           ) : (
             <EmptyState
@@ -327,7 +357,7 @@ export default async function Home() {
                         />
                       </div>
                       <div className="pt-4">
-                        <h2 className="text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed">
+                        <h2 className="text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-2">
                           {article.newsHeading}
                         </h2>
                       </div>
@@ -347,17 +377,16 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* <div className="border-b-1 my-1 shadow border-gray-950/10"></div> */}
       <WarLatest />
-      {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       <BesicTwoAdvertise />
       <ChainaLatest />
       <BesicOneAdvertise />
-      {/* <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Binodon Section */}
       <div className="mb-4">
-           <div className="flex flex-row items-center space-x-2">
-          <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">Entertainment</p>
+        <div className="flex flex-row items-center space-x-2">
+          <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">
+            Entertainment
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3">
           <div className="col-span-3 md:col-span-2">
@@ -370,8 +399,6 @@ export default async function Home() {
         </div>
       </div>
       <AsiaLatest />
-
-      {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Russia Section */}
       <div className="my-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">

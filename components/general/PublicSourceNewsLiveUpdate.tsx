@@ -49,10 +49,15 @@ export default async function LiveUpdateComponent() {
   const news = await getLatestFourNews();
 
   return (
-    <div className="py-3 rounded-md mx-auto max-w-[720px]">
-      <h1 className="uppercase font-bold text-xl py-2 max-w-[720px] mx-2 md:mx-0 text-[#A1241D]">
-      Breaking
-      </h1>
+    <div className="rounded-md mx-auto max-w-[720px] py-3 md:py-6">
+      <Link href="/breakingnews" className="uppercase font-bold text-xl py-5 max-w-[720px] mx-2 md:mx-0 text-[#A1241D]">
+        Breaking
+      </Link>
+      <div className="text-right mx-2 md:mx-0">
+        <Link href="/breakingnews" className="text-[6px] font-semibold">
+          MORE ➠
+        </Link>
+      </div>
 
       {/* ========== FEATURED FIRST NEWS ========== */}
       {news.length > 0 && (
@@ -78,7 +83,10 @@ export default async function LiveUpdateComponent() {
                     </span>
                   </div>
 
-                  <Link href="/breakingnews" className="font-bold text-lg text-[#A1241D] leading-tight mt-1">
+                  <Link
+                    href="/breakingnews"
+                    className="font-bold text-lg text-[#A1241D] leading-tight mt-1"
+                  >
                     {news[0].headings}
                   </Link>
                 </div>
@@ -97,7 +105,10 @@ export default async function LiveUpdateComponent() {
                   </span>
                 </div>
 
-                <Link href="/breakingnews" className="font-bold text-lg text-primary leading-tight mt-1">
+                <Link
+                  href="/breakingnews"
+                  className="font-bold text-lg text-primary leading-tight mt-1"
+                >
                   {news[0].headings}
                 </Link>
               </div>
@@ -116,7 +127,7 @@ export default async function LiveUpdateComponent() {
               {/* Dot */}
               <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
                 <div className="rounded-full bg-[#A1241D]  w-3 h-3 flex items-center justify-center mt-[3.5px]">
-                 {/*  <div className="bg-yellow-500 rounded-full animate-ping w-2 h-2"></div> */}
+                  {/*  <div className="bg-yellow-500 rounded-full animate-ping w-2 h-2"></div> */}
                 </div>
               </div>
 
@@ -137,14 +148,6 @@ export default async function LiveUpdateComponent() {
             </div>
           ))}
         </div>
-      </div>
-      <div className="text-right mt-4 pr-2">
-        <Link
-          href="/breakingnews"
-          className="text-xs font-semibold underline"
-        >
-          More ➠
-        </Link>
       </div>
     </div>
   );

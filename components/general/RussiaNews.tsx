@@ -17,7 +17,7 @@ async function getRussiaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation: "Russia" },
     orderBy: { createdAt: "desc" },
-    take: 6,
+    take: 5,
     select: {
       id: true,
       newsHeading: true,
@@ -32,57 +32,69 @@ async function getRussiaNews(): Promise<Article[]> {
 
 export default async function RussiaLatest() {
   const articles = await getRussiaNews();
+  if (!articles || articles.length === 0) return null;
+
+  const featured = articles[0];
+  const others = articles.slice(1);
 
   return (
     <section className="px-2">
-      <div className="flex justify-between text-xl w-[160px] my-8">
+      {/* Header */}
+      <div className="flex items-center gap-2 my-6">
         <Link
-          key="Russia"
           href="/diffrentCountry?country=Russia"
-          className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+          className="flex items-center gap-2 hover:opacity-80"
         >
           <img
             src="/flags/russia.jpeg"
             alt="Russia flag"
-            width={30}
-            height={40}
-            className="rounded-sm border"
+            className="w-7 h-5 object-cover border rounded-sm"
           />
-          <span className="text-md font-bold uppercase">Russia</span>
+          <span className="text-lg font-bold uppercase">Russia</span>
         </Link>
       </div>
 
-      <div className="flex flex-col gap-4">
-        {articles.map((article) => (
+      {/* Featured Article */}
+      <Link href={`/newsDetails/${featured.id}`} className="group block mb-5">
+        <div className="relative h-52 rounded-xl overflow-hidden">
+          <img
+            src={featured.newsPicture}
+            alt={featured.newsPictureHeading}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+
+          {/* Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+          {/* Title */}
+          <div className="absolute bottom-0 p-3">
+            <h2 className="text-white font-bold text-base leading-tight group-hover:underline line-clamp-3">
+              {featured.newsHeading}
+            </h2>
+          </div>
+        </div>
+      </Link>
+
+      {/* Other Articles */}
+      <div className="flex flex-col gap-3">
+        {others.map((article) => (
           <Link
             href={`/newsDetails/${article.id}`}
             key={article.id}
-            className="flex items-center gap-3 group border border-gray-950/10 rounded-l-xl"
+            className="flex gap-3 group border-b pb-3"
           >
             <img
               src={article.newsPicture}
               alt={article.newsPictureHeading}
-              className="w-24 h-20 object-cover rounded-xl"
+              className="w-20 h-16 object-cover rounded-md flex-shrink-0"
             />
-            <div>
-              <p className="font-semibold text-sm group-hover:underline line-clamp-4">
-                {article.newsHeading}
-              </p>
-
-              {/* {isJson(article.newsDetails) ? (
-                <div className="text-sm text-accent-foreground/80 mt-3 overflow-hidden line-clamp-1 md:line-clamp-2">
-                  <JsonToHtml json={JSON.parse(article.newsDetails)} />
-                </div>
-              ) : (
-                <p className="text-sm text-accent-foreground/80 mt-3 overflow-hidden  line-clamp-1 md:line-clamp-2">
-                  {article.newsDetails}
-                </p>
-              )} */}
-            </div>
+            <p className="font-semibold text-sm leading-snug line-clamp-2 group-hover:underline">
+              {article.newsHeading}
+            </p>
           </Link>
         ))}
       </div>
     </section>
   );
 }
+
