@@ -54,7 +54,7 @@ function toExcerpt(htmlOrText: string | null, max = 240) {
 type PageParams = Promise<{ articleId: string }>;
 type PageProps = { params: PageParams };
 
-export async function generateMetadata({
+/* export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { articleId } = await params;
@@ -81,7 +81,59 @@ export async function generateMetadata({
       images: [{ url: ogImage, alt: title }],
     },
   };
+} */
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { articleId } = await params;
+  const article = await getNewsArticle(articleId);
+
+  const title = article.newsHeading ?? "News";
+  const description = toExcerpt(article.newsDetails);
+
+  // 🔴 Must be full domain
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.globaleye.press";
+
+  // 🔴 Ensure full image URL
+  const pic = article.newsPicture || "/logo/gepw.png";
+  const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
+
+  const url = `${base}/newsDetails/${article.id}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+      siteName: "GlobalEye",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }
+
 
 // ------------------ MAIN PAGE ------------------
 

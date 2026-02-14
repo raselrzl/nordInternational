@@ -159,7 +159,7 @@ export default function PrintNews({
 
           <p className="m-2 text-sm font-bold text-justify">
             By: {newsReporterPublicName ? newsReporterPublicName : "GEP Editor"}
-          </p>
+          </p>  
 
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
