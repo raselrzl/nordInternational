@@ -4,7 +4,6 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,15 +12,28 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  // Prevent hydration mismatch
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="border-none text-sm shadow-none cursor-pointer hover:text-primary mr-2">
-          <span className=" uppercase font-bold">mode</span>
+        <button className=" p-1 h-6 w-6 flex items-center justify-center cursor-pointer hover:text-primary mr-2">
+          {theme === "dark" ? (
+            <Sun className="h-4 w-4" />
+          ) : (
+            <Moon className="h-4 w-4" />
+          )}
         </button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end" className="border-primary">
         <DropdownMenuItem onClick={() => setTheme("light")}>
           Light

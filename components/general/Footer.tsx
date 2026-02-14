@@ -10,8 +10,8 @@ export default function Footer() {
           <div
             className="
               w-[80px] h-[26px]
-              bg-[url('/logo/gepb.png')]
-              dark:bg-[url('/logo/gepw.png')]
+              bg-[url('/gepb.png')]
+              dark:bg-[url('/gepw.png')]
               bg-cover bg-center
             "
           />

@@ -89,7 +89,7 @@ async function getData(): Promise<{
           newsArticleStatus: true,
         },
         orderBy: { createdAt: "desc" },
-        take: 10,
+        take: 7,
       }),
       prisma.newsArticle.findMany({
         where: { newsLocation: "Usa" },
@@ -110,7 +110,7 @@ async function getData(): Promise<{
           newsArticleStatus: true,
         },
         orderBy: { createdAt: "desc" },
-        take: 8,
+        take: 5,
       }),
       prisma.newsArticle.findMany({
         where: { newsCategory: "INTERNATIONAL" },
@@ -131,7 +131,7 @@ async function getData(): Promise<{
           newsArticleStatus: true,
         },
         orderBy: { createdAt: "desc" },
-        take: 10,
+        take: 5,
       }),
     ]);
 
@@ -149,7 +149,7 @@ export default async function Home() {
     <>
       <div className="mb-2 grid grid-cols-3 items-center px-2">
         {/* Live Updates */}
-        <div className="col-span-3 md:col-span-2">
+        <div className="col-span-3 md:col-span-2 mt-4">
           <LiveUpdate />
         </div>
 
@@ -205,7 +205,7 @@ export default async function Home() {
                     />
                   </div>
                   <div className="col-span-2">
-                    <h3 className="text-sm font-semibold ml-2 line-clamp-3">
+                    <h3 className="text-sm md:text-md ml-2 line-clamp-4">
                       {item.newsHeading}
                     </h3>
                   </div>
@@ -224,10 +224,6 @@ export default async function Home() {
           <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
             <ProOneAdvertise />
           </Suspense>
-
-          <div className="mt-2 text-left flex-col hidden sm:block">
-            <SocialLinks />
-          </div>
         </div>
 
         {/* ---------------------- Middle Column ---------------------- */}
@@ -261,7 +257,7 @@ export default async function Home() {
                     Top News
                   </h1>
                 </div>
-                <div className="relative h-82 md:h-92 overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
+                <div className="relative overflow-y-auto scrollbar-thin scrollbar-thumb-amber-400 scrollbar-track-transparent px-4 py-3">
                   <div className="space-y-3">
                     {InternationalAll.slice(1).map((article: Article) => (
                       <Link
@@ -288,9 +284,9 @@ export default async function Home() {
             />
           )}
 
-          <div className="flex justify-center items-center pt-4 border-t-1">
+      {/*     <div className="flex justify-center items-center pt-4 border-t-1">
             <DeluxeTwoAdvertise />
-          </div>
+          </div> */}
         </div>
 
         {/* ---------------------- Right Column ---------------------- */}
@@ -335,11 +331,11 @@ export default async function Home() {
                         <img
                           src={article.newsPicture}
                           alt={article.newsHeading}
-                          className="w-full h-full md:h-[150px] object-fit"
+                          className="w-full h-full object-fit"
                         />
                       </div>
                       <div className="pt-4">
-                        <h2 className="text-[14px] font-semibold leading-[1.5] px-1 font-stretch-extra-condensed">
+                        <h2 className="text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed">
                           {article.newsHeading}
                         </h2>
                       </div>

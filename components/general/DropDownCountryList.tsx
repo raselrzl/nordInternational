@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { ChevronDown, Globe } from "lucide-react";
+import { ChevronDown, Globe, Globe2 } from "lucide-react";
 
 const euCountries = [
   {
@@ -203,8 +203,8 @@ export default function DropDownCountryList() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex text-sm font-bold cursor-pointer hover:text-primary uppercase items-center border-none shadow-none px-0">
-          world
+        <button className="flex text-sm font-bold cursor-pointer hover:text-primary uppercase items-center border shadow-none  p-1 h-6 w-6">
+          <Globe2 className="w-4 h-4"/>
         </button>
       </DropdownMenuTrigger>
 

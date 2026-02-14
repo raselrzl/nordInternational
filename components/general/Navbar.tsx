@@ -15,17 +15,21 @@ export default async function Navbar() {
 
   return (
     <nav className="flex items-center justify-between pr-2 max-w-7xl  border-l-4 border-black">
-      <Link href="/" className="flex items-center">
-        <div
-          className="m-1/2
-      w-[90px] h-[50px] 
-      md:w-[135px] md:h-[60px] 
-      bg-[url('/logo/gepb.png')] 
-      dark:bg-[url('/logo/gepw.png')] 
-      bg-cover bg-center
-    "
-        />
-      </Link>
+      <div className="flex justify-center items-center">
+        <DropDownMenuList />
+
+        <Link href="/" className="flex items-center">
+          <div
+            className="
+        w-[70px] h-[32px]'
+         md:w-[80px] h-[40px]
+        bg-[url('/gepb.png')]
+        dark:bg-[url('/gepw.png')]
+        bg-cover bg-center
+      "
+          />
+        </Link>
+      </div>
 
       <div className="hidden sm:block">
         <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
@@ -33,10 +37,9 @@ export default async function Navbar() {
         </Suspense>
       </div>
 
-      <div className="hidden md:flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-1">
         <ThemeToggle />
-        <DropDownCountryList />
-        <DropDownMenuList />
+{/*         <DropDownCountryList /> */}
 
         <div>
           {" "}
@@ -49,9 +52,9 @@ export default async function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-3 py-1 pt-1.5 uppercase bg-black text-white text-md rounded-2xl flex items-center justify-center"
+              className="px-3 py-0.5 pt-1 shdow text-black shadow shadow-black dark:text-white text-md rounded-xs flex items-center justify-center"
             >
-              Sign in
+              Sign In
             </Link>
           )}
         </div>
@@ -60,10 +63,8 @@ export default async function Navbar() {
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
         <ThemeToggle />
-        <DropDownCountryList />
-        <div className="mr-2">
-          <DropDownMenuList />
-        </div>
+       {/*  <DropDownCountryList /> */}
+
         {user?.user ? (
           <UserDropdown
             email={user.user.email as string}
@@ -71,12 +72,12 @@ export default async function Navbar() {
             image={user.user.image as string}
           />
         ) : (
-         <Link
-              href="/login"
-              className="px-2 py-1 pt-1.5 uppercase bg-black text-white text-xs rounded-2xl flex items-center justify-center"
-            >
-              Sign in
-            </Link>
+          <Link
+            href="/login"
+            className="px-2 py-0.5 pt-0.5 shadow shadow-black y-50 dark:text-white text-black text-xs rounded-xs flex items-center justify-center mr-4"
+          >
+            Sign In
+          </Link>
         )}
       </div>
     </nav>

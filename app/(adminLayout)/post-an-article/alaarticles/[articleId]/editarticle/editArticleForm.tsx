@@ -41,7 +41,9 @@ interface iAppProps {
     newsCategory: string;
     newsDetails: string;
     newsHeading: string;
+    newsSubHeading: string;
     newsPicture: string;
+    newsReporterPublicName: string;
     quotes: {
       speakerInfo: string;
       text: string;
@@ -64,6 +66,8 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
   const form = useForm({
     defaultValues: {
       newsHeading: article.newsHeading,
+      newsSubHeading: article.newsSubHeading,
+      newsReporterPublicName: article.newsReporterPublicName,
       newsResource: article.newsResource,
       newsLocation: article.newsLocation ?? "",
       newsCategory: article.newsCategory as newsCategory,
@@ -120,10 +124,45 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
             <CardContent className="space-y-6">
               <FormField
                 control={form.control}
+                name="newsReporterPublicName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Reporter Public Name</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="........"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="newsHeading"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>News headings</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="........"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="newsSubHeading"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Subheadings</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="........"

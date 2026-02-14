@@ -63,7 +63,8 @@ export function CreateNewsArticleForm({
     resolver: zodResolver(newsArticleSchema),
     defaultValues: {
       newsHeading: "",
-      newsSubHeading:"",
+      newsSubHeading: "",
+      newsReporterPublicName: "",
       newsResource: "online",
       newsLocation: "",
       newsCategory: "LATEST",
@@ -110,6 +111,23 @@ export function CreateNewsArticleForm({
             <CardContent className="space-y-6">
               <FormField
                 control={form.control}
+                name="newsReporterPublicName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Reporter Public Name</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="GEP Editor/Any name"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="newsHeading"
                 render={({ field }) => (
                   <FormItem>
@@ -143,6 +161,7 @@ export function CreateNewsArticleForm({
                   </FormItem>
                 )}
               />
+
               <>
                 <div className="flex items-center gap-2 mb-4">
                   <Switch
@@ -645,12 +664,12 @@ export function CreateNewsArticleForm({
                               onClientUploadComplete={(res) => {
                                 field.onChange(res[0].url);
                                 console.log(
-                                  "profilePicture uploaded successfully!"
+                                  "profilePicture uploaded successfully!",
                                 );
                               }}
                               onUploadError={() => {
                                 console.log(
-                                  "Something went wrong. Please try again."
+                                  "Something went wrong. Please try again.",
                                 );
                               }}
                               className="ut-button:bg-primary ut-button:text-white ut-button:hover:bg-primary/90 ut-label:text-muted-foreground ut-allowed-content:text-muted-foreground border-none"

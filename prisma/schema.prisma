@@ -84,6 +84,7 @@ model newsArticle {
   id                 String       @id @default(uuid())
   newsHeading        String
   newsSubHeading     String?
+  newsReporterPublicName String?
   newsResource       String
   newsLocation       NewsCountry?
   newsCategory       newsCategory

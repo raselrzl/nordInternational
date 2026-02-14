@@ -31,7 +31,7 @@ export default function AboutLayout({
       {/* ===== Mobile Navbar ===== */}
       <div className="md:hidden fixed top-0 left-0 w-full border-b border-gray-700 bg-[#202020] z-50 px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo/gepw.png" alt="Logo" className="h-10" />
+          <img src="/gepw.png" alt="Logo" className="h-10" />
         </Link>
 
         <button
@@ -69,7 +69,7 @@ export default function AboutLayout({
           {/* Sidebar */}
           <aside className="w-64 border-r border-gray-700 p-4 flex-shrink-0 flex flex-col bg-[#202020]">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <img src="/logo/gepw.png" alt="Logo" className="h-16 w-auto" />
+              <img src="/gepw.png" alt="Logo" className="h-16 w-auto" />
             </Link>
 
             <nav className="space-y-2">

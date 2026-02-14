@@ -25,6 +25,7 @@ interface PrintNewsProps {
   newsResource: string | null;
   newsHeading: string | null;
   newsSubHeading: string | null;
+  newsReporterPublicName: string | null;
   id: string | null;
   createdAt: Date;
   quotes?: quote[];
@@ -38,6 +39,7 @@ export default function PrintNews({
   newsDetails,
   newsResource,
   newsSubHeading,
+  newsReporterPublicName,
   newsHeading,
   createdAt,
   quotes = [],
@@ -56,16 +58,16 @@ export default function PrintNews({
   const handleShareWhatsApp = () => {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(articleUrl)}`,
-      "_blank"
+      "_blank",
     );
   };
 
   const handleShareFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        articleUrl
+        articleUrl,
       )}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -99,50 +101,47 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none "
+          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
           variant="outline"
         >
           <img
             src="/whatsapp.svg"
             alt="WhatsApp"
-            className="object-cover w-full h-full pb-1"
+            className="object-cover w-4 h-4"
           />
         </Button>
 
         <Button
           onClick={handleShareFacebook}
-          className="w-7 h-7 p-0 cursor-pointer border-none shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
           variant="outline"
         >
-          <img
-            src="/fb.webp"
-            alt="Facebook"
-            className="object-cover w-full h-full"
-          />
+          <img src="/fb.webp" alt="Facebook" className="object-cover w-4 h-4" />
         </Button>
 
         <Button
           onClick={handleShareMessenger}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
           variant="outline"
         >
           <img
             src="/messanger.svg"
             alt="Messenger"
-            className="object-cover w-full h-full mb-1"
+            className="object-cover w-4 h-4"
           />
         </Button>
 
         <Button
           onClick={handleCopyLink}
-          className="w-7 h-7 p-0 cursor-pointer border-none shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
           variant="outline"
         >
-          <img
+          {/*           <img
             src="/copylink.png"
             alt="copyimage"
-            className="object-cover w-full h-full"
-          />
+            className="object-cover w-4 h-4"
+          /> */}
+          <LinkIcon />
         </Button>
       </div>
 
@@ -157,6 +156,13 @@ export default function PrintNews({
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
             {newsHeading}
           </h1>
+
+          {newsReporterPublicName && (
+            <p className="m-2 text-sm font-bold text-justify">
+              By: {newsReporterPublicName} GEP Editor
+            </p>
+          )}
+
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image Section */}
@@ -215,8 +221,6 @@ export default function PrintNews({
           {/* NEWS DETAILS */}
           <div className="whitespace-pre-line text-md md:text-lg dark:bg-black mt-10">
             <div className="flex font-bold flex-row pl-2 items-center">
-              <User2 className="size-5 md:size-8 mr-1 font-bold border-1 rounded-full p-1" />
-              <p> Eitor: GEP</p>
               <NewUserTracker />
             </div>
 
