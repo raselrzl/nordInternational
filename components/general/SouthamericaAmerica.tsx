@@ -16,7 +16,7 @@ async function getSouthamericaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation: "Southamerica" },
     orderBy: { createdAt: "desc" },
-    take: 5,
+    take: 2,
     select: {
       id: true,
       newsHeading: true,

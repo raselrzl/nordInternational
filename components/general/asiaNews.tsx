@@ -19,7 +19,7 @@ async function getLatestAsiaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation: "Asia" },
     orderBy: { createdAt: "desc" },
-    take: 11,
+    take: 3,
     select: {
       id: true,
       newsHeading: true,
@@ -42,7 +42,7 @@ export default async function AsiaLatest() {
 
   const leftArticles = others.slice(0, 6);
   return (
-    <section className="px-2 md:px-0 my-10">
+    <section className="px-2 md:px-0 my-20">
       <div className="flex justify-between text-xl w-[160px] md:my-16 my-8">
         <Link
           key="Asia"
@@ -72,22 +72,11 @@ export default async function AsiaLatest() {
           </Link>
           <div className="p-2">
             <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-xl md:text-xl font-bold hover:underline">
+              <h3 className="text-xl md:text-xl font-bold hover:underline mb-16">
                 {featured.newsHeading}
               </h3>
             </Link>
             <BesicOneAdvertise />
-
-            {/* ✅ JSON parse condition (from your example) */}
-           {/*  {isJson(featured.newsDetails) ? (
-              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-10">
-                <JsonToHtml json={JSON.parse(featured.newsDetails)} />
-              </div>
-            ) : (
-              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-10">
-                {featured.newsDetails}
-              </p>
-            )} */}
           </div>
         </div>
         {/* ✅ Left side - 5 small cards */}
@@ -96,14 +85,14 @@ export default async function AsiaLatest() {
             <Link
               href={`/newsDetails/${article.id}`}
               key={article.id}
-              className="flex items-center gap-3 group shadow-lg"
+              className="flex flex-col items-center gap-3 group shadow-lg"
             >
               <img
                 src={article.newsPicture}
                 alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-xl"
+                className="w-80 h-60 object-cover rounded-xl"
               />
-              <p className="font-semibold text-sm group-hover:underline line-clamp-3">
+              <p className="font-semibold text-sm group-hover:underline line-clamp-3 px-10 py-4 text-center">
                 {article.newsHeading}
               </p>
             </Link>

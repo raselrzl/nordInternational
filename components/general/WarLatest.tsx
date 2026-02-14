@@ -17,7 +17,7 @@ async function getLatestWarNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsCategory: "WAR" },
     orderBy: { createdAt: "desc" },
-    take: 9,
+    take: 7,
     select: {
       id: true,
       newsHeading: true,
@@ -38,8 +38,8 @@ export default async function WarLatest() {
   const featured = articles[0];
   const others = articles.slice(1);
 
-  const leftArticles = others.slice(0, 4);
-  const rightArticles = others.slice(4, 8);
+  const leftArticles = others.slice(0, 3);
+  const rightArticles = others.slice(3, 6);
 
   return (
     <section className="px-2 md:px-0 my-10">
@@ -92,21 +92,6 @@ export default async function WarLatest() {
               className="w-full h-80 object-cover"
             />
           </Link>
-          <div className="p-2">
-           
-            <BesicTwoAdvertise />
-
-            {/* ✅ JSON parse condition (from your example) */}
-            {/*      {isJson(featured.newsDetails) ? (
-              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                <JsonToHtml json={JSON.parse(featured.newsDetails)} />
-              </div>
-            ) : (
-              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                {featured.newsDetails}
-              </p>
-            )} */}
-          </div>
         </div>
 
         {/* ✅ Right side - 5 small cards */}
@@ -129,6 +114,7 @@ export default async function WarLatest() {
           ))}
         </div>
       </div>
+       
     </section>
   );
 }

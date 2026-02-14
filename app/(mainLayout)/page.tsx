@@ -37,6 +37,8 @@ import AfrikaLatest from "@/components/general/Afrika";
 import AustraliaLatest from "@/components/general/Australia";
 import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
 import Videos from "@/components/general/Videos";
+import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
+import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -154,7 +156,7 @@ export default async function Home() {
         </div>
 
         {/* Desktop-only Advertisement Banner */}
-      {/*   <div className=" md:flex items-center col-span-3 md:col-span-1 justify-center gap-2 rounded-md border border-yellow-400 bg-gradient-to-r from-yellow-50 via-white to-yellow-50 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 p-2 shadow-sm">
+        {/*   <div className=" md:flex items-center col-span-3 md:col-span-1 justify-center gap-2 rounded-md border border-yellow-400 bg-gradient-to-r from-yellow-50 via-white to-yellow-50 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 p-2 shadow-sm">
           <p className="text-xs md:text-sm text-gray-800 dark:text-gray-200 text-center leading-snug">
             <strong className="text-yellow-700 dark:text-yellow-400">
               NOTICE:
@@ -284,7 +286,7 @@ export default async function Home() {
             />
           )}
 
-      {/*     <div className="flex justify-center items-center pt-4 border-t-1">
+          {/*     <div className="flex justify-center items-center pt-4 border-t-1">
             <DeluxeTwoAdvertise />
           </div> */}
         </div>
@@ -358,8 +360,9 @@ export default async function Home() {
       {/* <div className="border-b-1 my-1 shadow border-gray-950/10"></div> */}
       <WarLatest />
       {/*  <div className="border-y-2 my-2 border-primary"></div> */}
-
+      <BesicTwoAdvertise />
       <ChainaLatest />
+      <BesicOneAdvertise />
       {/* <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Binodon Section */}
       <div className="mb-4">
@@ -374,6 +377,7 @@ export default async function Home() {
         </div>
       </div>
       <AsiaLatest />
+      
       {/*  <div className="border-y-2 my-2 border-primary"></div> */}
       {/* Russia Section */}
       <div className="my-8">
@@ -403,7 +407,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
         <IndiaLatest />
         <AfrikaLatest />
         <AustraliaLatest />

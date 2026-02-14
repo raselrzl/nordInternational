@@ -16,7 +16,7 @@ async function getAustraliaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
     where: { newsArticleStatus: "ACTIVE", newsLocation: "Australia" },
     orderBy: { createdAt: "desc" },
-    take: 5,
+    take: 2,
     select: {
       id: true,
       newsHeading: true,

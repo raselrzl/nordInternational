@@ -1,8 +1,5 @@
 import { prisma } from "@/app/utils/db";
 import Link from "next/link";
-import { isJson } from "@/app/utils/isJson";
-import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
-import { BesicOneAdvertise } from "../allAdvertisement/BesicOne";
 
 type Article = {
   id: string;
@@ -15,9 +12,12 @@ type Article = {
 
 async function getLatestChainaNews(): Promise<Article[]> {
   const articles = await prisma.newsArticle.findMany({
-    where: { newsArticleStatus: "ACTIVE", newsLocation: "Chaina" },
+    where: {
+      newsArticleStatus: "ACTIVE",
+      newsLocation: "Chaina", // change to "China" if DB uses correct spelling
+    },
     orderBy: { createdAt: "desc" },
-    take: 13,
+    take: 3, // ✅ only 3 latest
     select: {
       id: true,
       newsHeading: true,
@@ -27,6 +27,7 @@ async function getLatestChainaNews(): Promise<Article[]> {
       createdAt: true,
     },
   });
+
   return articles;
 }
 
@@ -35,17 +36,11 @@ export default async function ChainaLatest() {
 
   if (articles.length === 0) return null;
 
-  const featured = articles[0];
-  const others = articles.slice(1);
-
-  const leftArticles = others.slice(0, 3);
-  const rightArticles = others.slice(3, 6);
-
   return (
-    <section className="px-2 md:px-0 my-10 md:my-24 ">
+    <section className="px-2 md:px-0 my-10 md:my-24">
+      {/* Header */}
       <div className="flex justify-between text-xl w-[160px] my-10 md:my-16">
         <Link
-          key="Chaina"
           href="/diffrentCountry?country=Chaina"
           className="flex items-center justify-center gap-2 p-1 transition-all 
                      hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
@@ -61,75 +56,30 @@ export default async function ChainaLatest() {
         </Link>
       </div>
 
+      {/* 3 Latest News — Same Size */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="overflow-hidden">
-          <Link href={`/newsDetails/${featured.id}`}>
-            <img
-              src={featured.newsPicture}
-              alt={featured.newsPictureHeading}
-              className="w-full h-64 md:h-80 object-cover"
-            />
-          </Link>
-          <div className="p-2 border">
-            <Link href={`/newsDetails/${featured.id}`}>
-              <h3 className="text-xl md:text-xl font-bold hover:underline">
-                {featured.newsHeading}
-              </h3>
+        {articles.map((article) => (
+          <div
+            key={article.id}
+            className="overflow-hidden border rounded-md hover:shadow-md transition"
+          >
+            <Link href={`/newsDetails/${article.id}`}>
+              <img
+                src={article.newsPicture}
+                alt={article.newsPictureHeading}
+                className="w-full h-56 md:h-64 object-cover"
+              />
             </Link>
 
-            <BesicOneAdvertise />
-
-            {/* ✅ JSON parse condition (from your example) */}
-            {/*      {isJson(featured.newsDetails) ? (
-              <div className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                <JsonToHtml json={JSON.parse(featured.newsDetails)} />
-              </div>
-            ) : (
-              <p className="text-sm md:text-md text-accent-foreground/80 mt-2 line-clamp-1 md:line-clamp-6">
-                {featured.newsDetails}
-              </p>
-            )} */}
+            <div className="p-2">
+              <Link href={`/newsDetails/${article.id}`}>
+                <h3 className="text-lg font-bold hover:underline line-clamp-2">
+                  {article.newsHeading}
+                </h3>
+              </Link>
+            </div>
           </div>
-        </div>
-        {/* ✅ Left side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {leftArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex items-center gap-3 group border-t border-gray-950/10"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-24 h-20  object-cover rounded-xl"
-              />
-              <p className="font-semibold text-sm group-hover:underline line-clamp-3">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
-        </div>
-
-        {/* ✅ Right side - 5 small cards */}
-        <div className="flex flex-col gap-4">
-          {rightArticles.map((article) => (
-            <Link
-              href={`/newsDetails/${article.id}`}
-              key={article.id}
-              className="flex items-center gap-3 group border-t border-gray-950/10"
-            >
-              <img
-                src={article.newsPicture}
-                alt={article.newsPictureHeading}
-                className="w-24 h-20 object-cover rounded-md"
-              />
-              <p className="font-semibold text-md group-hover:underline line-clamp-2">
-                {article.newsHeading}
-              </p>
-            </Link>
-          ))}
-        </div>
+        ))}
       </div>
     </section>
   );
