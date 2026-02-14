@@ -157,11 +157,9 @@ export default function PrintNews({
             {newsHeading}
           </h1>
 
-          {newsReporterPublicName && (
-            <p className="m-2 text-sm font-bold text-justify">
-              By: {newsReporterPublicName} GEP Editor
-            </p>
-          )}
+          <p className="m-2 text-sm font-bold text-justify">
+            By: {newsReporterPublicName ? newsReporterPublicName : "GEP Editor"}
+          </p>
 
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
