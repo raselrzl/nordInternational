@@ -33,7 +33,7 @@ export default function DropDownMenuList() {
     const checkScroll = () => {
       setShowArrow(
         el.scrollHeight > el.clientHeight &&
-          el.scrollTop + el.clientHeight < el.scrollHeight
+          el.scrollTop + el.clientHeight < el.scrollHeight,
       );
     };
 
@@ -51,8 +51,10 @@ export default function DropDownMenuList() {
   return (
     <>
       {/* Menu Icon */}
-      <MenuIcon
-        className="h-6 w-6 mb-0.5 mx-2 mt-1 cursor-pointer text-gray-800 dark:text-gray-100"
+      <img
+        src="/icon.png"
+        alt="Menu"
+        className="h-6 w-6 mb-0.5 mx-2 mt-1 cursor-pointer object-cover"
         onClick={() => setOpen(true)}
       />
 
