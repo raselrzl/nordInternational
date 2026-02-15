@@ -50,13 +50,15 @@ export default function DropDownMenuList() {
 
   return (
     <>
-      {/* Menu Icon */}
-      <img
-        src="/icon.png"
-        alt="Menu"
-        className="h-6 w-6 mb-0.5 mx-2 mt-1 cursor-pointer object-cover"
+      <button
         onClick={() => setOpen(true)}
-      />
+        aria-label="Open menu"
+        className="mx-2 mt-1 w-7 h-7 flex flex-col justify-center gap-[5px] group"
+      >
+        <span className="h-[2px] w-6 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-7"></span>
+        <span className="h-[2px] w-4 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-6"></span>
+        <span className="h-[2px] w-5 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-7"></span>
+      </button>
 
       {/* Fullscreen Menu */}
       <div
