@@ -27,9 +27,10 @@ export function ThemeToggle() {
       <DropdownMenuTrigger asChild>
         <button className=" p-1 h-6 w-6 flex items-center justify-center cursor-pointer hover:text-primary mr-2">
           {theme === "dark" ? (
-            <Sun className="h-4 w-4" />
-          ) : (
             <Moon className="h-4 w-4" />
+          ) : (
+            
+            <Sun className="h-4 w-4" />
           )}
         </button>
       </DropdownMenuTrigger>
