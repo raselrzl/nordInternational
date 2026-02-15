@@ -86,7 +86,7 @@ export default function DropDownMenuList() {
           {/* Special Link */}
           <Link
             href="/war"
-            className="block rounded-lg cursor-pointer border-l-8 border-orange-600 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-black dark:text-gray-100"
+            className="block rounded-lg cursor-pointer border-l-8 border-primary p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-black dark:text-gray-100"
             onClick={() => setOpen(false)}
           >
             War & Crisis
@@ -197,7 +197,7 @@ function SocialIcon({
 }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer">
-      <img src={img} alt={alt} className="w-7 h-7 rounded-full border" />
+      <img src={img} alt={alt} className="w-7 h-7 rounded-xs" />
     </a>
   );
 }
