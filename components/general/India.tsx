@@ -89,8 +89,8 @@ export default async function IndiaLatest() {
                 className="w-20 h-16 object-cover rounded-md flex-shrink-0"
               />
 
-              <p className="text-sm font-semibold leading-snug group-hover:underline line-clamp-3">
-                {article.newsHeading}
+              <p className="line-clamp-3 text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed">
+                          {article.newsHeading}
               </p>
             </Link>
           ))}
