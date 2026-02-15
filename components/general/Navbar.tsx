@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { DeluxeOneAdvertise } from "../allAdvertisement/DeluxeOne";
 import DropDownCountryList from "./DropDownCountryList";
 import DropDownMenuList from "./dropDownMenuList";
+import SearchComponent from "@/app/(mainLayout)/search/SearchComponent";
 
 export default async function Navbar() {
   const user = await auth();
@@ -38,6 +39,7 @@ export default async function Navbar() {
       </div>
 
       <div className="hidden md:flex items-center gap-1">
+        <SearchComponent />
         <ThemeToggle />
         {/*         <DropDownCountryList /> */}
 
@@ -62,6 +64,7 @@ export default async function Navbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
+
         <ThemeToggle />
         {/*  <DropDownCountryList /> */}
 

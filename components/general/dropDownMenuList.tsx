@@ -96,7 +96,7 @@ export default function DropDownMenuList() {
             <div className="flex items-center border border-primary rounded-md overflow-hidden">
               <input
                 type="text"
-                placeholder="Search news..."
+                placeholder="Search on GEP..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}

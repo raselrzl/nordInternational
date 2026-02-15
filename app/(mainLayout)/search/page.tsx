@@ -8,13 +8,13 @@ type Props = {
 };
 
 export default async function SearchPage({ searchParams }: Props) {
-  const params = await searchParams;   // ✅ important
+  const params = await searchParams;
   const query = params.q || "";
 
   const results = await searchNewsLimited(query);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
+    <div className="max-w-7xl mx-auto px-2 py-6">
       <h1 className="text-2xl font-bold mb-6">
         Search results for: "{query}"
       </h1>
@@ -27,7 +27,7 @@ export default async function SearchPage({ searchParams }: Props) {
         <p className="text-gray-500">No news found.</p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {results.map((article) => (
           <Link
             key={article.id}
