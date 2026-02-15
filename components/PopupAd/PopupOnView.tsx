@@ -39,7 +39,7 @@ export default function PopupOnView({
     <div ref={ref} className="relative">
       {showPopup && (
         <div className="fixed top-28 left-1/2 -translate-x-1/2 z-50 rounded-md px-4 py-2 max-w-[600px]">
-          <div className="relative w-[350px] md:w-[600px] h-[100px] rounded-xs overflow-hidden">
+          <div className="relative w-[350px] md:w-[600px] min-h-[100px] rounded-xs overflow-hidden">
             {href ? (
               <Link
                 href={href}
