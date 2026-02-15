@@ -112,14 +112,14 @@ export default function DropDownMenuList() {
           </div>
 
           {/* Header */}
-          <h3 className="text-sm pl-2 py-0.5 md:text-lg font-semibold uppercase tracking-wide bg-black text-white my-3 border-b">
-            Highlights Of
+          <h3 className="text-xl pl-2 py-0.5  font-semibold uppercase tracking-wide my-3 border-l-8 border-primary">
+            Spotlight
           </h3>
 
           {/* Special Link */}
           <Link
             href="/war"
-            className="block rounded-lg cursor-pointer border-l-8 border-primary p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-black dark:text-gray-100"
+            className="block rounded-lg cursor-pointer p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-semibold text-black dark:text-gray-100"
             onClick={() => setOpen(false)}
           >
             War & Crisis
