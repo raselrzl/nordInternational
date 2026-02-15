@@ -62,8 +62,8 @@ export default function DropDownMenuList() {
               className="
         w-[70px] h-[32px]'
          md:w-[80px] h-[40px]
-        bg-[url('/gepb.png')]
-        dark:bg-[url('/gepw.png')]
+        bg-[url('/lb.png')]
+        dark:bg-[url('/lw.png')]
         bg-cover bg-center
       "
             />

@@ -254,8 +254,8 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* ---------------------- Middle Column ---------------------- */}
-        <div className="order-2 md:order-2 md:col-span-1">
+        {/* ---------------------- right Column ---------------------- */}
+        <div className="order-2 md:order-3 md:col-span-1">
           <Suspense fallback={<Loader2 />}>
             <PremiumOneAdvertise />
           </Suspense>
@@ -279,34 +279,32 @@ export default async function Home() {
               </Link>
 
               <div className="bg-white dark:bg-gray-900 mt-6 border border-gray-200 dark:border-gray-700 shadow-sm mx-2 md:mx-0 rounded-md">
-  
-  {/* Header */}
-  <div className="flex items-center justify-center py-3 gap-2 border-b border-gray-200 dark:border-gray-700">
-    <Flame className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-    <h1 className="font-bold text-lg md:text-xl uppercase tracking-wide text-gray-900 dark:text-gray-100">
-      Top News
-    </h1>
-  </div>
+                {/* Header */}
+                <div className="flex items-center justify-center py-3 gap-2 border-b border-gray-200 dark:border-gray-700">
+                  <Flame className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  <h1 className="font-bold text-lg md:text-xl uppercase tracking-wide text-gray-900 dark:text-gray-100">
+                    Top News
+                  </h1>
+                </div>
 
-  {/* List */}
-  <div className="relative overflow-y-auto px-4 py-3 max-h-[420px]">
-    <div className="space-y-3">
-      {InternationalAll.map((article: Article) => (
-        <Link
-          key={article.id}
-          href={`/newsDetails/${article.id}`}
-        >
-          <div className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all shadow-sm hover:shadow-md p-3 rounded-sm">
-            <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 ">
-              {article.newsHeading}
-            </h2>
-          </div>
-        </Link>
-      ))}
-    </div>
-  </div>
-</div>
-
+                {/* List */}
+                <div className="relative overflow-y-auto px-4 py-3 max-h-[420px]">
+                  <div className="space-y-3">
+                    {InternationalAll.map((article: Article) => (
+                      <Link
+                        key={article.id}
+                        href={`/newsDetails/${article.id}`}
+                      >
+                        <div className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all shadow-sm hover:shadow-md p-3 rounded-sm">
+                          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 ">
+                            {article.newsHeading}
+                          </h2>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </>
           ) : (
             <EmptyState
@@ -322,14 +320,14 @@ export default async function Home() {
           </div> */}
         </div>
 
-        {/* ---------------------- Right Column ---------------------- */}
-        <div className="order-1 md:order-3 md:col-span-3">
+        {/* ---------------------- middle Column ---------------------- */}
+        <div className="order-1 md:order-2 md:col-span-3">
           {lastFeaturedArticle.length > 0 ? (
             <>
               <Link href={`/newsDetails/${lastFeaturedArticle[0].id}`}>
                 <div className="mb-6 rounded-lg grid grid-cols-1 gap-3">
                   {/* Heading first */}
-                  <h2 className="text-xl md:text-3xl font-extrabold text-center md:line-clamp-3 px-3 md:px-8">
+                  <h2 className="text-xl md:text-4xl font-[900] md:line-clamp-3 px-3 md:px-8">
                     {lastFeaturedArticle[0].newsHeading}
                   </h2>
 
@@ -345,7 +343,7 @@ export default async function Home() {
               </Link>
 
               {/* Other Featured Articles */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2 md:border-1 mt-20 md:mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 p-2 mt-20 md:mt-4">
                 {lastFeaturedArticle.slice(1).map((article: Article) => (
                   <Link key={article.id} href={`/newsDetails/${article.id}`}>
                     <div className="max-w-md w-full mx-auto my-1 sm:max-w-xs md:max-w-md lg:max-w-lg">

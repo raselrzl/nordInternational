@@ -8,7 +8,7 @@ export default function AboutFooter() {
         {/* Logo */}
         <div className="flex mb-2">
           <img
-            src="/gepw.png"
+            src="/lw.png"
             alt="Souveral Network"
             className="h-8 w-auto"
           />

@@ -54,7 +54,7 @@ export default async function AsiaLatest() {
             src="/flags/asia.jpg"
             alt="ASIA flag"
             width={30}
-            height={40} 
+            height={40}
             className="rounded-sm border"
           />
           <span className="text-md font-bold uppercase">ASIA</span>
@@ -79,33 +79,32 @@ export default async function AsiaLatest() {
             <BesicOneAdvertise />
           </div>
         </div>
-      <div className="flex flex-col gap-4">
-  {leftArticles.map((article) => (
-    <Link
-      href={`/newsDetails/${article.id}`}
-      key={article.id}
-      className="relative group rounded-xl overflow-hidden w-full"
-    >
-      {/* Image */}
-      <img
-        src={article.newsPicture}
-        alt={article.newsPictureHeading}
-        className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-      />
+        <div className="flex flex-col gap-4">
+          {leftArticles.map((article) => (
+            <Link
+              href={`/newsDetails/${article.id}`}
+              key={article.id}
+              className="relative group rounded-xl overflow-hidden w-full"
+            >
+              {/* Image */}
+              <img
+                src={article.newsPicture}
+                alt={article.newsPictureHeading}
+                className="w-full h-56 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
 
-      {/* Top Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
+              {/* Top Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
 
-      {/* Heading */}
-      <div className="absolute top-0 left-0 p-3">
-        <p className="text-white font-semibold text-sm md:text-base leading-tight line-clamp-3">
-          {article.newsHeading}
-        </p>
-      </div>
-    </Link>
-  ))}
-</div>
-
+              {/* Heading */}
+              <div className="absolute top-0 left-0 p-3">
+                <p className="text-white font-semibold text-sm md:text-base leading-tight line-clamp-3">
+                  {article.newsHeading}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
 
         {/* ✅ Right side - 5 small cards */}
         <div className="flex flex-col gap-4">

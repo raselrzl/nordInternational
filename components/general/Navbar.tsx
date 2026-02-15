@@ -23,8 +23,8 @@ export default async function Navbar() {
             className="
         w-[70px] h-[32px]'
          md:w-[80px] h-[40px]
-        bg-[url('/gepb.png')]
-        dark:bg-[url('/gepw.png')]
+        bg-[url('/lb.png')]
+        dark:bg-[url('/lw.png')]
         bg-cover bg-center
       "
           />
@@ -39,7 +39,7 @@ export default async function Navbar() {
 
       <div className="hidden md:flex items-center gap-1">
         <ThemeToggle />
-{/*         <DropDownCountryList /> */}
+        {/*         <DropDownCountryList /> */}
 
         <div>
           {" "}
@@ -63,7 +63,7 @@ export default async function Navbar() {
       {/* Mobile Navigation */}
       <div className="md:hidden flex items-center gap-1">
         <ThemeToggle />
-       {/*  <DropDownCountryList /> */}
+        {/*  <DropDownCountryList /> */}
 
         {user?.user ? (
           <UserDropdown
