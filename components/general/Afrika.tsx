@@ -31,56 +31,72 @@ async function getAfricaNews(): Promise<Article[]> {
 
 export default async function AfrikaLatest() {
   const articles = await getAfricaNews();
+  if (!articles || articles.length === 0) return null;
+
+  const featured = articles[0];
+  const others = articles.slice(1, 6);
 
   return (
     <section className="px-2">
+      {/* Header */}
       <div className="flex justify-between text-xl w-[160px] my-10">
         <Link
           href="/diffrentCountry?country=Afrika"
-          className="flex items-center justify-center gap-2 p-1 transition-all 
-                     hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
+          className="flex items-center gap-2 p-1 transition-all 
+                     hover:opacity-80 active:opacity-60 active:scale-95"
         >
           <img
             src="/flags/afrika.png"
-            alt="afrika flag"
+            alt="Africa flag"
             width={30}
             height={40}
             className="rounded-sm border"
           />
-          <span className="text-md font-bold uppercase">africa</span>
+          <span className="text-md font-bold uppercase">Africa</span>
         </Link>
       </div>
 
-      <div className="flex flex-col gap-4 border p-2">
-        {articles.map((article) => (
-          <Link
-            href={`/newsDetails/${article.id}`}
-            key={article.id}
-            className="flex items-center gap-3 group border-gray-950/10 pb-3"
-          >
+      <div className="border rounded-lg overflow-hidden">
+        {/* -------- Featured Article -------- */}
+        <Link
+          href={`/newsDetails/${featured.id}`}
+          className="block group"
+        >
+          <div className="overflow-hidden">
             <img
-              src={article.newsPicture}
-              alt={article.newsPictureHeading}
-              className="w-24 h-20 object-cover rounded-xl"
+              src={featured.newsPicture}
+              alt={featured.newsPictureHeading}
+              className="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div>
-              <p className="font-semibold text-sm group-hover:underline line-clamp-4">
+          </div>
+
+          <h3 className="font-black text-base md:text-lg leading-tight p-3 group-hover:underline line-clamp-3">
+            {featured.newsHeading}
+          </h3>
+        </Link>
+
+        {/* -------- Other Articles -------- */}
+        <div className="flex flex-col divide-y">
+          {others.map((article) => (
+            <Link
+              href={`/newsDetails/${article.id}`}
+              key={article.id}
+              className="flex gap-3 p-3 group items-center"
+            >
+              <img
+                src={article.newsPicture}
+                alt={article.newsPictureHeading}
+                className="w-20 h-16 object-cover rounded-md flex-shrink-0"
+              />
+
+              <p className="text-sm font-semibold leading-snug group-hover:underline line-clamp-3">
                 {article.newsHeading}
               </p>
-
-             {/*  {isJson(article.newsDetails) ? (
-                <div className="text-sm text-accent-foreground/80 mt-3 overflow-hidden line-clamp-1 md:line-clamp-2">
-                  <JsonToHtml json={JSON.parse(article.newsDetails)} />
-                </div>
-              ) : (
-                <p className="text-sm text-accent-foreground/80 mt-3 overflow-hidden  line-clamp-1 md:line-clamp-2">
-                  {article.newsDetails}
-                </p>
-              )} */}
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+
