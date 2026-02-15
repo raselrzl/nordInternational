@@ -27,7 +27,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
       <NewUserTracker />
-      <div className="mt-22 md:mt-29">{/*  <NavMenu /> */}</div>
+      <div className="mt-22 md:mt-29 mb-40">{/*  <NavMenu /> */}</div>
 
       {children}
       <Poll />

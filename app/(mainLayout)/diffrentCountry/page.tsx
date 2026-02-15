@@ -175,7 +175,7 @@ export default async function CountryNews({
   return (
     <>
       <div className="grid grid-cols-5 mt-4 md:mt-8">
-        <div className="col-span-5 md:col-span-1 pr-1">
+        <div className="col-span-5 md:col-span-1 pr-1 mt-8">
           <div className="hidden md:block sticky top-40 max-h-[400px] overflow-y-auto pb-4 border-2 px-2">
             <div className="pb-2 mb-6 pt-4">
               <div className="flex flex-wrap gap-2">
@@ -199,10 +199,10 @@ export default async function CountryNews({
           </div>
         </div>
 
-        <div className="col-span-5 md:col-span-3">
-          <div className="flex items-center gap-2 pl-2 mb-2">
+        <div className="col-span-5 md:col-span-3 mt-10">
+          <div className="flex items-center gap-2 pl-2 mb-2 uppercase">
             <img src={activeCountry.flag} alt={`${activeCountry.name} flag`} width={28} height={18} className="rounded-sm" />
-            <h1 className="font-extrabold">{activeCountry.name} Latest</h1>
+            <h1 className="font-extrabold">{activeCountry.name}</h1>
           </div>
 
           {lastFeaturedArticle ? (
@@ -289,7 +289,7 @@ export default async function CountryNews({
           </div>
         </div>
 
-        <div className="col-span-5 md:col-span-1 px-2 pt-3 gap-4">
+        <div className="col-span-5 md:col-span-1 px-2 pt-3 gap-4 mt-15">
           <SizeOneAdvertise country={country} />
           <div className="my-4">
             <RecentNews />

@@ -23,13 +23,13 @@ export default async function Politics({ searchParams }: SearchParamsProps) {
 
   return (
     <>
-      <div className="grid grid-cols-3 mt-10">
+      <div className="grid grid-cols-3">
         <div className="col-span-3 md:col-span-1">
           <div className="font-extrabold pl-2 mb-2 flex items-center">
             <List className="h-5 w-5 mr-2" /> Latest Political News
           </div>
 
-          <div className="p-1 md:p-4">
+          <div className="p-1">
             <Suspense key={currentPage} fallback={<LoadingSpinner />}>
               <AllPoliticalArticles currentPage={currentPage} />
             </Suspense>

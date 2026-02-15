@@ -52,7 +52,7 @@ export async function getAllArticles(): Promise<Article[]> {
       newsArticleStatus: true,
     },
     orderBy: { createdAt: "desc" },
-    take: 9,
+    take: 7,
   });
 }
 
