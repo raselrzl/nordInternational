@@ -152,7 +152,7 @@ export default async function Home() {
     <>
       <div className="mb-2 grid grid-cols-3 items-center px-2">
         {/* Live Updates */}
-        <div className="col-span-3 md:col-span-2 mt-4">
+        <div className="col-span-3 md:col-span-2">
           <LiveUpdate />
         </div>
 
