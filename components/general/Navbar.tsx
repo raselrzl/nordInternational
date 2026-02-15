@@ -24,8 +24,8 @@ export default async function Navbar() {
             className="
         w-[70px] h-[32px]'
          md:w-[80px] h-[40px]
-        bg-[url('/lb.png')]
-        dark:bg-[url('/lw.png')]
+        bg-[url('/gb.png')]
+        dark:bg-[url('/gw.png')]
         bg-cover bg-center
       "
           />

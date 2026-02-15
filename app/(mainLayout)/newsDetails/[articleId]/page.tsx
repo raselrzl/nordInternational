@@ -97,7 +97,7 @@ export async function generateMetadata({
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.globaleye.press";
 
   // 🔴 Ensure full image URL
-  const pic = article.newsPicture || "/logo/lw.png";
+  const pic = article.newsPicture || "/logo/gw.png";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
   const url = `${base}/newsDetails/${article.id}`;

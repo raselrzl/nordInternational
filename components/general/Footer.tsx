@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CountryListLinks from "./CountryListLinks";
+import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -10,38 +11,41 @@ export default function Footer() {
           <div
             className="
               w-[80px] h-[26px]
-              bg-[url('/lb.png')]
-              dark:bg-[url('/lw.png')]
+              bg-[url('/gb.png')]
+              dark:bg-[url('/gw.png')]
               bg-cover bg-center
             "
           />
         </div>
 
         {/* Footer links */}
-        <div className="flex flex-wrap gap-2 mb-2 py-2 text-sm pl-4">
+        <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 py-2 text-sm pl-4 font-semibold">
           <Link
-            href="/about/terms"
-            className="hover:underline text-foreground/90 text-sm"
+            href="https://www.souveral.com/terms-conditions"
+            className="hover:underline text-foreground/90 text-sm flex flex-row"
+            target="_blank"
           >
-            Terms & Conditions
+            Terms & Conditions <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
           <Link
             href="/about/editor"
-            className="hover:underline text-foreground/90 text-sm"
+            className="hover:underline text-foreground/90 text-sm "
           >
             Editorial Policy
           </Link>
           <Link
-            href="/about/privacy-policy"
-            className="hover:underline text-foreground/90 text-sm"
+            href="https://www.souveral.com/privacy-policy"
+            className="hover:underline text-foreground/90 text-sm flex flex-row"
+            target="_blank"
           >
-            Privacy Policy
+            Privacy Policy <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
           <Link
-            href="/about/cookie-policy"
-            className="hover:underline text-foreground/90 text-sm"
+            href="https://www.souveral.com/cookie-policy"
+            className="hover:underline text-foreground/90 text-sm flex flex-row"
+            target="_blank"
           >
-            Cookie Policy
+            Cookie Policy <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
           <Link
             href="/about/comment-policy"
@@ -63,10 +67,11 @@ export default function Footer() {
             Standards & Integrity
           </Link>
           <Link
-            href="/about"
-            className="hover:underline text-foreground/90 text-sm"
+            href="https://www.souveral.com/about"
+            className="hover:underline text-foreground/90 text-sm flex flex-row"
+            target="_blank"
           >
-            About US
+            About GEP <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
         </div>
         {/* Social section */}
@@ -146,9 +151,8 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-xs mt-6 text-center">
-          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved.
-          A Souveral Network Independent media organization operating from
-          Portugal.
+          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved
+          Souveral Network.
         </p>
       </div>
     </footer>

@@ -53,11 +53,11 @@ export default function DropDownMenuList() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="mx-2 mt-1 w-7 h-7 flex flex-col justify-center gap-[5px] group"
+        className="mx-2 mt-1 w-7 h-7 flex flex-col justify-center gap-[3px] group cursor-pointer"
       >
-        <span className="h-[2px] w-6 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-7"></span>
-        <span className="h-[2px] w-4 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-6"></span>
         <span className="h-[2px] w-5 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-7"></span>
+        <span className="h-[2px] w-3 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-5"></span>
+        <span className="h-[2px] w-4 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-6"></span>
       </button>
 
       {/* Fullscreen Menu */}
@@ -74,8 +74,8 @@ export default function DropDownMenuList() {
               className="
                 w-[70px] h-[32px]
                 md:w-[80px] md:h-[40px]
-                bg-[url('/lb.png')]
-                dark:bg-[url('/lw.png')]
+                bg-[url('/gb.png')]
+                dark:bg-[url('/gw.png')]
                 bg-cover bg-center
               "
             />
