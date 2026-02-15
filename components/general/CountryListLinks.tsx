@@ -221,7 +221,7 @@ export default function CountryListLinks() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-wrap gap-2 px-2 mt-8">
+    <div className="max-w-7xl mx-auto grid grid-cols-3 md:flex md:flex-wrap gap-2 px-2 mt-8">
       {euCountries.map((country) => (
         <Link
           key={country.name}

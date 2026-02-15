@@ -147,6 +147,8 @@ export default function DropDownMenuList() {
             </div>
           )}
 
+          <div className="border-t"><CountryListLinks /></div>
+
           {/* Footer */}
           <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-gray-600 dark:text-gray-300 text-sm">
             <p className="mb-2">
