@@ -112,7 +112,7 @@ export default function DropDownMenuList() {
           </div>
 
           {/* Header */}
-          <h3 className="text-xl pl-2 py-0.5  font-semibold uppercase tracking-wide my-3 border-l-8 border-primary">
+          <h3 className="text-xl pl-2 py-0.5  font-extrabold uppercase tracking-wide my-3 border-l-8 border-primary">
             Spotlight
           </h3>
 
