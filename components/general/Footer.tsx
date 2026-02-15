@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="mt-10 w-full">
       <div className="w-full max-w-7xl mx-auto px-4">
         {/* Logo */}
-        <div className="flex justify-start">
+        <div className="flex justify-start mb-6">
           <div
             className="
               w-[80px] h-[26px]

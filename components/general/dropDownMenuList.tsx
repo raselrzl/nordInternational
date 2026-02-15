@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { MenuIcon, ChevronDown, X, Search } from "lucide-react";
+import { MenuIcon, ChevronDown, X, Search, ExternalLink } from "lucide-react";
 import CountryListLinks from "./CountryListLinks";
 
 export default function DropDownMenuList() {
@@ -146,8 +146,75 @@ export default function DropDownMenuList() {
               <ChevronDown className="w-5 h-5" />
             </div>
           )}
+          {/* Footer links */}
+          <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 text-sm pl-4 font-semibold py-10 border-t mt-10">
+             <div className="flex justify-start mb-6">
+          <div
+            className="
+              w-[80px] h-[26px]
+              bg-[url('/gb.png')]
+              dark:bg-[url('/gw.png')]
+              bg-cover bg-center
+            "
+          />
+        </div>
+            <Link
+              href="https://www.souveral.com/terms-conditions"
+              className="hover:underline text-foreground/90 text-sm flex flex-row"
+              target="_blank"
+            >
+              Terms & Conditions <ExternalLink className="h-3 w-3 ml-1" />
+            </Link>
+            <Link
+              href="/about/editor"
+              className="hover:underline text-foreground/90 text-sm "
+            >
+              Editorial Policy
+            </Link>
+            <Link
+              href="https://www.souveral.com/privacy-policy"
+              className="hover:underline text-foreground/90 text-sm flex flex-row"
+              target="_blank"
+            >
+              Privacy Policy <ExternalLink className="h-3 w-3 ml-1" />
+            </Link>
+            <Link
+              href="https://www.souveral.com/cookie-policy"
+              className="hover:underline text-foreground/90 text-sm flex flex-row"
+              target="_blank"
+            >
+              Cookie Policy <ExternalLink className="h-3 w-3 ml-1" />
+            </Link>
+            <Link
+              href="/about/comment-policy"
+              className="hover:underline text-foreground/90 text-sm"
+            >
+              Comment Policy
+            </Link>
 
-          <div className="border-t"><CountryListLinks /></div>
+            <Link
+              href="/about/advertise"
+              className="hover:underline text-foreground/90 text-sm"
+            >
+              Advertise With Us
+            </Link>
+            <Link
+              href="/about/advertise/standards-integrity"
+              className="hover:underline text-foreground/90 text-sm"
+            >
+              Standards & Integrity
+            </Link>
+            <Link
+              href="https://www.souveral.com/about"
+              className="hover:underline text-foreground/90 text-sm flex flex-row"
+              target="_blank"
+            >
+              About GEP <ExternalLink className="h-3 w-3 ml-1" />
+            </Link>
+          </div>
+          <div className="border-t">
+            <CountryListLinks />
+          </div>
 
           {/* Footer */}
           <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-gray-600 dark:text-gray-300 text-sm">
