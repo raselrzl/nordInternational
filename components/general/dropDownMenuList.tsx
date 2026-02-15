@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { MenuIcon, ChevronDown, X } from "lucide-react";
+import { MenuIcon, ChevronDown, X, Search } from "lucide-react";
 import CountryListLinks from "./CountryListLinks";
 
 export default function DropDownMenuList() {
@@ -24,6 +24,7 @@ export default function DropDownMenuList() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showArrow, setShowArrow] = useState(false);
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -32,7 +33,7 @@ export default function DropDownMenuList() {
     const checkScroll = () => {
       setShowArrow(
         el.scrollHeight > el.clientHeight &&
-          el.scrollTop + el.clientHeight < el.scrollHeight,
+          el.scrollTop + el.clientHeight < el.scrollHeight
       );
     };
 
@@ -40,6 +41,12 @@ export default function DropDownMenuList() {
     el.addEventListener("scroll", checkScroll);
     return () => el.removeEventListener("scroll", checkScroll);
   }, []);
+
+  const handleSearch = () => {
+    if (!query.trim()) return;
+    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    setOpen(false);
+  };
 
   return (
     <>
@@ -57,17 +64,19 @@ export default function DropDownMenuList() {
       >
         {/* Centered Container */}
         <div className="w-full max-w-7xl mx-auto p-4">
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <div
               className="
-        w-[70px] h-[32px]'
-         md:w-[80px] h-[40px]
-        bg-[url('/lb.png')]
-        dark:bg-[url('/lw.png')]
-        bg-cover bg-center
-      "
+                w-[70px] h-[32px]
+                md:w-[80px] md:h-[40px]
+                bg-[url('/lb.png')]
+                dark:bg-[url('/lw.png')]
+                bg-cover bg-center
+              "
             />
           </Link>
+
           {/* Close Button */}
           <div className="flex justify-end">
             <button
@@ -76,6 +85,26 @@ export default function DropDownMenuList() {
             >
               <X className="w-4 h-4" />
             </button>
+          </div>
+
+          {/* Search Bar */}
+          <div className="mt-3 mb-4">
+            <div className="flex items-center border border-primary rounded-md overflow-hidden">
+              <input
+                type="text"
+                placeholder="Search news..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                className="w-full px-3 py-2 outline-none bg-transparent text-sm"
+              />
+              <button
+                onClick={handleSearch}
+                className="bg-primary p-4 flex items-center justify-center"
+              >
+                <Search className="w-4 h-4 text-white" />
+              </button>
+            </div>
           </div>
 
           {/* Header */}
