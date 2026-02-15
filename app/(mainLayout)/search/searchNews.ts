@@ -8,8 +8,8 @@ export async function searchNewsLimited(query: string) {
 
   const keyword = query.trim();
 
-  // Try to match enum value
-  let countryFilter = undefined;
+  // ---------- Match country enum ----------
+  let countryFilter: NewsCountry | undefined = undefined;
 
   const enumValues = Object.values(NewsCountry);
 
@@ -21,16 +21,28 @@ export async function searchNewsLimited(query: string) {
     countryFilter = matchedCountry;
   }
 
+  // ---------- Search ----------
   const results = await prisma.newsArticle.findMany({
     where: {
       newsArticleStatus: "ACTIVE",
       OR: [
+        // 1. Heading match
         {
           newsHeading: {
             contains: keyword,
             mode: "insensitive",
           },
         },
+
+        // 2. Details match
+        {
+          newsDetails: {
+            contains: keyword,
+            mode: "insensitive",
+          },
+        },
+
+        // 3. Country match (only if matched)
         ...(countryFilter
           ? [
               {
