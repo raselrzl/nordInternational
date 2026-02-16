@@ -101,39 +101,39 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
           variant="outline"
         >
           <img
             src="/wha.png"
             alt="WhatsApp"
-            className="object-cover w-8 h-8"
+            className="object-cover w-6 h-6"
           />
         </Button>
 
         <Button
           onClick={handleShareFacebook}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
           variant="outline"
         >
-          <img src="/fac.png" alt="Facebook" className="object-cover w-8 h-8" />
+          <img src="/fac.png" alt="Facebook" className="object-cover w-6 h-6" />
         </Button>
 
         <Button
           onClick={handleShareMessenger}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
           variant="outline"
         >
           <img
             src="/mes.png"
             alt="Messenger"
-            className="object-cover w-8 h-8"
+            className="object-cover w-6 h-6"
           />
         </Button>
 
         <Button
           onClick={handleCopyLink}
-          className="w-8 h-8 p-0 cursor-pointer border border-black dark:border-white rounded shadow"
+          className="w-6 h-6 p- mt-1 ml-1 cursor-pointer border border-black dark:border-white rounded shadow"
           variant="outline"
         >
           {/*           <img
@@ -150,7 +150,7 @@ export default function PrintNews({
         <div
           id="printable-content"
           ref={contentRef}
-          className="w-full rounded-xs shadow border mt-6"
+          className="w-full rounded-xs mt-6"
         >
           <div className="h-2 w-20 bg-primary ml-2"></div>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
@@ -173,7 +173,7 @@ export default function PrintNews({
                 <img
                   src={newsPicture}
                   alt="Description"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover rounded-xl"
                 />
 
                 <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white px-4 py-2 text-center z-10">
