@@ -1,15 +1,12 @@
 "use client";
+
 import {
-  SquarePlay,
-  LocateIcon,
   LinkIcon,
-  Copy,
-  MapPin,
-  User2,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import { toast } from "sonner";
 import { NewsDetailsDisplay } from "../richTextEditor/NewsDetailsDisplay";
 import { PrintNewsDetailsClient } from "@/components/general/PrintNewsClient";
@@ -35,46 +32,62 @@ export default function PrintNews({
   newsPicture,
   newsPictureHeading,
   newsPictureCredit,
-  newsLocation,
   newsDetails,
-  newsResource,
   newsSubHeading,
   newsReporterPublicName,
   newsHeading,
   createdAt,
   quotes = [],
-  id,
 }: PrintNewsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [articleUrl, setArticleUrl] = useState("");
   const [isFullImage, setIsFullImage] = useState(false);
 
+  // 🔊 Speech
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+
+  // ---------------- INIT ----------------
   useEffect(() => {
     if (typeof window !== "undefined") {
       setArticleUrl(window.location.href);
+
+      const loadVoices = () => {
+        const availableVoices = window.speechSynthesis.getVoices();
+        setVoices(availableVoices);
+      };
+
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
     }
+
+    return () => {
+      window.speechSynthesis.cancel();
+    };
   }, []);
+
+  // ---------------- SHARE ----------------
 
   const handleShareWhatsApp = () => {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(articleUrl)}`,
-      "_blank",
+      "_blank"
     );
   };
 
   const handleShareFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        articleUrl,
+        articleUrl
       )}`,
-      "_blank",
+      "_blank"
     );
   };
 
   const handleShareMessenger = () => {
     const url = encodeURIComponent(articleUrl);
-    const shareUrl = `https://m.me/?link=${url}`;
-    window.open(shareUrl, "_blank");
+    window.open(`https://m.me/?link=${url}`, "_blank");
   };
 
   const handleCopyLink = async () => {
@@ -86,10 +99,62 @@ export default function PrintNews({
     }
   };
 
+  // ---------------- TEXT TO SPEECH (Female) ----------------
+
+  const getFemaleVoice = (lang: string) => {
+    const filtered = voices.filter(v => v.lang.toLowerCase().includes(lang));
+
+    return (
+      filtered.find(v =>
+        /female|woman|zira|samantha|google uk english female/i.test(v.name)
+      ) ||
+      filtered[0] ||
+      voices[0]
+    );
+  };
+
+  const handleSpeak = () => {
+    if (typeof window === "undefined") return;
+
+    // Toggle stop
+    if (isSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+      return;
+    }
+
+    const text = contentRef.current?.innerText || "";
+    if (!text) return;
+
+    // Detect Bangla
+    const isBangla = /[\u0980-\u09FF]/.test(text);
+    const lang = isBangla ? "bn" : "en";
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    const femaleVoice = getFemaleVoice(lang);
+    if (femaleVoice) {
+      utterance.voice = femaleVoice;
+      utterance.lang = femaleVoice.lang;
+    } else {
+      utterance.lang = isBangla ? "bn-BD" : "en-US";
+    }
+
+    utterance.rate = 1;
+    utterance.pitch = 1.2; // higher pitch = more feminine
+
+    utterance.onend = () => setIsSpeaking(false);
+
+    speechRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+    setIsSpeaking(true);
+  };
+
   return (
     <>
-      {/* Share Buttons */}
+      {/* Share + Listen Buttons */}
       <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-6 md:mt-2">
+        {/* Print */}
         <PrintNewsDetailsClient
           newsHeading={newsHeading ?? ""}
           newsPicture={newsPicture ?? null}
@@ -99,71 +164,75 @@ export default function PrintNews({
           quotes={quotes}
         />
 
+        {/* 🔊 Listen */}
+        <Button
+          onClick={handleSpeak}
+          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
+          variant="outline"
+        >
+          {isSpeaking ? (
+            <VolumeX className="w-4 h-4" />
+          ) : (
+            <Volume2 className="w-4 h-4" />
+          )}
+        </Button>
+
+        {/* WhatsApp */}
         <Button
           onClick={handleShareWhatsApp}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
+          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
           variant="outline"
         >
-          <img
-            src="/wha.png"
-            alt="WhatsApp"
-            className="object-cover w-6 h-6"
-          />
+          <img src="/wha.png" className="w-6 h-6" alt="WhatsApp" />
         </Button>
 
+        {/* Facebook */}
         <Button
           onClick={handleShareFacebook}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
+          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
           variant="outline"
         >
-          <img src="/fac.png" alt="Facebook" className="object-cover w-6 h-6" />
+          <img src="/fac.png" className="w-6 h-6" alt="Facebook" />
         </Button>
 
+        {/* Messenger */}
         <Button
           onClick={handleShareMessenger}
-          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-1 dark:bg-white"
+          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
           variant="outline"
         >
-          <img
-            src="/mes.png"
-            alt="Messenger"
-            className="object-cover w-6 h-6"
-          />
+          <img src="/mes.png" className="w-6 h-6" alt="Messenger" />
         </Button>
 
+        {/* Copy */}
         <Button
           onClick={handleCopyLink}
-          className="w-6 h-6 p- mt-1 ml-1 cursor-pointer border border-black dark:border-white rounded shadow"
+          className="w-6 h-6 mt-1 ml-1 border border-black dark:border-white"
           variant="outline"
         >
-          {/*           <img
-            src="/copylink.png"
-            alt="copyimage"
-            className="object-cover w-4 h-4"
-          /> */}
-          <LinkIcon />
+          <LinkIcon className="w-4 h-4" />
         </Button>
       </div>
 
-      {/* MAIN CONTENT */}
+      {/* ---------------- ARTICLE ---------------- */}
+
       <div className="mb-10">
-        <div
-          id="printable-content"
-          ref={contentRef}
-          className="w-full rounded-xs mt-6"
-        >
+        <div ref={contentRef} className="w-full rounded-xs mt-6">
           <div className="h-2 w-20 bg-primary ml-2"></div>
+
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
             {newsHeading}
           </h1>
 
           <p className="m-2 text-sm font-bold text-justify">
-            By: {newsReporterPublicName ? newsReporterPublicName : "GEP Editor"}
-          </p>  
+            By: {newsReporterPublicName || "GEP Editor"}
+          </p>
 
-          <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
+          <p className="m-2 text-sm italic text-justify">
+            {newsSubHeading}
+          </p>
 
-          {/* Image Section */}
+          {/* Image */}
           {newsPicture && (
             <>
               <div
@@ -172,11 +241,12 @@ export default function PrintNews({
               >
                 <img
                   src={newsPicture}
-                  alt="Description"
                   className="absolute inset-0 w-full h-full object-cover rounded-xl"
+                  alt="News"
                 />
 
-                <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white px-4 py-2 text-center z-10">
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white px-4 py-2 text-center">
                   {newsPictureHeading || newsPictureCredit ? (
                     <>
                       {newsPictureHeading && (
@@ -194,31 +264,29 @@ export default function PrintNews({
                 </div>
               </div>
 
-              {/* Fullscreen Image Viewer */}
+              {/* Fullscreen */}
               {isFullImage && (
                 <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
-                  {/* Close Button */}
                   <button
                     onClick={() => setIsFullImage(false)}
-                    className="absolute top-4 right-4 text-white p-2 bg-black/50 rounded-full hover:bg-black/70"
+                    className="absolute top-4 right-4 text-white p-2 bg-black/50 rounded-full"
                   >
                     ✕
                   </button>
 
-                  {/* Fullscreen Image */}
                   <img
                     src={newsPicture}
-                    alt="Fullscreen Image"
                     className="max-w-full max-h-full object-contain"
+                    alt="Fullscreen"
                   />
                 </div>
               )}
             </>
           )}
 
-          {/* NEWS DETAILS */}
+          {/* Details */}
           <div className="whitespace-pre-line text-md md:text-lg dark:bg-black pt-10 shadow">
-            <div className="flex font-bold flex-row pl-2 items-center">
+            <div className="flex font-bold pl-2 items-center">
               <NewUserTracker />
             </div>
 
@@ -227,6 +295,7 @@ export default function PrintNews({
             </div>
           </div>
         </div>
+
         <div className="w-[120px] border-b-6 border-primary my-4"></div>
       </div>
     </>
