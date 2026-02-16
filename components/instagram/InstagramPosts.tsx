@@ -27,7 +27,8 @@ export default async function InstagramPosts() {
           <p className="font-bold text-xl mt-1 border-l-8 border-primary pl-2">INSTAGRAM</p>
         </div>
         <div className="flex flex-row items-center justify-center hover:underline text-xs font-bold">
-          <Link href="/all-ig-post">View all</Link>
+          <Link href="/all-ig-post"  className="text-[6px] font-semibold">
+          MORE ➠</Link>
         </div>
       </CardHeader>
 
