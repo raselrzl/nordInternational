@@ -101,39 +101,39 @@ export default function PrintNews({
 
         <Button
           onClick={handleShareWhatsApp}
-          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
           variant="outline"
         >
           <img
-            src="/whatsapp.svg"
+            src="/wha.png"
             alt="WhatsApp"
-            className="object-cover w-4 h-4"
+            className="object-cover w-8 h-8"
           />
         </Button>
 
         <Button
           onClick={handleShareFacebook}
-          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
           variant="outline"
         >
-          <img src="/fb.webp" alt="Facebook" className="object-cover w-4 h-4" />
+          <img src="/fac.png" alt="Facebook" className="object-cover w-8 h-8" />
         </Button>
 
         <Button
           onClick={handleShareMessenger}
-          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border-none shadow-none mr-4 dark:bg-white"
           variant="outline"
         >
           <img
-            src="/messanger.svg"
+            src="/mes.png"
             alt="Messenger"
-            className="object-cover w-4 h-4"
+            className="object-cover w-8 h-8"
           />
         </Button>
 
         <Button
           onClick={handleCopyLink}
-          className="w-8 h-8 p-0 cursor-pointer border shadow-none"
+          className="w-8 h-8 p-0 cursor-pointer border border-black dark:border-white rounded shadow"
           variant="outline"
         >
           {/*           <img
