@@ -40,6 +40,7 @@ export default function PrintNews({
   quotes = [],
 }: PrintNewsProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+
   const [articleUrl, setArticleUrl] = useState("");
   const [isFullImage, setIsFullImage] = useState(false);
 
@@ -47,6 +48,9 @@ export default function PrintNews({
   const [isSpeaking, setIsSpeaking] = useState(false);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+
+  // ⏱ Listening time
+  const [listenMinutes, setListenMinutes] = useState(1);
 
   // ---------------- INIT ----------------
   useEffect(() => {
@@ -66,6 +70,19 @@ export default function PrintNews({
       window.speechSynthesis.cancel();
     };
   }, []);
+
+  // ---------------- CALCULATE LISTEN TIME ----------------
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const text = contentRef.current.innerText || "";
+    const words = text.trim().split(/\s+/).length;
+
+    const wordsPerMinute = 150; // speech average
+    const minutes = Math.max(1, Math.ceil(words / wordsPerMinute));
+
+    setListenMinutes(minutes);
+  }, [newsDetails, newsHeading, newsSubHeading]);
 
   // ---------------- SHARE ----------------
 
@@ -99,10 +116,12 @@ export default function PrintNews({
     }
   };
 
-  // ---------------- TEXT TO SPEECH (Female) ----------------
+  // ---------------- FEMALE VOICE ----------------
 
   const getFemaleVoice = (lang: string) => {
-    const filtered = voices.filter(v => v.lang.toLowerCase().includes(lang));
+    const filtered = voices.filter(v =>
+      v.lang.toLowerCase().includes(lang)
+    );
 
     return (
       filtered.find(v =>
@@ -112,6 +131,8 @@ export default function PrintNews({
       voices[0]
     );
   };
+
+  // ---------------- TEXT TO SPEECH ----------------
 
   const handleSpeak = () => {
     if (typeof window === "undefined") return;
@@ -126,7 +147,6 @@ export default function PrintNews({
     const text = contentRef.current?.innerText || "";
     if (!text) return;
 
-    // Detect Bangla
     const isBangla = /[\u0980-\u09FF]/.test(text);
     const lang = isBangla ? "bn" : "en";
 
@@ -141,7 +161,7 @@ export default function PrintNews({
     }
 
     utterance.rate = 1;
-    utterance.pitch = 1.2; // higher pitch = more feminine
+    utterance.pitch = 1.2;
 
     utterance.onend = () => setIsSpeaking(false);
 
@@ -152,9 +172,28 @@ export default function PrintNews({
 
   return (
     <>
-      {/* Share + Listen Buttons */}
-      <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-6 md:mt-2">
-        {/* Print */}
+      {/* BIG LISTEN BUTTON (LEFT) */}
+      <div className="flex justify-start px-2 mt-6">
+        <button
+          onClick={handleSpeak}
+          className="bg-black text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold flex items-center gap-2 hover:bg-gray-800 transition"
+        >
+          {isSpeaking ? (
+            <>
+              <VolumeX className="w-5 h-5" />
+              Stop
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-5 h-5" />
+              Listen {/* ({listenMinutes} min) */}
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Share Buttons (Right) */}
+      <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-2">
         <PrintNewsDetailsClient
           newsHeading={newsHeading ?? ""}
           newsPicture={newsPicture ?? null}
@@ -164,20 +203,6 @@ export default function PrintNews({
           quotes={quotes}
         />
 
-        {/* 🔊 Listen */}
-        <Button
-          onClick={handleSpeak}
-          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
-          variant="outline"
-        >
-          {isSpeaking ? (
-            <VolumeX className="w-4 h-4" />
-          ) : (
-            <Volume2 className="w-4 h-4" />
-          )}
-        </Button>
-
-        {/* WhatsApp */}
         <Button
           onClick={handleShareWhatsApp}
           className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
@@ -186,7 +211,6 @@ export default function PrintNews({
           <img src="/wha.png" className="w-6 h-6" alt="WhatsApp" />
         </Button>
 
-        {/* Facebook */}
         <Button
           onClick={handleShareFacebook}
           className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
@@ -195,7 +219,6 @@ export default function PrintNews({
           <img src="/fac.png" className="w-6 h-6" alt="Facebook" />
         </Button>
 
-        {/* Messenger */}
         <Button
           onClick={handleShareMessenger}
           className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
@@ -204,7 +227,6 @@ export default function PrintNews({
           <img src="/mes.png" className="w-6 h-6" alt="Messenger" />
         </Button>
 
-        {/* Copy */}
         <Button
           onClick={handleCopyLink}
           className="w-6 h-6 mt-1 ml-1 border border-black dark:border-white"
@@ -245,7 +267,6 @@ export default function PrintNews({
                   alt="News"
                 />
 
-                {/* Caption */}
                 <div className="absolute bottom-0 left-0 w-full bg-black/60 text-white px-4 py-2 text-center">
                   {newsPictureHeading || newsPictureCredit ? (
                     <>
@@ -264,7 +285,6 @@ export default function PrintNews({
                 </div>
               </div>
 
-              {/* Fullscreen */}
               {isFullImage && (
                 <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
                   <button
