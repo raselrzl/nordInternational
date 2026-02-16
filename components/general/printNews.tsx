@@ -229,7 +229,7 @@ export default function PrintNews({
 
         <Button
           onClick={handleCopyLink}
-          className="w-6 h-6 mt-1 ml-1 border border-black dark:border-white"
+          className="w-6 h-6 mt-1 ml-1 border border-black dark:border-white rounded"
           variant="outline"
         >
           <LinkIcon className="w-4 h-4" />
