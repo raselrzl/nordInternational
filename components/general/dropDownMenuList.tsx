@@ -55,7 +55,7 @@ export default function DropDownMenuList() {
         aria-label="Open menu"
         className="mx-2 mt-1 w-7 h-7 flex flex-col justify-center gap-[3px] group cursor-pointer"
       >
-        <span className="h-[2px] w-5 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-7"></span>
+        <span className="h-[2px] w-5 bg-primary dark:bg-primary transition-all group-hover:w-7"></span>
         <span className="h-[2px] w-3 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-5"></span>
         <span className="h-[2px] w-4 bg-gray-800 dark:bg-gray-100 transition-all group-hover:w-6"></span>
       </button>
