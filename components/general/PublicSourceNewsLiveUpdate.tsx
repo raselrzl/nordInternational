@@ -50,8 +50,8 @@ export default async function LiveUpdateComponent() {
 
   return (
     <div className="rounded-md mx-auto max-w-[720px] py-3 md:py-6">
-      <Link href="/breakingnews" className="uppercase font-bold text-xl py-5 max-w-[720px] mx-2 md:mx-0 text-[#A1241D]">
-        Breaking
+      <Link href="/breakingnews" className="uppercase font-bold text-[10px] py-1 px-2 max-w-[720px] mx-2 md:mx-0 text-gray-100 bg-[#A1241D] text-center items-center pt-1.5 rounded-xs">
+        Breaking News
       </Link>
       <div className="text-right mx-2 md:mx-0">
         <Link href="/breakingnews" className="text-[6px] font-semibold">
