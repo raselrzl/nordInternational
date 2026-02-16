@@ -217,7 +217,7 @@ export default function PrintNews({
           )}
 
           {/* NEWS DETAILS */}
-          <div className="whitespace-pre-line text-md md:text-lg dark:bg-black mt-10">
+          <div className="whitespace-pre-line text-md md:text-lg dark:bg-black pt-10 shadow">
             <div className="flex font-bold flex-row pl-2 items-center">
               <NewUserTracker />
             </div>
