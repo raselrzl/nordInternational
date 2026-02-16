@@ -67,7 +67,7 @@ export default async function LiveUpdateComponent() {
             <div className="relative w-full max-w-[720px]">
               <img
                 src={news[0].newsPicture}
-                className="w-full h-[300px] md:h-[360px] object-cover border-t-8 border-[#A1241D]"
+                className="w-full h-[300px] md:h-[360px] object-cover border-t border-[#A1241D]"
                 alt=""
               />
 
