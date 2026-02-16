@@ -83,7 +83,7 @@ type PageProps = { params: PageParams };
   };
 } */
 
-export async function generateMetadata({
+/* export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { articleId } = await params;
@@ -132,7 +132,7 @@ export async function generateMetadata({
       images: [ogImage],
     },
   };
-}
+} */
 
 // ------------------ MAIN PAGE ------------------
 
