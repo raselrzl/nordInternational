@@ -58,9 +58,9 @@ export default function AboutFooter() {
 
       <div className="flex items-center justify-center mb-6">
         <img
-          src="/logo/sr.png"
+          src="/logot.png"
           alt="Souveral Network"
-          className="h-20 w-auto"
+          className="h-40 w-auto"
         />
       </div>
       {/* Copyright */}
