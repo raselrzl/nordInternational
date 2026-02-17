@@ -54,7 +54,7 @@ function toExcerpt(htmlOrText: string | null, max = 240) {
 type PageParams = Promise<{ articleId: string }>;
 type PageProps = { params: PageParams };
 
-/* export async function generateMetadata({
+export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { articleId } = await params;
@@ -65,7 +65,7 @@ type PageProps = { params: PageParams };
 
   const base =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.globaleye.press";
-  const pic = article.newsPicture ?? "/n2.png";
+  const pic = article.newsPicture ?? "/gb.png";
   const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
 
   return {
@@ -81,7 +81,7 @@ type PageProps = { params: PageParams };
       images: [{ url: ogImage, alt: title }],
     },
   };
-} */
+}
 
 /* export async function generateMetadata({
   params,
