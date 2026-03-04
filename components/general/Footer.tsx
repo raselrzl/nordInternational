@@ -98,7 +98,7 @@ export default function Footer() {
 
               {/* Facebook */}
               <a
-                href="https://web.facebook.com/gepnews"
+                href="https://www.facebook.com/profile.php?id=61585607866405"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -130,7 +130,7 @@ export default function Footer() {
 
               {/* TikTok */}
               <a
-                href="https://www.tiktok.com/@gepnews"
+                href="https://www.tiktok.com/@gep_news"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
