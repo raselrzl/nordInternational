@@ -50,9 +50,13 @@ export default async function LiveUpdateComponent() {
 
   return (
     <div className="rounded-md mx-auto max-w-[720px] py-3 md:py-6">
-      <Link href="/breakingnews" className="uppercase font-bold text-[10px] py-1 px-2 max-w-[720px] mx-2 md:mx-0 text-gray-100 bg-[#A1241D] text-center items-center pt-1.5 rounded-xs">
+      <Link
+        href="/breakingnews"
+        className="uppercase font-bold text-[10px] py-1 px-2 max-w-[720px] mx-2 md:mx-0 text-white bg-[#A1241D] text-center items-center pt-1.5 rounded-xs"
+      >
         Breaking News
       </Link>
+
       <div className="text-right mx-2 md:mx-0">
         <Link href="/breakingnews" className="text-[6px] font-semibold">
           MORE ➠
@@ -63,7 +67,6 @@ export default async function LiveUpdateComponent() {
       {news.length > 0 && (
         <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
           {news[0].newsPicture ? (
-            /* ---- IF IMAGE EXISTS ---- */
             <div className="relative w-full max-w-[720px]">
               <img
                 src={news[0].newsPicture}
@@ -73,19 +76,20 @@ export default async function LiveUpdateComponent() {
 
               {/* Overlay box */}
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 w-[85%]">
-                <div className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-4 border text-center">
+                <div className="bg-[#A1241D] shadow-xl rounded-xl p-4 border text-center text-white">
                   <div className="flex items-start gap-2">
-                    <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                      <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                    <div className="rounded-full bg-white w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                      <div className="bg-white rounded-full animate-ping w-4 h-4 opacity-75"></div>
                     </div>
-                    <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+
+                    <span className="text-xs text-gray-200 italic pt-1.5 block text-left">
                       {formatTimeAgo(new Date(news[0].createdAt))}
                     </span>
                   </div>
 
                   <Link
                     href="/breakingnews"
-                    className="font-bold text-lg text-[#A1241D] leading-tight mt-1"
+                    className="font-bold text-lg text-white leading-tight mt-1 block"
                   >
                     {news[0].headings}
                   </Link>
@@ -93,21 +97,21 @@ export default async function LiveUpdateComponent() {
               </div>
             </div>
           ) : (
-            /* ---- IF NO IMAGE → SHOW ONLY THE TEXT BOX ---- */
             <div className="w-full max-w-[720px] mt-4">
-              <div className="bg-white dark:bg-gray-900 shadow-xl rounded-xl p-4 border text-center">
+              <div className="bg-[#A1241D] shadow-xl rounded-xl p-4 border text-center text-white">
                 <div className="flex items-start gap-2">
-                  <div className="rounded-full bg-[#A1241D]  w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                    <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+                  <div className="rounded-full bg-white w-4 h-4 flex items-center justify-center mt-[3.5px]">
+                    <div className="bg-white rounded-full animate-ping w-4 h-4 opacity-75"></div>
                   </div>
-                  <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+
+                  <span className="text-xs text-gray-200 italic pt-1.5 block text-left">
                     {formatTimeAgo(new Date(news[0].createdAt))}
                   </span>
                 </div>
 
                 <Link
                   href="/breakingnews"
-                  className="font-bold text-lg text-primary leading-tight mt-1"
+                  className="font-bold text-lg text-white leading-tight mt-1 block"
                 >
                   {news[0].headings}
                 </Link>
@@ -126,9 +130,7 @@ export default async function LiveUpdateComponent() {
             <div key={item.id} className="flex items-start relative mb-3">
               {/* Dot */}
               <div className="flex-shrink-0 w-10 flex justify-center relative z-10">
-                <div className="rounded-full bg-[#A1241D]  w-3 h-3 flex items-center justify-center mt-[3.5px]">
-                  {/*  <div className="bg-yellow-500 rounded-full animate-ping w-2 h-2"></div> */}
-                </div>
+                <div className="rounded-full bg-[#A1241D] w-3 h-3 flex items-center justify-center mt-[3.5px]"></div>
               </div>
 
               {/* Content */}
@@ -138,12 +140,14 @@ export default async function LiveUpdateComponent() {
                 </span>
 
                 <div className="font-medium text-sm mt-1">{item.headings}</div>
+
                 {/* 
                 {item.newsPicture && (
                   <div className="md:w-50 md:flex-shrink-0 mt-2">
                     <NewsImageModal src={item.newsPicture} />
                   </div>
-                )} */}
+                )} 
+                */}
               </div>
             </div>
           ))}
