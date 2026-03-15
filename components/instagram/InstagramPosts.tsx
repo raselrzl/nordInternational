@@ -34,9 +34,9 @@ export default async function InstagramPosts() {
 
       <div className="overflow-x-auto pb-10 overflow-y-hidden scrollbar-thin">
         <div className="flex">
-          <div className="min-w-[280px] h-[350px] flex items-center justify-center">
+ {/*          <div className="min-w-[280px] h-[350px] flex items-center justify-center">
             <PremiarTwo />
-          </div>
+          </div> */}
 
           {posts.map((post) => (
             <div
