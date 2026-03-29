@@ -425,12 +425,12 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
+   {/*    <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
         <IndiaLatest />
         <AfrikaLatest />
         <AustraliaLatest />
         <SouthamericaLatest />
-      </div>
+      </div> */}
       <InstagramPosts />
       {/* <Videos /> */}
       <div className="my-20">

@@ -12,6 +12,10 @@ import ScrollToTopButton from "@/components/general/ScrollToTopButton";
 import NewUserTracker from "@/components/general/NewUserTracker";
 import ContinentDropdown from "@/components/general/ContinentDropdown";
 import Image from "next/image";
+import IndiaLatest from "@/components/general/India";
+import AfrikaLatest from "@/components/general/Afrika";
+import AustraliaLatest from "@/components/general/Australia";
+import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -30,6 +34,12 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <div className="mt-22 md:mt-29 mb-20 sm:mb-40">{/*  <NavMenu /> */}</div>
 
       {children}
+        <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
+              <IndiaLatest />
+              <AfrikaLatest />
+              <AustraliaLatest />
+              <SouthamericaLatest />
+            </div>
       <Poll />
       <Footer />
       <VisitorTracker />
