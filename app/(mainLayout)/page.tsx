@@ -397,7 +397,6 @@ export default async function Home() {
       <BesicTwoAdvertise />
       <ChainaLatest />
       <BesicOneAdvertise />
-      {/* Binodon Section */}
       <div className="mb-4">
         <div className="flex flex-row items-center space-x-2">
           <p className="font-bold text-xl uppercase border-l-8 border-primary pl-2">
