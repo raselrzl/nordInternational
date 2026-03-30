@@ -66,7 +66,7 @@ export async function getBinodonNews() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 2,
+    take: 3,
   });
 }
 
@@ -670,7 +670,7 @@ export async function Binodon() {
   return (
     <>
       {Binodon && Object.keys(Binodon).length > 0 ? (
-        <div className="grid md:grid-cols-2 gap-6 px-2 my-10">
+        <div className="grid md:grid-cols-3 gap-6 px-2 my-10">
           {Binodon.map((article) => (
             <Link href={`/newsDetails/${article.id}`} key={article.id}>
               <div className="max-w-md w-full">

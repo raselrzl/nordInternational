@@ -25,7 +25,13 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <ContinentDropdown />
         <div className="flex justify-between items-center border-y border-x-4 border-black text-gray-200 bg-black">
           <Link href="/" className="inline-block">
-            <Image src="/icon.png" alt="Logo" width={140} height={100} priority />
+            <Image
+              src="/icon.png"
+              alt="Logo"
+              width={140}
+              height={100}
+              priority
+            />
           </Link>
           <NewsTicker />
         </div>
@@ -34,12 +40,12 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <div className="mt-22 md:mt-29 mb-20 sm:mb-40">{/*  <NavMenu /> */}</div>
 
       {children}
-        <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
-              <IndiaLatest />
-              <AfrikaLatest />
-              <AustraliaLatest />
-              <SouthamericaLatest />
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
+        <IndiaLatest />
+        <AfrikaLatest />
+        <AustraliaLatest />
+        <SouthamericaLatest />
+      </div>
       <Poll />
       <Footer />
       <VisitorTracker />

@@ -406,14 +406,10 @@ export default async function Home() {
             Entertainment
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="col-span-3 md:col-span-2">
+        <div className="grid grid-cols-1">
+          
             <PopupOnViewServer />
             <Binodon />
-          </div>
-          <div className="col-span-3 md:col-span-1 md:mt-10">
-            <OpinionForm />
-          </div>
         </div>
       </div>
       <AsiaLatest />
