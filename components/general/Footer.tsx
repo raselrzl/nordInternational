@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CountryListLinks from "./CountryListLinks";
 import { ExternalLink } from "lucide-react";
+import FollowGEP from "./socialLinks ";
 
 export default function Footer() {
   return (
@@ -75,12 +76,12 @@ export default function Footer() {
           </Link>
         </div>
         {/* Social section */}
-        <div className="mt-6 pb-4 ml-4">
+        {/*   <div className="mt-6 pb-4 ml-4">
           <div className="flex flex-col items-start gap-2">
             <p className="text-sm uppercase font-bold">Follow GEP</p>
 
             <div className="flex items-center gap-2">
-              {/* Instagram */}
+             
               <a
                 href="https://www.instagram.com/gepnews"
                 target="_blank"
@@ -96,9 +97,22 @@ export default function Footer() {
                 </div>
               </a>
 
-              {/* Facebook */}
               <a
-                href="https://www.facebook.com/profile.php?id=61585607866405"
+                href="https://www.threads.com/@gepnews"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Threads"
+              >
+                <div className="w-6.5 h-6.5 rounded-full overflow-hidden flex items-center justify-center">
+                  <img
+                    src="/threads.avif"
+                    alt="threads"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://www.facebook.com/gepspot"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -112,7 +126,6 @@ export default function Footer() {
                 </div>
               </a>
 
-              {/* YouTube */}
               <a
                 href="https://www.youtube.com/@globaleyepressofficial"
                 target="_blank"
@@ -128,7 +141,6 @@ export default function Footer() {
                 </div>
               </a>
 
-              {/* TikTok */}
               <a
                 href="https://www.tiktok.com/@gep_news"
                 target="_blank"
@@ -145,7 +157,8 @@ export default function Footer() {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
+        <FollowGEP />
         {/* Country links */}
         <CountryListLinks />
 
