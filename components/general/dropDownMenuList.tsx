@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { MenuIcon, ChevronDown, X, Search, ExternalLink } from "lucide-react";
 import CountryListLinks from "./CountryListLinks";
+import FollowGEP from "./socialLinks ";
 
 export default function DropDownMenuList() {
   const menuItems = [
@@ -148,16 +149,16 @@ export default function DropDownMenuList() {
           )}
           {/* Footer links */}
           <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 text-sm pl-4 font-semibold py-10 border-t mt-10">
-             <div className="flex justify-start mb-6">
-          <div
-            className="
+            <div className="flex justify-start mb-6">
+              <div
+                className="
               w-[80px] h-[26px]
               bg-[url('/gb.png')]
               dark:bg-[url('/gw.png')]
               bg-cover bg-center
             "
-          />
-        </div>
+              />
+            </div>
             <Link
               href="https://www.souveral.com/terms-conditions"
               className="hover:underline text-foreground/90 text-sm flex flex-row"
@@ -236,29 +237,7 @@ export default function DropDownMenuList() {
               </Link>
             </p>
 
-            <p className="mb-2">Follow GEP:</p>
-            <div className="flex justify-center gap-3">
-              <SocialIcon
-                href="https://www.instagram.com/gepnews"
-                img="/instagram.png"
-                alt="Instagram"
-              />
-              <SocialIcon
-                href="https://web.facebook.com/gepnews"
-                img="/facebook.png"
-                alt="Facebook"
-              />
-              <SocialIcon
-                href="https://www.youtube.com/@globaleyepressofficial"
-                img="/youtube.png"
-                alt="YouTube"
-              />
-              <SocialIcon
-                href="https://www.tiktok.com/@gepnews"
-                img="/tiktokk.png"
-                alt="TikTok"
-              />
-            </div>
+            <FollowGEP />
           </div>
         </div>
       </div>
