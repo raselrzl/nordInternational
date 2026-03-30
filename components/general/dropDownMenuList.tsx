@@ -147,6 +147,7 @@ export default function DropDownMenuList() {
               <ChevronDown className="w-5 h-5" />
             </div>
           )}
+          
           {/* Footer links */}
           <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 text-sm pl-4 font-semibold py-10 border-t mt-10">
             <div className="flex justify-start mb-6">
@@ -218,8 +219,8 @@ export default function DropDownMenuList() {
           </div>
 
           {/* Footer */}
-          <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-center text-gray-600 dark:text-gray-300 text-sm">
-            <p className="mb-2">
+          <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-start text-gray-600 dark:text-gray-300 text-sm">
+            <p className="mb-2 ml-4">
               Advertise with us:{" "}
               <Link
                 href="/about/advertise#advertiseForm"

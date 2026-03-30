@@ -38,10 +38,6 @@ export default function FollowGEP() {
   return (
     <div className="mt-6 px-4 pb-6">
       <div className="flex flex-col gap-3">
-        <p className="text-xs tracking-widest uppercase font-semibold">
-          Follow GEP
-        </p>
-
         <div className="flex items-center gap-3">
           {socialLinks.map(({ href, icon: Icon, label }) => (
             <a
@@ -53,7 +49,7 @@ export default function FollowGEP() {
               className="group"
             >
               <div className="
-                w-10 h-10 flex items-center justify-center
+                w-8 h-8 flex items-center justify-center
                 rounded-xl
                 bg-muted
                 hover:bg-primary
