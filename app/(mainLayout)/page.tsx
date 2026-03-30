@@ -41,6 +41,7 @@ import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 import { OpinionForm } from "@/components/general/OpinionForm";
 import CountryNewsSlider from "@/components/general/CountryNewsSlider";
+import SportsNews from "@/components/general/SportsNews";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
