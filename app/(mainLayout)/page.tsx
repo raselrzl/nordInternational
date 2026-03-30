@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { prisma } from "../utils/db";
 import { EmptyState } from "@/components/general/EmptyState";
 import Link from "next/link";
-import { Flame, Loader2 } from "lucide-react";
+import { Calendar, Flame, Loader2 } from "lucide-react";
 import { JsonToHtml } from "@/components/richTextEditor/JsonToHtml";
 import { isJson } from "../utils/isJson";
 import { trackRoute } from "../utils/routeTracker";
@@ -263,7 +263,7 @@ export default async function Home() {
 
           {InternationalAll.length > 0 ? (
             <>
-              <Link
+              {/*   <Link
                 href={`/newsDetails/${InternationalAll[0].id}`}
                 className="block"
               >
@@ -277,33 +277,48 @@ export default async function Home() {
                     className="w-full h-40 object-cover"
                   />
                 </div>
-              </Link>
+              </Link> */}
 
-              <div className="bg-white dark:bg-gray-900 mt-6 border border-gray-200 dark:border-gray-700 shadow-sm mx-2 md:mx-0 rounded-md">
+              <div className="bg-white dark:bg-gray-900 mt-6 border border-gray-200 dark:border-gray-700 shadow-lg mx-2 md:mx-0 rounded-xl">
                 {/* Header */}
-                <div className="flex items-center justify-center py-3 gap-2 border-b border-gray-200 dark:border-gray-700">
-                  <Flame className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <div className="flex items-center justify-center py-3 gap-3 border-b border-gray-200 dark:border-gray-700 bg-red-700 dark:bg-gray-800 rounded-t-xl">
                   <h1 className="font-bold text-lg md:text-xl uppercase tracking-wide text-gray-900 dark:text-gray-100">
                     Top News
                   </h1>
                 </div>
 
-                {/* List */}
-                <div className="relative overflow-y-auto px-4 py-3 max-h-[420px]">
-                  <div className="space-y-3">
-                    {InternationalAll.map((article: Article) => (
-                      <Link
-                        key={article.id}
-                        href={`/newsDetails/${article.id}`}
-                      >
-                        <div className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all shadow-sm hover:shadow-md p-3 rounded-sm">
-                          <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 ">
+                {/* News List */}
+                <div className="px-4 py-3 space-y-4">
+                  {InternationalAll.map((article: Article, idx: number) => (
+                    <Link key={article.id} href={`/newsDetails/${article.id}`}>
+                      <div className="relative group border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden  transition-all">
+                        {/* News Date on top */}
+                        <div className="absolute top-2 left-2 bg-red-700 text-white text-xs px-2 py-1 rounded-full z-10">
+                          {new Date(article.createdAt).toLocaleDateString(
+                            "en-GB",
+                          )}
+                        </div>
+
+                        {/* Image */}
+                        {article.newsPicture && (
+                          <img
+                            src={article.newsPicture}
+                            alt={
+                              article.newsPictureHeading || article.newsHeading
+                            }
+                            className="w-full h-40 md:h-48 object-cover"
+                          />
+                        )}
+
+                        {/* Title */}
+                        <div className="p-3 bg-gray-50 dark:bg-gray-800">
+                          <h2 className="text-sm md:text-base font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 group-hover:underline">
                             {article.newsHeading}
                           </h2>
                         </div>
-                      </Link>
-                    ))}
-                  </div>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </>
@@ -356,7 +371,7 @@ export default async function Home() {
                         />
                       </div>
                       <div className="pt-4">
-                        <h2 className="text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-2">
+                        <h2 className="text-[14px] md:text-[16px] font-medium leading-[1.5] px-1 font-stretch-extra-condensed line-clamp-4">
                           {article.newsHeading}
                         </h2>
                       </div>
