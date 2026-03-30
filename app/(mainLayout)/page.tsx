@@ -40,6 +40,7 @@ import Videos from "@/components/general/Videos";
 import { BesicOneAdvertise } from "@/components/allAdvertisement/BesicOne";
 import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 import { OpinionForm } from "@/components/general/OpinionForm";
+import CountryNewsSlider from "@/components/general/CountryNewsSlider";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -374,8 +375,9 @@ export default async function Home() {
           )}
         </div>
       </div>
-
+      <CountryNewsSlider />
       <WarLatest />
+
       <BesicTwoAdvertise />
       <ChainaLatest />
       <BesicOneAdvertise />
@@ -425,7 +427,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-   {/*    <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
+      {/*    <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
         <IndiaLatest />
         <AfrikaLatest />
         <AustraliaLatest />
