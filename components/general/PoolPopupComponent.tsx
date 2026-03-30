@@ -34,7 +34,7 @@ export default function PoolPopupComponent() {
     <div ref={containerRef}>
       {/* Modal Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Modal content */}
           <div className="relative bg-white dark:bg-gray-900 rounded-lg shadow-xl overflow-auto max-h-[90vh] w-full max-w-3xl">
             {/* Close button */}
