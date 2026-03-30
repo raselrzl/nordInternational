@@ -15,7 +15,7 @@ export default function SearchComponent() {
   };
 
   return (
-    <div className="flex items-center border border-primary/10 rounded-2xl overflow-hidden h-8">
+    <div className="flex items-center border border-primary/10 dark:border-primary/40 rounded-2xl overflow-hidden h-8">
       <input
         type="text"
         placeholder="Search on GEP..."
