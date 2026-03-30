@@ -42,6 +42,7 @@ import { BesicTwoAdvertise } from "@/components/allAdvertisement/BesicTwo";
 import { OpinionForm } from "@/components/general/OpinionForm";
 import CountryNewsSlider from "@/components/general/CountryNewsSlider";
 import SportsNews from "@/components/general/SportsNews";
+import PoolPopupComponent from "@/components/general/PoolPopupComponent";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -392,8 +393,10 @@ export default async function Home() {
         </div>
       </div>
       <CountryNewsSlider />
-      <WarLatest />
+      {/*   popuppool */}
 
+      <WarLatest />
+      <PoolPopupComponent />
       <BesicTwoAdvertise />
       <ChainaLatest />
       <BesicOneAdvertise />
