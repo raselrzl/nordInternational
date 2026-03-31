@@ -308,7 +308,7 @@ export default async function Home() {
                             alt={
                               article.newsPictureHeading || article.newsHeading
                             }
-                            className="w-full h-40 md:h-48 object-cover"
+                            className="w-full h-45 object-cover"
                           />
                         )}
 

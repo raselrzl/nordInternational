@@ -76,7 +76,7 @@ export default async function LiveUpdateComponent() {
 
               {/* Overlay box */}
               <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 w-[85%]">
-                <div className="bg-[#A1241D] shadow-xl rounded-xl p-4 border text-center text-white">
+                <div className="bg-[#8d1d18] shadow-xl rounded-xl p-4 text-center text-white">
                   <div className="flex items-start gap-2">
                     <div className="rounded-full bg-white w-4 h-4 flex items-center justify-center mt-[3.5px]">
                       <div className="bg-white rounded-full animate-ping w-4 h-4 opacity-75"></div>
