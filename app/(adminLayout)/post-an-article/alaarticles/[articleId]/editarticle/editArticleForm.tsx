@@ -158,7 +158,23 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
                   </FormItem>
                 )}
               />
-
+              <FormField
+                control={form.control}
+                name="deskCity"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Desk/City</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="........"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="newsSubHeading"
@@ -177,23 +193,6 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
                 )}
               />
 
-                <FormField
-                control={form.control}
-                name="deskCity"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>News Desk/City</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="........"
-                        {...field}
-                        className="placeholder:text-xs"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <>
                 <div className="flex items-center gap-2 mb-4">
                   <Switch

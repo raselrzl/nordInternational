@@ -172,17 +172,27 @@ export default function PrintNews({
       <div className="flex justify-start px-2 mt-6">
         <button
           onClick={handleSpeak}
-          className="bg-black text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold flex items-center gap-2 hover:bg-gray-800 transition"
+          className={`relative text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold flex items-center gap-2 
+    bg-white hover:bg-gray-800 transition`}
+          style={{
+            backgroundImage: `url('/panda.png')`,
+            backgroundSize: "cover", // fill button
+            backgroundPosition: "center",
+          }}
         >
           {isSpeaking ? (
             <>
               <VolumeX className="w-5 h-5" />
-              Stop
             </>
           ) : (
             <>
-              <Volume2 className="w-5 h-5" />
-              Listen {/* ({listenMinutes} min) */}
+              <span className="flex items-center gap-2">
+                <img
+                  src="/panda.png"
+                  alt="Listen"
+                  className="w-5 h-5 object-contain"
+                />
+              </span>
             </>
           )}
         </button>

@@ -64,7 +64,7 @@ export function CreateNewsArticleForm({
     defaultValues: {
       newsHeading: "",
       newsSubHeading: "",
-      deskCity:"",
+      deskCity: "",
       newsReporterPublicName: "",
       newsResource: "online",
       newsLocation: "",
@@ -144,16 +144,15 @@ export function CreateNewsArticleForm({
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
-                name="newsSubHeading"
+                name="deskCity"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>News Sub Headings</FormLabel>
+                    <FormLabel>News desk/City</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Sub headings min 40 words"
+                        placeholder="News desk or City"
                         {...field}
                         className="placeholder:text-xs"
                       />
@@ -165,13 +164,13 @@ export function CreateNewsArticleForm({
 
               <FormField
                 control={form.control}
-                name="deskCity"
+                name="newsSubHeading"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>News desk/City</FormLabel>
+                    <FormLabel>News Sub Headings</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="News desk or City"
+                        placeholder="Sub headings min 40 words"
                         {...field}
                         className="placeholder:text-xs"
                       />
