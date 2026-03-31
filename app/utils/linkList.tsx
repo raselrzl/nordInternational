@@ -18,4 +18,18 @@ export const links = [
   { id: "17", href: "/science", label: "Science" },
   { id: "18", href: "/war", label: "War" },
 
+  { id: "19", href: "/editorial", label: "Editorial" },
+  { id: "20", href: "/investigation", label: "Investigation" },
+  { id: "21", href: "/story", label: "Story" }, // or "Feature"
+  { id: "22", href: "/interview", label: "Interview" },
+  { id: "23", href: "/analysis", label: "Analysis" },
+  { id: "24", href: "/culture", label: "Culture" },
+  { id: "25", href: "/books-and-arts", label: "Books & Arts" },
+  { id: "26", href: "/travel", label: "Travel" },
+  { id: "27", href: "/human-rights", label: "Human Rights" }, // fixed slug
+  { id: "28", href: "/business", label: "Business" },
+  { id: "29", href: "/finance", label: "Finance" },
+  { id: "30", href: "/ai-and-future-tech", label: "AI & Future Tech" },
+  { id: "31", href: "/crisis", label: "Crisis" },
+
 ];

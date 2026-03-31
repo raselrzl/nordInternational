@@ -210,6 +210,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
             newsPictureCredit={data.newsPictureCredit}
             newsHeading={data.newsHeading}
             newsSubHeading={data.newsSubHeading}
+            deskCity={data.deskCity}
             newsReporterPublicName={data.newsReporterPublicName}
             createdAt={data.createdAt}
             quotes={data.quotes ?? []}

@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  LinkIcon,
-  Volume2,
-  VolumeX,
-} from "lucide-react";
+import { LinkIcon, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
@@ -21,6 +17,7 @@ interface PrintNewsProps {
   newsDetails: string | "...";
   newsResource: string | null;
   newsHeading: string | null;
+  deskCity: string | null;
   newsSubHeading: string | null;
   newsReporterPublicName: string | null;
   id: string | null;
@@ -34,6 +31,7 @@ export default function PrintNews({
   newsPictureCredit,
   newsDetails,
   newsSubHeading,
+  deskCity,
   newsReporterPublicName,
   newsHeading,
   createdAt,
@@ -89,16 +87,16 @@ export default function PrintNews({
   const handleShareWhatsApp = () => {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(articleUrl)}`,
-      "_blank"
+      "_blank",
     );
   };
 
   const handleShareFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        articleUrl
+        articleUrl,
       )}`,
-      "_blank"
+      "_blank",
     );
   };
 
@@ -119,13 +117,11 @@ export default function PrintNews({
   // ---------------- FEMALE VOICE ----------------
 
   const getFemaleVoice = (lang: string) => {
-    const filtered = voices.filter(v =>
-      v.lang.toLowerCase().includes(lang)
-    );
+    const filtered = voices.filter((v) => v.lang.toLowerCase().includes(lang));
 
     return (
-      filtered.find(v =>
-        /female|woman|zira|samantha|google uk english female/i.test(v.name)
+      filtered.find((v) =>
+        /female|woman|zira|samantha|google uk english female/i.test(v.name),
       ) ||
       filtered[0] ||
       voices[0]
@@ -246,13 +242,11 @@ export default function PrintNews({
             {newsHeading}
           </h1>
 
-          <p className="m-2 text-sm font-bold text-justify">
+          <p className="m-2 text-md font-bold text-justify">
             By: {newsReporterPublicName || "GEP Editor"}
           </p>
-
-          <p className="m-2 text-sm italic text-justify">
-            {newsSubHeading}
-          </p>
+          <p className="m-2 text-md font-semibold text-justify">{deskCity}</p>
+          <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image */}
           {newsPicture && (

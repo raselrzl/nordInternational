@@ -84,6 +84,7 @@ model newsArticle {
   id                 String       @id @default(uuid())
   newsHeading        String
   newsSubHeading     String?
+  deskCity           String?
   newsReporterPublicName String?
   newsResource       String
   newsLocation       NewsCountry?
@@ -122,6 +123,7 @@ model quote {
 }
 
 enum newsCategory {
+  // Your existing categories
   LATEST
   NATIONAL
   POLITICS
@@ -140,6 +142,21 @@ enum newsCategory {
   ENVIRONMENT
   SCIENCE
   WAR
+
+  // Newly added (your request)
+  EDITORIAL
+  INVESTIGATION
+  STORY
+  INTERVIEW
+  ANALYSIS
+  CULTURE
+  BOOKS_AND_ARTS
+  TRAVEL
+  HUMANRIGHTS
+  BUSINESS
+  FINANCE
+  AI_AND_FUTURE_TECH
+  CRISIS
 }
 
 model Advertisement {

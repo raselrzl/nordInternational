@@ -42,6 +42,7 @@ interface iAppProps {
     newsDetails: string;
     newsHeading: string;
     newsSubHeading: string;
+    deskCity: string;
     newsPicture: string;
     newsReporterPublicName?: string;
     quotes: {
@@ -67,6 +68,7 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
     defaultValues: {
       newsHeading: article.newsHeading,
       newsSubHeading: article.newsSubHeading,
+      deskCity: article.deskCity,
       newsReporterPublicName: article.newsReporterPublicName ?? "",
       newsResource: article.newsResource,
       newsLocation: article.newsLocation ?? "",
@@ -163,6 +165,24 @@ export function EditNewsArticleForm({ article, userType }: iAppProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>News Subheadings</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="........"
+                        {...field}
+                        className="placeholder:text-xs"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+                <FormField
+                control={form.control}
+                name="deskCity"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>News Desk/City</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="........"
