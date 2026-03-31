@@ -16,6 +16,7 @@ import { EnterPrizeTwo } from "@/components/allAdvertisement/EnterprizeTwo";
 import { incrementArticleView } from "@/app/actions";
 import NewUserTracker from "@/components/general/NewUserTracker";
 import CountryNewsSlider from "@/components/general/CountryNewsSlider";
+import PoolPopupComponent from "@/components/general/PoolPopupComponent";
 
 // ------------------ HELPERS ------------------
 
@@ -213,7 +214,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
             createdAt={data.createdAt}
             quotes={data.quotes ?? []}
           />
-
+          <PoolPopupComponent />
           {/* View Counter */}
           <p className="text-sm text-gray-600 mb-3">
             👁‍🗨 Views: {data.viewCount ?? 0}
