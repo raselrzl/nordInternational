@@ -1,12 +1,10 @@
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 import { Suspense } from "react";
 import { trackRoute } from "@/app/utils/routeTracker";
-import { SuperOne } from "@/components/allAdvertisement/SuperOne";
-import Image from "next/image";
 import { List } from "lucide-react";
 import { UltimateTwo } from "@/components/allAdvertisement/UltimateTwo";
-import AllCrimeNewsArticleList from "../crime/AllCrimeNewsArticleList";
 import BulgariaNews from "../crime/BulgariaNews";
+import AllFinanceNewsArticleList from "./AllFinanceNewsArticleList";
 
 type SearchParamsProps = {
   searchParams: Promise<{
@@ -33,7 +31,7 @@ export default async function Finance({
 
           <div className="p-1 md:p-4">
             <Suspense key={currentPage} fallback={<LoadingSpinner />}>
-              <AllCrimeNewsArticleList currentPage={currentPage} />
+              <AllFinanceNewsArticleList currentPage={currentPage} />
             </Suspense>
           </div>
         </div>
