@@ -13,6 +13,7 @@ async function getData(articleId: string) {
       id: true,
       newsHeading: true,
       newsSubHeading: true,
+      deskCity: true,
       newsDetails: true,
       newsResource: true,
       newsLocation: true,
@@ -48,6 +49,8 @@ interface iAppProps {
     newsReporterPublicName?: string;
     newsDetails: string;
     newsHeading: string;
+    newsSubHeading: string;
+    deskCity: string;
     newsPicture: string;
     quotes: {
       speakerInfo: string;
@@ -96,6 +99,7 @@ export default async function EditNewsArticleFormPage({
         article={{
           ...data,
           newsSubHeading: data.newsSubHeading ?? "",
+          deskCity: data.deskCity ?? "",
           newsReporterPublicName: data.newsReporterPublicName ?? "",
         }}
         userType={user.userType ?? null}
