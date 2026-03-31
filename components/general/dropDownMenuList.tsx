@@ -20,6 +20,20 @@ export default function DropDownMenuList() {
     { label: "Economy & Markets", slug: "economy" },
     { label: "Law & Justice", slug: "law-and-justice" },
     { label: "Environment & Climate", slug: "environment" },
+
+    { label: "Editorial & Opinion", slug: "editorial" },
+    { label: "Investigative Reports", slug: "investigation" },
+    { label: "Feature Stories", slug: "story" },
+    { label: "Exclusive Interviews", slug: "interview" },
+    { label: "In-Depth Analysis", slug: "analysis" },
+    { label: "Culture & Society", slug: "culture" },
+    { label: "Books & Arts", slug: "books-and-arts" },
+    { label: "Travel & Exploration", slug: "travel" },
+    { label: "Human Rights", slug: "human-rights" },
+    { label: "Business & Industry", slug: "business" },
+    { label: "Finance & Investment", slug: "finance" },
+    { label: "AI & Future Tech", slug: "ai-and-future-tech" },
+    { label: "Crisis & Emergencies", slug: "crisis" },
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -147,7 +161,7 @@ export default function DropDownMenuList() {
               <ChevronDown className="w-5 h-5" />
             </div>
           )}
-          
+
           {/* Footer links */}
           <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 text-sm pl-4 font-semibold py-10 border-t mt-10">
             <div className="flex justify-start mb-6">
