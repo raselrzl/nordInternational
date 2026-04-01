@@ -43,6 +43,7 @@ import { OpinionForm } from "@/components/general/OpinionForm";
 import CountryNewsSlider from "@/components/general/CountryNewsSlider";
 import SportsNews from "@/components/general/SportsNews";
 import PoolPopupComponent from "@/components/general/PoolPopupComponent";
+import CategoryNewsSlider from "@/components/general/CategoryNewsSlider";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -398,6 +399,7 @@ export default async function Home() {
       <WarLatest />
       <PoolPopupComponent />
       <BesicTwoAdvertise />
+      <CategoryNewsSlider />
       <ChainaLatest />
       <BesicOneAdvertise />
       <div className="mb-4">

@@ -14,6 +14,7 @@ import AfrikaLatest from "@/components/general/Afrika";
 import AustraliaLatest from "@/components/general/Australia";
 import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
 import SportsNews from "@/components/general/SportsNews";
+import CategoryNewsSlider from "@/components/general/CategoryNewsSlider";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -38,6 +39,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
       <div className="mt-22 md:mt-29 mb-20 sm:mb-40">{/*  <NavMenu /> */}</div>
 
       {children}
+
       <div className="grid grid-cols-1 md:grid-cols-4 mb-20">
         <IndiaLatest />
         <AfrikaLatest />
@@ -45,6 +47,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <SouthamericaLatest />
       </div>
       <SportsNews />
+
       <Footer />
       <VisitorTracker />
       <ScrollToTopButton />
