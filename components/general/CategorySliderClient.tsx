@@ -57,7 +57,7 @@ export default function CategorySliderClient({ articles }: any) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
               {/* Category badge */}
-              <div className="absolute top-3 left-3 bg-black text-white text-xs px-3 py-1 rounded-full backdrop-blur">
+              <div className="absolute top-3 left-3 bg-red-700 text-white text-sm px-3 py-1 rounded-full backdrop-blur">
                 {article.category.replace("_", " ")}
               </div>
 
@@ -72,7 +72,7 @@ export default function CategorySliderClient({ articles }: any) {
                   </p>
                 )}
 
-                <div className="flex items-center gap-1 text-xs opacity-80 mt-2">
+                <div className="flex items-center gap-1 text-xs opacity-80 mt-2 text-blue-600">
                   <Calendar size={13} />
                   {new Date(article.createdAt).toLocaleDateString("en-GB")}
                 </div>
