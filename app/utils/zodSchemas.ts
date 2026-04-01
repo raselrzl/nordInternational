@@ -25,7 +25,7 @@ export const AdvertiserSchema = z.object({
     .string()
     .min(
       10,
-      "Please provide a description of the company with at least 10 characters"
+      "Please provide a description of the company with at least 10 characters",
     ),
 
   companyWebsite: z.string().optional(),
@@ -39,7 +39,7 @@ export const newsArticleSchema = z.object({
   newsHeading: z.string().min(6, "News headline is required"),
   newsSubHeading: z.string().optional(),
   deskCity: z.string().optional(),
-  newsReporterPublicName:z.string().optional(),
+  newsReporterPublicName: z.string().optional(),
   newsResource: z.string(),
   newsLocation: z.string().optional(),
   newsCategory: z.enum([
@@ -60,7 +60,21 @@ export const newsArticleSchema = z.object({
     "LAW_AND_JUSTICE",
     "ENVIRONMENT",
     "SCIENCE",
-    "WAR"
+    "WAR",
+
+    "EDITORIAL",
+    "INVESTIGATION",
+    "STORY",
+    "INTERVIEW",
+    "ANALYSIS",
+    "CULTURE",
+    "BOOKS_AND_ARTS",
+    "TRAVEL",
+    "HUMANRIGHTS",
+    "BUSINESS",
+    "FINANCE",
+    "AI_AND_FUTURE_TECH",
+    "CRISIS",
   ]),
   newsPicture: z.string().url("Required"),
   newsPictureHeading: z.string(),
