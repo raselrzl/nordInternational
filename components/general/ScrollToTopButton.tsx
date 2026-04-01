@@ -41,7 +41,7 @@ const ScrollToTopButton = () => {
           className="fixed bottom-8 right-6 z-50 p-3 rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 focus:outline-none"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-5 h-5" />
+          ↑
         </motion.button>
       )}
     </AnimatePresence>
