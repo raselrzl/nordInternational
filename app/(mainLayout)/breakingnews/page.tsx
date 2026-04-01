@@ -1,5 +1,6 @@
 import { trackRoute } from "@/app/utils/routeTracker";
 import LiveUpdateComponent from "./LiveUpdateComponent";
+import CategoryNewsSlider from "@/components/general/CategoryNewsSlider";
 
 type SearchParamsProps = {
   searchParams: Promise<{ page?: string }>;
@@ -13,6 +14,7 @@ export default async function NewsPage({ searchParams }: SearchParamsProps) {
   return (
     <div className="pt-2">
       <LiveUpdateComponent currentPage={currentPage} />
+      <CategoryNewsSlider />
     </div>
   );
 }

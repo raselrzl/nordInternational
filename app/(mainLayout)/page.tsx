@@ -43,7 +43,6 @@ import { OpinionForm } from "@/components/general/OpinionForm";
 import CountryNewsSlider from "@/components/general/CountryNewsSlider";
 import SportsNews from "@/components/general/SportsNews";
 import PoolPopupComponent from "@/components/general/PoolPopupComponent";
-import CategoryNewsSlider from "@/components/general/CategoryNewsSlider";
 
 // ---------------------- TYPES ----------------------
 type Quote = {
@@ -399,7 +398,7 @@ export default async function Home() {
       <WarLatest />
       <PoolPopupComponent />
       <BesicTwoAdvertise />
-      <CategoryNewsSlider />
+
       <ChainaLatest />
       <BesicOneAdvertise />
       <div className="mb-4">
@@ -409,9 +408,8 @@ export default async function Home() {
           </p>
         </div>
         <div className="grid grid-cols-1">
-          
-            <PopupOnViewServer />
-            <Binodon />
+          <PopupOnViewServer />
+          <Binodon />
         </div>
       </div>
       <AsiaLatest />
