@@ -352,6 +352,7 @@ export default async function CountryNews({
               />
             )}
           </div>
+           <CategoryNewsSlider />
         </div>
 
         <div className="col-span-5 md:col-span-1 px-2 pt-3 gap-4 mt-15">
@@ -364,7 +365,7 @@ export default async function CountryNews({
           </div>
         </div>
       </div>
-      <CategoryNewsSlider />
+     
     </>
   );
 }
