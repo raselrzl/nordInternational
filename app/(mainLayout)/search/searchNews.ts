@@ -55,7 +55,7 @@ export async function searchNewsLimited(query: string) {
     orderBy: {
       createdAt: "desc",
     },
-    take: 6,
+    take: 8,
   });
 
   return results;

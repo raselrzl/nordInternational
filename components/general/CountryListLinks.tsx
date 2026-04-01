@@ -221,23 +221,23 @@ export default function CountryListLinks() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-3 md:flex md:flex-wrap gap-2 px-2 mt-8">
+    <div className="max-w-7xl mx-auto flex flex-wrap gap-2 px-2 mt-8">
       {euCountries.map((country) => (
         <Link
           key={country.name}
           href={country.link}
           onClick={scrollToTop}
-          className="flex items-center justify-center gap-1 border p-0.5 transition-all 
+          className="flex items-center justify-center transition-all 
                      hover:opacity-80 active:opacity-60 active:scale-95 rounded-xs"
         >
           <img
             src={country.flag}
             alt={`${country.name} flag`}
-            width={16}
-            height={12}
+            width={12}
+            height={9}
             className="rounded-sm border"
           />
-          <span className="text-xs font-medium">{country.name}</span>
+          <span className="text-[10px] font-medium">{country.name}</span>
         </Link>
       ))}
     </div>
