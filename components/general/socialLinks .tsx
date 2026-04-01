@@ -36,7 +36,7 @@ export default function FollowGEP() {
   ];
 
   return (
-    <div className="mt-6 px-4 pb-6">
+    <div className="px-2 pb-6">
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-3">
           {socialLinks.map(({ href, icon: Icon, label }) => (

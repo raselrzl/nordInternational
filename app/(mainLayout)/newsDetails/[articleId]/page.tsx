@@ -1,11 +1,9 @@
-import React from "react";
 import { prisma } from "@/app/utils/db";
 import { EmptyState } from "@/components/general/EmptyState";
 import {
   ShirShoNewsHeadings,
   RecentNews,
 } from "@/components/general/homepageArticleList";
-import { Clock, MapPin, User2 } from "lucide-react";
 import { notFound } from "next/navigation";
 import PrintNews from "@/components/general/printNews";
 import { trackRoute } from "@/app/utils/routeTracker";
@@ -85,59 +83,6 @@ export async function generateMetadata({
   };
 }
 
-/* export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { articleId } = await params;
-  const article = await getNewsArticle(articleId);
-
-  const title = article.newsHeading ?? "News";
-  const description = toExcerpt(article.newsDetails);
-
-  // 🔴 Must be full domain
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.globaleye.press";
-
-  // 🔴 Ensure full image URL
-  const pic = article.newsPicture || "/logo/gw.png";
-  const ogImage = pic.startsWith("http") ? pic : `${base}${pic}`;
-
-  const url = `${base}/newsDetails/${article.id}`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: url,
-    },
-
-    openGraph: {
-      type: "article",
-      url,
-      title,
-      description,
-      siteName: "GlobalEye",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
-} */
-
-// ------------------ MAIN PAGE ------------------
-
 type Params = Promise<{ articleId: string }>;
 
 export default async function NewsDetailsPage({ params }: { params: Params }) {
@@ -171,7 +116,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
         month: "long",
         day: "numeric",
       })
-    : "Date is not available";
+    : "Not available";
   <NewUserTracker />;
   return (
     <>
@@ -191,7 +136,7 @@ export default async function NewsDetailsPage({ params }: { params: Params }) {
             <div className="flex font-bold flex-row items-center">
               <p className="text-xl font-bold uppercase border-l-6 border-primary pl-2">
                 {data.newsLocation}{" "}
-                <span className="text-sm pl-2 font-light">
+                <span className="text-xs font-light bg-red-50 dark:text-black px-1.5 py-1 pb-0.5 rounded-2xl">
                   {formattedCreatedAt}
                 </span>
               </p>

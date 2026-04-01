@@ -80,7 +80,7 @@ const router = useRouter();
   return (
     <div className="w-full mx-auto">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 shadow p-8 ml-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-2 ml-4">
           {/* Name */}
           <FormField
             control={form.control}

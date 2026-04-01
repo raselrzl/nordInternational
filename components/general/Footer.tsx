@@ -2,25 +2,19 @@ import Link from "next/link";
 import CountryListLinks from "./CountryListLinks";
 import { ExternalLink } from "lucide-react";
 import FollowGEP from "./socialLinks ";
+import FooterCategoryLinks from "./FooterCategoryLinks";
+import ComplaintPopup from "./Complaint";
 
 export default function Footer() {
   return (
     <footer className="mt-10 w-full">
       <div className="w-full max-w-7xl mx-auto px-4">
-        {/* Logo */}
-        <div className="flex justify-start mb-6">
-          <div
-            className="
-              w-[80px] h-[26px]
-              bg-[url('/gb.png')]
-              dark:bg-[url('/gw.png')]
-              bg-cover bg-center
-            "
-          />
-        </div>
-
         {/* Footer links */}
-        <div className="flex flex-col md:flex-wrap md:flex-row gap-4 mb-2 py-2 text-sm pl-4 font-semibold">
+        <FooterCategoryLinks />
+        <div className="flex flex-col md:flex-row flex-wrap gap-4 mb-2 py-2 text-sm pl-2 font-semibold items-start">
+          <div className="w-full md:w-auto flex justify-center md:justify-start">
+            <ComplaintPopup />
+          </div>{" "}
           <Link
             href="https://www.souveral.com/terms-conditions"
             className="hover:underline text-foreground/90 text-sm flex flex-row"
@@ -54,7 +48,6 @@ export default function Footer() {
           >
             Comment Policy
           </Link>
-
           <Link
             href="/about/advertise"
             className="hover:underline text-foreground/90 text-sm"
@@ -75,99 +68,29 @@ export default function Footer() {
             About GEP <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
         </div>
-        {/* Social section */}
-        {/*   <div className="mt-6 pb-4 ml-4">
-          <div className="flex flex-col items-start gap-2">
-            <p className="text-sm uppercase font-bold">Follow GEP</p>
-
-            <div className="flex items-center gap-2">
-             
-              <a
-                href="https://www.instagram.com/gepnews"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/instagram.png"
-                    alt="Instagram"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </a>
-
-              <a
-                href="https://www.threads.com/@gepnews"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Threads"
-              >
-                <div className="w-6.5 h-6.5 rounded-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/threads.avif"
-                    alt="threads"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </a>
-              <a
-                href="https://www.facebook.com/gepspot"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <div className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/facebook.png"
-                    alt="Facebook"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </a>
-
-              <a
-                href="https://www.youtube.com/@globaleyepressofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-              >
-                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/youtube.png"
-                    alt="YouTube"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </a>
-
-              <a
-                href="https://www.tiktok.com/@gep_news"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok"
-              >
-                <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center">
-                  <img
-                    src="/tiktokk.png"
-                    alt="TikTok"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </a>
-            </div>
-          </div>
-        </div> */}
-        <FollowGEP />
         {/* Country links */}
         <CountryListLinks />
+        {/* Logo */}
+        <div className="flex flex-col items-center justify-center mt-6 gap-4">
+          {/* Logo */}
+          <div
+            className="
+      w-[80px] h-[26px]
+      bg-[url('/gb.png')]
+      dark:bg-[url('/gw.png')]
+      bg-cover bg-center
+    "
+          />
 
+          {/* Social */}
+          <FollowGEP />
+        </div>
         {/* Copyright */}
-        <p className="text-xs mt-6 text-center">
-          Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved
-          Souveral Network.
-        </p>
       </div>
+      <p className="text-[10px] mt-6 text-center border-t bg-black text-white">
+        Copyright GEP &copy; {new Date().getFullYear()}. All rights reserved
+        Souveral Network.
+      </p>
     </footer>
   );
 }

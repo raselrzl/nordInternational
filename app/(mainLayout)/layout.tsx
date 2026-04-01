@@ -1,11 +1,8 @@
 import Navbar from "@/components/general/Navbar";
-import TodayDate from "@/components/general/TodayDate";
 import React, { ReactNode } from "react";
 import Link from "next/link";
-import NavMenu from "@/components/general/NavMenu";
 import { Toaster } from "sonner";
 import NewsTicker from "@/components/general/NewsTicker";
-import Poll from "@/components/LivePoll/Poll";
 import Footer from "@/components/general/Footer";
 import VisitorTracker from "@/components/general/VisitorTracker";
 import ScrollToTopButton from "@/components/general/ScrollToTopButton";
@@ -16,6 +13,7 @@ import IndiaLatest from "@/components/general/India";
 import AfrikaLatest from "@/components/general/Afrika";
 import AustraliaLatest from "@/components/general/Australia";
 import SouthamericaLatest from "@/components/general/SouthamericaAmerica";
+import SportsNews from "@/components/general/SportsNews";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
@@ -46,7 +44,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <AustraliaLatest />
         <SouthamericaLatest />
       </div>
-      <Poll />
+      <SportsNews />
       <Footer />
       <VisitorTracker />
       <ScrollToTopButton />

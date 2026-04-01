@@ -169,7 +169,7 @@ export default function PrintNews({
   return (
     <>
       {/* BIG LISTEN BUTTON (LEFT) */}
-      <div className="flex justify-start px-2 mt-6">
+      <div className="flex justify-between px-2 mt-6">
         <button
           onClick={handleSpeak}
           className={`relative text-white px-6 py-3 rounded-lg text-sm md:text-base font-semibold flex items-center gap-2 
@@ -196,66 +196,70 @@ export default function PrintNews({
             </>
           )}
         </button>
-      </div>
+        <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-2">
+          <PrintNewsDetailsClient
+            newsHeading={newsHeading ?? ""}
+            newsPicture={newsPicture ?? null}
+            newsPictureHeading={newsPictureHeading ?? null}
+            newsDetails={newsDetails}
+            createdAt={createdAt}
+            quotes={quotes}
+          />
 
-      {/* Share Buttons (Right) */}
-      <div className="flex justify-end flex-wrap space-x-1 pr-2 mt-2">
-        <PrintNewsDetailsClient
-          newsHeading={newsHeading ?? ""}
-          newsPicture={newsPicture ?? null}
-          newsPictureHeading={newsPictureHeading ?? null}
-          newsDetails={newsDetails}
-          createdAt={createdAt}
-          quotes={quotes}
-        />
+          <Button
+            onClick={handleShareWhatsApp}
+            className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
+            variant="outline"
+          >
+            <img src="/wha.png" className="w-6 h-6" alt="WhatsApp" />
+          </Button>
 
-        <Button
-          onClick={handleShareWhatsApp}
-          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
-          variant="outline"
-        >
-          <img src="/wha.png" className="w-6 h-6" alt="WhatsApp" />
-        </Button>
+          <Button
+            onClick={handleShareFacebook}
+            className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
+            variant="outline"
+          >
+            <img src="/fac.png" className="w-6 h-6" alt="Facebook" />
+          </Button>
 
-        <Button
-          onClick={handleShareFacebook}
-          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
-          variant="outline"
-        >
-          <img src="/fac.png" className="w-6 h-6" alt="Facebook" />
-        </Button>
+          <Button
+            onClick={handleShareMessenger}
+            className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
+            variant="outline"
+          >
+            <img src="/mes.png" className="w-6 h-6" alt="Messenger" />
+          </Button>
 
-        <Button
-          onClick={handleShareMessenger}
-          className="w-8 h-8 p-0 border-none shadow-none dark:bg-white"
-          variant="outline"
-        >
-          <img src="/mes.png" className="w-6 h-6" alt="Messenger" />
-        </Button>
-
-        <Button
-          onClick={handleCopyLink}
-          className="w-6 h-6 mt-1 ml-1 border border-black dark:border-white rounded"
-          variant="outline"
-        >
-          <LinkIcon className="w-4 h-4" />
-        </Button>
+          <Button
+            onClick={handleCopyLink}
+            className="w-6 h-6 dark:w-8 dark:h-8 mt-1 dark:mt-0 ml-0.5 border border-black dark:border-white dark:bg-white dark:text-black dark:rounded-none rounded-xl"
+            variant="outline"
+          >
+            <LinkIcon className="w-6 h-6" />
+          </Button>
+        </div>
       </div>
 
       {/* ---------------- ARTICLE ---------------- */}
 
       <div className="mb-10">
         <div ref={contentRef} className="w-full rounded-xs mt-6">
-          <div className="h-2 w-20 bg-primary ml-2"></div>
-
+          <div className="h-2 w-17 bg-primary ml-2"></div>
+          <div className="flex flex-col ml-2">
+            <span className="text-xs text-gray-500 uppercase tracking-wide">
+              Reporter
+            </span>
+            <span className="text-md">
+              {newsReporterPublicName || "GEP Editor"}
+            </span>
+          </div>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
             {newsHeading}
           </h1>
 
-          <p className="m-2 text-md font-bold text-justify">
-            By: {newsReporterPublicName || "GEP Editor"}
+          <p className="m-2 text-xs mt-4 font-semibold text-justify uppercase">
+            {deskCity}
           </p>
-          <p className="m-2 text-md font-semibold text-justify">{deskCity}</p>
           <p className="m-2 text-sm italic text-justify">{newsSubHeading}</p>
 
           {/* Image */}
