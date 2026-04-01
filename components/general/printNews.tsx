@@ -244,13 +244,10 @@ export default function PrintNews({
 
       <div className="mb-10">
         <div ref={contentRef} className="w-full rounded-xs mt-6">
-          <div className="h-2 w-17 bg-primary ml-2"></div>
-          <div className="flex flex-col ml-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wide">
-              Reporter
-            </span>
+          <div className="h-2 w-24 bg-primary ml-2"></div>
+          <div className="flex flex-col ml-2 border-t-2 border-primary">
             <span className="text-md">
-              {newsReporterPublicName || "GEP Editor"}
+              {newsReporterPublicName || "Staff Correspondent"}
             </span>
           </div>
           <h1 className="text-xl md:text-2xl lg:text-4xl font-bold my-4 px-2 uppercase">
