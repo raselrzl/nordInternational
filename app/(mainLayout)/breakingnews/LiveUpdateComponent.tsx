@@ -71,58 +71,62 @@ export default async function LiveUpdateComponent({
 
   return (
     <div className=" py-3 rounded-md mx-auto max-w-7xl">
-      <h1 className=" pl-2 uppercase font-bold text-white text-xl ml-2 md:ml-70 py-2 bg-[#A1241D] ">
+      <h1 className=" pl-2 max-w-[720px] uppercase font-bold text-white text-xl mx-2 md:ml-70 py-2 bg-[#A1241D] ">
       Breaking
       </h1>
 
       {/* ========== FIRST NEWS FEATURE ========== */}
       {/* ========== FEATURED FIRST NEWS ========== */}
-      {news.length > 0 && (
-        <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
-          {news[0].newsPicture ? (
-            /* ---- IF IMAGE EXISTS ---- */
-            <div className="relative w-full max-w-[720px]">
-              <img
-                src={news[0].newsPicture}
-                className="w-full h-[300px] md:h-[360px] object-cover"
-                alt=""
-              />
+     {news.length > 0 && (
+  <div className="relative mb-14 flex flex-col items-center px-2 md:px-0">
+    {news[0].newsPicture ? (
+      /* ---- IF IMAGE EXISTS ---- */
+      <div className="w-full max-w-[720px] flex flex-col">
+        <img
+          src={news[0].newsPicture}
+          className="w-full h-[300px] md:h-[360px] object-cover rounded-md"
+          alt=""
+        />
 
-              {/* Overlay box */}
-              <div className="absolute left-1/2 -translate-x-1/2 -bottom-10 w-[85%]">
-                <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
-                  <div className="flex items-start gap-2">
-                    <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                      <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
-                    </div>
-                    <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
-                      {formatTimeAgo(new Date(news[0].createdAt))}
-                    </span>
-                  </div>
+        {/* --- Text box BELOW image --- */}
+        <div className="mt-4 bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border w-full">
+          <div className="flex items-start gap-2">
+            <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
+              <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+            </div>
+            <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+              {formatTimeAgo(new Date(news[0].createdAt))}
+            </span>
+          </div>
 
-                  <div className="font-bold text-lg text-[#A1241D]  leading-tight mt-1">
-                    {news[0].headings}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            /* ---- IF NO IMAGE → SHOW ONLY THE TEXT BOX ---- */
-            <div className="w-full max-w-[720px] mt-4">
-              <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
-                <div className="flex items-start gap-2">
-                  <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
-                    <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
-                  </div>
-                  <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
-                    {formatTimeAgo(new Date(news[0].createdAt))}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
+          <div className="font-bold text-lg text-[#A1241D] leading-tight mt-1">
+            {news[0].headings}
+
+            {news[0].newsDetails && (
+              <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm border p-2">
+                {news[0].newsDetails}
+              </p>
+            )}
+          </div>
         </div>
-      )}
+      </div>
+    ) : (
+      /* ---- IF NO IMAGE → SHOW ONLY THE TEXT BOX ---- */
+      <div className="w-full max-w-[720px] mt-4">
+        <div className="bg-white dark:bg-gray-900 shadow-xl rounded-md p-4 border text-center">
+          <div className="flex items-start gap-2">
+            <div className="rounded-full bg-[#A1241D] w-4 h-4 flex items-center justify-center mt-[3.5px]">
+              <div className="bg-primary rounded-full animate-ping w-4 h-4"></div>
+            </div>
+            <span className="text-xs text-gray-500 italic pt-1.5 block text-left">
+              {formatTimeAgo(new Date(news[0].createdAt))}
+            </span>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+)}
 
       {/* ========== REST OF THE NEWS (KEEP EXACT CURRENT DESIGN) ========== */}
       <div className="relative max-w-2xl mx-auto">
