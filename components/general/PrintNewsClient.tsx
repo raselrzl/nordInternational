@@ -288,7 +288,7 @@ export function PrintNewsDetailsClient({
           </section>
         )}
          <a
-              href="https://globaleye.press"
+              href="gepnews.com"
               target="_blank"
               rel="noopener noreferrer"
               style={{
