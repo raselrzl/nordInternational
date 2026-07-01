@@ -13,7 +13,7 @@ export default async function About() {
         GlobalEye Press is an independent digital media company based in Portugal,
         delivering verified reporting and thoughtful analysis across global and
         regional stories.
-      </p>
+      </p> 
 
       <p className="mb-4 text-sm">
         We operate with editorial independence, transparency, and a commitment to
