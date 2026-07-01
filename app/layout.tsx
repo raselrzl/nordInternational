@@ -46,12 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/*       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Tiro+Bangla&display=swap"
-          rel="stylesheet"
-        />
-      </head> */}
+            <head>
+              <meta name='impact-site-verification' content='bfb46410-0651-45ca-b8dd-b2704df55aea'></meta>
+
+      </head>
       <body className={` ${inter.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
