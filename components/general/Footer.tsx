@@ -16,7 +16,7 @@ export default function Footer() {
             <ComplaintPopup />
           </div>{" "}
           <Link
-            href="https://www.souveral.com/terms-conditions"
+            href="/about/terms"
             className="hover:underline text-foreground/90 text-sm flex flex-row"
             target="_blank"
           >
@@ -29,14 +29,14 @@ export default function Footer() {
             Editorial Policy
           </Link>
           <Link
-            href="https://www.souveral.com/privacy-policy"
+            href="/about/privacy-policy"
             className="hover:underline text-foreground/90 text-sm flex flex-row"
             target="_blank"
           >
             Privacy Policy <ExternalLink className="h-3 w-3 ml-1" />
           </Link>
           <Link
-            href="https://www.souveral.com/cookie-policy"
+            href="/about/cookie-policy"
             className="hover:underline text-foreground/90 text-sm flex flex-row"
             target="_blank"
           >
@@ -61,7 +61,7 @@ export default function Footer() {
             Standards & Integrity
           </Link>
           <Link
-            href="https://www.souveral.com/about"
+            href="/about"
             className="hover:underline text-foreground/90 text-sm flex flex-row"
             target="_blank"
           >

@@ -13,26 +13,26 @@ export default function FollowGEP() {
       icon: Instagram,
       label: "Instagram",
     },
-    {
+/*     {
       href: "https://www.threads.com/@gepnews",
       icon: AtSign,
       label: "Threads",
-    },
+    }, */
     {
       href: "https://www.facebook.com/gepspot",
       icon: Facebook,
       label: "Facebook",
     },
-    {
+/*     {
       href: "https://www.youtube.com/@globaleyepressofficial",
       icon: Youtube,
       label: "YouTube",
-    },
-    {
+    }, */
+/*     {
       href: "https://www.tiktok.com/@gep_news",
       icon: Music2,
       label: "TikTok",
-    },
+    }, */
   ];
 
   return (
