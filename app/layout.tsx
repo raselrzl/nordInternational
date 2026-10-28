@@ -139,12 +139,10 @@ export const metadata: Metadata = {
     },
   },
 
-  // Add your actual Google Search Console verification code here
-  // if you use HTML-tag verification.
-  //
-  // verification: {
-  //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
-  // },
+   // Google AdSense account verification
+  other: {
+    "google-adsense-account": "ca-pub-5945782633100386",
+  },
 };
 
 // ---------------------- ROOT LAYOUT ----------------------
